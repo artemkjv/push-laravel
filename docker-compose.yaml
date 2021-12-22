@@ -1,0 +1,47 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/hosts:/etc/nginx/conf.d
+      - ./:/var/www/html
+      - ./nginx/logs:/var/log/nginx
+    links:
+      - php
+
+  php:
+    build:
+      ./php
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pushDb
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+    - 8081:80
