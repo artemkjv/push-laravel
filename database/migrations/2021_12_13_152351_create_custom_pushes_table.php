@@ -21,6 +21,7 @@ class CreateCustomPushesTable extends Migration
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
             $table->string('open_url')->nullable();
+            $table->string('deeplink')->nullable();
             $table->string('sound')->nullable();
             $table->integer('time_to_live')->nullable();
             $table->timestamp('time_to_send');

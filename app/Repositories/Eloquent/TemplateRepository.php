@@ -21,4 +21,19 @@ class TemplateRepository implements TemplateRepositoryInterface
             ->paginate(10);
     }
 
+    public function save($data)
+    {
+        return Template::updateOrCreate([
+            'id' => $data['id'] ?? null
+        ], $data);
+    }
+
+    public function getByIdAndUser(int $id, UserInterface $userDecorator)
+    {
+        return $userDecorator
+            ->templates()
+            ->where('id', $id)
+            ->first();
+    }
+
 }

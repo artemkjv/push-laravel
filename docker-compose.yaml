@@ -22,6 +22,8 @@ services:
       - mysql
     links:
       - mysql
+    environment:
+      UPLOAD_LIMIT: 64M
 
   mysql:
     image: mysql:latest

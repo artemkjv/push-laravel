@@ -11,4 +11,8 @@ interface TemplateRepositoryInterface
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
 
+    public function getByIdAndUser(int $id, UserInterface $userDecorator);
+
+    public function save($data);
+
 }

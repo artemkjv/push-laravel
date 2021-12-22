@@ -20,7 +20,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form role="form" method="post" action="{{ route('template.store') }}">
+            <form role="form" enctype="multipart/form-data" method="post" action="{{ route('template.store') }}">
                 <div class="row">
                     <div class="col-xl-6 col-sm-12">
                         @csrf
@@ -41,9 +41,18 @@
                             <label for="icon">Icon</label>
                             <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="icon" id="icon">
                         </div>
+                        <div class="form-group">
+                            <label for="open_url">Open Url</label>
+                            <input type="url" class="form-control" value="{{ old('open_url') }}" id="open_url" name="open_url">
+                        </div>
+                        <div class="form-group">
+                            <label for="deeplink">Deeplink (For IOS or Android)</label>
+                            <input type="text" class="form-control" value="{{ old('deeplink') }}" id="deeplink" name="deeplink">
+                        </div>
+
                     </div>
                     <div class="col-xl-6 col-sm-12">
-
+                        @livewire('message-form')
                     </div>
                     <!-- /.col -->
                     <div class="col-1">

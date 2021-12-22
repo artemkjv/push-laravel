@@ -131,3 +131,41 @@ ion-icon{
 .filter-group{
     margin-bottom: 30px;
 }
+
+.language-wrapper{
+    column-count: 4;
+}
+
+@media (max-width: 925px) {
+
+    .language-wrapper{
+        column-count: 3;
+    }
+
+}
+
+@media (max-width: 675px) {
+
+    .language-wrapper{
+        column-count: 2;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .language-wrapper{
+        column-count: 1;
+    }
+
+}
+
+.modal-dialog{
+    max-width: 100%;
+    width: 90%;
+    margin: auto;
+}
+
+.translate-form{
+    display: none;
+}

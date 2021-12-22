@@ -29,7 +29,8 @@ class CreateTemplatesTable extends Migration
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
             $table->string('open_url')->nullable();
-            $table->string('sound');
+            $table->string('deeplink')->nullable();
+            $table->string('sound')->nullable();
             $table->json('title');
             $table->json('body');
             $table->timestamps();
