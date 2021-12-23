@@ -3,38 +3,28 @@
 namespace App\Repositories\Eloquent;
 
 use App\Libraries\Decoration\UserInterface;
-use App\Models\App;
-use App\Repositories\AppRepositoryInterface;
+use App\Models\CustomPush;
+use App\Repositories\CustomPushRepositoryInterface;
 
-class AppRepository implements AppRepositoryInterface
+class CustomPushRepository implements CustomPushRepositoryInterface
 {
 
     public function save($data)
     {
-        return App::updateOrCreate([
+        return CustomPush::updateOrCreate([
             'id' => $data['id'] ?? null
         ], $data);
     }
 
-    public function getById(int $id){
-        return App::where('id', $id)
-            ->with('platforms')
-            ->first();
-    }
-
     public function getByIdAndUser(int $id, UserInterface $userDecorator){
         return $userDecorator
-            ->apps()
+            ->customPushes()
             ->where('id', $id)
-            ->with('platforms')
             ->first();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate){
-        return $userDecorator->apps()
-            ->with('platforms')
-            ->withCount('pushUsers')
+        return $userDecorator->customPushes()
             ->paginate($paginate);
     }
-
 }

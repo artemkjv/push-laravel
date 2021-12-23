@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreTemplateRequest extends FormRequest
+class UpdateTemplateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,9 @@ class StoreTemplateRequest extends FormRequest
             'title.1' => 'required|string',
             'body.1' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:max_width=100,max_height=100,ratio=1/1'
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:max_width=100,max_height=100,ratio=1/1',
+            'template-image' => 'required|boolean',
+            'template-icon' => 'required|boolean'
         ];
     }
 }

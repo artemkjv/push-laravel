@@ -35,6 +35,6 @@ class SegmentRepository implements SegmentRepositoryInterface
         return $userDecorator
             ->segments()
             ->withCount('pushUsers')
-            ->paginate(10);
+            ->paginate($paginate);
     }
 }

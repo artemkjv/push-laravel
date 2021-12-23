@@ -24,6 +24,9 @@
                 <div class="row">
                     <div class="col-xl-6 col-sm-12">
                         @csrf
+                        @method('PUT')
+                        <input type="hidden" name="template-image" value="0">
+                        <input type="hidden" name="template-icon" value="0">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name"
@@ -36,11 +39,26 @@
                             <label for="image">Image</label>
                             <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="image" id="image">
                         </div>
-
+                        @if($template->image)
+                            <div class="image-wrapper">
+                                <div data-id="template-image" class="delete-image-icon">
+                                    ✖
+                                </div>
+                                <img id="template-image" class="img-thumbnail rounded mt-2 template-image" src="{{ asset("/storage/$template->image") }}" alt="Template Image">
+                            </div>
+                        @endif
                         <div class="form-group">
-                            <label for="icon">Icon</label>
+                            <label for="icon">Icon (Max icon size is 100х100)</label>
                             <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="icon" id="icon">
                         </div>
+                        @if($template->icon)
+                            <div class="image-wrapper">
+                                <div data-id="template-icon" class="delete-image-icon">
+                                    ✖
+                                </div>
+                                <img id="template-icon" class="img-thumbnail rounded mt-2 template-image" src="{{ asset("/storage/$template->icon") }}" alt="Template Icon">
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <label for="open_url">Open Url</label>
@@ -66,4 +84,14 @@
             </form>
         </div><!-- /.container-fluid -->
     </section>
+@endsection
+@section('scripts')
+    <script>
+        $('.delete-image-icon').click(function () {
+            const id = $(this).data('id')
+            $('#' + id).remove()
+            $(`[name="${id}"]`).val(1)
+            $(this).remove()
+        })
+    </script>
 @endsection

@@ -66,6 +66,20 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/templates/{id}', 'TemplateController@update')->name('update');
         });
 
+        Route::group(['as' => 'pushUser.'], function (){
+            Route::get('/push-users', 'PushUserController@index')->name('index');
+            Route::delete('/push-users/{id}', 'PushUserController@destroy')->name('destroy');
+        });
+
+        Route::group(['as' => 'customPush.'], function (){
+            Route::get('/custom-pushes', 'CustomPushController@index')->name('index');
+            Route::get('/custom-pushes/create', 'CustomPushController@create')->name('create');
+            Route::post('/custom-pushes/create', 'CustomPushController@store')->name('store');
+            Route::get('/custom-pushes/{id}', 'CustomPushController@edit')->name('edit');
+            Route::delete('/custom-pushes/{id}', 'CustomPushController@destroy')->name('destroy');
+            Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
+        });
+
     });
 
 });

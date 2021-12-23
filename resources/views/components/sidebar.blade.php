@@ -22,11 +22,11 @@
             <ion-icon name="document-outline"></ion-icon>
             Templates
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
+        <a href="{{ route('pushUser.index') }}" class="list-group-item list-group-item-action bg-light">
             <ion-icon name="people-outline"></ion-icon>
             Push Users
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
+        <a href="{{ route('customPush.index') }}" class="list-group-item list-group-item-action bg-light">
             <ion-icon name="notifications-outline"></ion-icon>
             Custom Pushes
         </a>

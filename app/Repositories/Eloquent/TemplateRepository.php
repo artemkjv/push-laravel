@@ -18,7 +18,7 @@ class TemplateRepository implements TemplateRepositoryInterface
     {
         return $userDecorator
             ->templates()
-            ->paginate(10);
+            ->paginate($paginate);
     }
 
     public function save($data)

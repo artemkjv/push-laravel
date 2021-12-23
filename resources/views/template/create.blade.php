@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="icon">Icon</label>
+                            <label for="icon">Icon (Max icon size is 100х100)</label>
                             <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="icon" id="icon">
                         </div>
                         <div class="form-group">
