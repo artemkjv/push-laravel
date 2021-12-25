@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="image" id="image">
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" accept=".jpg, .jpeg, .png" name="image" id="image">
                         </div>
                         @if($template->image)
                             <div class="image-wrapper">
@@ -49,7 +49,7 @@
                         @endif
                         <div class="form-group">
                             <label for="icon">Icon (Max icon size is 100х100)</label>
-                            <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="icon" id="icon">
+                            <input class="form-control @error('icon') is-invalid @enderror" type="file" accept=".jpg, .jpeg, .png" name="icon" id="icon">
                         </div>
                         @if($template->icon)
                             <div class="image-wrapper">
@@ -62,12 +62,12 @@
 
                         <div class="form-group">
                             <label for="open_url">Open Url</label>
-                            <input type="url" class="form-control" value="{{ old('open_url', $template->open_url) }}" id="open_url" name="open_url">
+                            <input type="url" class="form-control @error('open_url') is-invalid @enderror" value="{{ old('open_url', $template->open_url) }}" id="open_url" name="open_url">
                         </div>
 
                         <div class="form-group">
                             <label for="deeplink">Deeplink (For IOS or Android)</label>
-                            <input type="text" class="form-control" id="deeplink" value="{{ old('deeplink', $template->deeplink) }}" name="deeplink">
+                            <input type="text" class="form-control @error('deeplink') is-invalid @enderror" id="deeplink" value="{{ old('deeplink', $template->deeplink) }}" name="deeplink">
                         </div>
 
                     </div>

@@ -14,15 +14,15 @@ class CreatePushUserSegmentTable extends Migration
     public function up()
     {
         Schema::create('push_user_segment', function (Blueprint $table) {
-            $table->unsignedBigInteger('segment_id');
-            $table->foreign('segment_id')
-                ->references('id')
-                ->on('segments')
-                ->cascadeOnDelete();
             $table->unsignedBigInteger('push_user_id');
             $table->foreign('push_user_id')
                 ->references('id')
                 ->on('push_users')
+                ->cascadeOnDelete();
+            $table->unsignedBigInteger('segment_id');
+            $table->foreign('segment_id')
+                ->references('id')
+                ->on('segments')
                 ->cascadeOnDelete();
         });
     }

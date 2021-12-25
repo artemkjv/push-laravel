@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\App;
+use App\Models\CustomPush;
 use App\Models\Segment;
 use App\Models\Template;
 use App\Observers\AppObserver;
+use App\Observers\CustomPushObserver;
 use App\Observers\SegmentObserver;
 use App\Observers\TemplateObserver;
 use Illuminate\Auth\Events\Registered;
@@ -36,5 +38,6 @@ class EventServiceProvider extends ServiceProvider
         App::observe(AppObserver::class);
         Segment::observe(SegmentObserver::class);
         Template::observe(TemplateObserver::class);
+        CustomPush::observe(CustomPushObserver::class);
     }
 }

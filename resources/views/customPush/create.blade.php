@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Template</h1>
+                    <h1>Create Custom Push</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route("home") }}">Home</a></li>
-                        <li class="breadcrumb-item active">Create Template</li>
+                        <li class="breadcrumb-item active">Create Custom Push</li>
                     </ol>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form role="form" enctype="multipart/form-data" method="post" action="{{ route('template.store') }}">
+            <form role="form" enctype="multipart/form-data" method="post" action="{{ route('customPush.store') }}">
                 <div class="row">
                     <div class="col-xl-6 col-sm-12">
                         @csrf
@@ -30,6 +30,25 @@
                                    class="form-control @error('name') is-invalid @enderror" id="name"
                                    value="{{ old('name') }}"
                                    placeholder="Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apps">Apps</label>
+                            <select multiple id="apps" name="apps[]" aria-label="Apps">
+                                @foreach($apps as $app)
+                                    <option value="{{ $app->id }}">{{ $app->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segments">Segments</label>
+                            <select multiple name="segments[]" id="segments" aria-label="Segments">
+                                <option selected value="0">All Users</option>
+                                @foreach($segments as $segment)
+                                    <option value="{{ $segment->id }}">{{ $segment->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -52,6 +71,16 @@
                             <input type="text" class="form-control @error('deeplink') is-invalid @enderror" value="{{ old('deeplink') }}" id="deeplink" name="deeplink">
                         </div>
 
+                        <div class="form-group">
+                            <label for="time_to_live">Live Time (in seconds)</label>
+                            <input type="text" class="form-control @error('time_to_live') is-invalid @enderror" value="{{ old('time_to_live') }}" id="time_to_live" name="time_to_live">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time_to_send">Time to send</label>
+                            <input id="time_to_send" name="time_to_send" class="form-control @error('time_to_send') is-invalid @enderror" value="{{ old('time_to_send') }}" type="datetime-local">
+                        </div>
+
                     </div>
                     <div class="col-xl-6 col-sm-12">
                         @livewire('message-form')
@@ -66,4 +95,17 @@
             </form>
         </div><!-- /.container-fluid -->
     </section>
+@endsection
+@section('scripts')
+    <script>
+        let segments = $('#segments')
+        segments.tokenize2({
+            dataSource: 'select',
+        })
+
+        let apps = $('#apps')
+        apps.tokenize2({
+            dataSource: 'select',
+        })
+    </script>
 @endsection

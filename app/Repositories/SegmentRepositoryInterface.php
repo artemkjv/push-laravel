@@ -15,4 +15,8 @@ interface SegmentRepositoryInterface
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
 
+    public function getByUser(UserInterface $userDecorator);
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids);
+
 }

@@ -16,4 +16,27 @@ class CustomPush extends Model
         'body' => 'array'
     ];
 
+    protected $fillable = [
+        'id',
+        'name',
+        'user_id',
+        'user_modified_id',
+        'title',
+        'body',
+        'open_url',
+        'deeplink',
+        'image',
+        'icon',
+        'time_to_live',
+        'time_to_send',
+    ];
+
+    public function apps(){
+        return $this->belongsToMany(App::class);
+    }
+
+    public function segments(){
+        return $this->belongsToMany(Segment::class, 'segment_custom_push');
+    }
+
 }

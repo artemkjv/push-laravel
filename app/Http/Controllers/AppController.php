@@ -41,7 +41,7 @@ class AppController extends Controller
         unset($validated['platform_id']);
         $app = $this->appRepository->save($validated);
         $app->platforms()->attach([$platform_id]);
-        return redirect()->back();
+        return redirect()->route('app.show', ['id' => $app->id]);
     }
 
     public function edit($id){
@@ -65,7 +65,7 @@ class AppController extends Controller
         unset($validated['platforms']);
         $app->update($validated);
         $app->platforms()->sync($platforms);
-        return redirect()->back();
+        return redirect()->route('app.index');
     }
 
     public function destroy($id){

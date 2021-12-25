@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomPushSegmentTable extends Migration
+class CreateAppAutoPushTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateCustomPushSegmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('custom_push_segment', function (Blueprint $table) {
-            $table->unsignedBigInteger('custom_push_id');
-            $table->foreign('custom_push_id')
+        Schema::create('app_auto_push', function (Blueprint $table) {
+            $table->unsignedBigInteger('auto_push_id');
+            $table->foreign('auto_push_id')
                 ->references('id')
-                ->on('custom_pushes')
+                ->on('auto_pushes')
                 ->cascadeOnDelete();
-            $table->unsignedBigInteger('segment_id');
-            $table->foreign('segment_id')
+            $table->unsignedBigInteger('app_id');
+            $table->foreign('app_id')
                 ->references('id')
-                ->on('segments');
+                ->on('apps');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateCustomPushSegmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('custom_pushes_segments');
+        Schema::dropIfExists('app_auto_push');
     }
 }

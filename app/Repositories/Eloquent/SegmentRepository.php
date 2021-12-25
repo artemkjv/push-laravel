@@ -37,4 +37,18 @@ class SegmentRepository implements SegmentRepositoryInterface
             ->withCount('pushUsers')
             ->paginate($paginate);
     }
+
+    public function getByUser(UserInterface $userDecorator)
+    {
+        return $userDecorator->segments()
+            ->get();
+    }
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->segments()
+            ->whereIn('id', $ids)
+            ->get();
+    }
+
 }

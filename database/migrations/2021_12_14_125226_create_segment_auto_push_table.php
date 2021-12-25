@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeeklyPushAppTable extends Migration
+class CreateSegmentAutoPushTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateWeeklyPushAppTable extends Migration
      */
     public function up()
     {
-        Schema::create('weekly_push_app', function (Blueprint $table) {
-            $table->unsignedBigInteger('weekly_push_id');
-            $table->foreign('weekly_push_id')
+        Schema::create('segment_auto_push', function (Blueprint $table) {
+            $table->unsignedBigInteger('auto_push_id');
+            $table->foreign('auto_push_id')
                 ->references('id')
-                ->on('weekly_pushes')
+                ->on('auto_pushes')
                 ->cascadeOnDelete();
-            $table->unsignedBigInteger('app_id');
-            $table->foreign('app_id')
+            $table->unsignedBigInteger('segment_id');
+            $table->foreign('segment_id')
                 ->references('id')
-                ->on('apps');
+                ->on('segments');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateWeeklyPushAppTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weekly_pushes_apps');
+        Schema::dropIfExists('segment_auto_push');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeeklyPushSegmentTable extends Migration
+class CreateSegmentWeeklyPushTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWeeklyPushSegmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('weekly_push_segment', function (Blueprint $table) {
+        Schema::create('segment_weekly_push', function (Blueprint $table) {
             $table->unsignedBigInteger('weekly_push_id');
             $table->foreign('weekly_push_id')
                 ->references('id')
@@ -33,6 +33,6 @@ class CreateWeeklyPushSegmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weekly_pushes_segments');
+        Schema::dropIfExists('segment_weekly_push');
     }
 }

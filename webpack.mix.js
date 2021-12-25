@@ -17,9 +17,11 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.styles([
     "resources/assets/css/main.css",
+    "resources/assets/css/tokenize2.min.css"
 ], "public/assets/css/styles.css");
 
 mix.scripts([
     "resources/assets/js/jquery.js",
+    "resources/assets/js/tokenize2.min.js",
     "resources/assets/js/main.js",
 ], "public/assets/js/scripts.js");

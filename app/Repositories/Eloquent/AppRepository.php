@@ -37,4 +37,16 @@ class AppRepository implements AppRepositoryInterface
             ->paginate($paginate);
     }
 
+    public function getByUser(UserInterface $userDecorator)
+    {
+        return $userDecorator->apps()
+            ->get();
+    }
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->apps()
+            ->whereIn('id', $ids)
+            ->get();
+    }
 }
