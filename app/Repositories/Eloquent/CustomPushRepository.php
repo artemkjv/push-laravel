@@ -19,6 +19,8 @@ class CustomPushRepository implements CustomPushRepositoryInterface
     public function getByIdAndUser(int $id, UserInterface $userDecorator){
         return $userDecorator
             ->customPushes()
+            ->with('apps')
+            ->with('segments')
             ->where('id', $id)
             ->first();
     }

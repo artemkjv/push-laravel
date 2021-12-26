@@ -39,6 +39,7 @@
                             <label for="image">Image</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" accept=".jpg, .jpeg, .png" name="image" id="image">
                         </div>
+
                         @if($template->image)
                             <div class="image-wrapper">
                                 <div data-id="template-image" class="delete-image-icon">
