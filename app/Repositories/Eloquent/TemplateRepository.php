@@ -36,4 +36,10 @@ class TemplateRepository implements TemplateRepositoryInterface
             ->first();
     }
 
+    public function getByUser(UserInterface $userDecorator)
+    {
+        return $userDecorator->templates()
+            ->get();
+    }
+
 }

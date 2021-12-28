@@ -80,6 +80,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
         });
 
+        Route::group(['as' => 'weeklyPush.'], function (){
+            Route::get('/weekly-pushes', 'WeeklyPushController@index')->name('index');
+            Route::get('/weekly-pushes/create', 'WeeklyPushController@create')->name('create');
+            Route::post('/weekly-pushes/create', 'WeeklyPushController@store')->name('store');
+            Route::get('/weekly-pushes/{id}', 'WeeklyPushController@edit')->name('edit');
+            Route::delete('/weekly-pushes/{id}', 'WeeklyPushController@destroy')->name('destroy');
+            Route::put('/weekly-pushes/{id}', 'WeeklyPushController@update')->name('update');
+        });
+
     });
 
 });

@@ -13,6 +13,8 @@ interface TemplateRepositoryInterface
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator);
 
+    public function getByUser(UserInterface $userDecorator);
+
     public function save($data);
 
 }

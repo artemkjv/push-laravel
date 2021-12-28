@@ -13,6 +13,7 @@ use App\Repositories\Eloquent\PlatformRepository;
 use App\Repositories\Eloquent\PushUserRepository;
 use App\Repositories\Eloquent\SegmentRepository;
 use App\Repositories\Eloquent\TemplateRepository;
+use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\FilterTypeRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
@@ -20,6 +21,7 @@ use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
 use App\Repositories\SegmentRepositoryInterface;
 use App\Repositories\TemplateRepositoryInterface;
+use App\Repositories\WeeklyPushRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -66,6 +68,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CustomPushRepositoryInterface::class,
             CustomPushRepository::class
+        );
+        $this->app->bind(
+            WeeklyPushRepositoryInterface::class,
+            WeeklyPushRepository::class
         );
     }
 
