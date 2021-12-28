@@ -89,6 +89,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/weekly-pushes/{id}', 'WeeklyPushController@update')->name('update');
         });
 
+        Route::group(['as' => 'autoPush.'], function (){
+            Route::get('/auto-pushes', 'AutoPushController@index')->name('index');
+            Route::get('/auto-pushes/create', 'AutoPushController@create')->name('create');
+            Route::post('/auto-pushes/create', 'AutoPushController@store')->name('store');
+            Route::get('/auto-pushes/{id}', 'AutoPushController@edit')->name('edit');
+            Route::delete('/auto-pushes/{id}', 'AutoPushController@destroy')->name('destroy');
+            Route::put('/auto-pushes/{id}', 'AutoPushController@update')->name('update');
+        });
+
     });
 
 });

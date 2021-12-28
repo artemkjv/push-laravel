@@ -51,8 +51,8 @@
                             </select>
                         </div>
 
-                        <div class="form-group mt-3">
-                            <select class="form-select" name="template_id" aria-label="Apps">
+                        <div class="form-group">
+                            <select class="form-select @error('template_id') is-invalid @enderror" name="template_id" aria-label="Template">
                                 <option selected>Choose template</option>
                                 @foreach($templates as $template)
                                     <option value="{{ $template->id }}">{{ $template->name }}</option>
@@ -61,16 +61,36 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="status">Choose status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" aria-label="Status">
+                                <option selected value="ACTIVE">Active</option>
+                                <option value="PAUSE">Pause</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-sm-12">
+
+                        <div class="form-group">
                             <label for="time_to_live">Live Time (in seconds)</label>
                             <input type="text" class="form-control @error('time_to_live') is-invalid @enderror" value="{{ old('time_to_live') }}" id="time_to_live" name="time_to_live">
                         </div>
 
                         <div class="form-group">
-                            <label for="time_to_send">Time to send</label>
-                            <input id="time_to_send" name="time_to_send" class="form-control @error('time_to_send') is-invalid @enderror" value="{{ old('time_to_send') }}" type="datetime-local">
+                            <label for="days">Select days of distribution</label>
+                            <select multiple id="days" name="days_to_send[]" aria-label="Days">
+                                @for($i = 0; $i < 7; $i++)
+                                    <option value="{{ strtolower(jddayofweek($i, CAL_DOW_LONG)) }}">{{ jddayofweek($i, CAL_DOW_LONG) }}</option>
+                                @endfor
+                            </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="time_to_send">Time to send</label>
+                            <input id="time_to_send" name="time_to_send" class="form-control @error('time_to_send') is-invalid @enderror" value="{{ old('time_to_send') }}" type="time">
+                        </div>
                     </div>
+
                     <!-- /.col -->
                     <div class="col-1">
                         <button type="submit" class="btn btn-primary mt-1">Submit</button>
@@ -93,5 +113,11 @@
         apps.tokenize2({
             dataSource: 'select',
         })
+
+        let days = $('#days')
+        days.tokenize2({
+            dataSource: 'select'
+        })
+
     </script>
 @endsection

@@ -41,8 +41,8 @@ class CreateWeeklyPushesTable extends Migration
                 'saturday',
                 'sunday'
             ]);
-            $table->timestamp('time_to_send');
-            $table->integer('time_to_live');
+            $table->time('time_to_send');
+            $table->integer('time_to_live')->nullable();
             $table->timestamps();
         });
     }

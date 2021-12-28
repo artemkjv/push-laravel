@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWeeklyPushRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\WeeklyPush;
 use App\Repositories\AppRepositoryInterface;
@@ -43,6 +44,19 @@ class WeeklyPushController extends Controller
         $segments = $this->segmentRepository->getByUser($userDecorator);
         $templates = $this->templateRepository->getByUser($userDecorator);
         return view('weeklyPush.create', compact('apps', 'segments', 'templates'));
+    }
+
+    public function store(StoreWeeklyPushRequest $request){
+        $payload = $request->validated();
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $appIds = $payload['apps'];
+        $segmentIds = $payload['segments'];
+        $weeklyPush = $this->weeklyPushRepository->save($payload);
+        $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
+        $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $segmentIds);
+        $weeklyPush->apps()->sync($apps);
+        $weeklyPush->segments()->sync($segments);
+        return redirect()->route('weeklyPush.index');
     }
 
 }

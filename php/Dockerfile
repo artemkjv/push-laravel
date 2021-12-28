@@ -16,5 +16,6 @@ RUN apt-get install -y libz-dev libmemcached-dev && rm -r /var/lib/apt/lists/*
 RUN pecl install memcached
 RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN docker-php-ext-configure calendar && docker-php-ext-install calendar
 
 CMD ["php-fpm"]

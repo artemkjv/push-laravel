@@ -34,7 +34,7 @@
             <ion-icon name="notifications-outline"></ion-icon>
             Weekly Pushes
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
+        <a href="{{ route('autoPush.index') }}" class="list-group-item list-group-item-action bg-light">
             <ion-icon name="notifications-outline"></ion-icon>
             Auto Pushes
         </a>
