@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWeeklyPushRequest;
+use App\Http\Requests\UpdateWeeklyPushRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\WeeklyPush;
 use App\Repositories\AppRepositoryInterface;
@@ -57,6 +58,38 @@ class WeeklyPushController extends Controller
         $weeklyPush->apps()->sync($apps);
         $weeklyPush->segments()->sync($segments);
         return redirect()->route('weeklyPush.index');
+    }
+
+    public function edit($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $weeklyPush = $this->weeklyPushRepository->getByIdAndUser($id, $userDecorator);
+        $apps = $this->appRepository->getByUser($userDecorator);
+        $segments = $this->segmentRepository->getByUser($userDecorator);
+        $templates = $this->templateRepository->getByUser($userDecorator);
+        return view('weeklyPush.edit', compact('weeklyPush', 'apps', 'segments', 'templates'));
+    }
+
+    public function update(UpdateWeeklyPushRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $weeklyPush = $this->weeklyPushRepository
+            ->getByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $payload = $request->validated();
+        $appIds = $payload['apps'];
+        $segmentIds = $payload['segments'];
+        $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
+        $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $segmentIds);
+        $weeklyPush = $this->weeklyPushRepository->save(array_merge($weeklyPush, $payload));
+        $weeklyPush->apps()->sync($apps);
+        $weeklyPush->segments()->sync($segments);
+        return redirect()->route('weeklyPush.index');
+    }
+
+    public function destroy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $weeklyPush = $this->weeklyPushRepository->getByIdAndUser($id, $userDecorator);
+        $weeklyPush->delete();
+        return redirect()->back();
     }
 
 }

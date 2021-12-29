@@ -92,8 +92,7 @@ class CustomPushController extends Controller
         if($request->file('icon')){
             $payload['icon'] = $request->file('icon')->store('icons', 'public');
         }
-        $customPush = array_merge($customPush, $payload);
-        $customPush = $this->customPushRepository->save($customPush);
+        $customPush = $this->customPushRepository->save(array_merge($customPush, $payload));
         $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
         $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $segmentIds);
         $customPush->apps()->sync($apps);
