@@ -9,4 +9,6 @@ class AutoPush extends Model
 {
     use HasFactory;
 
+    public const PAGINATE = 10;
+
 }

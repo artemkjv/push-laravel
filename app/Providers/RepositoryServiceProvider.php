@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Repositories\AppRepositoryInterface;
+use App\Repositories\AutoPushRepositoryInterface;
 use App\Repositories\CustomPushRepositoryInterface;
 use App\Repositories\Eloquent\AppRepository;
+use App\Repositories\Eloquent\AutoPushRepository;
 use App\Repositories\Eloquent\CustomPushRepository;
 use App\Repositories\Eloquent\FilterRepository;
 use App\Repositories\Eloquent\FilterTypeRepository;
@@ -72,6 +74,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             WeeklyPushRepositoryInterface::class,
             WeeklyPushRepository::class
+        );
+        $this->app->bind(
+            AutoPushRepositoryInterface::class,
+            AutoPushRepository::class
         );
     }
 
