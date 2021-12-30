@@ -29,6 +29,7 @@ class UpdateWeeklyPushRequest extends FormRequest
             'apps' => 'required|array',
             'segments' => 'required|array',
             'template_id' => ['required', 'integer', new RelatedWithUser('templates')],
+            'status' => 'required|string',
             'time_to_live' => 'nullable|integer',
             'time_to_send' => 'date_format:H:i',
             'days_to_send' => 'required|array'

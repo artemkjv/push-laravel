@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\RelatedWithUser;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWeeklyPushRequest extends FormRequest
+class UpdateAutoPushRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StoreWeeklyPushRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::check() ;
+        return \Auth::check();
     }
 
     /**
@@ -31,8 +31,8 @@ class StoreWeeklyPushRequest extends FormRequest
             'template_id' => ['required', 'integer', new RelatedWithUser('templates')],
             'status' => 'required|string',
             'time_to_live' => 'nullable|integer',
-            'time_to_send' => 'date_format:H:i',
-            'days_to_send' => 'required|array'
+            'interval_value' => 'required|integer',
+            'interval_type' => 'required|string'
         ];
     }
 }

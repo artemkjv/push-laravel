@@ -31,7 +31,8 @@ class StoreAutoPushRequest extends FormRequest
             'template_id' => ['required', 'integer', new RelatedWithUser('templates')],
             'time_to_live' => 'nullable|integer',
             'interval_value' => 'required|integer',
-            'interval_type' => 'required|string'
+            'interval_type' => 'required|string',
+            'status' => 'required|string',
         ];
     }
 }
