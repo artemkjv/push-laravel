@@ -27,4 +27,8 @@ class PushUser extends Model
         return $this->belongsTo(Platform::class);
     }
 
+    public function pushTransitions(){
+        $this->hasMany(PushTransition::class);
+    }
+
 }

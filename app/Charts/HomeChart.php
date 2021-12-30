@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Repositories\PushTransitionRepositoryInterface;
+use App\Repositories\PushUserRepositoryInterface;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -12,6 +14,14 @@ class HomeChart extends BaseChart
 {
 
     public ?array $middlewares = ['auth'];
+    private PushTransitionRepositoryInterface $pushTransitionRepository;
+
+    public function __construct(
+        PushTransitionRepositoryInterface $pushTransitionRepository
+    )
+    {
+        $this->pushTransitionRepository = $pushTransitionRepository;
+    }
 
     /**
      * Handles the HTTP request for the given chart.
@@ -20,7 +30,6 @@ class HomeChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-
         return Chartisan::build()
             ->labels(['First', 'Second', 'Third'])
             ->dataset('Sample', [1, 2, 3])
