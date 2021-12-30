@@ -33,7 +33,8 @@ class CreateAutoPushesTable extends Migration
                 ->references('id')
                 ->on('templates');
             $table->timestamp('time_to_send');
-            $table->unsignedInteger('time_to_live');
+            $table->unsignedInteger('time_to_live')
+                ->nullable();
             $table->unsignedInteger('interval_value');
             $table->enum('interval_type', ['hour', 'day', 'week']);
             $table->timestamps();

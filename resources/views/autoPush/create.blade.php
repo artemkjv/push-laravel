@@ -76,7 +76,19 @@
                             <input type="text" class="form-control @error('time_to_live') is-invalid @enderror" value="{{ old('time_to_live') }}" id="time_to_live" name="time_to_live">
                         </div>
 
+                        <div class="form-group">
+                            <label for="interval">Interval</label>
+                            <input type="text" class="form-control @error('interval_value') is-invalid @enderror" value="{{ old('interval_value') }}" id="interval" name="interval_value">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="interval_type">Interval Type</label>
+                            <select class="form-select @error('interval_type') is-invalid @enderror" name="interval_type" id="interval_type">
+                                <option value="hour">Hour</option>
+                                <option value="day">Day</option>
+                                <option value="week">Week</option>
+                            </select>
+                        </div>
 
                     </div>
 

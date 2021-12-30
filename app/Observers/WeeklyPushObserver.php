@@ -9,5 +9,6 @@ class WeeklyPushObserver
     public function saving(WeeklyPush $weeklyPush){
         $currentUser = request()->user();
         $weeklyPush->user_id = $currentUser->admin ? $currentUser->admin->id : $currentUser->id;
+        $weeklyPush->user_modified_id = $currentUser->id;
     }
 }
