@@ -24,7 +24,7 @@ class AutoPushController extends Controller
         AutoPushRepositoryInterface $autoPushRepository,
         AppRepositoryInterface $appRepository,
         SegmentRepositoryInterface $segmentRepository,
-        TemplateRepository $templateRepository
+        TemplateRepository $templateRepository,
     )
     {
         $this->autoPushRepository = $autoPushRepository;
