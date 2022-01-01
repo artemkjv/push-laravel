@@ -4,8 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Libraries\Decoration\UserInterface;
+use App\Repositories\AppRepositoryInterface;
 use App\Repositories\PushTransitionRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
+use App\Repositories\SegmentRepositoryInterface;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -15,12 +18,18 @@ class HomeChart extends BaseChart
 
     public ?array $middlewares = ['auth'];
     private PushTransitionRepositoryInterface $pushTransitionRepository;
+    private AppRepositoryInterface $appRepository;
+    private SegmentRepositoryInterface $segmentRepository;
 
     public function __construct(
-        PushTransitionRepositoryInterface $pushTransitionRepository
+        PushTransitionRepositoryInterface $pushTransitionRepository,
+        AppRepositoryInterface $appRepository,
+        SegmentRepositoryInterface $segmentRepository
     )
     {
         $this->pushTransitionRepository = $pushTransitionRepository;
+        $this->appRepository = $appRepository;
+        $this->segmentRepository = $segmentRepository;
     }
 
     /**
@@ -30,9 +39,18 @@ class HomeChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $apps = $this->appRepository->getByUser($userDecorator);
+        $segments = $this->segmentRepository->getByUser($userDecorator);
+        $transitions = $this->pushTransitionRepository->getCount($apps, $segments);
+        $labels = [];
+        $data = [];
+        foreach ($transitions as $transition){
+            $labels[] = $transition->clicked_at_date;
+            $data[] = $transition->count;
+        }
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
+            ->labels($labels)
+            ->dataset('Push Transitions', $data);
     }
 }
