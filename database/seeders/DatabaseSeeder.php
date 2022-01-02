@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            CountrySeeder::class,
+            LanguageSeeder::class,
+            TimezoneSeeder::class,
+            PlatformSeeder::class,
+            PredicateSeeder::class,
+            FilterTypeSeeder::class,
+            FilterTypePredicateSeeder::class
+        ]);
     }
 }
