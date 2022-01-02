@@ -42,4 +42,11 @@ class TemplateRepository implements TemplateRepositoryInterface
             ->get();
     }
 
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->templates()
+            ->whereIn('id', $ids)
+            ->get();
+    }
+
 }

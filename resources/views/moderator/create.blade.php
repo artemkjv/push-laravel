@@ -55,7 +55,7 @@
                     <div class="col-xl-6 col-sm-12">
                         <div class="form-group">
                             <label for="apps">Applications</label>
-                            <select id="apps" name="apps" class="tokenize2" multiple aria-label="Apps">
+                            <select id="apps" name="apps[]" class="tokenize2" multiple aria-label="Apps">
                                 @foreach($apps as $app)
                                     <option value="{{ $app->id }}">{{ $app->title }}</option>
                                 @endforeach
@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label for="segments">Segments</label>
-                            <select name="segments" id="segments" class="tokenize2" multiple aria-label="Segments">
+                            <select name="segments[]" id="segments" class="tokenize2" multiple aria-label="Segments">
                                 @foreach($segments as $segment)
                                     <option value="{{ $segment->id }}">{{ $segment->name }}</option>
                                 @endforeach
@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="templates">Templates</label>
-                            <select name="templates" id="templates" class="tokenize2" multiple aria-label="Templates">
+                            <select name="templates[]" id="templates" class="tokenize2" multiple aria-label="Templates">
                                 @foreach($templates as $template)
                                     <option value="{{ $template->id }}">{{ $template->name }}</option>
                                 @endforeach
@@ -79,7 +79,7 @@
                         </div>
                         <div class="form-group">
                             <label for="customPushes">Custom Pushes</label>
-                            <select name="customPushes" class="tokenize2" id="customPushes" multiple aria-label="Custom Pushes">
+                            <select name="customPushes[]" class="tokenize2" id="customPushes" multiple aria-label="Custom Pushes">
                                 @foreach($customPushes as $customPush)
                                     <option value="{{ $customPush->id }}">{{ $customPush->name }}</option>
                                 @endforeach
@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label for="autoPushes">Auto Pushes</label>
-                            <select name="autoPushes" class="tokenize2" id="autoPushes" multiple aria-label="Auto Pushes">
+                            <select name="autoPushes[]" class="tokenize2" id="autoPushes" multiple aria-label="Auto Pushes">
                                 @foreach($autoPushes as $autoPush)
                                     <option value="{{ $autoPush->id }}">{{ $autoPush->name }}</option>
                                 @endforeach
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label for="weeklyPushes">Weekly Pushes</label>
-                            <select name="weeklyPushes" class="tokenize2" id="weeklyPushes" multiple aria-label="Weekly Pushes">
+                            <select name="weeklyPushes[]" class="tokenize2" id="weeklyPushes" multiple aria-label="Weekly Pushes">
                                 @foreach($weeklyPushes as $weeklyPush)
                                     <option value="{{ $weeklyPush->id }}">{{ $weeklyPush->name }}</option>
                                 @endforeach

@@ -39,4 +39,11 @@ class AutoPushRepository implements AutoPushRepositoryInterface
             ->autoPushes()
             ->get();
     }
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->autoPushes()
+            ->whereIn('id', $ids)
+            ->get();
+    }
 }

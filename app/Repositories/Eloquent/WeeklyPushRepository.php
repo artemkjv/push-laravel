@@ -37,4 +37,12 @@ class WeeklyPushRepository implements WeeklyPushRepositoryInterface
             ->weeklyPushes()
             ->get();
     }
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->weeklyPushes()
+            ->whereIn('id', $ids)
+            ->get();
+    }
+
 }

@@ -17,4 +17,6 @@ interface AutoPushRepositoryInterface
 
     public function getByUser(UserInterface $userDecorator);
 
+    public function getByUserAndIds(UserInterface $userDecorator, $ids);
+
 }

@@ -17,4 +17,6 @@ interface TemplateRepositoryInterface
 
     public function save($data);
 
+    public function getByUserAndIds(UserInterface $userDecorator, $ids);
+
 }

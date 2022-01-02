@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Libraries\Decoration\UserInterface;
 
-interface ModeratorRepositoryInterface
+interface UserRepositoryInterface
 {
 
     public function save($data);

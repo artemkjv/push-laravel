@@ -7,12 +7,14 @@ use App\Models\AutoPush;
 use App\Models\CustomPush;
 use App\Models\Segment;
 use App\Models\Template;
+use App\Models\User;
 use App\Models\WeeklyPush;
 use App\Observers\AppObserver;
 use App\Observers\AutoPushObserver;
 use App\Observers\CustomPushObserver;
 use App\Observers\SegmentObserver;
 use App\Observers\TemplateObserver;
+use App\Observers\UserObserver;
 use App\Observers\WeeklyPushObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -45,5 +47,6 @@ class EventServiceProvider extends ServiceProvider
         CustomPush::observe(CustomPushObserver::class);
         WeeklyPush::observe(WeeklyPushObserver::class);
         AutoPush::observe(AutoPushObserver::class);
+        User::observe(UserObserver::class);
     }
 }

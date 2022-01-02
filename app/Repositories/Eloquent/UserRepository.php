@@ -6,9 +6,9 @@ namespace App\Repositories\Eloquent;
 
 use App\Libraries\Decoration\UserInterface;
 use App\Models\User;
-use App\Repositories\ModeratorRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
 
-class ModeratorRepository implements ModeratorRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
 
     public function save($data)

@@ -36,4 +36,12 @@ class CustomPushRepository implements CustomPushRepositoryInterface
             ->customPushes()
             ->get();
     }
+
+    public function getByUserAndIds(UserInterface $userDecorator, $ids)
+    {
+        return $userDecorator->customPushes()
+            ->whereIn('id', $ids)
+            ->get();
+    }
+
 }
