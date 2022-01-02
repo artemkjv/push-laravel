@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const PAGINATE = 10;
+
     /**
      * The attributes that are mass assignable.
      *

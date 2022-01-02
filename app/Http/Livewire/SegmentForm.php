@@ -74,16 +74,29 @@ class SegmentForm extends Component
         $this->segment = $segment;
         $this->filterTypes = $filterTypeRepository->getAll();
         if($this->segment){
-            $groupedFilters = $this->segment
-                ->filters
-                ->groupBy('parent_id');
-            $this->fillFilters($groupedFilters);
+            $parentFilters = $this->segment
+                ->filters()
+                ->whereNull('parent_id')
+                ->with('children')
+                ->get();
+            $this->fillFilters($parentFilters);
         }
     }
 
-    private function fillFilters($groupedFilters){
-        foreach($groupedFilters as $filterGroup){
-            foreach($filterGroup as $filter){
+    private function fillFilters($parentFilters){
+        foreach($parentFilters as $parentFilter){
+            $this->addGroup();
+            $entities = ArrayHelper::instance()
+                ->stdCollectionToArray($parentFilter->filterType->getRelatedEntities());
+            $this->addFilter(
+                $parentFilter->filterType,
+                $entities,
+                $parentFilter->predicate->id,
+                $parentFilter->predicate->name,
+                $parentFilter->tag_key,
+                $parentFilter->value
+            );
+            foreach($parentFilter->children as $filter){
                 $entities = ArrayHelper::instance()
                     ->stdCollectionToArray($filter->filterType->getRelatedEntities());
                 $this->addFilter(
@@ -95,7 +108,6 @@ class SegmentForm extends Component
                     $filter->value
                 );
             }
-            $this->addGroup();
         }
     }
 

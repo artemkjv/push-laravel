@@ -17,4 +17,8 @@ interface UserInterface
 
     public function weeklyPushes();
 
+    public function moderators();
+
+    public function admin();
+
 }

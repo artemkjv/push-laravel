@@ -25,4 +25,8 @@ class Filter extends Model
         return $this->belongsTo(FilterType::class);
     }
 
+    public function children(){
+        return $this->hasMany(Filter::class, 'parent_id');
+    }
+
 }

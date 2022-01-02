@@ -29,4 +29,11 @@ class CustomPushRepository implements CustomPushRepositoryInterface
         return $userDecorator->customPushes()
             ->paginate($paginate);
     }
+
+    public function getByUser(UserInterface $userDecorator)
+    {
+        return $userDecorator
+            ->customPushes()
+            ->get();
+    }
 }

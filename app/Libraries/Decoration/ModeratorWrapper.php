@@ -9,6 +9,7 @@ use App\Models\Segment;
 use App\Models\Template;
 use App\Models\User;
 use App\Models\WeeklyPush;
+use Illuminate\Support\Collection;
 
 class ModeratorWrapper implements UserInterface
 {
@@ -48,5 +49,15 @@ class ModeratorWrapper implements UserInterface
     public function weeklyPushes()
     {
         return $this->user->morphedByMany(WeeklyPush::class, 'entityable');
+    }
+
+    public function moderators()
+    {
+        return null;
+    }
+
+    public function admin()
+    {
+        return $this->user->admin();
     }
 }

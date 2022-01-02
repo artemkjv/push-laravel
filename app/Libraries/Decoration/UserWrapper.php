@@ -49,4 +49,14 @@ class UserWrapper implements UserInterface
     {
         return $this->user->hasMany(WeeklyPush::class);
     }
+
+    public function moderators()
+    {
+        return $this->user->hasMany(User::class, 'admin_id');
+    }
+
+    public function admin()
+    {
+        return null;
+    }
 }

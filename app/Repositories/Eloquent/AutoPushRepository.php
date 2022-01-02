@@ -32,4 +32,11 @@ class AutoPushRepository implements AutoPushRepositoryInterface
         return $userDecorator->autoPushes()
             ->paginate($paginate);
     }
+
+    public function getByUser(UserInterface $userDecorator)
+    {
+        return $userDecorator
+            ->autoPushes()
+            ->get();
+    }
 }

@@ -13,4 +13,6 @@ interface CustomPushRepositoryInterface
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
 
+    public function getByUser(UserInterface $userDecorator);
+
 }

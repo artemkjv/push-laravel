@@ -11,6 +11,7 @@ use App\Repositories\Eloquent\CustomPushRepository;
 use App\Repositories\Eloquent\FilterRepository;
 use App\Repositories\Eloquent\FilterTypeRepository;
 use App\Repositories\Eloquent\LanguageRepository;
+use App\Repositories\Eloquent\ModeratorRepository;
 use App\Repositories\Eloquent\PlatformRepository;
 use App\Repositories\Eloquent\PushTransitionRepository;
 use App\Repositories\Eloquent\PushUserRepository;
@@ -20,6 +21,7 @@ use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\FilterTypeRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
+use App\Repositories\ModeratorRepositoryInterface;
 use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\PushTransitionRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
@@ -84,6 +86,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             PushTransitionRepositoryInterface::class,
             PushTransitionRepository::class
+        );
+        $this->app->bind(
+            ModeratorRepositoryInterface::class,
+            ModeratorRepository::class
         );
     }
 

@@ -98,6 +98,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/auto-pushes/{id}', 'AutoPushController@update')->name('update');
         });
 
+        Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
+            Route::get('/moderators', 'ModeratorController@index')->name('index');
+            Route::get('/moderators/create', 'ModeratorController@create')->name('create');
+            Route::post('/moderators/create', 'ModeratorController@store')->name('store');
+            Route::get('/moderators/{id}', 'ModeratorController@edit')->name('edit');
+            Route::delete('/moderators/{id}', 'ModeratorController@destroy')->name('destroy');
+            Route::put('/moderators/{id}', 'ModeratorController@update')->name('update');
+        });
+
     });
 
 });
