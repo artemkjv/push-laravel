@@ -45,6 +45,3 @@
     </section>
 
 @endsection
-@section('scripts')
-
-@endsection

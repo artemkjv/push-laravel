@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="apps">Apps</label>
-                            <select multiple id="apps" name="apps[]" aria-label="Apps">
+                            <select multiple id="apps" class="tokenize2" name="apps[]" aria-label="Apps">
                                 @foreach($apps as $app)
                                     <option value="{{ $app->id }}">{{ $app->title }}</option>
                                 @endforeach
@@ -43,7 +43,7 @@
 
                         <div class="form-group">
                             <label for="segments">Segments</label>
-                            <select multiple name="segments[]" id="segments" aria-label="Segments">
+                            <select multiple name="segments[]" class="tokenize2" id="segments" aria-label="Segments">
                                 <option selected value="0">All Users</option>
                                 @foreach($segments as $segment)
                                     <option value="{{ $segment->id }}">{{ $segment->name }}</option>
@@ -98,13 +98,8 @@
 @endsection
 @section('scripts')
     <script>
-        let segments = $('#segments')
-        segments.tokenize2({
-            dataSource: 'select',
-        })
-
-        let apps = $('#apps')
-        apps.tokenize2({
+        let entities = $('.tokenize2')
+        entities.tokenize2({
             dataSource: 'select',
         })
     </script>

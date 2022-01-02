@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreModeratorRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\User;
 use App\Repositories\AppRepositoryInterface;
@@ -66,6 +67,10 @@ class ModeratorController extends Controller
             'weeklyPushes',
             'autoPushes'
         ));
+    }
+
+    public function store(StoreModeratorRequest $request){
+
     }
 
 }

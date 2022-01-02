@@ -17,7 +17,7 @@ class ModeratorMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        if($user->admin){
+        if($user->role === config('roles.moderator')){
             abort(401);
         }
         return $next($request);

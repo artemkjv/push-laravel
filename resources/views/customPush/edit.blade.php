@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <label for="apps">Apps</label>
-                            <select multiple id="apps" name="apps[]" aria-label="Apps">
+                            <select multiple class="tokenize2" id="apps" name="apps[]" aria-label="Apps">
                                 @foreach($apps as $app)
                                     <option @if($customPush->apps->contains('id', $app->id)) selected @endif value="{{ $app->id }}">{{ $app->title }}</option>
                                 @endforeach
@@ -48,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="segments">Segments</label>
-                            <select multiple name="segments[]" id="segments" aria-label="Segments">
+                            <select multiple class="tokenize2" name="segments[]" id="segments" aria-label="Segments">
                                 <option selected value="0">All Users</option>
                                 @foreach($segments as $segment)
                                     <option @if($customPush->segments->contains('id', $segment->id)) selected @endif value="{{ $segment->id }}">{{ $segment->name }}</option>
@@ -121,13 +121,8 @@
 @endsection
 @section('scripts')
     <script>
-        let segments = $('#segments')
-        segments.tokenize2({
-            dataSource: 'select',
-        })
-
-        let apps = $('#apps')
-        apps.tokenize2({
+        let entities = $('.tokenize2')
+        entities.tokenize2({
             dataSource: 'select',
         })
     </script>
