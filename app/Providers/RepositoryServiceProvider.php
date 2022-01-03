@@ -4,13 +4,16 @@ namespace App\Providers;
 
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\AutoPushRepositoryInterface;
+use App\Repositories\CountryRepositoryInterface;
 use App\Repositories\CustomPushRepositoryInterface;
 use App\Repositories\Eloquent\AppRepository;
 use App\Repositories\Eloquent\AutoPushRepository;
+use App\Repositories\Eloquent\CountryRepository;
 use App\Repositories\Eloquent\CustomPushRepository;
 use App\Repositories\Eloquent\FilterRepository;
 use App\Repositories\Eloquent\FilterTypeRepository;
 use App\Repositories\Eloquent\LanguageRepository;
+use App\Repositories\Eloquent\TimezoneRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\PlatformRepository;
 use App\Repositories\Eloquent\PushTransitionRepository;
@@ -21,6 +24,7 @@ use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\FilterTypeRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
+use App\Repositories\TimezoneRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\PushTransitionRepositoryInterface;
@@ -90,6 +94,14 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepositoryInterface::class,
             UserRepository::class
+        );
+        $this->app->bind(
+            CountryRepositoryInterface::class,
+            CountryRepository::class
+        );
+        $this->app->bind(
+            TimezoneRepositoryInterface::class,
+            TimezoneRepository::class
         );
     }
 

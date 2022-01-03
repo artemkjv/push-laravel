@@ -1,11 +1,11 @@
 <?php
 
+
 namespace App\Repositories;
 
-interface LanguageRepositoryInterface
-{
 
-    public function getAll();
+interface CountryRepositoryInterface
+{
 
     public function getByCode(string $code);
 

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\App;
 use App\Models\AutoPush;
 use App\Models\CustomPush;
+use App\Models\PushUser;
 use App\Models\Segment;
 use App\Models\Template;
 use App\Models\User;
@@ -12,6 +13,7 @@ use App\Models\WeeklyPush;
 use App\Observers\AppObserver;
 use App\Observers\AutoPushObserver;
 use App\Observers\CustomPushObserver;
+use App\Observers\PushUserObserver;
 use App\Observers\SegmentObserver;
 use App\Observers\TemplateObserver;
 use App\Observers\UserObserver;
@@ -48,5 +50,6 @@ class EventServiceProvider extends ServiceProvider
         WeeklyPush::observe(WeeklyPushObserver::class);
         AutoPush::observe(AutoPushObserver::class);
         User::observe(UserObserver::class);
+        PushUser::observe(PushUserObserver::class);
     }
 }

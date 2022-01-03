@@ -49,4 +49,10 @@ class AppRepository implements AppRepositoryInterface
             ->whereIn('id', $ids)
             ->get();
     }
+
+    public function getByUUID($uuid)
+    {
+        return App::where('uuid', $uuid)
+            ->firstOrFail();
+    }
 }

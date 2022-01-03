@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
+
+    Route::group(['as' => 'api.app.'], function (){
+        Route::get('/apps/{uuid}/show', 'AppController@show')->name('show');
+    });
+
+    Route::group(['as' => 'api.pushUser.'], function (){
+        Route::post('/push-users/create', 'PushUserController@store')->name('store');
+    });
+
 });

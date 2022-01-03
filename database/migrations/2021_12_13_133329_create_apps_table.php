@@ -15,7 +15,8 @@ class CreateAppsTable extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')
+                ->unique();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')

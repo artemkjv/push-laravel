@@ -12,4 +12,10 @@ class LanguageRepository implements LanguageRepositoryInterface
     {
         return Language::all();
     }
+
+    public function getByCode(string $code)
+    {
+        Language::where('code', $code)
+            ->firstOrFail();
+    }
 }

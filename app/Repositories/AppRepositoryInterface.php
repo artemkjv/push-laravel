@@ -19,4 +19,6 @@ interface AppRepositoryInterface
 
     public function getByUserAndIds(UserInterface $userDecorator, $ids);
 
+    public function getByUUID($uuid);
+
 }
