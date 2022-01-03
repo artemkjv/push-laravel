@@ -103,6 +103,10 @@ class RepositoryServiceProvider extends ServiceProvider
             TimezoneRepositoryInterface::class,
             TimezoneRepository::class
         );
+        $this->app->bind(
+            PushUserRepositoryInterface::class,
+            PushUserRepository::class
+        );
     }
 
     /**
