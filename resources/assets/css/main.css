@@ -189,3 +189,7 @@ ion-icon{
     border-radius: 3px;
     background-color: white;
 }
+
+.form-sm .form-group{
+    display: inline-block;
+}

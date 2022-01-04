@@ -22,6 +22,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <div class="form-wrapper form-sm">
+                        <form action="{{ route('sentPush.index') }}" method="get">
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Type" name="pushable_type" id="pushable_type">
+                                    <option value="" selected>All Pushes</option>
+                                    <option @if(request()->get('pushable_type') === \App\Models\CustomPush::class) selected @endif value="{{ \App\Models\CustomPush::class }}">Custom Pushes</option>
+                                    <option @if(request()->get('pushable_type') === \App\Models\AutoPush::class) selected @endif value="{{ \App\Models\AutoPush::class }}">Auto Pushes</option>
+                                    <option @if(request()->get('pushable_type') === \App\Models\WeeklyPush::class) selected @endif value="{{ \App\Models\WeeklyPush::class }}">Weekly Pushes</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
                     @if (count($sentPushes))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">
@@ -44,7 +57,6 @@
                                         <td>{{ $sentPush->sent }}</td>
                                         <td>{{ $sentPush->clicked }}</td>
                                         <td class="d-flex justify-content-around">
-
                                             <form
                                                 action="{{ route('sentPush.destroy', ['id' => $sentPush->id]) }}"
                                                 method="post" class="float-left">

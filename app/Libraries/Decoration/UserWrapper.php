@@ -61,26 +61,6 @@ class UserWrapper implements UserInterface
         return null;
     }
 
-    public function sentCustomPushes()
-    {
-        return $this->user
-            ->hasMany(SentPush::class)
-            ->where('pushable_type', CustomPush::class);
-    }
-
-    public function sentAutoPushes()
-    {
-        return $this->user
-            ->hasMany(SentPush::class)
-            ->where('pushable_type', AutoPush::class);
-    }
-
-    public function sentWeeklyPushes(){
-        return $this->user
-            ->hasMany(SentPush::class)
-            ->where('pushable_type', WeeklyPush::class);
-    }
-
     public function sentPushes()
     {
         return $this->user->hasMany(SentPush::class);

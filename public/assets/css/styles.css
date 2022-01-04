@@ -190,6 +190,10 @@ ion-icon{
     background-color: white;
 }
 
+.form-sm .form-group{
+    display: inline-block;
+}
+
 .tokenize > .tokens-container {
     position: relative;
     list-style: none;

@@ -62,60 +62,37 @@ class ModeratorWrapper implements UserInterface
         return $this->user->admin();
     }
 
-    public function sentCustomPushes()
-    {
-        $customPushIds = $this->customPushes()
-            ->select('id')
-            ->get();
-        return SentPush::whereIn('pushable_id', $customPushIds)
-            ->where('pushable_type', CustomPush::class);
-    }
-
-    public function sentAutoPushes()
-    {
-        $autoPushIds = $this->autoPushes()
-            ->select('id')
-            ->get();
-        return SentPush::whereIn('pushable_id', $autoPushIds)
-            ->where('pushable_type', AutoPush::class);
-    }
-
-    public function sentWeeklyPushes()
-    {
-        $weeklyPushIds = $this->weeklyPushes()
-            ->select('id')
-            ->get();
-        return SentPush::whereIn('pushable_id', $weeklyPushIds)
-            ->where('pushable_type', WeeklyPush::class);
-    }
-
     public function sentPushes()
     {
-        $weeklyPushIds = $this->weeklyPushes()
-            ->select('id')
-            ->get();
-        $autoPushIds = $this->autoPushes()
-            ->select('id')
-            ->get();
-        $customPushIds = $this->customPushes()
-            ->select('id')
-            ->get();
-        return SentPush::query()->where(function ($query) use ($weeklyPushIds, $autoPushIds, $customPushIds){
-            $query->where(function($query) use ($customPushIds){
-               $query->whereIn('pushable_id', $customPushIds);
-               $query->where('pushable_type', CustomPush::class);
-            });
+        $weeklyPushIds = $this->weeklyPushes()->select('id')->pluck('id');
+        $autoPushIds = $this->autoPushes()->select('id')->get()->pluck('id');
+        $customPushIds = $this->customPushes()->select('id')->pluck('id');
+        return SentPush::query()
+            ->when($weeklyPushIds->isEmpty() && $autoPushIds->isEmpty() && $customPushIds->isEmpty(), function ($query){
+                $query->where('id', 0);
+            })
+            ->where(function ($query) use ($weeklyPushIds, $autoPushIds, $customPushIds){
+            if($customPushIds->count()){
+                $query->where(function($query) use ($customPushIds){
+                    $query->whereIn('pushable_id', $customPushIds);
+                    $query->where('pushable_type', CustomPush::class);
+                });
+            }
 
-            $query->orWhere(function($query) use ($autoPushIds){
-                $query->whereIn('pushable_id', $autoPushIds);
-                $query->where('pushable_type', AutoPush::class);
-            });
+            if($autoPushIds->count()){
+                $query->orWhere(function($query) use ($autoPushIds){
+                    $query->whereIn('pushable_id', $autoPushIds);
+                    $query->where('pushable_type', AutoPush::class);
+                });
+            }
 
-            $query->orWhere(function ($query) use ($weeklyPushIds){
-               $query->whereIn('pushable_id', $weeklyPushIds);
-               $query->where('pushable_type', WeeklyPush::class);
-            });
-        });
+            if($weeklyPushIds->count()) {
+                $query->orWhere(function ($query) use ($weeklyPushIds) {
+                    $query->whereIn('pushable_id', $weeklyPushIds);
+                    $query->where('pushable_type', WeeklyPush::class);
+                });
+            }
+        })->getQuery();
     }
 
 }

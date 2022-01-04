@@ -13,6 +13,6 @@ interface SentPushRepositoryInterface
 
     public function getByPushableIdAndType($pushableId, $pushableType);
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $pushableType = null);
 
 }

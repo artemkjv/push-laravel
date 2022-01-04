@@ -24,10 +24,13 @@ class SentPushRepository implements SentPushRepositoryInterface
         ], $data);
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate)
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $pushableType = null)
     {
         return $userDecorator
             ->sentPushes()
+            ->when($pushableType, function ($query) use ($pushableType){
+                $query->where('pushable_type', $pushableType);
+            })
             ->paginate($paginate);
     }
 }

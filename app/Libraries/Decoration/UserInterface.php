@@ -21,12 +21,6 @@ interface UserInterface
 
     public function admin();
 
-    public function sentCustomPushes();
-
-    public function sentAutoPushes();
-
-    public function sentWeeklyPushes();
-
     public function sentPushes();
 
 }
