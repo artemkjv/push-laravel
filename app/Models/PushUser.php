@@ -26,6 +26,10 @@ class PushUser extends Model
 
     public const PAGINATE = 10;
 
+    protected $casts = [
+        'tags' => 'array'
+    ];
+
     public function country(){
         return $this->belongsTo(Country::class);
     }

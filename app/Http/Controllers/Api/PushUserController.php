@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePushUserRequest;
+use App\Http\Requests\TagPushUserRequest;
+use App\Http\Requests\TimePushUserRequest;
 use App\Http\Requests\TransitionPushUserRequest;
 use App\Http\Requests\UpdatePushUserRequest;
 use App\Repositories\CountryRepositoryInterface;
@@ -85,8 +87,21 @@ class PushUserController extends Controller
         return response()->noContent();
     }
 
-    public function addTag(){
+    public function addTag(TagPushUserRequest $request, $uuid){
+        $payload = $request->validated();
+        $pushUser = $this->pushUserRepository
+            ->getByUUID($uuid);
+        $pushUser->tags[$payload['key']] = $payload['value'];
+        $this->pushUserRepository->save($pushUser->toArray());
+        return response()->noContent();
+    }
 
+    public function addTime(TimePushUserRequest $request, $uuid){
+        $payload = $request->validated();
+        $pushUser = $this->pushUserRepository->getByUUID($uuid);
+        $pushUser->time_in_app += $payload['time_in_app'];
+        $this->pushUserRepository->save($pushUser->toArray());
+        return response()->noContent();
     }
 
 }
