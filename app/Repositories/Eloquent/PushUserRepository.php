@@ -36,4 +36,10 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('timezone')
             ->paginate($paginate);
     }
+
+    public function getByUUID($uuid)
+    {
+        return PushUser::where('uuid', $uuid)
+            ->firstOrFail();
+    }
 }

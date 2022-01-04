@@ -9,4 +9,6 @@ interface PushTransitionRepositoryInterface
 
     public function getCount($apps, $segments, $from = null, $to = null);
 
+    public function save($data);
+
 }

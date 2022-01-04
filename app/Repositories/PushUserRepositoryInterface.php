@@ -13,4 +13,6 @@ interface PushUserRepositoryInterface
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
 
+    public function getByUUID($uuid);
+
 }

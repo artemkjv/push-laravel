@@ -6,6 +6,7 @@ use App\Models\App;
 use App\Models\AutoPush;
 use App\Models\CustomPush;
 use App\Models\Segment;
+use App\Models\SentPush;
 use App\Models\Template;
 use App\Models\User;
 use App\Models\WeeklyPush;
@@ -59,4 +60,25 @@ class UserWrapper implements UserInterface
     {
         return null;
     }
+
+    public function sentCustomPushes()
+    {
+        return $this->user
+            ->hasMany(SentPush::class)
+            ->where('pushable_type', CustomPush::class);
+    }
+
+    public function sentAutoPushes()
+    {
+        return $this->user
+            ->hasMany(SentPush::class)
+            ->where('pushable_type', AutoPush::class);
+    }
+
+    public function sentWeeklyPushes(){
+        return $this->user
+            ->hasMany(SentPush::class)
+            ->where('pushable_type', WeeklyPush::class);
+    }
+
 }

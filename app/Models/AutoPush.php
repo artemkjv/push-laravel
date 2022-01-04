@@ -34,4 +34,8 @@ class AutoPush extends Model
         return $this->belongsTo(Template::class);
     }
 
+    public function sentPushes(){
+        return $this->morphedByMany(SentPush::class, 'pushable', 'sent_pushes');
+    }
+
 }

@@ -6,6 +6,7 @@ use App\Models\App;
 use App\Models\AutoPush;
 use App\Models\CustomPush;
 use App\Models\Segment;
+use App\Models\SentPush;
 use App\Models\Template;
 use App\Models\User;
 use App\Models\WeeklyPush;
@@ -59,5 +60,32 @@ class ModeratorWrapper implements UserInterface
     public function admin()
     {
         return $this->user->admin();
+    }
+
+    public function sentCustomPushes()
+    {
+        $customPushIds = $this->customPushes()
+            ->select('id')
+            ->get();
+        return SentPush::whereIn('pushable_id', $customPushIds)
+            ->where('pushable_type', CustomPush::class);
+    }
+
+    public function sentAutoPushes()
+    {
+        $autoPushIds = $this->autoPushes()
+            ->select('id')
+            ->get();
+        return SentPush::whereIn('pushable_id', $autoPushIds)
+            ->where('pushable_type', AutoPush::class);
+    }
+
+    public function sentWeeklyPushes()
+    {
+        $weeklyPushIds = $this->weeklyPushes()
+            ->select('id')
+            ->get();
+        return SentPush::whereIn('pushable_id', $weeklyPushIds)
+            ->where('pushable_type', WeeklyPush::class);
     }
 }

@@ -39,4 +39,11 @@ class PushTransitionRepository implements PushTransitionRepositoryInterface
                  return $qb->where('push_transitions.clicked_at', '<=', $to);
              })->get();
     }
+
+    public function save($data)
+    {
+        return PushTransition::updateOrCreate([
+            'id' => $data['id'] ?? null
+        ], $data);
+    }
 }

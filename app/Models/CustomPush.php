@@ -39,4 +39,8 @@ class CustomPush extends Model
         return $this->belongsToMany(Segment::class, 'segment_custom_push');
     }
 
+    public function sentPushes(){
+        return $this->morphedByMany(SentPush::class, 'pushable', 'sent_pushes');
+    }
+
 }
