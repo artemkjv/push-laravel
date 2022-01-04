@@ -4,6 +4,7 @@
 namespace App\Repositories\Eloquent;
 
 
+use App\Libraries\Decoration\UserInterface;
 use App\Models\SentPush;
 use App\Repositories\SentPushRepositoryInterface;
 
@@ -21,5 +22,12 @@ class SentPushRepository implements SentPushRepositoryInterface
         return SentPush::updateOrCreate([
             'id' => $data['id'] ?? null
         ], $data);
+    }
+
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate)
+    {
+        return $userDecorator
+            ->sentPushes()
+            ->paginate($paginate);
     }
 }

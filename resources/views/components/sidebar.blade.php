@@ -38,6 +38,10 @@
             <ion-icon name="notifications-outline"></ion-icon>
             Auto Pushes
         </a>
+        <a href="{{ route('sentPush.index') }}" class="list-group-item list-group-item-action bg-light">
+            <ion-icon name="stats-chart-outline"></ion-icon>
+            Delivery
+        </a>
     </div>
 </div>
 <!-- /#sidebar-wrapper -->

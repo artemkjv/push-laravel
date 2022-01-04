@@ -9,6 +9,13 @@ class SentPush extends Model
 {
     use HasFactory;
 
+    public const PAGINATE = 10;
+
+    protected $casts = [
+        'title' => 'array',
+        'body' => 'array'
+    ];
+
     protected $fillable = [
         'id',
         'pushable_id',

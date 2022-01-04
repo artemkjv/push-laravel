@@ -81,4 +81,8 @@ class UserWrapper implements UserInterface
             ->where('pushable_type', WeeklyPush::class);
     }
 
+    public function sentPushes()
+    {
+        return $this->user->hasMany(SentPush::class);
+    }
 }

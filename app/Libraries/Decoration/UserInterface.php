@@ -27,4 +27,6 @@ interface UserInterface
 
     public function sentWeeklyPushes();
 
+    public function sentPushes();
+
 }
