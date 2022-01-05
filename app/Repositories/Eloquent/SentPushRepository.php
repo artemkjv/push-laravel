@@ -33,4 +33,13 @@ class SentPushRepository implements SentPushRepositoryInterface
             })
             ->paginate($paginate);
     }
+
+    public function getByIdAndUser(int $id, UserInterface $userDecorator)
+    {
+        return $userDecorator
+            ->sentPushes()
+            ->where('id', $id)
+            ->firstOrFail();
+    }
+
 }

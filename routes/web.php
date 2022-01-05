@@ -110,6 +110,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
         Route::group(['as' => 'sentPush.'], function (){
             Route::get('/sent-pushes', 'SentPushController@index')->name('index');
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
+            Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
         });
 
     });

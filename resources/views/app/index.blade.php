@@ -53,7 +53,7 @@
                                             </a>
 
                                             <a href="{{ route('app.show', ['id' => $app->id]) }}"
-                                               class="btn btn-info btn-sm float-left mr-1">
+                                               class="btn btn-success btn-sm float-left mr-1">
                                                 <ion-icon name="eye" class="action-icon"></ion-icon>
                                             </a>
 

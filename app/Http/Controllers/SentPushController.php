@@ -25,4 +25,10 @@ class SentPushController extends Controller
         return view('sentPush.index', compact('sentPushes'));
     }
 
+    public function show($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $sentPush = $this->sentPushRepository->getByIdAndUser($id, $userDecorator);
+        return view('sentPush.show', compact('sentPush'));
+    }
+
 }
