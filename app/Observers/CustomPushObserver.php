@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Jobs\CreateCustomPush;
 use App\Models\CustomPush;
 use Illuminate\Support\Facades\App;
 
@@ -15,9 +14,11 @@ class CustomPushObserver
         $customPush->user_modified_id = $currentUser->id;
     }
 
-    public function created(CustomPush $customPush)
-    {
-        CreateCustomPush::dispatch($customPush);
+    public function saved(CustomPush $customPush){
+        if($customPush->getOriginal('time_to_send') !==
+            (new \DateTime($customPush->time_to_send))->format('Y-m-d H:i:s')){
+
+        }
     }
 
 }
