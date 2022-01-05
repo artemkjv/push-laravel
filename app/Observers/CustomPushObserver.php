@@ -2,11 +2,20 @@
 
 namespace App\Observers;
 
+use App\Jobs\SendCustomPush;
 use App\Models\CustomPush;
+use App\Repositories\TimezoneRepositoryInterface;
 use Illuminate\Support\Facades\App;
 
 class CustomPushObserver
 {
+
+    private TimezoneRepositoryInterface $timezoneRepository;
+
+    public function __construct(TimezoneRepositoryInterface $timezoneRepository)
+    {
+        $this->timezoneRepository = $timezoneRepository;
+    }
 
     public function saving(CustomPush $customPush){
         $currentUser = request()->user();
@@ -17,7 +26,19 @@ class CustomPushObserver
     public function saved(CustomPush $customPush){
         if($customPush->getOriginal('time_to_send') !==
             (new \DateTime($customPush->time_to_send))->format('Y-m-d H:i:s')){
-
+            $timezones = $this->timezoneRepository->getAll();
+            foreach ($timezones as $timezone){
+                $timeToSend = new \DateTime(
+                    $customPush->time_to_send,
+                    new \DateTimeZone($timezone->name)
+                );
+                $timeToSend->setTimezone(new \DateTimeZone('UTC'));
+                if($timeToSend > new \DateTime()){
+                    SendCustomPush::dispatch($customPush)->delay($timeToSend);
+                    continue;
+                }
+                SendCustomPush::dispatch($customPush);
+            }
         }
     }
 

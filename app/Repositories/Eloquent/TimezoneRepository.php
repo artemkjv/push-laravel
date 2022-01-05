@@ -12,7 +12,12 @@ class TimezoneRepository implements TimezoneRepositoryInterface
 
     public function getByName(string $name)
     {
-        Timezone::where('name', $name)
+        return Timezone::where('name', $name)
             ->firstOrFail();
+    }
+
+    public function getAll()
+    {
+        return Timezone::all();
     }
 }

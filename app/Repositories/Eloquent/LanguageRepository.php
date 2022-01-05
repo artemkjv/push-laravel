@@ -15,7 +15,7 @@ class LanguageRepository implements LanguageRepositoryInterface
 
     public function getByCode(string $code)
     {
-        Language::where('code', $code)
+        return Language::where('code', $code)
             ->firstOrFail();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 use ConsoleTVs\Charts\Registrar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Registrar $charts)
     {
+        Horizon::auth(function ($request) {
+            return config('app.env') === 'local';
+        });
+
         $charts->register([
             \App\Charts\HomeChart::class
         ]);

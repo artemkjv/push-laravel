@@ -12,7 +12,7 @@ class CountryRepository implements CountryRepositoryInterface
 
     public function getByCode(string $code)
     {
-        Country::where('code', $code)
+        return Country::where('code', $code)
             ->firstOrFail();
     }
 }
