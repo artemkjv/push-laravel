@@ -22,6 +22,7 @@ services:
       - mysql
     links:
       - mysql
+      - redis
     environment:
       UPLOAD_LIMIT: 64M
 
@@ -47,3 +48,14 @@ services:
     restart: always
     ports:
     - 8081:80
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass root
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/redis-data:/var/lib/redis
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
