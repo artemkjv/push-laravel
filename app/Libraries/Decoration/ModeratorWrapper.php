@@ -92,7 +92,7 @@ class ModeratorWrapper implements UserInterface
                     $query->where('pushable_type', WeeklyPush::class);
                 });
             }
-        })->getQuery();
+        });
     }
 
 }
