@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Libraries\Firebase\MessagingService;
-use App\Models\CustomPush;
+use App\Models\AutoPush;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,26 +11,24 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
-class SendCustomPush implements ShouldQueue
+class SendAutoPush implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private CustomPush $customPush;
+    private AutoPush $autoPush;
     private MessagingService $messagingService;
 
     /**
      * Create a new job instance.
      *
-     * @param CustomPush $customPush
-     * @param MessagingService $messagingService
+     * @param AutoPush $autoPush
      */
-    public function __construct(CustomPush $customPush)
+    public function __construct(AutoPush $autoPush)
     {
-        $this->customPush = $customPush;
+        $this->autoPush = $autoPush;
         $this->messagingService = App::make(MessagingService::class);
-        $this->onQueue('send-custom-push');
+        $this->onQueue('send-auto-push');
     }
 
     /**
@@ -40,6 +38,6 @@ class SendCustomPush implements ShouldQueue
      */
     public function handle()
     {
-        $this->messagingService->send($this->customPush);
+        $this->messagingService->send($this->autoPush);
     }
 }

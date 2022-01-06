@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Libraries\Firebase\MessagingService;
 use ConsoleTVs\Charts\Registrar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -32,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\HomeChart::class
         ]);
+
+        $this->app->bind(MessagingService::class, MessagingService::class);
     }
 }

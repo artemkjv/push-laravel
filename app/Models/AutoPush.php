@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AutoPush extends Model
+class AutoPush extends Model implements Pushable
 {
     use HasFactory;
 
@@ -36,6 +36,46 @@ class AutoPush extends Model
 
     public function sentPushes(){
         return $this->morphedByMany(SentPush::class, 'pushable', 'sent_pushes');
+    }
+
+    public function getTitle()
+    {
+        return $this->template->title;
+    }
+
+    public function getBody()
+    {
+        return $this->template->body;
+    }
+
+    public function getIcon()
+    {
+        return $this->template->icon;
+    }
+
+    public function getImage()
+    {
+        return $this->template->image;
+    }
+
+    public function getOpenUrl()
+    {
+        return $this->template->open_url;
+    }
+
+    public function getDeeplink()
+    {
+        return $this->template->deeplink;
+    }
+
+    public function getSound()
+    {
+        return $this->template->sound;
+    }
+
+    public function getTimeToLive()
+    {
+        return $this->time_to_live;
     }
 
 }

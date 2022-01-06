@@ -6,7 +6,7 @@ use App\Casts\AsSet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WeeklyPush extends Model
+class WeeklyPush extends Model implements Pushable
 {
     use HasFactory;
     protected $fillable = [
@@ -43,4 +43,43 @@ class WeeklyPush extends Model
         return $this->morphedByMany(SentPush::class, 'pushable', 'sent_pushes');
     }
 
+    public function getTitle()
+    {
+        return $this->template->title;
+    }
+
+    public function getBody()
+    {
+        return $this->template->body;
+    }
+
+    public function getIcon()
+    {
+        return $this->template->icon;
+    }
+
+    public function getImage()
+    {
+        return $this->template->image;
+    }
+
+    public function getOpenUrl()
+    {
+        return $this->template->open_url;
+    }
+
+    public function getDeeplink()
+    {
+        return $this->template->deeplink;
+    }
+
+    public function getSound()
+    {
+        return $this->template->sound;
+    }
+
+    public function getTimeToLive()
+    {
+        return $this->time_to_live;
+    }
 }

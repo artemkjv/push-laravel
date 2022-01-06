@@ -3,7 +3,8 @@
 namespace App\Jobs;
 
 use App\Libraries\Firebase\MessagingService;
-use App\Models\CustomPush;
+use App\Models\WeeklyPush;
+use Carbon\Traits\Week;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,26 +12,24 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
-class SendCustomPush implements ShouldQueue
+class SendWeeklyPush implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private CustomPush $customPush;
+    private WeeklyPush $weeklyPush;
     private MessagingService $messagingService;
 
     /**
      * Create a new job instance.
      *
-     * @param CustomPush $customPush
-     * @param MessagingService $messagingService
+     * @param WeeklyPush $weeklyPush
      */
-    public function __construct(CustomPush $customPush)
+    public function __construct(WeeklyPush $weeklyPush)
     {
-        $this->customPush = $customPush;
+        $this->weeklyPush = $weeklyPush;
         $this->messagingService = App::make(MessagingService::class);
-        $this->onQueue('send-custom-push');
+        $this->onQueue('send-weekly-push');
     }
 
     /**
@@ -40,6 +39,6 @@ class SendCustomPush implements ShouldQueue
      */
     public function handle()
     {
-        $this->messagingService->send($this->customPush);
+        $this->messagingService->send($this->weeklyPush);
     }
 }
