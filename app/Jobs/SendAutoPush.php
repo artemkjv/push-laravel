@@ -18,6 +18,8 @@ class SendAutoPush implements ShouldQueue
 
     private AutoPush $autoPush;
     private MessagingService $messagingService;
+    private $oldIntervalType;
+    private $oldIntervalValue;
 
     /**
      * Create a new job instance.
@@ -27,6 +29,8 @@ class SendAutoPush implements ShouldQueue
     public function __construct(AutoPush $autoPush)
     {
         $this->autoPush = $autoPush;
+        $this->oldIntervalType = $autoPush->interval_type;
+        $this->oldIntervalValue = $autoPush->interval_value;
         $this->messagingService = App::make(MessagingService::class);
         $this->onQueue('send-auto-push');
     }
@@ -38,6 +42,8 @@ class SendAutoPush implements ShouldQueue
      */
     public function handle()
     {
+        if($this->autoPush->interval_type !== $this->oldIntervalType
+            || $this->autoPush->interval_value !== $this->oldIntervalValue) return;
         $this->messagingService->send($this->autoPush);
     }
 }

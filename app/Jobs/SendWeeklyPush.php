@@ -19,6 +19,7 @@ class SendWeeklyPush implements ShouldQueue
 
     private WeeklyPush $weeklyPush;
     private MessagingService $messagingService;
+    private $oldTimeToSend;
 
     /**
      * Create a new job instance.
@@ -28,6 +29,7 @@ class SendWeeklyPush implements ShouldQueue
     public function __construct(WeeklyPush $weeklyPush)
     {
         $this->weeklyPush = $weeklyPush;
+        $this->oldTimeToSend = $weeklyPush->getTimeToSend();
         $this->messagingService = App::make(MessagingService::class);
         $this->onQueue('send-weekly-push');
     }
@@ -39,6 +41,7 @@ class SendWeeklyPush implements ShouldQueue
      */
     public function handle()
     {
+        if($this->weeklyPush->getTimeToSend() !== $this->oldTimeToSend) return;
         $this->messagingService->send($this->weeklyPush);
     }
 }

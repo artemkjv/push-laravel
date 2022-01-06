@@ -32,7 +32,6 @@ class CreateAutoPushesTable extends Migration
             $table->foreign('template_id')
                 ->references('id')
                 ->on('templates');
-            $table->timestamp('time_to_send');
             $table->unsignedInteger('time_to_live')
                 ->nullable();
             $table->unsignedInteger('interval_value');

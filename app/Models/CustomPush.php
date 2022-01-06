@@ -83,4 +83,10 @@ class CustomPush extends Model implements Pushable
         return $this->time_to_live;
     }
 
+    public function getTimeToSend($timezone = 'UTC')
+    {
+        $datetime = new \DateTime($this->time_to_send, new \DateTimeZone($timezone));
+        $datetime->setTimezone(new \DateTimeZone('UTC'));
+        return $datetime;
+    }
 }

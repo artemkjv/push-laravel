@@ -28,11 +28,7 @@ class CustomPushObserver
             (new \DateTime($customPush->time_to_send))->format('Y-m-d H:i:s')){
             $timezones = $this->timezoneRepository->getAll();
             foreach ($timezones as $timezone){
-                $timeToSend = new \DateTime(
-                    $customPush->time_to_send,
-                    new \DateTimeZone($timezone->name)
-                );
-                $timeToSend->setTimezone(new \DateTimeZone('UTC'));
+                $timeToSend = $customPush->getTimeToSend($timezone->name);
                 if($timeToSend > new \DateTime()){
                     SendCustomPush::dispatch($customPush)->delay($timeToSend);
                     continue;

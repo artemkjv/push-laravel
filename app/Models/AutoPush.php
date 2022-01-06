@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeZone;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -78,4 +79,10 @@ class AutoPush extends Model implements Pushable
         return $this->time_to_live;
     }
 
+    public function getTimeToSend($timezone = 'UTC')
+    {
+        $datetime = new \DateTime('NOW', new DateTimeZone($timezone));
+        $datetime->modify("+{$this->interval_value} {$this->interval_type}");
+        return $datetime;
+    }
 }

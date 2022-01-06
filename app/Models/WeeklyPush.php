@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\AsSet;
+use App\Libraries\Helpers\DateTimeHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -81,5 +82,22 @@ class WeeklyPush extends Model implements Pushable
     public function getTimeToLive()
     {
         return $this->time_to_live;
+    }
+
+    public function getTimeToSend($timezone = 'UTC')
+    {
+        $timeToSend = new \DateTime($this->time_to_send);
+        $utcTimezone = new \DateTimeZone('UTC');
+        foreach ($this->days_to_send as $day){
+            $datetime = new \DateTime('NOW', new \DateTimeZone($timezone));
+            $datetime->modify("next $day");
+            $datetime->setTime(
+                $timeToSend->format('H'),
+                $timeToSend->format('i')
+            );
+            $datetime->setTimezone($utcTimezone);
+            $sendDates[] = $datetime;
+        }
+        return $datetime = DateTimeHelper::instance()->getClosestDate($sendDates);
     }
 }

@@ -23,4 +23,6 @@ interface Pushable
 
     public function getTimeToLive();
 
+    public function getTimeToSend($timezone = 'UTC');
+
 }

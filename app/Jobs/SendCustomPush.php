@@ -19,16 +19,17 @@ class SendCustomPush implements ShouldQueue
 
     private CustomPush $customPush;
     private MessagingService $messagingService;
+    private \DateTime $oldTimeToSend;
 
     /**
      * Create a new job instance.
      *
      * @param CustomPush $customPush
-     * @param MessagingService $messagingService
      */
     public function __construct(CustomPush $customPush)
     {
         $this->customPush = $customPush;
+        $this->oldTimeToSend = $customPush->getTimeToSend();
         $this->messagingService = App::make(MessagingService::class);
         $this->onQueue('send-custom-push');
     }
@@ -40,6 +41,7 @@ class SendCustomPush implements ShouldQueue
      */
     public function handle()
     {
+        if($this->customPush->getTimeToSend() != $this->oldTimeToSend) return;
         $this->messagingService->send($this->customPush);
     }
 }
