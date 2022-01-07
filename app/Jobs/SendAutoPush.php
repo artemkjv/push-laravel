@@ -44,6 +44,6 @@ class SendAutoPush implements ShouldQueue
     {
         if($this->autoPush->interval_type !== $this->oldIntervalType
             || $this->autoPush->interval_value !== $this->oldIntervalValue) return;
-        $this->messagingService->send($this->autoPush);
+
     }
 }

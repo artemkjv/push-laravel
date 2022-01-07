@@ -33,7 +33,7 @@ class CustomPushObserver
                     SendCustomPush::dispatch($customPush)->delay($timeToSend);
                     continue;
                 }
-                SendCustomPush::dispatch($customPush);
+                SendCustomPush::dispatch($customPush, $timezone);
             }
         }
     }

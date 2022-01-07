@@ -29,7 +29,7 @@ class WeeklyPushObserver
             $timezones = $this->timezoneRepository->getAll();
             foreach ($timezones as $timezone){
                 $datetime = $weeklyPush->getTimeToSend($timezone->name);
-                SendWeeklyPush::dispatch($weeklyPush)->delay($datetime);
+                SendWeeklyPush::dispatch($weeklyPush, $timezone)->delay($datetime);
             }
         }
     }

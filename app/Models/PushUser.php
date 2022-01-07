@@ -50,4 +50,8 @@ class PushUser extends Model
         $this->hasMany(PushTransition::class);
     }
 
+    public function app(){
+        return $this->belongsTo(App::class);
+    }
+
 }

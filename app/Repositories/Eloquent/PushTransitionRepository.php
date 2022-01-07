@@ -19,16 +19,12 @@ class PushTransitionRepository implements PushTransitionRepositoryInterface
              )
              ->groupBy('clicked_at_date')
              ->join('push_users', function ($join) use ($apps){
-                 $appIds = $apps->map(function ($app){
-                    return $app->id;
-                 });
-                $join->on('push_transitions.push_user_id', '=', 'push_users.id')
+                 $appIds = $apps->pluck('id');
+                 $join->on('push_transitions.push_user_id', '=', 'push_users.id')
                     ->whereIn('push_users.app_id', $appIds);
              })
              ->join('push_user_segment', function ($join) use ($segments){
-                $segmentIds = $segments->map(function ($segment){
-                    return $segment->id;
-                });
+                $segmentIds = $segments->pluck('id');
                 $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
                     ->whereIn('push_user_segment.segment_id', $segmentIds);
              })

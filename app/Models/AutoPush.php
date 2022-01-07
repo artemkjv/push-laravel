@@ -85,4 +85,9 @@ class AutoPush extends Model implements Pushable
         $datetime->modify("+{$this->interval_value} {$this->interval_type}");
         return $datetime;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

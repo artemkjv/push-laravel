@@ -89,4 +89,10 @@ class CustomPush extends Model implements Pushable
         $datetime->setTimezone(new \DateTimeZone('UTC'));
         return $datetime;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

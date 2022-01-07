@@ -100,4 +100,10 @@ class WeeklyPush extends Model implements Pushable
         }
         return $datetime = DateTimeHelper::instance()->getClosestDate($sendDates);
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

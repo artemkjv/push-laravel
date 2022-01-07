@@ -25,4 +25,6 @@ interface Pushable
 
     public function getTimeToSend($timezone = 'UTC');
 
+    public function getId();
+
 }
