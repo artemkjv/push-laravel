@@ -19,4 +19,6 @@ interface PushUserRepositoryInterface
 
     public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone);
 
+    public function getByAppsAndSegments(Collection $apps, Collection $segments);
+
 }

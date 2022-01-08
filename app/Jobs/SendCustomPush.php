@@ -3,25 +3,21 @@
 namespace App\Jobs;
 
 use App\Jobs\Helper\PushUserTrait;
-use App\Libraries\Firebase\MessagingService;
 use App\Models\CustomPush;
 use App\Models\Timezone;
 use App\Repositories\PushUserRepositoryInterface;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class SendCustomPush implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, PushUserTrait;
 
     private CustomPush $customPush;
-    private MessagingService $messagingService;
     private \DateTime $oldTimeToSend;
     private Timezone $timezone;
     private PushUserRepositoryInterface $pushUserRepository;
@@ -36,7 +32,6 @@ class SendCustomPush implements ShouldQueue
     {
         $this->customPush = $customPush;
         $this->oldTimeToSend = $customPush->getTimeToSend();
-        $this->messagingService = App::make(MessagingService::class);
         $this->pushUserRepository = App::make(PushUserRepositoryInterface::class);
         $this->timezone = $timezone;
         $this->onQueue('send-custom-push');

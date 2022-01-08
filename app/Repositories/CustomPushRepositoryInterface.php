@@ -17,4 +17,6 @@ interface CustomPushRepositoryInterface
 
     public function getByUserAndIds(UserInterface $userDecorator, $ids);
 
+    public function getById(int $id);
+
 }

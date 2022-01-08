@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Jobs\SendCustomPush;
 use App\Models\CustomPush;
 use App\Repositories\TimezoneRepositoryInterface;
-use Illuminate\Support\Facades\App;
 
 class CustomPushObserver
 {
@@ -30,7 +29,7 @@ class CustomPushObserver
             foreach ($timezones as $timezone){
                 $timeToSend = $customPush->getTimeToSend($timezone->name);
                 if($timeToSend > new \DateTime()){
-                    SendCustomPush::dispatch($customPush)->delay($timeToSend);
+                    SendCustomPush::dispatch($customPush, $timezone)->delay($timeToSend);
                     continue;
                 }
                 SendCustomPush::dispatch($customPush, $timezone);

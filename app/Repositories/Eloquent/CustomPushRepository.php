@@ -44,4 +44,11 @@ class CustomPushRepository implements CustomPushRepositoryInterface
             ->get();
     }
 
+    public function getById(int $id)
+    {
+        return CustomPush::query()
+            ->with('apps')
+            ->with('segments')
+            ->findOrFail($id);
+    }
 }

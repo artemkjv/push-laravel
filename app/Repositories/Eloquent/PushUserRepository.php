@@ -63,4 +63,19 @@ class PushUserRepository implements PushUserRepositoryInterface
             })->get();
 
     }
+
+    public function getByAppsAndSegments(Collection $apps, Collection $segments)
+    {
+        $appIds = $apps->pluck('id');
+        return PushUser::query()
+            ->with('app')
+            ->with('language')
+            ->whereIn('app_id', $appIds)
+            ->join('push_user_segment', function ($join) use ($segments){
+                $segmentIds = $segments->pluck('id');
+                $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
+                    ->whereIn('push_user_segment.segment_id', $segmentIds);
+            })->get();
+    }
+
 }
