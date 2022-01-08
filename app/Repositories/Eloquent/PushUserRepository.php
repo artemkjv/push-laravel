@@ -78,4 +78,8 @@ class PushUserRepository implements PushUserRepositoryInterface
             })->get();
     }
 
+    public function getNotRelatedWithSegmentByApps($segment, $apps)
+    {
+        $appIds = $apps->pluck('id');
+    }
 }

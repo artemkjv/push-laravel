@@ -19,4 +19,6 @@ interface SegmentRepositoryInterface
 
     public function getByUserAndIds(UserInterface $userDecorator, $ids);
 
+    public function getAll();
+
 }

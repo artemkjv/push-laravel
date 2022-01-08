@@ -21,4 +21,6 @@ interface PushUserRepositoryInterface
 
     public function getByAppsAndSegments(Collection $apps, Collection $segments);
 
+    public function getNotRelatedWithSegmentByApps($segment, $apps);
+
 }

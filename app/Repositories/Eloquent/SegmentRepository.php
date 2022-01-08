@@ -51,4 +51,9 @@ class SegmentRepository implements SegmentRepositoryInterface
             ->get();
     }
 
+    public function getAll()
+    {
+        return Segment::with('user')
+            ->get();
+    }
 }

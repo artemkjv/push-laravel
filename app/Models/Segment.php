@@ -24,4 +24,8 @@ class Segment extends Model
         return $this->hasMany(Filter::class);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }
