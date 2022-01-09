@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Libraries\Decoration\UserInterface;
+use App\Models\Segment;
 use App\Models\Timezone;
 use Illuminate\Support\Collection;
 
@@ -21,6 +22,6 @@ interface PushUserRepositoryInterface
 
     public function getByAppsAndSegments(Collection $apps, Collection $segments);
 
-    public function getNotRelatedWithSegmentByApps($segment, $apps);
+    public function getNotRelatedWithSegmentByApps(Segment $segment, Collection $apps);
 
 }

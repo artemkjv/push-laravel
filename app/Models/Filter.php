@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class Filter extends Model
 {
@@ -27,6 +28,16 @@ class Filter extends Model
 
     public function children(){
         return $this->hasMany(Filter::class, 'parent_id');
+    }
+
+    public function toQuery(&$query){
+        if($this->tag_key){
+            return $query->{$this->predicate->value}($this->filterType->field_name,
+                [$this->tag_key => $this->value]);
+        }
+        return $query->{$this->predicate->value}($this->filterType->field_name,
+            $this->predicate->option,
+            $this->filterType->format ? \DB::raw(sprintf($this->filterType->format, $this->value)) : $this->value);
     }
 
 }

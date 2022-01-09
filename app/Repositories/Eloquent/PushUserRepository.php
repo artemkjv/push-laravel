@@ -4,12 +4,22 @@ namespace App\Repositories\Eloquent;
 
 use App\Libraries\Decoration\UserInterface;
 use App\Models\PushUser;
+use App\Models\Segment;
 use App\Models\Timezone;
+use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 
 class PushUserRepository implements PushUserRepositoryInterface
 {
+
+    private FilterRepositoryInterface $filterRepository;
+
+    public function __construct()
+    {
+        $this->filterRepository = App::make(FilterRepositoryInterface::class);
+    }
 
     public function save($data)
     {
@@ -78,8 +88,29 @@ class PushUserRepository implements PushUserRepositoryInterface
             })->get();
     }
 
-    public function getNotRelatedWithSegmentByApps($segment, $apps)
+    public function getNotRelatedWithSegmentByApps(Segment $segment, Collection $apps)
     {
+        $parentFilters = $this->filterRepository->getParentsBySegment($segment);
         $appIds = $apps->pluck('id');
+        return PushUser::query()
+            ->whereIn('app_id', $appIds)
+            ->where(function ($query) use ($parentFilters){
+                foreach ($parentFilters as $key => $parentFilter){
+                    $children = $parentFilter->children;
+                    $handleFilters = function ($query) use ($children, $parentFilter){
+                        $parentFilter->toQuery($query);
+                        foreach ($children as $childFilter){
+                            $childFilter->toQuery($query);
+                        }
+                    };
+                    if($key === $parentFilters->take(1)->keys()->first()){
+                        $query->where($handleFilters);
+                    } else{
+                        $query->orWhere($handleFilters);
+                    }
+                }
+            })->get();
+
     }
+
 }

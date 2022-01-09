@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Libraries\Helpers\ArrayHelper;
 use App\Models\FilterType;
 use App\Models\Segment;
+use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\FilterTypeRepositoryInterface;
 use Livewire\Component;
 
@@ -70,15 +71,11 @@ class SegmentForm extends Component
         unset($this->filters[$filterGroupId][$filterId]);
     }
 
-    public function mount(?Segment $segment, FilterTypeRepositoryInterface $filterTypeRepository){
+    public function mount(?Segment $segment, FilterTypeRepositoryInterface $filterTypeRepository, FilterRepositoryInterface $filterRepository){
         $this->segment = $segment;
         $this->filterTypes = $filterTypeRepository->getAll();
         if($this->segment){
-            $parentFilters = $this->segment
-                ->filters()
-                ->whereNull('parent_id')
-                ->with('children')
-                ->get();
+            $parentFilters = $filterRepository->getParentsBySegment($this->segment);
             $this->fillFilters($parentFilters);
         }
     }
