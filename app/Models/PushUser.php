@@ -54,4 +54,7 @@ class PushUser extends Model
         return $this->belongsTo(App::class);
     }
 
+    public function segments(){
+        return $this->belongsToMany(Segment::class);
+    }
 }

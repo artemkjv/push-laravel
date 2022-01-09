@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Jobs\CreatedPushUser;
 use App\Models\PushUser;
+use Carbon\Carbon;
 
 class PushUserObserver
 {
@@ -11,6 +13,10 @@ class PushUserObserver
         $pushUser->active_at = new \DateTime();
         $pushUser->time_in_app = 0;
         $pushUser->sessions_count = 1;
+    }
+
+    public function created(PushUser $pushUser){
+        CreatedPushUser::dispatch($pushUser)->delay(Carbon::now()->addMinutes(10));
     }
 
 }

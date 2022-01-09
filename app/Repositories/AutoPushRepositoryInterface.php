@@ -5,6 +5,8 @@ namespace App\Repositories;
 
 
 use App\Libraries\Decoration\UserInterface;
+use App\Models\App;
+use Illuminate\Support\Collection;
 
 interface AutoPushRepositoryInterface
 {
@@ -18,5 +20,7 @@ interface AutoPushRepositoryInterface
     public function getByUser(UserInterface $userDecorator);
 
     public function getByUserAndIds(UserInterface $userDecorator, $ids);
+
+    public function getBySegmentsAndApp(Collection $segments, App $app);
 
 }
