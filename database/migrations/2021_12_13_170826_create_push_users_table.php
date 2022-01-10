@@ -38,7 +38,8 @@ class CreatePushUsersTable extends Migration
             $table->foreign('timezone_id')
                 ->references('id')
                 ->on('timezones');
-            $table->string('registration_id');
+            $table->string('registration_id')
+                ->unique();
             $table->uuid('uuid')
                 ->unique();
             $table->string('device_model')->nullable();

@@ -16,6 +16,8 @@ interface PushUserRepositoryInterface
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
 
+    public function getByRegistrationId($registrationId);
+
     public function getByUUID($uuid);
 
     public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone);

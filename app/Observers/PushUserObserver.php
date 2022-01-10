@@ -16,7 +16,7 @@ class PushUserObserver
     }
 
     public function created(PushUser $pushUser){
-        CreatedPushUser::dispatch($pushUser)->delay(Carbon::now()->addMinutes(10));
+        CreatedPushUser::dispatch($pushUser)->delay((new \DateTimeImmutable())->modify('+10 minutes'));
     }
 
 }

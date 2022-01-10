@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Http\Requests\BaseRequest\JsonRequest;
 use App\Libraries\Firebase\MessagingService;
 use ConsoleTVs\Charts\Registrar;
 use Illuminate\Support\Facades\Validator;
@@ -35,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         $this->app->bind(MessagingService::class, MessagingService::class);
+//        $this->app->bind(JsonRequest::class, JsonRequest::class);
     }
 }

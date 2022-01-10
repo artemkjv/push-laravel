@@ -28,6 +28,7 @@ class CreatedPushUser implements ShouldQueue
     {
         $this->pushUser = $pushUser;
         $this->autoPushRepository = App::make(AutoPushRepositoryInterface::class);
+        $this->onQueue('created-push-user');
     }
 
     /**

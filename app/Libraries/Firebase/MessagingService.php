@@ -71,6 +71,7 @@ class MessagingService
             ],
             'data' => [
                 'open_url' => $pushable->getOpenUrl(),
+                'deeplink' => $pushable->getDeeplink(),
                 'title' => $title,
                 'body' => $body,
                 'image' => $pushable->getImage() ? config('app.url') .  asset("/storage/{$pushable->getImage()}") : null,

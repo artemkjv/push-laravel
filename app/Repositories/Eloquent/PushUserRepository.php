@@ -113,4 +113,9 @@ class PushUserRepository implements PushUserRepositoryInterface
 
     }
 
+    public function getByRegistrationId($registrationId)
+    {
+        return PushUser::where('registration_id', $registrationId)
+            ->firstOrFail();
+    }
 }

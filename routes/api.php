@@ -22,11 +22,11 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
 
     Route::group(['as' => 'api.pushUser.'], function (){
         Route::post('/push-users', 'PushUserController@store')->name('store');
-        Route::get('/push-users/{uuid}/session', 'PushUserController@addSession')->name('session');
-        Route::patch('/push-users/{uuid}/transition', 'PushUserController@addTransition')->name('transition');
-        Route::patch('/push-users/{uuid}', 'PushUserController@update')->name('update');
-        Route::patch('/push-users/{uuid}/tag', 'PushUserController@addTag')->name('tag');
-        Route::patch('/push-users/{uuid}/time', 'PushUserController@addTime')->name('time');
+        Route::get('/push-users/{registrationId}/session', 'PushUserController@addSession')->name('session');
+        Route::patch('/push-users/{registrationId}/transition', 'PushUserController@addTransition')->name('transition');
+        Route::patch('/push-users/{registrationId}', 'PushUserController@update')->name('update');
+        Route::patch('/push-users/{registrationId}/tag', 'PushUserController@addTag')->name('tag');
+        Route::patch('/push-users/{registrationId}/time', 'PushUserController@addTime')->name('time');
     });
 
 });

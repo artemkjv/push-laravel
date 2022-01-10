@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\BaseRequest\JsonRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePushUserRequest extends FormRequest
+class UpdatePushUserRequest extends JsonRequest
 {
     /**
      * Determine if the user is authorized to make this request.

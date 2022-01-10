@@ -52,13 +52,15 @@ class AutoPushRepository implements AutoPushRepositoryInterface
     public function getBySegmentsAndApp(Collection $segments, App $app)
     {
         return AutoPush::query()
-            ->join('segment_auto_push', function ($join) use ($segments){
-                $segmentIds = $segments->pluck('id');
-                $join->on('auto_push.id', '=', 'segment_auto_push.auto_push_id')
-                    ->whereIn('segment_auto_push.segment_id', $segmentIds);
+            ->when($segments->isNotEmpty(), function ($query) use ($segments){
+                $query->join('segment_auto_push', function ($join) use ($segments){
+                    $segmentIds = $segments->pluck('id');
+                    $join->on('auto_pushes.id', '=', 'segment_auto_push.auto_push_id')
+                        ->whereIn('segment_auto_push.segment_id', $segmentIds);
+                });
             })
             ->join('app_auto_push', function ($join) use ($app){
-               $join->on('auto_push.id', '=', 'app_auto_push.auto_push_id')
+               $join->on('auto_pushes.id', '=', 'app_auto_push.auto_push_id')
                    ->where('app_auto_push.app_id', $app->id);
             })->get();
     }

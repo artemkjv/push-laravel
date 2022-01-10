@@ -31,7 +31,5 @@
         </main>
     </div>
     @yield('scripts')
-    <script type="module" src="{{ asset('js/ionicons.esm.js') }}"></script>
-    <script nomodule src="{{ asset('js/ionicons.js') }}"></script>
 </body>
 </html>

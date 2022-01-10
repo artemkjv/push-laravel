@@ -25,3 +25,7 @@ mix.scripts([
     "resources/assets/js/tokenize2.min.js",
     "resources/assets/js/main.js",
 ], "public/assets/js/scripts.js");
+
+mix.scripts([
+    "resources/assets/js/webpush.js",
+], "public/assets/js/webpush.js");

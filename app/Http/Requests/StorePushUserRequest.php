@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest\JsonRequest;
 
-class StorePushUserRequest extends FormRequest
+class StorePushUserRequest extends JsonRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,9 +30,10 @@ class StorePushUserRequest extends FormRequest
             'country' => 'required|string|exists:countries,code',
             'language' => 'required|string|exists:languages,code',
             'timezone' => 'required|string|exists:timezones,name',
-            'uuid' => 'nullable|uuid',
+            'uuid' => 'uuid',
             'app_version' => 'nullable|string',
             'device_model' => 'nullable|string'
         ];
     }
+
 }
