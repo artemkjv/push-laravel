@@ -37,7 +37,6 @@ class MessagingService
                 'json' => $data
             ]);
             $result = json_decode($response->getBody()->getContents(),true);
-            dump($result);
             if($result['failure']){
                 $sentFailures = [];
                 foreach ($result['results'] as $key => $sentResult){
@@ -68,7 +67,7 @@ class MessagingService
             'notification' => [
                 'title' => $title,
                 'body' => $body,
-                'image' => $pushable->getIcon() ? config('app.url') .  asset("/storage/{$pushable->getIcon()}") : null,
+                'image' => $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null,
                 'time_to_live' => $pushable->getTimeToLive()
             ],
             'data' => [
@@ -76,8 +75,8 @@ class MessagingService
                 'deeplink' => $pushable->getDeeplink(),
                 'title' => $title,
                 'body' => $body,
-                'image' => $pushable->getImage() ? config('app.url') .  asset("/storage/{$pushable->getImage()}") : null,
-                'icon' => $pushable->getIcon() ? config('app.url') .  asset("/storage/{$pushable->getIcon()}") : null,
+                'image' => $pushable->getImage() ? asset("/storage/{$pushable->getImage()}") : null,
+                'icon' => $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null,
                 'push_id' => $pushable->getId(),
                 'push_type' => get_class($pushable)
             ]
