@@ -66,10 +66,12 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('language')
             ->whereIn('app_id', $appIds)
             ->where('timezone_id', $timezone->id)
-            ->join('push_user_segment', function ($join) use ($segments){
-                $segmentIds = $segments->pluck('id');
-                $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                    ->whereIn('push_user_segment.segment_id', $segmentIds);
+            ->when($segments->isNotEmpty(), function ($query) use ($segments){
+                $query->join('push_user_segment', function ($join) use ($segments){
+                    $segmentIds = $segments->pluck('id');
+                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
+                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                });
             })->get();
 
     }

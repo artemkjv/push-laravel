@@ -7,6 +7,7 @@ namespace App\Jobs\Helper;
 use App\Libraries\Firebase\MessagingService;
 use App\Models\Pushable;
 use Illuminate\Support\Facades\App;
+use Ramsey\Collection\Collection;
 
 trait PushUserTrait
 {
@@ -21,7 +22,7 @@ trait PushUserTrait
             foreach ($languages as $langId => $pushUsers){
                 $chunkedArray = array_chunk($pushUsers, 1000);
                 foreach ($chunkedArray as $chunkedPushUsers){
-                    $messagingService->send($pushable, $langId, $serverKey, $chunkedPushUsers);
+                    $messagingService->send($pushable, $langId, $serverKey, collect($chunkedPushUsers));
                 }
             }
         }

@@ -37,19 +37,21 @@ class MessagingService
                 'json' => $data
             ]);
             $result = json_decode($response->getBody()->getContents(),true);
+            dump($result);
             if($result['failure']){
                 $sentFailures = [];
                 foreach ($result['results'] as $key => $sentResult){
                     if(isset($sentResult['error'])){
                         $pushUser = $pushUsers[$key];
-                        $pushUser->status = 'UNSUBSCRIBED';
                         $sentFailures[] = $pushUser;
                     }
                 }
-                \DB::transaction(function () use ($sentFailures){
-                    foreach ($sentFailures as $pushUser)
-                        $this->pushUserRepository->save($pushUser);
-                });
+                \DB::beginTransaction();
+                foreach ($sentFailures as $pushUser){
+                    $pushUser->status = 'UNSUBSCRIBED';
+                    $pushUser->update();
+                }
+                \DB::commit();
             }
         } catch (\Throwable $e){
             echo $e->getMessage();
