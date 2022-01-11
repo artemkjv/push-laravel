@@ -16,12 +16,12 @@ class PredicateSeeder extends Seeder
     {
         $this->command->info('Seeding predicates...');
         $predicates = [
-            ['id' => 1, 'name' => 'Is','value' => '=','option' => NULL],
-            ['id' => 2, 'name' => 'Is Not','value' => '!=','option' => NULL],
-            ['id' => 3, 'name' => 'Less Than','value' => '<','option' => NULL],
-            ['id' => 4, 'name' => 'Greater Than','value' => '>','option' => NULL],
-            ['id' => 5, 'name' => 'Contains','value' => 'JSON_CONTAINS','option' => '1'],
-            ['id' => 6, 'name' => 'Not Contains','value' => 'JSON_CONTAINS','option' => '0']
+            ['id' => '1','name' => 'Is','value' => 'where','option' => '='],
+            ['id' => '2','name' => 'Is Not','value' => 'where','option' => '!='],
+            ['id' => '3','name' => 'Less Than','value' => 'where','option' => '<'],
+            ['id' => '4','name' => 'Greater Than','value' => 'where','option' => '>'],
+            ['id' => '5','name' => 'Contains','value' => 'whereJsonContains','option' => NULL],
+            ['id' => '6','name' => 'Not Contains','value' => 'whereJsonDoesntContain','option' => NULL]
         ];
         DB::table('predicates')->insert($predicates);
     }
