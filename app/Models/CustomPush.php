@@ -43,6 +43,10 @@ class CustomPush extends Model implements Pushable
         return $this->morphedByMany(SentPush::class, 'pushable', 'sent_pushes');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function getTitle()
     {
         return $this->title;
@@ -95,4 +99,8 @@ class CustomPush extends Model implements Pushable
         return $this->id;
     }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

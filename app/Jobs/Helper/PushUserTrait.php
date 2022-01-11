@@ -4,6 +4,7 @@
 namespace App\Jobs\Helper;
 
 
+use App\Events\PushSent;
 use App\Libraries\Firebase\MessagingService;
 use App\Models\Pushable;
 use Illuminate\Support\Facades\App;
@@ -25,6 +26,9 @@ trait PushUserTrait
                     $messagingService->send($pushable, $langId, $serverKey, collect($chunkedPushUsers));
                 }
             }
+        }
+        if(count($sortedArray) > 0){
+            PushSent::dispatch($pushable, count($pushUsers));
         }
     }
 

@@ -27,4 +27,6 @@ interface Pushable
 
     public function getId();
 
+    public function getUser();
+
 }
