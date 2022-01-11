@@ -23,37 +23,37 @@ class UserWrapper implements UserInterface
 
     public function apps()
     {
-        return $this->user->hasMany(App::class);
+        return $this->user->apps();
     }
 
     public function segments()
     {
-        return $this->user->hasMany(Segment::class);
+        return $this->user->segments();
     }
 
     public function templates()
     {
-        return $this->user->hasMany(Template::class);
+        return $this->user->templates();
     }
 
     public function autoPushes()
     {
-        return $this->user->hasMany(AutoPush::class);
+        return $this->user->autoPushes();
     }
 
     public function customPushes()
     {
-        return $this->user->hasMany(CustomPush::class);
+        return $this->user->customPushes();
     }
 
     public function weeklyPushes()
     {
-        return $this->user->hasMany(WeeklyPush::class);
+        return $this->user->weeklyPushes();
     }
 
     public function moderators()
     {
-        return $this->user->hasMany(User::class, 'admin_id');
+        return $this->user->moderators();
     }
 
     public function admin()
@@ -63,6 +63,6 @@ class UserWrapper implements UserInterface
 
     public function sentPushes()
     {
-        return $this->user->hasMany(SentPush::class);
+        return $this->user->sentPushes();
     }
 }

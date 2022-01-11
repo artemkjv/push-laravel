@@ -54,7 +54,7 @@ class PushUserSegment extends Command
                 $pushUsers = $this->pushUserRepository->getNotRelatedWithSegmentByApps($segment, $apps);
                 $segment->pushUsers()->sync($pushUsers);
             } catch (\Throwable $e){
-                $segment->delete();
+                $this->info($e->getMessage());
             }
         }
         return 1;

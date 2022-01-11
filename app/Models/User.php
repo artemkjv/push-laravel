@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Libraries\Decoration\UserInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements UserInterface
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -56,4 +57,43 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'admin_id');
     }
 
+    public function apps()
+    {
+        return $this->hasMany(App::class);
+    }
+
+    public function segments()
+    {
+        return $this->hasMany(Segment::class);
+    }
+
+    public function templates()
+    {
+        return $this->hasMany(Template::class);
+    }
+
+    public function autoPushes()
+    {
+        return $this->hasMany(AutoPush::class);
+    }
+
+    public function customPushes()
+    {
+        return $this->hasMany(CustomPush::class);
+    }
+
+    public function weeklyPushes()
+    {
+        return $this->hasMany(WeeklyPush::class);
+    }
+
+    public function moderators()
+    {
+        return $this->hasMany(User::class, 'admin_id');
+    }
+
+    public function sentPushes()
+    {
+        return $this->user->hasMany(SentPush::class);
+    }
 }
