@@ -22,7 +22,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('app.create') }}" class="btn btn-primary mb-3">Add Application</a>
+                    <form action="{{ route('app.index') }}" class="d-flex filters-wrapper mb-2">
+                        <a href="{{ route('app.create') }}" class="btn btn-primary">Add Application</a>
+                        <div class="form-group">
+                            <label for="limit">Limit</label>
+                            <input type="number" class="form-control" value="{{ request()->get('limit') }}" id="limit" name="limit">
+                        </div>
+                        <div class="form-group">
+                            <label for="search">Search</label>
+                            <input type="text" class="form-control" value="{{ request()->get('search') }}" id="search" name="search">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                     @if (count($apps))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">

@@ -18,7 +18,7 @@ class SendCustomPush implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, PushUserTrait;
 
     private CustomPush $customPush;
-    private \DateTime $oldTimeToSend;
+    private mixed $oldTimeToSendUpdatedAt;
     private Timezone $timezone;
     private PushUserRepositoryInterface $pushUserRepository;
 
@@ -31,7 +31,7 @@ class SendCustomPush implements ShouldQueue
     public function __construct(CustomPush $customPush, Timezone $timezone)
     {
         $this->customPush = $customPush;
-        $this->oldTimeToSend = $customPush->getTimeToSend();
+        $this->oldTimeToSendUpdatedAt = $customPush->time_to_send_updated_at;
         $this->pushUserRepository = App::make(PushUserRepositoryInterface::class);
         $this->timezone = $timezone;
         $this->onQueue('send-custom-push');
@@ -44,7 +44,7 @@ class SendCustomPush implements ShouldQueue
      */
     public function handle()
     {
-        if($this->customPush->getTimeToSend() != $this->oldTimeToSend) return;
+        if($this->customPush->time_to_send_updated_at !== $this->oldTimeToSendUpdatedAt) return;
         $apps = $this->customPush->apps;
         $segments = $this->customPush->segments;
         $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);

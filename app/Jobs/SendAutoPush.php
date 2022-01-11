@@ -17,9 +17,8 @@ class SendAutoPush implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, PushUserTrait;
 
     private AutoPush $autoPush;
-    private $oldIntervalType;
-    private $oldIntervalValue;
     private $pushUserRepository;
+    private mixed $oldIntervalUpdatedAt;
 
     /**
      * Create a new job instance.
@@ -29,8 +28,7 @@ class SendAutoPush implements ShouldQueue
     public function __construct(AutoPush $autoPush)
     {
         $this->autoPush = $autoPush;
-        $this->oldIntervalType = $autoPush->interval_type;
-        $this->oldIntervalValue = $autoPush->interval_value;
+        $this->oldIntervalUpdatedAt = $autoPush->interval_updated_at;
         $this->pushUserRepository = App::make(PushUserRepositoryInterface::class);
         $this->onQueue('send-auto-push');
     }
@@ -42,11 +40,10 @@ class SendAutoPush implements ShouldQueue
      */
     public function handle()
     {
-        if($this->autoPush->interval_type !== $this->oldIntervalType
-            || $this->autoPush->interval_value !== $this->oldIntervalValue) return;
+        if($this->oldIntervalUpdatedAt !== $this->autoPush->interval_updated_at) return;
         $apps = $this->autoPush->apps;
         $segments = $this->autoPush->segments;
-        $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments);
+        $pushUsers = $this->pushUserRepository->getByAppsAndSegments($apps, $segments);
         $this->send($pushUsers, $this->autoPush);
         SendAutoPush::dispatch($this->autoPush)->delay($this->autoPush->getTimeToSend());
     }

@@ -31,7 +31,11 @@ class CustomPushController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $customPushes = $this->customPushRepository->getByUserPaginated($userDecorator, CustomPush::PAGINATE);
+        $customPushes = $this->customPushRepository->getByUserPaginated(
+            $userDecorator,
+            request()->get('limit') ?? CustomPush::PAGINATE,
+            request()->get('search')
+        );
         return view('customPush.index', compact('customPushes'));
     }
 

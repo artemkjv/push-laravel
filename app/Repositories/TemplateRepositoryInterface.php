@@ -9,7 +9,7 @@ interface TemplateRepositoryInterface
 
     public function getAll();
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null);
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator);
 

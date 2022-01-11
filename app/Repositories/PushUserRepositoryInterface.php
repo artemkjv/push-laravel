@@ -14,7 +14,7 @@ interface PushUserRepositoryInterface
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator);
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate);
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $segmentIds, $appIds, $countryIds, $languageIds, $platformIds);
 
     public function getByRegistrationId($registrationId);
 

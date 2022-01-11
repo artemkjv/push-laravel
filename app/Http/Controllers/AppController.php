@@ -26,7 +26,11 @@ class AppController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $apps = $this->appRepository->getByUserPaginated($userDecorator, App::PAGINATE);
+        $apps = $this->appRepository->getByUserPaginated(
+            $userDecorator,
+            request()->get('limit') ?? App::PAGINATE,
+            request()->get('search')
+        );
         return view('app.index', compact('apps'));
     }
 

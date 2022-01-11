@@ -18,7 +18,7 @@ class SendWeeklyPush implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, PushUserTrait;
 
     private WeeklyPush $weeklyPush;
-    private $oldTimeToSend;
+    private mixed $oldTimeToSendUpdatedAt;
     private Timezone $timezone;
     private PushUserRepositoryInterface $pushUserRepository;
 
@@ -32,7 +32,7 @@ class SendWeeklyPush implements ShouldQueue
     {
         $this->weeklyPush = $weeklyPush;
         $this->timezone = $timezone;
-        $this->oldTimeToSend = $weeklyPush->getTimeToSend();
+        $this->oldTimeToSendUpdatedAt = $weeklyPush->time_to_send_updated_at;
         $this->pushUserRepository = App::make(PushUserRepositoryInterface::class);
         $this->onQueue('send-weekly-push');
     }
@@ -44,7 +44,7 @@ class SendWeeklyPush implements ShouldQueue
      */
     public function handle()
     {
-        if($this->weeklyPush->getTimeToSend() !== $this->oldTimeToSend) return;
+        if($this->weeklyPush->time_to_send_updated_at !== $this->oldTimeToSendUpdatedAt) return;
         $apps = $this->weeklyPush->apps;
         $segments = $this->weeklyPush->segments;
         $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);

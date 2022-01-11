@@ -22,6 +22,53 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <form action="{{ route('pushUser.index') }}" class="d-flex filters-wrapper mb-2">
+                        <div class="form-group">
+                            <label for="limit">Limit</label>
+                            <input type="number" class="form-control" value="{{ request()->get('limit') }}" id="limit" name="limit">
+                        </div>
+                        <div class="form-group">
+                            <label for="segments">Segments</label>
+                            <select multiple name="segments[]" class="tokenize2" id="segments" aria-label="Segments">
+                                @foreach($segments as $segment)
+                                    <option @if(in_array($segment->id, request()->get('segments', []))) selected @endif value="{{ $segment->id }}">{{ $segment->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="apps">Applications</label>
+                            <select multiple name="apps[]" class="tokenize2" id="apps" aria-label="Applications">
+                                @foreach($apps as $app)
+                                    <option @if(in_array($app->id, request()->get('apps', []))) selected @endif value="{{ $app->id }}">{{ $app->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="countries">Countries</label>
+                            <select multiple name="countries[]" class="tokenize2" id="countries" aria-label="Countries">
+                                @foreach($countries as $country)
+                                    <option @if(in_array($country->id, request()->get('countries', []))) selected @endif value="{{ $country->id }}">{{ $country->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="languages">Languages</label>
+                            <select multiple name="languages[]" class="tokenize2" id="languages" aria-label="Languages">
+                                @foreach($languages as $language)
+                                    <option @if(in_array($language->id, request()->get('languages', []))) selected @endif value="{{ $language->id }}">{{ $language->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="platforms">Platforms</label>
+                            <select multiple name="platforms[]" class="tokenize2" id="platforms" aria-label="Platforms">
+                                @foreach($platforms as $platform)
+                                    <option @if(in_array($platform->id, request()->get('platforms', []))) selected @endif value="{{ $platform->id }}">{{ $platform->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                     @if (count($pushUsers))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">
@@ -76,6 +123,7 @@
                                 </tbody>
                             </table>
                         </div>
+                    <p>Total: {{$pushUsers->total()}}</p>
                     @else
                         <p>No push users yet...</p>
                     @endif
@@ -91,3 +139,12 @@
     </section>
     <!-- /.content -->
 @endsection
+@section('scripts')
+    <script>
+        let entities = $('.tokenize2')
+        entities.tokenize2({
+            dataSource: 'select',
+        })
+    </script>
+@endsection
+

@@ -15,4 +15,9 @@ class CountryRepository implements CountryRepositoryInterface
         return Country::where('code', $code)
             ->firstOrFail();
     }
+
+    public function getAll()
+    {
+        return Country::all();
+    }
 }

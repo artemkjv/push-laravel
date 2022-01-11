@@ -94,6 +94,6 @@ class User extends Authenticatable implements UserInterface
 
     public function sentPushes()
     {
-        return $this->user->hasMany(SentPush::class);
+        return $this->hasMany(SentPush::class);
     }
 }

@@ -21,6 +21,10 @@ class WeeklyPushObserver
         $currentUser = request()->user();
         $weeklyPush->user_id = $currentUser->admin ? $currentUser->admin->id : $currentUser->id;
         $weeklyPush->user_modified_id = $currentUser->id;
+        if($weeklyPush->getOriginal('days_to_send') !== $weeklyPush->interval_value
+            || $weeklyPush->getOriginal('time_to_send') !== $weeklyPush->time_to_send){
+            $weeklyPush->time_to_send_updated_at = (new \DateTime())->format('Y-m-d H:i:s');
+        }
     }
 
     public function saved(WeeklyPush $weeklyPush){

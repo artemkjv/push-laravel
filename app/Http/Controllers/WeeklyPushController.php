@@ -35,7 +35,11 @@ class WeeklyPushController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $weeklyPushes = $this->weeklyPushRepository->getByUserPaginated($userDecorator, WeeklyPush::PAGINATE);
+        $weeklyPushes = $this->weeklyPushRepository->getByUserPaginated(
+            $userDecorator,
+            \request()->get('limit') ?? WeeklyPush::PAGINATE,
+            \request()->get('search')
+        );
         return view('weeklyPush.index', compact('weeklyPushes'));
     }
 

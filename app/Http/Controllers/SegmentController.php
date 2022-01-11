@@ -27,7 +27,11 @@ class SegmentController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $segments = $this->segmentRepository->getByUserPaginated($userDecorator, Segment::PAGINATE);
+        $segments = $this->segmentRepository->getByUserPaginated(
+            $userDecorator,
+            request()->get('limit') ?? Segment::PAGINATE,
+            request()->get('search')
+        );
         return view('segment.index', compact('segments'));
     }
 

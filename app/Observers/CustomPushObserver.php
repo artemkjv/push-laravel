@@ -20,6 +20,10 @@ class CustomPushObserver
         $currentUser = request()->user();
         $customPush->user_id = $currentUser->admin ? $currentUser->admin->id : $currentUser->id;
         $customPush->user_modified_id = $currentUser->id;
+        if($customPush->getOriginal('time_to_send') !==
+            (new \DateTime($customPush->time_to_send))->format('Y-m-d H:i:s')){
+            $customPush->time_to_send_updated_at = (new \DateTime())->format('Y-m-d H:i:s');
+        }
     }
 
     public function saved(CustomPush $customPush){

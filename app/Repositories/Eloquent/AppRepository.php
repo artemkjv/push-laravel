@@ -30,9 +30,12 @@ class AppRepository implements AppRepositoryInterface
             ->first();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate){
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null){
         return $userDecorator->apps()
             ->with('platforms')
+            ->when($search, function ($query, $search){
+                $query->where('title', 'LIKE', "%$search%");
+            })
             ->withCount('pushUsers')
             ->paginate($paginate);
     }
@@ -55,4 +58,5 @@ class AppRepository implements AppRepositoryInterface
         return App::where('uuid', $uuid)
             ->firstOrFail();
     }
+
 }

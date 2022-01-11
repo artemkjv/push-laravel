@@ -194,6 +194,17 @@ ion-icon{
     display: inline-block;
 }
 
+.d-flex.filters-wrapper{
+    align-items: end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filters-wrapper .tokens-container{
+    margin-bottom: 0 !important;
+    min-width: 162px;
+}
+
 .tokenize > .tokens-container {
     position: relative;
     list-style: none;

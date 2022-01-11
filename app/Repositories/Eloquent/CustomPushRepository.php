@@ -25,8 +25,11 @@ class CustomPushRepository implements CustomPushRepositoryInterface
             ->first();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate){
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null){
         return $userDecorator->customPushes()
+            ->when($search, function ($query, $search){
+                $query->where('name', 'LIKE', "%$search%");
+            })
             ->paginate($paginate);
     }
 

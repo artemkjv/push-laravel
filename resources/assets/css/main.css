@@ -193,3 +193,14 @@ ion-icon{
 .form-sm .form-group{
     display: inline-block;
 }
+
+.d-flex.filters-wrapper{
+    align-items: end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filters-wrapper .tokens-container{
+    margin-bottom: 0 !important;
+    min-width: 162px;
+}

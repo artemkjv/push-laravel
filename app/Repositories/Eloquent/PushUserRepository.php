@@ -39,12 +39,31 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->first();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate)
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $segmentIds, $appIds, $countryIds, $languageIds, $platformIds)
     {
-        $appIds = $userDecorator->apps()
+        $apps = $userDecorator->apps()
             ->select('id')
-            ->get();
-        return PushUser::whereIn('app_id', $appIds)
+            ->get()
+            ->pluck('id');
+        return PushUser::whereIn('app_id', $apps)
+            ->when($segmentIds, function ($query, $segmentIds){
+                $query->join('push_user_segment', function ($join) use ($segmentIds){
+                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
+                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                });
+            })
+            ->when($appIds, function ($query, $appIds){
+                $query->whereIn('app_id', $appIds);
+            })
+            ->when($countryIds, function ($query, $countryIds){
+                $query->whereIn('country_id', $countryIds);
+            })
+            ->when($languageIds, function ($query, $languageIds){
+                $query->whereIn('language_id', $languageIds);
+            })
+            ->when($platformIds, function ($query, $platformIds){
+                $query->whereIn('platform_id', $platformIds);
+            })
             ->with('country')
             ->with('language')
             ->with('platform')
@@ -83,11 +102,14 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('app')
             ->with('language')
             ->whereIn('app_id', $appIds)
-            ->join('push_user_segment', function ($join) use ($segments){
-                $segmentIds = $segments->pluck('id');
-                $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                    ->whereIn('push_user_segment.segment_id', $segmentIds);
-            })->get();
+            ->when($segments->isNotEmpty(), function ($query, $segments){
+                $query->join('push_user_segment', function ($join) use ($segments){
+                    $segmentIds = $segments->pluck('id');
+                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
+                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                });
+            })
+            ->get();
     }
 
     public function getNotRelatedWithSegmentByApps(Segment $segment, Collection $apps)

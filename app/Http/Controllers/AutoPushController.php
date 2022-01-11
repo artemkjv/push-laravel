@@ -35,7 +35,11 @@ class AutoPushController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $autoPushes = $this->autoPushRepository->getByUserPaginated($userDecorator, AutoPush::PAGINATE);
+        $autoPushes = $this->autoPushRepository->getByUserPaginated(
+            $userDecorator,
+            \request()->get('limit') ?? AutoPush::PAGINATE,
+            \request()->get('search')
+        );
         return view('autoPush.index', compact('autoPushes'));
     }
 

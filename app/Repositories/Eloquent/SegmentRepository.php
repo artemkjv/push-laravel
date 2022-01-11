@@ -30,10 +30,13 @@ class SegmentRepository implements SegmentRepositoryInterface
             ->first();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate)
+    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null)
     {
         return $userDecorator
             ->segments()
+            ->when($search, function ($query, $search){
+                $query->where('name', 'LIKE', "%$search%");
+            })
             ->withCount('pushUsers')
             ->paginate($paginate);
     }

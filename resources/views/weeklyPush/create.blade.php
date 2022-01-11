@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route("home") }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route("weeklyPush.index") }}">Weekly Pushes</a></li>
                         <li class="breadcrumb-item active">Create Weekly Push</li>
                     </ol>
                 </div>
@@ -70,7 +71,6 @@
                     </div>
 
                     <div class="col-xl-6 col-sm-12">
-
                         <div class="form-group">
                             <label for="time_to_live">Live Time (in seconds)</label>
                             <input type="text" class="form-control @error('time_to_live') is-invalid @enderror" value="{{ old('time_to_live') }}" id="time_to_live" name="time_to_live">

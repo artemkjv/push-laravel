@@ -24,7 +24,7 @@
                         <input type="hidden" value="{{ $secretKey }}" name="secret_key">
                         <div class="mb-3">
                             <label for="auth_code" class="form-label">Authentication Code</label>
-                            <input type="number" class="form-control@error('auth_code') is-invalid @enderror" id="auth_code" name="auth_code">
+                            <input type="number" class="form-control @error('auth_code') is-invalid @enderror" id="auth_code" name="auth_code">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

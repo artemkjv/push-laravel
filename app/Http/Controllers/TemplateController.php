@@ -23,7 +23,11 @@ class TemplateController extends Controller
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $templates = $this->templateRepository
-            ->getByUserPaginated($userDecorator, Template::PAGINATE);
+            ->getByUserPaginated(
+                $userDecorator,
+                request()->get('limit') ?? Template::PAGINATE,
+                request()->get('search')
+            );
         return view('template.index', compact('templates'));
     }
 

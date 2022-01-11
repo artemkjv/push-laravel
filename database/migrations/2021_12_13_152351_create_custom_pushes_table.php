@@ -37,6 +37,7 @@ class CreateCustomPushesTable extends Migration
                 ->nullOnDelete();
             $table->enum('status', ['ACTIVE', 'PAUSE'])
                 ->default('ACTIVE');
+            $table->timestamp('time_to_send_updated_at');
             $table->timestamps();
         });
     }
