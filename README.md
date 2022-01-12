@@ -61,7 +61,7 @@ Description:
 Parameters:
 - time_in_app
 
-Response:   
+Response: Empty Response
 
 Description:
 * Отсылаем время(в секундах) проведённое пользователем в приложении
