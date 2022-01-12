@@ -14,7 +14,7 @@ class AlterPushUsersTable extends Migration
     public function up()
     {
         Schema::table('push_users', function (Blueprint $table) {
-            $table->timestamp("active_at");
+            $table->timestamp("active_at")->useCurrent();
         });
     }
 

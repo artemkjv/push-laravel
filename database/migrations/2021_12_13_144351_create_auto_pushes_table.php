@@ -36,7 +36,7 @@ class CreateAutoPushesTable extends Migration
                 ->nullable();
             $table->unsignedInteger('interval_value');
             $table->enum('interval_type', ['hour', 'day', 'week']);
-            $table->timestamp('interval_updated_at');
+            $table->timestamp('interval_updated_at')->useCurrent();
             $table->timestamps();
         });
     }
