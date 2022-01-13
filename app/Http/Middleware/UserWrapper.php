@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\Decoration\AdminWrapper;
+use App\Libraries\Decoration\ManagerWrapper;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Libraries\Decoration\UserInterface;
 use Closure;
@@ -28,6 +30,10 @@ class UserWrapper
                         return new \App\Libraries\Decoration\UserWrapper($user);
                     case config('roles.moderator'):
                         return new ModeratorWrapper($user);
+                    case config('roles.admin'):
+                        return new AdminWrapper($user);
+                    case config('roles.manager'):
+                        return new ManagerWrapper($user);
                 }
             }
             return null;

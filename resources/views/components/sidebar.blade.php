@@ -42,6 +42,12 @@
             <ion-icon name="stats-chart-outline"></ion-icon>
             Delivery
         </a>
+        @if(request()->user()->role === config('roles.admin') || request()->user()->role === config('roles.manager'))
+            <a href="{{ route('admin.user.index') }}" class="list-group-item list-group-item-action bg-light">
+                <ion-icon name="person"></ion-icon>
+                Admin Panel
+            </a>
+        @endif
     </div>
 </div>
 <!-- /#sidebar-wrapper -->

@@ -65,4 +65,9 @@ class UserWrapper implements UserInterface
     {
         return $this->user->sentPushes();
     }
+
+    public function managedUsers()
+    {
+        return null;
+    }
 }

@@ -7,17 +7,22 @@ use App\Http\Requests\UpdateTemplateRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\Template;
 use App\Repositories\TemplateRepositoryInterface;
+use App\Services\TemplateService;
+use Gate;
 
 class TemplateController extends Controller
 {
 
     private TemplateRepositoryInterface $templateRepository;
+    private TemplateService $templateService;
 
     public function __construct(
         TemplateRepositoryInterface $templateRepository,
+        TemplateService $templateService
     )
     {
         $this->templateRepository = $templateRepository;
+        $this->templateService = $templateService;
     }
 
     public function index(){
@@ -43,12 +48,8 @@ class TemplateController extends Controller
 
     public function store(StoreTemplateRequest $request){
         $payload = $request->validated();
-        if($request->file('image')){
-            $payload['image'] = $request->file('image')->store('images', 'public');
-        }
-        if($request->file('icon')){
-            $payload['icon'] = $request->file('icon')->store('icons', 'public');
-        }
+        $payload['image'] = $this->templateService->handleUploadedImage($request->file('image'));
+        $payload['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
         $this->templateRepository->save($payload);
         return redirect()->route('template.index');
     }
@@ -60,16 +61,10 @@ class TemplateController extends Controller
             ->toArray();
         $payload = $request->validated();
         if($payload['template-image']){
-            $template['image'] = null;
+            $template['image'] = $this->templateService->handleUploadedImage($request->file('image'));
         }
         if($payload['template-icon']){
-            $template['icon'] = null;
-        }
-        if($request->file('image')){
-            $payload['image'] = $request->file('image')->store('images', 'public');
-        }
-        if($request->file('icon')){
-            $payload['icon'] = $request->file('icon')->store('icons', 'public');
+            $template['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
         }
         $template = array_merge($template, $payload);
         $this->templateRepository->save($template);
@@ -79,6 +74,7 @@ class TemplateController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $template = $this->templateRepository->getByIdAndUser($id, $userDecorator);
+        Gate::authorize('delete', $template);
         $template->delete();
         return redirect()->back();
     }

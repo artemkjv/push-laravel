@@ -23,4 +23,6 @@ interface UserInterface
 
     public function sentPushes();
 
+    public function managedUsers();
+
 }

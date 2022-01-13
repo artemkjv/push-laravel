@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class RelatedWithUser implements Rule
 {
-    private $table;
+    private $modelName;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($table)
+    public function __construct($modelName)
     {
-        $this->table = $table;
+        $this->modelName = $modelName;
     }
 
     /**
@@ -29,13 +29,28 @@ class RelatedWithUser implements Rule
     public function passes($attribute, $value)
     {
         $user = request()->user();
-        if(is_null($user->admin)){
-            $entity = DB::table($this->table)
-                ->where('id', $value)
-                ->where('user_id', $user->id)
-                ->first();
-        } else{
-            $entity = null;
+        switch ($user->role){
+            case config('roles.user'):
+                $entity = $this->modelName::where('id', $value)
+                    ->where('user_id', $user->id)
+                    ->first();
+                break;
+            case config('roles.moderator'):
+                $entity = DB::table('entityables')
+                    ->where('user_id', $user->id)
+                    ->where('entityable_type', $this->modelName)
+                    ->where('entityable_id', $value)
+                    ->first();
+                break;
+            case config('roles.manager'):
+                $entity = $this->modelName::where('id', $value)
+                    ->where('user_id', request()->currentUser ? request()->currentUser->id : $user->id)
+                    ->first();
+                break;
+            case config('roles.admin'):
+                $entity = $this->modelName::where('id', $value)
+                    ->where('user_id', request()->currentUser ? request()->currentUser->id : $user->id)
+                    ->first();
         }
         return !is_null($entity);
     }

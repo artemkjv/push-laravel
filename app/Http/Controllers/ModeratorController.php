@@ -50,7 +50,7 @@ class ModeratorController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $moderators = $this->userRepository->getByUserPaginated($userDecorator, User::PAGINATE);
+        $moderators = $this->userRepository->getModeratorsByUserPaginated($userDecorator, User::PAGINATE);
         return view('moderator.index', compact('moderators'));
     }
 
@@ -96,7 +96,7 @@ class ModeratorController extends Controller
 
     public function edit($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $moderator = $this->userRepository->getByIdAndUser($id, $userDecorator);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
         $moderatorDecorator = new ModeratorWrapper($moderator);
         $apps = $this->appRepository->getByUser($userDecorator);
         $segments = $this->segmentRepository->getByUser($userDecorator);
@@ -120,7 +120,7 @@ class ModeratorController extends Controller
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $payload = $request->validated();
         $moderator = $this->userRepository
-            ->getByIdAndUser($id, $userDecorator)
+            ->getModeratorByIdAndUser($id, $userDecorator)
             ->toArray();
         $moderator = $this->userRepository->save(array_merge($moderator, $payload));
         $moderatorDecorator = new ModeratorWrapper($moderator);
@@ -141,7 +141,7 @@ class ModeratorController extends Controller
 
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $moderator = $this->userRepository->getByIdAndUser($id, $userDecorator);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
         $moderator->delete();
         return redirect()->back();
     }

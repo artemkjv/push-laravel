@@ -95,4 +95,8 @@ class ModeratorWrapper implements UserInterface
         });
     }
 
+    public function managedUsers()
+    {
+        return null;
+    }
 }

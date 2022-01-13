@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Template;
 use App\Rules\RelatedWithUser;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +29,7 @@ class StoreWeeklyPushRequest extends FormRequest
             'name' => 'required|string|max:255',
             'apps' => 'required|array',
             'segments' => 'required|array',
-            'template_id' => ['required', 'integer', new RelatedWithUser('templates')],
+            'template_id' => ['required', 'integer', new RelatedWithUser(Template::class)],
             'status' => 'required|string',
             'time_to_live' => 'nullable|integer',
             'time_to_send' => 'date_format:H:i',

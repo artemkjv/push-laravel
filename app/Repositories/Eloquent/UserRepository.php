@@ -18,18 +18,43 @@ class UserRepository implements UserRepositoryInterface
         ], $data);
     }
 
-    public function getByIdAndUser(int $id, UserInterface $userDecorator)
+    public function getModeratorByIdAndUser(int $id, UserInterface $userDecorator)
     {
         return $userDecorator
             ->moderators()
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate)
+    public function getModeratorsByUserPaginated(UserInterface $userDecorator, int $paginate)
     {
         return $userDecorator->moderators()
             ->paginate($paginate);
+    }
+
+    public function getManagersPaginated(int $paginate){
+        return User::query()
+            ->where('role', config('roles.manager'))
+            ->paginate($paginate);
+    }
+
+    public function getManagerById(int $id){
+        return User::query()
+            ->where('role', config('roles.manager'))
+            ->where('id', $id)
+            ->firstOrFail();
+    }
+
+    public function getManagedUsersByUserPaginated(UserInterface $userDecorator, int $paginate)
+    {
+        return $userDecorator->managedUsers()
+            ->paginate($paginate);
+    }
+
+    public function getManagedUserByIdAndUser(int $id, UserInterface $userDecorator){
+        return $userDecorator->managedUsers()
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
 }

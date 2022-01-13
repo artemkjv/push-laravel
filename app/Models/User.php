@@ -96,4 +96,9 @@ class User extends Authenticatable implements UserInterface
     {
         return $this->hasMany(SentPush::class);
     }
+
+    public function managedUsers()
+    {
+        return $this->user->morphedByMany(User::class, 'entityable');
+    }
 }

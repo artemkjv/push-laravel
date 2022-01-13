@@ -43,7 +43,7 @@ class SegmentController extends Controller
         $validated = $request->validated();
         DB::transaction(function () use ($validated){
             $segment = $this->segmentRepository->save([
-                'name' => $validated['name']
+                'name' => $validated['name'],
             ]);
             $this->saveFilters($validated['group'], $segment);
         });
