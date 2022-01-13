@@ -111,6 +111,7 @@ class CustomPushController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $customPush = $this->customPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $customPush);
         $customPush->delete();
         return redirect()->back();
     }

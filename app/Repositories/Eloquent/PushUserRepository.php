@@ -36,7 +36,7 @@ class PushUserRepository implements PushUserRepositoryInterface
         return PushUser::query()
             ->whereIn('app_id', $appIds)
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $segmentIds, $appIds, $countryIds, $languageIds, $platformIds)

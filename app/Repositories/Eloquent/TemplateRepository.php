@@ -36,7 +36,7 @@ class TemplateRepository implements TemplateRepositoryInterface
         return $userDecorator
             ->templates()
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUser(UserInterface $userDecorator)

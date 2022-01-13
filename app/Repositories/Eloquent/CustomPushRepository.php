@@ -22,7 +22,7 @@ class CustomPushRepository implements CustomPushRepositoryInterface
             ->with('apps')
             ->with('segments')
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null){

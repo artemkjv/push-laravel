@@ -25,4 +25,6 @@ interface UserInterface
 
     public function managedUsers();
 
+    public function tariff();
+
 }

@@ -99,6 +99,7 @@ class AutoPushController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $autoPush = $this->autoPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $autoPush);
         $autoPush->delete();
         return redirect()->back();
     }

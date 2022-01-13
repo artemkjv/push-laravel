@@ -40,9 +40,9 @@ class AppController extends Controller
     }
 
     public function store(StoreAppRequest $request){
+        $this->authorize('create', App::class);
         $validated = $request->validated();
         $platform_id = $validated['platform_id'];
-        unset($validated['platform_id']);
         $app = $this->appRepository->save($validated);
         $app->platforms()->attach([$platform_id]);
         return redirect()->route('app.show', ['id' => $app->id]);
@@ -66,7 +66,6 @@ class AppController extends Controller
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $validated = $request->validated();
         $platforms = $validated['platforms'];
-        unset($validated['platforms']);
         $app->update($validated);
         $app->platforms()->sync($platforms);
         return redirect()->route('app.index');
@@ -75,6 +74,7 @@ class AppController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $app);
         $app->delete();
         return redirect()->back();
     }

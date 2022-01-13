@@ -52,6 +52,7 @@ class AutoPushController extends Controller
     }
 
     public function store(StoreAutoPushRequest $request){
+        $this->authorize('create', AutoPush::class);
         $payload = $request->validated();
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $appIds = $payload['apps'];
@@ -92,6 +93,7 @@ class AutoPushController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $autoPush = $this->autoPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $autoPush);
         $autoPush->delete();
         return redirect()->back();
     }

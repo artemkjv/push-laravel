@@ -17,9 +17,10 @@ class AppRepository implements AppRepositoryInterface
     }
 
     public function getById(int $id){
-        return App::where('id', $id)
+        return App::query()
+            ->where('id', $id)
             ->with('platforms')
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator){
@@ -27,7 +28,7 @@ class AppRepository implements AppRepositoryInterface
             ->apps()
             ->where('id', $id)
             ->with('platforms')
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null){

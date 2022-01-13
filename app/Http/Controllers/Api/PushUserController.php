@@ -8,6 +8,7 @@ use App\Http\Requests\TagPushUserRequest;
 use App\Http\Requests\TimePushUserRequest;
 use App\Http\Requests\TransitionPushUserRequest;
 use App\Http\Requests\UpdatePushUserRequest;
+use App\Models\PushUser;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\CountryRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
@@ -48,6 +49,7 @@ class PushUserController extends Controller
     }
 
     public function store(StorePushUserRequest $request){
+        $this->authorize('create', PushUser::class);
         $payload = $request->validated();
         $country = $this->countryRepository->getByCode($payload['country']);
         $language  = $this->languageRepository->getByCode($payload['language']);

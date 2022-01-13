@@ -99,6 +99,7 @@ class SegmentController extends Controller
     public function destroy($userId, $id){
         $userDecorator = new UserWrapper(\request()->currentUser);
         $segment = $this->segmentRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $segment);
         $segment->delete();
         return redirect()->back();
     }

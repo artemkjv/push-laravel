@@ -68,6 +68,7 @@ class PushUserController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $pushUser = $this->pushUserRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $pushUser);
         $pushUser->delete();
         return redirect()->back();
     }

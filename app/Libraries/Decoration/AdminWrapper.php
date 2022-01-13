@@ -67,4 +67,8 @@ class AdminWrapper implements UserInterface
             ->where('role', config('roles.user'));
     }
 
+    public function tariff()
+    {
+        return null;
+    }
 }

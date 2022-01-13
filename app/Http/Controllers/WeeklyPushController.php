@@ -52,6 +52,7 @@ class WeeklyPushController extends Controller
     }
 
     public function store(StoreWeeklyPushRequest $request){
+        $this->authorize('create', WeeklyPush::class);
         $payload = $request->validated();
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $appIds = $payload['apps'];
@@ -92,6 +93,7 @@ class WeeklyPushController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $weeklyPush = $this->weeklyPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $weeklyPush);
         $weeklyPush->delete();
         return redirect()->back();
     }

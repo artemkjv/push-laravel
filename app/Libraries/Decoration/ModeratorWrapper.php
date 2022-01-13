@@ -99,4 +99,9 @@ class ModeratorWrapper implements UserInterface
     {
         return null;
     }
+
+    public function tariff()
+    {
+        return $this->user->admin->tariff();
+    }
 }

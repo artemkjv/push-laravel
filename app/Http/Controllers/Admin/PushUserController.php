@@ -71,6 +71,7 @@ class PushUserController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $pushUser = $this->pushUserRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $pushUser);
         $pushUser->delete();
         return redirect()->back();
     }

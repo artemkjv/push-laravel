@@ -40,6 +40,7 @@ class SegmentController extends Controller
     }
 
     public function store(StoreSegmentRequest $request){
+        $this->authorize('create', Segment::class);
         $validated = $request->validated();
         DB::transaction(function () use ($validated){
             $segment = $this->segmentRepository->save([
@@ -87,6 +88,7 @@ class SegmentController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $segment = $this->segmentRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $segment);
         $segment->delete();
         return redirect()->back();
     }

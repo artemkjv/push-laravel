@@ -82,6 +82,7 @@ class TemplateController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $template = $this->templateRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $template);
         $template->delete();
         return redirect()->back();
     }

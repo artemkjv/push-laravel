@@ -18,6 +18,6 @@ class FilterTypeRepository implements FilterTypeRepositoryInterface
     {
         return FilterType::with('predicates')
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 }

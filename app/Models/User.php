@@ -99,6 +99,15 @@ class User extends Authenticatable implements UserInterface
 
     public function managedUsers()
     {
-        return $this->user->morphedByMany(User::class, 'entityable');
+        return $this->morphedByMany(User::class, 'entityable');
     }
+
+    public function tariff(){
+        return $this->belongsTo(Tariff::class);
+    }
+
+    public function pushUsers(){
+        return $this->hasManyThrough(PushUser::class, App::class);
+    }
+
 }

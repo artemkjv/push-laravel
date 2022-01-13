@@ -99,6 +99,7 @@ class WeeklyPushController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $weeklyPush = $this->weeklyPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $weeklyPush);
         $weeklyPush->delete();
         return redirect()->back();
     }

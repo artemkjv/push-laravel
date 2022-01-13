@@ -27,7 +27,7 @@ class AutoPushRepository implements AutoPushRepositoryInterface
             ->with('segments')
             ->with('template')
             ->where('id', $id)
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null){

@@ -51,6 +51,7 @@ class CustomPushController extends Controller
     }
 
     public function store(StoreCustomPushRequest $request){
+        $this->authorize('create', CustomPush::class);
         DB::transaction(function () use($request) {
             $payload = $request->validated();
             $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
@@ -107,6 +108,7 @@ class CustomPushController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $customPush = $this->customPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $customPush);
         $customPush->delete();
         return redirect()->back();
     }

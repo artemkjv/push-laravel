@@ -85,6 +85,7 @@ class AppController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $app);
         $app->delete();
         return redirect()->back();
     }

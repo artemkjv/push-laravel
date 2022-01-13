@@ -8,7 +8,6 @@ use App\Libraries\Decoration\UserInterface;
 use App\Models\Template;
 use App\Repositories\TemplateRepositoryInterface;
 use App\Services\TemplateService;
-use Gate;
 
 class TemplateController extends Controller
 {
@@ -47,6 +46,7 @@ class TemplateController extends Controller
     }
 
     public function store(StoreTemplateRequest $request){
+        $this->authorize('create', Template::class);
         $payload = $request->validated();
         $payload['image'] = $this->templateService->handleUploadedImage($request->file('image'));
         $payload['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
@@ -74,7 +74,7 @@ class TemplateController extends Controller
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $template = $this->templateRepository->getByIdAndUser($id, $userDecorator);
-        Gate::authorize('delete', $template);
+        $this->authorize('delete', $template);
         $template->delete();
         return redirect()->back();
     }

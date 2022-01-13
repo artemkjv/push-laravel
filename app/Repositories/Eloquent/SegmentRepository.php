@@ -18,7 +18,7 @@ class SegmentRepository implements SegmentRepositoryInterface
 
     public function getById(int $id)
     {
-        return Segment::find($id);
+        return Segment::findOrFail($id);
     }
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator)
@@ -27,7 +27,7 @@ class SegmentRepository implements SegmentRepositoryInterface
             ->segments()
             ->where('id', $id)
             ->with('filters')
-            ->first();
+            ->firstOrFail();
     }
 
     public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null)

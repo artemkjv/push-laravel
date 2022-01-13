@@ -14,7 +14,8 @@ class SentPushRepository implements SentPushRepositoryInterface
     public function getByPushableIdAndType($pushableId, $pushableType)
     {
         return SentPush::where('pushable_id', $pushableId)
-            ->where('pushable_type', $pushableType);
+            ->where('pushable_type', $pushableType)
+            ->firstOrFail();
     }
 
     public function save($data)
