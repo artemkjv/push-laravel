@@ -14,6 +14,14 @@
             <ion-icon name="person"></ion-icon>
             Users
         </a>
+        <a href="{{ route('admin.manager.index') }}" class="list-group-item list-group-item-action bg-light">
+            <ion-icon name="person"></ion-icon>
+            Managers
+        </a>
+        <a href="{{ route('admin.tariff.index') }}" class="list-group-item list-group-item-action bg-light">
+            <ion-icon name="cash"></ion-icon>
+            Tariffs
+        </a>
     </div>
 </div>
 <!-- /#sidebar-wrapper -->

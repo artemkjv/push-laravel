@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Users</h1>
+                    <h1>Tariffs</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Tariffs</li>
                     </ol>
                 </div>
             </div>
@@ -21,41 +21,34 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('admin.user.index') }}" class="d-flex filters-wrapper mb-2">
-                        <div class="form-group">
-                            <label for="limit">Limit</label>
-                            <input type="number" class="form-control" value="{{ request()->get('limit') }}" id="limit" name="limit">
-                        </div>
-                        <div class="form-group">
-                            <label for="search">Search</label>
-                            <input type="text" class="form-control" value="{{ request()->get('search') }}" id="search" name="search">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                    @if (count($users))
+                    <a href="{{ route('admin.tariff.create') }}" class="btn btn-primary">Add Tariff</a>
+                @if (count($tariffs))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">
                                 <thead>
                                 <tr>
                                     <th style="width: 30px">#</th>
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Price</th>
+                                    <th>Default</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($tariffs as $tariff)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $tariff->id }}</td>
+                                        <td>{{ $tariff->name }}</td>
+                                        <td>{{ $tariff->price }}</td>
+                                        <td class="text-center"><span class="action-icon">@if($tariff->is_default) &#9745; @else &#9746; @endif</span></td>
                                         <td class="d-flex justify-content-around">
-                                            <a href="{{ route('admin.user.show', ['id' => $user->id]) }}"
+                                            <a href="{{ route('admin.tariff.edit', ['id' => $tariff->id]) }}"
                                                class="btn btn-info btn-sm float-left mr-1">
                                                 <ion-icon name="create" class="action-icon"></ion-icon>
                                             </a>
+
                                             <form
-                                                action="{{ route('admin.user.destroy', ['id' => $user->id]) }}"
+                                                action="{{ route('admin.tariff.destroy', ['id' => $tariff->id]) }}"
                                                 method="post" class="float-left">
                                                 @csrf
                                                 @method('DELETE')
@@ -71,10 +64,10 @@
                             </table>
                         </div>
                     @else
-                        <p>No users yet...</p>
+                        <p>No tariffs yet...</p>
                     @endif
 
-                    {{ $users->links("pagination::bootstrap-4") }}
+                    {{ $tariffs->links("pagination::bootstrap-4") }}
 
 
                 </div>

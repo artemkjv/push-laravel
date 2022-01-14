@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Repositories\TariffRepositoryInterface;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,15 +31,19 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    private TariffRepositoryInterface $tariffRepository;
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param TariffRepositoryInterface $tariffRepository
      */
-    public function __construct()
+    public function __construct(
+        TariffRepositoryInterface $tariffRepository
+    )
     {
         $this->middleware('guest');
+        $this->tariffRepository = $tariffRepository;
     }
 
     /**
@@ -65,13 +70,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $tariff = $this->tariffRepository->getDefault();
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'last_ip' => request()->ip(),
             'last_login_at' => new \DateTime(),
-            'role' => config('roles.user')
+            'role' => config('roles.user'),
         ]);
+        $user->tariff()->associate($tariff);
+        $user->save();
+        return $user;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\Decoration\UserInterface;
+use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
 
 class UserController extends Controller
@@ -20,7 +21,11 @@ class UserController extends Controller
 
     public function index(){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $users = $this->userRepository->getManagedUsersByUserPaginated($userDecorator, \App\Models\User::PAGINATE);
+        $users = $this->userRepository->getManagedUsersByUserPaginated(
+            $userDecorator,
+            \request()->get('limit') ?? User::PAGINATE,
+            \request()->get('search')
+        );
         return view('admin.user.index', compact('users'));
     }
 
@@ -28,6 +33,13 @@ class UserController extends Controller
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $user = $this->userRepository->getManagedUserByIdAndUser($id, $userDecorator);
         return view('admin.user.show', compact('user'));
+    }
+
+    public function destroy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $user = $this->userRepository->getManagedUserByIdAndUser($id, $userDecorator);
+        $user->delete();
+        return redirect()->back();
     }
 
 }

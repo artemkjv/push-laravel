@@ -14,6 +14,7 @@ use App\Repositories\Eloquent\FilterRepository;
 use App\Repositories\Eloquent\FilterTypeRepository;
 use App\Repositories\Eloquent\LanguageRepository;
 use App\Repositories\Eloquent\SentPushRepository;
+use App\Repositories\Eloquent\TariffRepository;
 use App\Repositories\Eloquent\TimezoneRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\PlatformRepository;
@@ -26,6 +27,7 @@ use App\Repositories\FilterRepositoryInterface;
 use App\Repositories\FilterTypeRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
 use App\Repositories\SentPushRepositoryInterface;
+use App\Repositories\TariffRepositoryInterface;
 use App\Repositories\TimezoneRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\Repositories\PlatformRepositoryInterface;
@@ -112,6 +114,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             SentPushRepositoryInterface::class,
             SentPushRepository::class
+        );
+        $this->app->bind(
+            TariffRepositoryInterface::class,
+            TariffRepository::class
         );
     }
 

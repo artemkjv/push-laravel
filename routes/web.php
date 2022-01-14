@@ -117,10 +117,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
 
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'admin'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function (){
+Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function (){
     Route::group(['as' => 'user.'], function (){
         Route::get('/users', 'UserController@index')->name('index');
         Route::get('/users/{id}', 'UserController@show')->name('show');
+        Route::delete('/users/{id}', 'UserController@destroy')->name('destroy');
     });
 
     Route::group(['middleware' => ['user.managed'], 'prefix' => '/user/{userId}'], function (){
@@ -188,6 +189,28 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'namespace' => '\\A
             Route::get('/sent-pushes', 'SentPushController@index')->name('index');
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
+        });
+
+    });
+
+    Route::group(['middleware' => 'admin'], function (){
+
+        Route::group(['as' => 'manager.'], function (){
+            Route::get('/managers', 'ManagerController@index')->name('index');
+            Route::get('/managers/create', 'ManagerController@create')->name('create');
+            Route::get('/managers/{id}', 'ManagerController@edit')->name('edit');
+            Route::post('/managers/create', 'ManagerController@store')->name('store');
+            Route::put('/managers/{id}', 'ManagerController@update')->name('update');
+            Route::delete('/managers/{id}', 'ManagerController@destroy')->name('destroy');
+        });
+
+        Route::group(['as' => 'tariff.'], function (){
+            Route::get('/tariffs', 'TariffController@index')->name('index');
+            Route::get('/tariffs/create', 'TariffController@create')->name('create');
+            Route::post('/tariffs/create', 'TariffController@store')->name('store');
+            Route::get('/tariffs/{id}', 'TariffController@edit')->name('edit');
+            Route::put('/tariffs/{id}', 'TariffController@update')->name('update');
+            Route::delete('/tariffs/{id}', 'TariffController@destroy')->name('destroy');
         });
 
     });

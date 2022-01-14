@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Users</h1>
+                    <h1>Managers</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Managers</li>
                     </ol>
                 </div>
             </div>
@@ -21,7 +21,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('admin.user.index') }}" class="d-flex filters-wrapper mb-2">
+                    <form action="{{ route('admin.manager.index') }}" class="d-flex filters-wrapper mb-2">
+                        <a href="{{ route('admin.manager.create') }}" class="btn btn-primary">Add Managers</a>
                         <div class="form-group">
                             <label for="limit">Limit</label>
                             <input type="number" class="form-control" value="{{ request()->get('limit') }}" id="limit" name="limit">
@@ -32,7 +33,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    @if (count($users))
+                    @if (count($managers))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">
                                 <thead>
@@ -44,18 +45,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($managers as $manager)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $manager->id }}</td>
+                                        <td>{{ $manager->name }}</td>
+                                        <td>{{ $manager->email }}</td>
                                         <td class="d-flex justify-content-around">
-                                            <a href="{{ route('admin.user.show', ['id' => $user->id]) }}"
+                                            <a href="{{ route('admin.manager.edit', ['id' => $manager->id]) }}"
                                                class="btn btn-info btn-sm float-left mr-1">
                                                 <ion-icon name="create" class="action-icon"></ion-icon>
                                             </a>
+
                                             <form
-                                                action="{{ route('admin.user.destroy', ['id' => $user->id]) }}"
+                                                action="{{ route('admin.manager.destroy', ['id' => $manager->id]) }}"
                                                 method="post" class="float-left">
                                                 @csrf
                                                 @method('DELETE')
@@ -71,10 +73,10 @@
                             </table>
                         </div>
                     @else
-                        <p>No users yet...</p>
+                        <p>No managers yet...</p>
                     @endif
 
-                    {{ $users->links("pagination::bootstrap-4") }}
+                    {{ $managers->links("pagination::bootstrap-4") }}
 
 
                 </div>

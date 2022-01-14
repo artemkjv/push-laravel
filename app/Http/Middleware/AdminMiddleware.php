@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->role === config('roles.admin') || $request->user()->role === config('roles.manager')){
+        if($request->user()->role === config('roles.admin')){
             return $next($request);
         }
         abort(401);

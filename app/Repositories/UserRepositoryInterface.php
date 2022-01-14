@@ -15,12 +15,16 @@ interface UserRepositoryInterface
 
     public function getModeratorsByUserPaginated(UserInterface $userDecorator, int $paginate);
 
-    public function getManagersPaginated(int $paginate);
+    public function getManagersPaginated(int $paginate, $search = null);
 
     public function getManagerById(int $id);
 
-    public function getManagedUsersByUserPaginated(UserInterface $userDecorator, int $paginate);
+    public function getManagedUsersByUserPaginated(UserInterface $userDecorator, int $paginate, $search = null);
+
+    public function getManagedUsers(UserInterface $userDecorator);
 
     public function getManagedUserByIdAndUser(int $id, UserInterface $userDecorator);
+
+    public function getManagedUsersByIdsAndUser($ids, UserInterface $userDecorator);
 
 }
