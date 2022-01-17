@@ -68,6 +68,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('language')
             ->with('platform')
             ->with('timezone')
+            ->with('app')
             ->paginate($paginate);
     }
 

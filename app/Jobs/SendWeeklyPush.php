@@ -45,10 +45,12 @@ class SendWeeklyPush implements ShouldQueue
     public function handle()
     {
         if($this->weeklyPush->time_to_send_updated_at !== $this->oldTimeToSendUpdatedAt) return;
-        $apps = $this->weeklyPush->apps;
-        $segments = $this->weeklyPush->segments;
-        $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);
-        $this->send($pushUsers, $this->weeklyPush);
+        if($this->weeklyPush->status === 'ACTIVE'){
+            $apps = $this->weeklyPush->apps;
+            $segments = $this->weeklyPush->segments;
+            $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);
+            $this->send($pushUsers, $this->weeklyPush);
+        }
         SendWeeklyPush::dispatch($this->weeklyPush, $this->timezone)->delay($this->weeklyPush->getTimeToSend($this->timezone->name));
     }
 }

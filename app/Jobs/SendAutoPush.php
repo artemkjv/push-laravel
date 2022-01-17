@@ -41,10 +41,12 @@ class SendAutoPush implements ShouldQueue
     public function handle()
     {
         if($this->oldIntervalUpdatedAt !== $this->autoPush->interval_updated_at) return;
-        $apps = $this->autoPush->apps;
-        $segments = $this->autoPush->segments;
-        $pushUsers = $this->pushUserRepository->getByAppsAndSegments($apps, $segments);
-        $this->send($pushUsers, $this->autoPush);
+        if($this->autoPush->status === 'ACTIVE'){
+            $apps = $this->autoPush->apps;
+            $segments = $this->autoPush->segments;
+            $pushUsers = $this->pushUserRepository->getByAppsAndSegments($apps, $segments);
+            $this->send($pushUsers, $this->autoPush);
+        }
         SendAutoPush::dispatch($this->autoPush)->delay($this->autoPush->getTimeToSend());
     }
 }

@@ -31,4 +31,8 @@ class App extends Model
         return $this->belongsToMany(Platform::class);
     }
 
+    public function app(){
+        return $this->belongsTo(App::class);
+    }
+
 }

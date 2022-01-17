@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="segments">Segments</label>
                             <select multiple class="tokenize2" name="segments[]" id="segments" aria-label="Segments">
-                                <option selected value="0">All Users</option>
+                                <option @if($autoPush->segments->isEmpty()) selected @endif value="0">All Users</option>
                                 @foreach($segments as $segment)
                                     <option @if($autoPush->segments->contains('id', $segment->id)) selected @endif value="{{ $segment->id }}">{{ $segment->name }}</option>
                                 @endforeach

@@ -16,6 +16,9 @@ class AsSet implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes)
     {
-        return implode(',', $value);
+        if(is_array($value)){
+            return implode(',', $value);
+        }
+        return $value;
     }
 }

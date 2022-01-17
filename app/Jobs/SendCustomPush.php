@@ -45,9 +45,11 @@ class SendCustomPush implements ShouldQueue
     public function handle()
     {
         if($this->customPush->time_to_send_updated_at !== $this->oldTimeToSendUpdatedAt) return;
-        $apps = $this->customPush->apps;
-        $segments = $this->customPush->segments;
-        $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);
-        $this->send($pushUsers, $this->customPush);
+        if($this->customPush->status === 'ACTIVE'){
+            $apps = $this->customPush->apps;
+            $segments = $this->customPush->segments;
+            $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);
+            $this->send($pushUsers, $this->customPush);
+        }
     }
 }

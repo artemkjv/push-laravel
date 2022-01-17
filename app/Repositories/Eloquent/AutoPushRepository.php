@@ -55,6 +55,7 @@ class AutoPushRepository implements AutoPushRepositoryInterface
     public function getBySegmentsAndApp(Collection $segments, App $app)
     {
         return AutoPush::query()
+            ->where('status', 'ACTIVE')
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
                 $query->join('segment_auto_push', function ($join) use ($segments){
                     $segmentIds = $segments->pluck('id');

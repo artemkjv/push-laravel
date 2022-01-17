@@ -38,8 +38,8 @@ class MessageForm extends Component
     public function mount(LanguageRepositoryInterface $languageRepository, $title = [], $message = []){
         $allLanguages = ArrayHelper::instance()
             ->stdCollectionToArray($languageRepository->getAll());
-        $this->title = $title;
-        $this->body = $message;
+        $this->title = $this->handleJson($title);
+        $this->body = $this->handleJson($message);
         foreach ($title as $languageId => $translateTitle){
             $language = array_filter($allLanguages, function ($language) use($languageId) {
                return $language['id'] === $languageId;
@@ -54,6 +54,13 @@ class MessageForm extends Component
         }
         $this->languages = $allLanguages;
         $this->chosenLanguage = array_key_last($this->chosenLanguages);
+    }
+
+    private function handleJson(&$var){
+        if(is_string($var)){
+            $var = json_decode($var, true);
+        }
+        return $var;
     }
 
 }
