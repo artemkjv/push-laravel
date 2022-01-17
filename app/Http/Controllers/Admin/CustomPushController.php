@@ -42,7 +42,7 @@ class CustomPushController extends Controller
             $userDecorator,
             request()->get('limit') ?? CustomPush::PAGINATE,
             request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.customPush.index', compact('customPushes', 'user'));
     }
 

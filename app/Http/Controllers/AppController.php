@@ -30,7 +30,7 @@ class AppController extends Controller
             $userDecorator,
             request()->get('limit') ?? App::PAGINATE,
             request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('app.index', compact('apps'));
     }
 

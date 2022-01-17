@@ -31,7 +31,7 @@ class TemplateController extends Controller
                 $userDecorator,
                 request()->get('limit') ?? Template::PAGINATE,
                 request()->get('search')
-            );
+            )->appends(request()->except('page'));
         return view('template.index', compact('templates'));
     }
 

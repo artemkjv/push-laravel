@@ -39,7 +39,7 @@ class SegmentController extends Controller
             $userDecorator,
             request()->get('limit') ?? Segment::PAGINATE,
             request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.segment.index', compact('segments', 'user'));
     }
 

@@ -25,7 +25,7 @@ class UserController extends Controller
             $userDecorator,
             \request()->get('limit') ?? User::PAGINATE,
             \request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.user.index', compact('users'));
     }
 

@@ -41,7 +41,7 @@ class WeeklyPushController extends Controller
             $userDecorator,
             \request()->get('limit') ?? WeeklyPush::PAGINATE,
             \request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.weeklyPush.index', compact('weeklyPushes', 'user'));
     }
 

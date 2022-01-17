@@ -21,7 +21,7 @@ class SentPushController extends Controller
 
     public function index(Request $request){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
-        $sentPushes = $this->sentPushRepository->getByUserPaginated($userDecorator, SentPush::PAGINATE, $request->get('pushable_type'));
+        $sentPushes = $this->sentPushRepository->getByUserPaginated($userDecorator, SentPush::PAGINATE, $request->get('pushable_type'))->appends(request()->except('page'));
         return view('sentPush.index', compact('sentPushes'));
     }
 

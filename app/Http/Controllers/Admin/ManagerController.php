@@ -30,7 +30,7 @@ class ManagerController extends Controller
         $managers = $this->userRepository->getManagersPaginated(
             \request()->get('limit') ?? User::PAGINATE,
             \request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.manager.index', compact('managers'));
     }
 

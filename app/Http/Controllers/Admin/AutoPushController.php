@@ -41,7 +41,7 @@ class AutoPushController extends Controller
             $userDecorator,
             \request()->get('limit') ?? AutoPush::PAGINATE,
             \request()->get('search')
-        );
+        )->appends(request()->except('page'));
         return view('admin.autoPush.index', compact('autoPushes', 'user'));
     }
 
