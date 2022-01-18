@@ -99,7 +99,9 @@ class PushUserController extends Controller
         $payload = $request->validated();
         $pushUser = $this->pushUserRepository
             ->getByRegistrationId($registrationId);
-        $pushUser->tags[$payload['key']] = $payload['value'];
+        $tags = $pushUser->tags;
+        $tags[$payload['key']] = $payload['value'];
+        $pushUser->tags = $tags;
         $this->pushUserRepository->save($pushUser->toArray());
         return response()->noContent();
     }

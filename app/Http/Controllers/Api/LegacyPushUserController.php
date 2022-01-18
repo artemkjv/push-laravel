@@ -98,7 +98,9 @@ class LegacyPushUserController extends Controller
     public function addTag(TagPushUserRequest $request){
         $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($payload['registration_id']);
-        $pushUser->tags[$payload['key']] = $payload['value'];
+        $tags = $pushUser->tags;
+        $tags[$payload['key']] = $payload['value'];
+        $pushUser->tags = $tags;
         $pushUser->save();
         return response()->json([
             'status' => 'success'
