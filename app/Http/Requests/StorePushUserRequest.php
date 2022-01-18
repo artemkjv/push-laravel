@@ -30,7 +30,7 @@ class StorePushUserRequest extends JsonRequest
             'country' => 'required|string|exists:countries,code',
             'language' => 'required|string|exists:languages,code',
             'timezone' => 'required|string|exists:timezones,name',
-            'uuid' => 'uuid',
+            'uuid' => 'nullable|uuid',
             'app_version' => 'nullable|string',
             'device_model' => 'nullable|string'
         ];

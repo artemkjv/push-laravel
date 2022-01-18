@@ -29,4 +29,17 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
         Route::patch('/push-users/{registrationId}/time', 'PushUserController@addTime')->name('time');
     });
 
+    Route::group(['as' => 'api.legacy.app.'], function (){
+        Route::get('/app/{uuid}/view', 'LegacyAppController@show')->name('show');
+    });
+
+    Route::group(['as' => 'api.legacy.pushUser.'], function (){
+        Route::post('/user/subscribe', 'LegacyPushUserController@store')->name('store');
+        Route::get('/user/{registrationId}/session', 'LegacyPushUserController@addSession')->name('session');
+        Route::put('/user/update', 'LegacyPushUserController@update')->name('update');
+        Route::post('/tag/save', 'LegacyPushUserController@addTag')->name('tag');
+        Route::post('/user/time', 'LegacyPushUserController@addTime')->name('time');
+        Route::post('/user/{registrationId}/transition', 'LegacyPushUserController@transition')->name('transition');
+    });
+
 });

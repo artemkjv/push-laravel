@@ -13,4 +13,10 @@ class PlatformRepository implements PlatformRepositoryInterface
         return Platform::all();
     }
 
+    public function getByName(string $name)
+    {
+        return Platform::query()
+            ->where('name', $name)
+            ->firstOrFail();
+    }
 }
