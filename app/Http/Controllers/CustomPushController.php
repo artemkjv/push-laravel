@@ -101,8 +101,8 @@ class CustomPushController extends Controller
             $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $segmentIds);
             $customPush->apps()->sync($apps);
             $customPush->segments()->sync($segments);
-            return redirect()->route('customPush.index');
         });
+        return redirect()->route('customPush.index');
     }
 
     public function destroy($id){
