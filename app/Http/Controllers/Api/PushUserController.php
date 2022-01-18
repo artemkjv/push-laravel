@@ -51,7 +51,7 @@ class PushUserController extends Controller
     public function store(StorePushUserRequest $request){
         $payload = $request->validated();
         $app = $this->appRepository->getByUUID($payload['app_id']);
-        $this->authorize('create', [PushUser::class, $app->user]);
+        if($app->user->tariff != null && $app->user->pushUsers()->count() >= $app->user->tariff->max_push_users) abort(403);
         $country = $this->countryRepository->getByCode($payload['country']);
         $language  = $this->languageRepository->getByCode($payload['language']);
         $timezone = $this->timezoneRepository->getByName($payload['timezone']);

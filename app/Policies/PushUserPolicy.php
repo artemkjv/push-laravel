@@ -19,16 +19,4 @@ class PushUserPolicy
         //
     }
 
-    public function create(User $user){
-        if($user->role === config('roles.moderator')){
-            $user = $user->admin;
-        }
-        $tariff = $user->tariff;
-        if(is_null($tariff)){
-            return true;
-        }
-        return $user->pushUsers()->count() < $tariff->max_push_users;
-    }
-
-
 }
