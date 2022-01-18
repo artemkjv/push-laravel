@@ -61,10 +61,10 @@ class TemplateController extends Controller
             ->toArray();
         $payload = $request->validated();
         if($payload['template-image']){
-            $template['image'] = $this->templateService->handleUploadedImage($request->file('image'));
+            $payload['image'] = $this->templateService->handleUploadedImage($request->file('image'));
         }
         if($payload['template-icon']){
-            $template['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
+            $payload['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
         }
         $template = array_merge($template, $payload);
         $this->templateRepository->save($template);

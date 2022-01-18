@@ -91,10 +91,10 @@ class CustomPushController extends Controller
             $appIds = $payload['apps'];
             $segmentIds = $payload['segments'];
             if ($payload['template-image']) {
-                $customPush['image'] = $this->customPushService->handleUploadedImage($request->file('image'));
+                $payload['image'] = $this->customPushService->handleUploadedImage($request->file('image'));
             }
             if ($payload['template-icon']) {
-                $customPush['icon'] = $this->customPushService->handleUploadedIcon($request->file('icon'));
+                $payload['icon'] = $this->customPushService->handleUploadedIcon($request->file('icon'));
             }
             $customPush = $this->customPushRepository->save(array_merge($customPush, $payload));
             $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
