@@ -46,6 +46,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->get()
             ->pluck('id');
         return PushUser::whereIn('app_id', $apps)
+            ->orderByDesc('id')
             ->when($segmentIds, function ($query, $segmentIds){
                 $query->join('push_user_segment', function ($join) use ($segmentIds){
                     $join->on('push_users.id', '=', 'push_user_segment.push_user_id')

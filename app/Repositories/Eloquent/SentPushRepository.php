@@ -32,6 +32,7 @@ class SentPushRepository implements SentPushRepositoryInterface
             ->when($pushableType, function ($query) use ($pushableType){
                 $query->where('pushable_type', $pushableType);
             })
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 

@@ -31,6 +31,7 @@ class TariffRepository implements TariffRepositoryInterface
     public function getPaginated(int $paginate)
     {
         return Tariff::query()
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 

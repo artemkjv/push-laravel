@@ -35,6 +35,7 @@ class AutoPushRepository implements AutoPushRepositoryInterface
             ->when($search, function ($query, $search){
                 $query->where('name', 'LIKE', "%$search%");
             })
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 

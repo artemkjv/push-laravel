@@ -29,6 +29,7 @@ class UserRepository implements UserRepositoryInterface
     public function getModeratorsByUserPaginated(UserInterface $userDecorator, int $paginate)
     {
         return $userDecorator->moderators()
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 
@@ -55,6 +56,7 @@ class UserRepository implements UserRepositoryInterface
             ->when($search, function ($query, $search){
                 $query->where('email', 'LIKE', "%$search%");
             })
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 

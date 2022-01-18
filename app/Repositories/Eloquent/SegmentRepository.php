@@ -37,6 +37,7 @@ class SegmentRepository implements SegmentRepositoryInterface
             ->when($search, function ($query, $search){
                 $query->where('name', 'LIKE', "%$search%");
             })
+            ->orderByDesc('id')
             ->withCount('pushUsers')
             ->paginate($paginate);
     }

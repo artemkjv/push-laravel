@@ -38,6 +38,7 @@ class AppRepository implements AppRepositoryInterface
                 $query->where('title', 'LIKE', "%$search%");
             })
             ->withCount('pushUsers')
+            ->orderByDesc('id')
             ->paginate($paginate);
     }
 
