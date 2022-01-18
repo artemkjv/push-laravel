@@ -19,7 +19,7 @@ class TemplateObserver
 
     public function created(Template $template){
         $currentUser = request()->user();
-        if($currentUser->role = config('roles.moderator')){
+        if($currentUser->role === config('roles.moderator')){
             $moderatorWrapper = new ModeratorWrapper($currentUser);
             $moderatorWrapper->templates()->attach($template);
         }

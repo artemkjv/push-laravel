@@ -22,7 +22,7 @@ class AppObserver
 
    public function created(App $app){
        $currentUser = request()->user();
-       if($currentUser->role = config('roles.moderator')){
+       if($currentUser->role === config('roles.moderator')){
            $moderatorWrapper = new ModeratorWrapper($currentUser);
            $moderatorWrapper->apps()->attach($app);
        }

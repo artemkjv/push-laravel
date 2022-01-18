@@ -92,11 +92,11 @@ class CustomPushController extends Controller
             $payload = $request->validated();
             $appIds = $payload['apps'];
             $segmentIds = $payload['segments'];
-            if ($payload['template-image']) {
-                $template['image'] = $this->customPushService->handleUploadedImage($request->file('image'));
+            if ($payload['template-image'] || $request->hasFile('image')) {
+                $payload['image'] = $this->customPushService->handleUploadedImage($request->file('image'));
             }
-            if ($payload['template-icon']) {
-                $template['icon'] = $this->customPushService->handleUploadedIcon($request->file('icon'));
+            if ($payload['template-icon'] || $request->hasFile('icon')) {
+                $payload['icon'] = $this->customPushService->handleUploadedIcon($request->file('icon'));
             }
             $customPush = $this->customPushRepository->save(array_merge($customPush, $payload));
             $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);

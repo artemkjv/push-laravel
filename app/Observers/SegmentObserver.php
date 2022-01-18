@@ -19,7 +19,7 @@ class SegmentObserver
 
     public function created(Segment $segment){
         $currentUser = request()->user();
-        if($currentUser->role = config('roles.moderator')){
+        if($currentUser->role === config('roles.moderator')){
             $moderatorWrapper = new ModeratorWrapper($currentUser);
             $moderatorWrapper->segments()->attach($segment);
         }

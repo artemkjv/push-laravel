@@ -42,6 +42,7 @@ services:
       - mysql
     environment:
       PMA_HOST: mysql
+      UPLOAD_LIMIT: 300M
       MYSQL_ROOT_PASSWORD: root
       PMA_PORT: 3306
       PMA_ARBITRARY: 1

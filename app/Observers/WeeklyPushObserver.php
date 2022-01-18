@@ -45,7 +45,7 @@ class WeeklyPushObserver
 
     public function created(WeeklyPush $weeklyPush){
         $currentUser = request()->user();
-        if($currentUser->role = config('roles.moderator')){
+        if($currentUser->role === config('roles.moderator')){
             $moderatorWrapper = new ModeratorWrapper($currentUser);
             $moderatorWrapper->weeklyPushes()->attach($weeklyPush);
         }

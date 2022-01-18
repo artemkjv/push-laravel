@@ -67,11 +67,11 @@ class TemplateController extends Controller
             ->getByIdAndUser($id, $userDecorator)
             ->toArray();
         $payload = $request->validated();
-        if($payload['template-image']){
-            $template['image'] = $this->templateService->handleUploadedImage($request->file('image'));
+        if ($payload['template-image'] || $request->hasFile('image')) {
+            $payload['image'] = $this->templateService->handleUploadedImage($request->file('image'));
         }
-        if($payload['template-icon']){
-            $template['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
+        if ($payload['template-icon'] || $request->hasFile('icon')) {
+            $payload['icon'] = $this->templateService->handleUploadedIcon($request->file('icon'));
         }
         $template = array_merge($template, $payload);
         $this->templateRepository->save($template);

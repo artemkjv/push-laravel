@@ -39,7 +39,7 @@
                             <label for="apps">Applications</label>
                             <select id="apps" name="apps[]" class="tokenize2" multiple aria-label="Apps">
                                 @foreach($apps as $app)
-                                    <option @if($moderatorDecorator->apps()->get()->contains('id', $app->id)) selected @endif value="{{ $app->id }}">{{ $app->title }}</option>
+                                    <option @if($chosenApps->contains('id', $app->id)) selected @endif value="{{ $app->id }}">{{ $app->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -47,7 +47,7 @@
                             <label for="segments">Segments</label>
                             <select name="segments[]" id="segments" class="tokenize2" multiple aria-label="Segments">
                                 @foreach($segments as $segment)
-                                    <option @if($moderatorDecorator->segments()->get()->contains('id', $segment->id)) selected @endif value="{{ $segment->id }}">{{ $segment->name }}</option>
+                                    <option @if($chosenSegments->contains('id', $segment->id)) selected @endif value="{{ $segment->id }}">{{ $segment->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -55,7 +55,7 @@
                             <label for="templates">Templates</label>
                             <select name="templates[]" id="templates" class="tokenize2" multiple aria-label="Templates">
                                 @foreach($templates as $template)
-                                    <option @if($moderatorDecorator->templates()->get()->contains('id', $template->id)) selected @endif value="{{ $template->id }}">{{ $template->name }}</option>
+                                    <option @if($chosenTemplates->contains('id', $template->id)) selected @endif value="{{ $template->id }}">{{ $template->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -63,7 +63,7 @@
                             <label for="customPushes">Custom Pushes</label>
                             <select name="customPushes[]" class="tokenize2" id="customPushes" multiple aria-label="Custom Pushes">
                                 @foreach($customPushes as $customPush)
-                                    <option @if($moderatorDecorator->customPushes()->get()->contains('id', $customPush->id)) selected @endif value="{{ $customPush->id }}">{{ $customPush->name }}</option>
+                                    <option @if($chosenCustomPushes->contains('id', $customPush->id)) selected @endif value="{{ $customPush->id }}">{{ $customPush->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -71,7 +71,7 @@
                             <label for="autoPushes">Auto Pushes</label>
                             <select name="autoPushes[]" class="tokenize2" id="autoPushes" multiple aria-label="Auto Pushes">
                                 @foreach($autoPushes as $autoPush)
-                                    <option @if($moderatorDecorator->autoPushes()->get()->contains('id', $autoPush->id)) selected @endif value="{{ $autoPush->id }}">{{ $autoPush->name }}</option>
+                                    <option @if($chosenAutoPushes->contains('id', $autoPush->id)) selected @endif value="{{ $autoPush->id }}">{{ $autoPush->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -79,7 +79,7 @@
                             <label for="weeklyPushes">Weekly Pushes</label>
                             <select name="weeklyPushes[]" class="tokenize2" id="weeklyPushes" multiple aria-label="Weekly Pushes">
                                 @foreach($weeklyPushes as $weeklyPush)
-                                    <option @if($moderatorDecorator->weeklyPushes()->get()->contains('id', $weeklyPush->id)) selected @endif value="{{ $weeklyPush->id }}">{{ $weeklyPush->name }}</option>
+                                    <option @if($chosenWeeklyPushes->contains('id', $weeklyPush->id)) selected @endif value="{{ $weeklyPush->id }}">{{ $weeklyPush->name }}</option>
                                 @endforeach
                             </select>
                         </div>

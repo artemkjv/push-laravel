@@ -48,7 +48,7 @@ class CustomPushObserver
 
     public function created(CustomPush $customPush){
         $currentUser = request()->user();
-        if($currentUser->role = config('roles.moderator')){
+        if($currentUser->role === config('roles.moderator')){
             $moderatorWrapper = new ModeratorWrapper($currentUser);
             $moderatorWrapper->customPushes()->attach($customPush);
         }
