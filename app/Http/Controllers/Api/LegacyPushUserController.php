@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Legacy\StorePushUserRequest;
+use App\Http\Requests\Legacy\TagPushUserRequest;
+use App\Http\Requests\Legacy\TimePushUserRequest;
+use App\Http\Requests\Legacy\UpdatePushUserRequest;
+use App\Http\Requests\TransitionPushUserRequest;
 use App\Models\PushUser;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\CountryRepositoryInterface;
@@ -47,23 +52,14 @@ class LegacyPushUserController extends Controller
         $this->platformRepository = $platformRepository;
     }
 
-    public function store(Request $request){
-        $this->authorize('create', PushUser::class);
-        $payload = $request->validate([
-            'registration_id' => 'required',
-            'internal_id' => 'nullable|uuid',
-            'app_id' => 'required|exists:apps,uuid',
-            'platform_type' => 'required|exists:platforms,name',
-            'country' => 'required|string|exists:countries,code',
-            'language' => 'required|string|exists:languages,code',
-            'timezone' => 'required|string|exists:timezones,name',
-            'device_model' => 'nullable|string'
-        ]);
+    public function store(StorePushUserRequest $request){
+        $payload = $request->validated();
+        $app = $this->appRepository->getByUUID($payload['app_id']);
+        $this->authorize('create', [PushUser::class, $app->user]);
         $country = $this->countryRepository->getByCode($payload['country']);
         $language  = $this->languageRepository->getByCode($payload['language']);
         $timezone = $this->timezoneRepository->getByName($payload['timezone']);
         $platform = $this->platformRepository->getByName($payload['platform_type']);
-        $app = $this->appRepository->getByUUID($payload['app_id']);
         $this->pushUserRepository->save([
             'registration_id' => $payload['registration_id'],
             'app_id' => $app->id,
@@ -89,11 +85,8 @@ class LegacyPushUserController extends Controller
         ]);
     }
 
-    public function update(Request $request){
-        $payload = $request->validate([
-            'old_registration_id' => 'required|exists:push_users,registration_id',
-            'registration_id' => 'required'
-        ]);
+    public function update(UpdatePushUserRequest $request){
+        $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($payload['old_registration_id']);
         $pushUser->registration_id = $payload['registration_id'];
         $pushUser->save();
@@ -102,12 +95,8 @@ class LegacyPushUserController extends Controller
         ]);
     }
 
-    public function addTag(Request $request){
-        $payload = $request->validate([
-            'key' => 'required',
-            'value' => 'required',
-            'registration_id' => 'required|exists:push_users,registration_id',
-        ]);
+    public function addTag(TagPushUserRequest $request){
+        $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($payload['registration_id']);
         $pushUser->tags[$payload['key']] = $payload['value'];
         $pushUser->save();
@@ -116,11 +105,8 @@ class LegacyPushUserController extends Controller
         ]);
     }
 
-    public function addTransition(Request $request, $registrationId){
-        $payload = $request->validate([
-            'push_type' => 'required|string',
-            'push_id' => 'required|integer'
-        ]);
+    public function addTransition(TransitionPushUserRequest $request, $registrationId){
+        $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($registrationId);
         \DB::transaction(function () use ($pushUser, $payload){
             $this->pushTransitionRepository->save([
@@ -138,11 +124,8 @@ class LegacyPushUserController extends Controller
         ]);
     }
 
-    public function addTime(Request $request){
-        $payload = $request->validate([
-            'registration_id' => 'required|exists:push_users,registration_id',
-            'time' => 'required|integer'
-        ]);
+    public function addTime(TimePushUserRequest $request){
+        $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($payload['registration_id']);
         $pushUser->time_in_app += $payload['time'];
         $this->pushUserRepository->save($pushUser->toArray());
