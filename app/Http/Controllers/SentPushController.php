@@ -31,4 +31,12 @@ class SentPushController extends Controller
         return view('sentPush.show', compact('sentPush'));
     }
 
+    public function destroy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $sentPush = $this->sentPushRepository->getByIdAndUser($id, $userDecorator);
+        $this->authorize('delete', $sentPush);
+        $sentPush->delete();
+        return redirect()->back();
+    }
+
 }
