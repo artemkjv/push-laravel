@@ -95,6 +95,7 @@ class CustomPushController extends Controller
             }
             if ($payload['template-icon']) {
                 $payload['icon'] = $this->customPushService->handleUploadedIcon($request->file('icon'));
+                dd($payload['icon']);
             }
             $customPush = $this->customPushRepository->save(array_merge($customPush, $payload));
             $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
