@@ -43,8 +43,8 @@
                             <p>Sent At: {{ $sentPush->created_at }}</p>
                         </div>
                         <div class="tab-pane fade" id="content" role="tabpanel" aria-labelledby="content-tab">
-                            <p>Title: {{ $sentPush->title['1'] }}</p>
-                            <p>Body: {{ $sentPush->body['1'] }}</p>
+                            <p>Title: {{ $sentPush->getTitle()['1'] }}</p>
+                            <p>Body: {{ $sentPush->getBody()['1'] }}</p>
                             @if($sentPush->image)
                                 <img class="img-thumbnail rounded mt-2" src="{{ asset("/storage/$sentPush->image") }}" alt="Sent Push Image">
                             @endif

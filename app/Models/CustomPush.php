@@ -49,12 +49,18 @@ class CustomPush extends Model implements Pushable
 
     public function getTitle()
     {
-        return $this->title;
+        if(is_array($this->title)){
+            return $this->title;
+        }
+        return json_decode($this->title, true);
     }
 
     public function getBody()
     {
-        return $this->body;
+        if(is_array($this->body)){
+            return $this->body;
+        }
+        return json_decode($this->body, true);
     }
 
     public function getIcon()

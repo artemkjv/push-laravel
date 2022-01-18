@@ -74,7 +74,7 @@
 
                     </div>
                     <div class="col-xl-6 col-sm-12">
-                        @livewire('message-form', ['title' => $template->title, 'message' => $template->body])
+                        @livewire('message-form', ['title' => $template->getTitle(), 'message' => $template->getBody()])
                     </div>
                     <!-- /.col -->
                     <div class="col-1">

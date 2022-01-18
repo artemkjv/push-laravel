@@ -45,12 +45,12 @@ class AutoPush extends Model implements Pushable
 
     public function getTitle()
     {
-        return $this->template->title;
+        return $this->template->getTitle();
     }
 
     public function getBody()
     {
-        return $this->template->body;
+        return $this->template->getBody();
     }
 
     public function getIcon()

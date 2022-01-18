@@ -107,7 +107,7 @@
 
                     </div>
                     <div class="col-xl-6 col-sm-12">
-                        @livewire('message-form', ['title' => $customPush->title, 'message' => $customPush->body])
+                        @livewire('message-form', ['title' => $customPush->getTitle(), 'message' => $customPush->getBody()])
                     </div>
                     <!-- /.col -->
                     <div class="col-1">

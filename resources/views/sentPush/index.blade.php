@@ -52,7 +52,7 @@
                                 @foreach($sentPushes as $sentPush)
                                     <tr>
                                         <td>{{ $sentPush->id }}</td>
-                                        <td>{{ $sentPush->title['1'] }}</td>
+                                        <td>{{ $sentPush->getTitle()['1'] }}</td>
                                         <td>{{ $sentPush->created_at }}</td>
                                         <td>{{ $sentPush->sent }}</td>
                                         <td>{{ $sentPush->clicked }}</td>

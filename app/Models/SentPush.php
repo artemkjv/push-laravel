@@ -32,4 +32,18 @@ class SentPush extends Model
         'sound'
     ];
 
+    public function getTitle(){
+        if(is_array($this->title)){
+            return $this->title;
+        }
+        return json_decode($this->title, true);
+    }
+
+    public function getBody(){
+        if(is_array($this->body)){
+            return $this->body;
+        }
+        return json_decode($this->body, true);
+    }
+
 }
