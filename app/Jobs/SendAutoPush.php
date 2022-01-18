@@ -17,7 +17,7 @@ class SendAutoPush implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, PushUserTrait;
 
     private AutoPush $autoPush;
-    private $pushUserRepository;
+    private PushUserRepositoryInterface $pushUserRepository;
     private mixed $oldIntervalUpdatedAt;
 
     /**

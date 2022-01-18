@@ -82,6 +82,7 @@ class PushUserRepository implements PushUserRepositoryInterface
     {
         $appIds = $apps->pluck('id');
         return PushUser::query()
+            ->where('status', 'SUBSCRIBED')
             ->with('app')
             ->with('language')
             ->whereIn('app_id', $appIds)
@@ -100,6 +101,7 @@ class PushUserRepository implements PushUserRepositoryInterface
     {
         $appIds = $apps->pluck('id');
         return PushUser::query()
+            ->where('status', 'SUBSCRIBED')
             ->with('app')
             ->with('language')
             ->whereIn('app_id', $appIds)
