@@ -106,7 +106,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('app')
             ->with('language')
             ->whereIn('app_id', $appIds)
-            ->when($segments->isNotEmpty(), function ($query, $segments){
+            ->when($segments->isNotEmpty(), function ($query) use ($segments){
                 $query->join('push_user_segment', function ($join) use ($segments){
                     $segmentIds = $segments->pluck('id');
                     $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
