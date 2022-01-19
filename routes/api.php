@@ -39,7 +39,7 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
         Route::put('/user/update', 'LegacyPushUserController@update')->name('update');
         Route::post('/tag/save', 'LegacyPushUserController@addTag')->name('tag');
         Route::post('/user/time', 'LegacyPushUserController@addTime')->name('time');
-        Route::post('/user/{registrationId}/transition', 'LegacyPushUserController@transition')->name('transition');
+        Route::post('/user/{registrationId}/transition', 'LegacyPushUserController@addTransition')->name('transition');
     });
 
 });
