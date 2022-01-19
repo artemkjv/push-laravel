@@ -113,4 +113,11 @@ class CustomPushController extends Controller
         return redirect()->back();
     }
 
+    public function copy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $customPush = $this->customPushRepository->getByIdAndUser($id, $userDecorator);
+        $customPush->copy();
+        return redirect()->back();
+    }
+
 }

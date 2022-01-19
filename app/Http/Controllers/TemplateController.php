@@ -79,4 +79,11 @@ class TemplateController extends Controller
         return redirect()->back();
     }
 
+    public function copy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $template = $this->templateRepository->getByIdAndUser($id, $userDecorator);
+        $template->copy();
+        return redirect()->back();
+    }
+
 }

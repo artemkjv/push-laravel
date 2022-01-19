@@ -18,6 +18,10 @@ class Filter extends Model
         'value'
     ];
 
+    public function segment(){
+        return $this->belongsTo(Segment::class);
+    }
+
     public function predicate(){
         return $this->belongsTo(Predicate::class);
     }

@@ -58,6 +58,15 @@
                                             </a>
 
                                             <form
+                                                action="{{ route('autoPush.copy', ['id' => $autoPush->id]) }}"
+                                                method="post" class="float-left">
+                                                @csrf
+                                                <button type="submit" class="btn btn-info btn-sm">
+                                                    <ion-icon name="copy" class="action-icon"></ion-icon>
+                                                </button>
+                                            </form>
+
+                                            <form
                                                 action="{{ route('autoPush.destroy', ['id' => $autoPush->id]) }}"
                                                 method="post" class="float-left">
                                                 @csrf

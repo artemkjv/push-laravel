@@ -93,4 +93,11 @@ class SegmentController extends Controller
         return redirect()->back();
     }
 
+    public function copy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $segment = $this->segmentRepository->getByIdAndUser($id, $userDecorator);
+        $segment->copy();
+        return redirect()->back();
+    }
+
 }

@@ -98,4 +98,11 @@ class WeeklyPushController extends Controller
         return redirect()->back();
     }
 
+    public function copy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $weeklyPush = $this->weeklyPushRepository->getByIdAndUser($id, $userDecorator);
+        $weeklyPush->copy();
+        return redirect()->back();
+    }
+
 }

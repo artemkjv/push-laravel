@@ -98,4 +98,11 @@ class AutoPushController extends Controller
         return redirect()->back();
     }
 
+    public function copy($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $autoPush = $this->autoPushRepository->getByIdAndUser($id, $userDecorator);
+        $autoPush->copy();
+        return redirect()->back();
+    }
+
 }

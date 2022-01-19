@@ -42,4 +42,9 @@ class Template extends Model
         return json_decode($this->body, true);
     }
 
+    public function copy(){
+        $new = $this->replicate();
+        $new->push();
+    }
+
 }

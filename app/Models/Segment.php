@@ -28,4 +28,16 @@ class Segment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function copy(){
+        \DB::transaction(function (){
+            $new = $this->replicate();
+            $new->push();
+            foreach ($this->filters as $filter){
+                $newFilter = $filter->replicate();
+                $newFilter->segment_id = $new->id;
+                $newFilter->push();
+            }
+        });
+    }
+
 }

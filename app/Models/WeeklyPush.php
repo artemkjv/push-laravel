@@ -114,4 +114,15 @@ class WeeklyPush extends Model implements Pushable
     {
         return $this->user;
     }
+
+    public function copy(){
+        $new = $this->replicate();
+        $new->push();
+        $this->relations = [];
+        $this->load('apps', 'segments');
+        foreach ($this->relations as $relationName => $values){
+            $new->{$relationName}()->sync($values);
+        }
+    }
+
 }

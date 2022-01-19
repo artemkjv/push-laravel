@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
            Route::get('/segments/{id}', 'SegmentController@edit')->name('edit');
            Route::delete('/segments/{id}', 'SegmentController@destroy')->name('destroy');
            Route::put('/segments/{id}', 'SegmentController@update')->name('update');
+           Route::post('/segments/{id}/copy', 'SegmentController@copy')->name('copy');
         });
 
         Route::group(['as' => 'template.'], function (){
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/templates/{id}', 'TemplateController@edit')->name('edit');
             Route::delete('/templates/{id}', 'TemplateController@destroy')->name('destroy');
             Route::put('/templates/{id}', 'TemplateController@update')->name('update');
+            Route::post('/templates/{id}/copy', 'TemplateController@copy')->name('copy');
         });
 
         Route::group(['as' => 'pushUser.'], function (){
@@ -78,6 +80,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/custom-pushes/{id}', 'CustomPushController@edit')->name('edit');
             Route::delete('/custom-pushes/{id}', 'CustomPushController@destroy')->name('destroy');
             Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
+            Route::post('/custom-pushes/{id}/copy', 'CustomPushController@copy')->name('copy');
         });
 
         Route::group(['as' => 'weeklyPush.'], function (){
@@ -87,6 +90,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/weekly-pushes/{id}', 'WeeklyPushController@edit')->name('edit');
             Route::delete('/weekly-pushes/{id}', 'WeeklyPushController@destroy')->name('destroy');
             Route::put('/weekly-pushes/{id}', 'WeeklyPushController@update')->name('update');
+            Route::post('/weekly-pushes/{id}/copy', 'WeeklyPushController@copy')->name('copy');
         });
 
         Route::group(['as' => 'autoPush.'], function (){
@@ -96,6 +100,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/auto-pushes/{id}', 'AutoPushController@edit')->name('edit');
             Route::delete('/auto-pushes/{id}', 'AutoPushController@destroy')->name('destroy');
             Route::put('/auto-pushes/{id}', 'AutoPushController@update')->name('update');
+            Route::post('/auto-pushes/{id}/copy', 'AutoPushController@copy')->name('copy');
         });
 
         Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
