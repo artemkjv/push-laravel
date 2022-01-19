@@ -116,7 +116,7 @@ class LegacyPushUserController extends Controller
                 'clicked_at' => new \DateTime()
             ]);
             $sentPush = $this->sentPushRepository
-                ->getByPushableIdAndType($payload['pushable_id'], $payload['pushable_type']);
+                ->getByPushableIdAndType($payload['push_id'], $payload['push_type']);
             $sentPush->clicked++;
             $this->sentPushRepository->save($sentPush->toArray());
         });
