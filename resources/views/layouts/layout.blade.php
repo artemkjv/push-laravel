@@ -41,7 +41,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
 <script src="{{asset('assets/js/webpush.js')}}"></script>
 <script>
-    DevonicsPush.initialize('95544dfb-e184-4f69-b16e-32ba10e39747')
+    DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
 </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
