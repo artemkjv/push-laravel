@@ -35,4 +35,16 @@ class App extends Model
         return $this->belongsTo(App::class);
     }
 
+    public function autoPushes(){
+        return $this->belongsToMany(AutoPush::class);
+    }
+
+    public function customPushes(){
+        return $this->belongsToMany(CustomPush::class);
+    }
+
+    public function weeklyPushes(){
+        return $this->belongsToMany(WeeklyPush::class);
+    }
+
 }

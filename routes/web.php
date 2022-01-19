@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::delete('/apps/{id}', 'AppController@destroy')->name('destroy');
             Route::put('/apps/{id}', 'AppController@update')->name('update');
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
+            Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
         });
 
         Route::group(['as' => 'segment.'], function (){

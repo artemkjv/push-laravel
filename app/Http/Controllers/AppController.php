@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PushAppRequest;
 use App\Http\Requests\StoreAppRequest;
 use App\Http\Requests\UpdateAppRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\App;
 use App\Repositories\AppRepositoryInterface;
+use App\Repositories\Eloquent\AutoPushRepository;
+use App\Repositories\Eloquent\CustomPushRepository;
+use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\PlatformRepositoryInterface;
 
 class AppController extends Controller
@@ -14,14 +18,23 @@ class AppController extends Controller
 
     private PlatformRepositoryInterface $platformRepository;
     private AppRepositoryInterface $appRepository;
+    private AutoPushRepository $autoPushRepository;
+    private WeeklyPushRepository $weeklyPushRepository;
+    private CustomPushRepository $customPushRepository;
 
     public function __construct(
         PlatformRepositoryInterface $platformRepository,
-        AppRepositoryInterface $appRepository
+        AppRepositoryInterface $appRepository,
+        CustomPushRepository $customPushRepository,
+        AutoPushRepository $autoPushRepository,
+        WeeklyPushRepository $weeklyPushRepository
     )
     {
         $this->platformRepository = $platformRepository;
         $this->appRepository = $appRepository;
+        $this->autoPushRepository = $autoPushRepository;
+        $this->weeklyPushRepository = $weeklyPushRepository;
+        $this->customPushRepository = $customPushRepository;
     }
 
     public function index(){
@@ -58,7 +71,21 @@ class AppController extends Controller
     public function show($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
-        return view('app.show', compact('app'));
+        $customPushes = $this->customPushRepository->getByUser($userDecorator);
+        $weeklyPushes =  $this->weeklyPushRepository->getByUser($userDecorator);
+        $autoPushes = $this->autoPushRepository->getByUser($userDecorator);
+        $chosenCustomPushes = $app->customPushes()->get();
+        $chosenAutoPushes = $app->autoPushes()->get();
+        $chosenWeeklyPushes = $app->weeklyPushes()->get();
+        return view('app.show', compact(
+            'app',
+            'customPushes',
+            'weeklyPushes',
+            'autoPushes',
+            'chosenCustomPushes',
+            'chosenAutoPushes',
+            'chosenWeeklyPushes'
+        ));
     }
 
     public function update(UpdateAppRequest $request, $id){
@@ -77,6 +104,36 @@ class AppController extends Controller
         $this->authorize('delete', $app);
         $app->delete();
         return redirect()->back();
+    }
+
+    public function push(PushAppRequest $request, $id){
+        $payload = $request->validated();
+        \DB::transaction(function () use ($id, $payload) {
+            $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+            $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
+            $customPushes = $app->customPushes()->get();
+            $weeklyPushes = $app->weeklyPushes()->get();
+            $autoPushes = $app->autoPushes()->get();
+            $chosenCustomPushes = $this->customPushRepository->getByUserAndIds($userDecorator, $payload['custom_pushes'] ?? []);
+            $chosenAutoPushes = $this->autoPushRepository->getByUserAndIds($userDecorator, $payload['auto_pushes'] ?? []);
+            $chosenWeeklyPushes = $this->weeklyPushRepository->getByUserAndIds($userDecorator, $payload['weekly_pushes'] ?? []);
+            $this->handleChosenPushes($customPushes, $chosenCustomPushes, $app, 'customPushes');
+            $this->handleChosenPushes($autoPushes, $chosenAutoPushes, $app, 'autoPushes');
+            $this->handleChosenPushes($weeklyPushes, $chosenWeeklyPushes, $app, 'weeklyPushes');
+        });
+        return redirect()->route('app.index');
+    }
+
+    private function handleChosenPushes($pushes, $chosenPushes, $app, $relationName){
+        foreach ($pushes as $push){
+            if(!$chosenPushes->contains('id', $push->id)){
+                $push->status = 'PAUSE';
+                $push->save();
+            }
+        }
+        foreach ($chosenPushes as $chosenPush){
+            $app->{$relationName}()->attach($chosenPush);
+        }
     }
 
 }

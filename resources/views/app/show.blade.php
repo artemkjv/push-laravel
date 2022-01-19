@@ -21,8 +21,48 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <p class="mb-5">Your App ID: {{ $app->uuid }}</p>
+            <form class="row" method="post" action="{{route('app.push', ['id' => $app->id])}}">
+                @method('PATCH')
+                @csrf
+                <div class="col-xl-6 col-sm-12">
+                    <p class="mb-5">Your App ID: {{ $app->uuid }}</p>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="customPushes">Custom Pushes</label>
+                        <select name="custom_pushes[]" class="tokenize2" id="customPushes" multiple aria-label="Custom Pushes">
+                            @foreach($customPushes as $customPush)
+                                <option @if($chosenCustomPushes->contains('id', $customPush->id)) selected @endif value="{{ $customPush->id }}">{{ $customPush->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="autoPushes">Auto Pushes</label>
+                        <select name="auto_pushes[]" class="tokenize2" id="autoPushes" multiple aria-label="Auto Pushes">
+                            @foreach($autoPushes as $autoPush)
+                                <option @if($chosenAutoPushes->contains('id', $autoPush->id)) selected @endif value="{{ $autoPush->id }}">{{ $autoPush->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="weeklyPushes">Weekly Pushes</label>
+                        <select name="weekly_pushes[]" class="tokenize2" id="weeklyPushes" multiple aria-label="Weekly Pushes">
+                            @foreach($weeklyPushes as $weeklyPush)
+                                <option @if($chosenWeeklyPushes->contains('id', $weeklyPush->id)) selected @endif value="{{ $weeklyPush->id }}">{{ $weeklyPush->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
         </div><!-- /.container-fluid -->
     </section>
-
+@endsection
+@section('scripts')
+    <script>
+        let entities = $('.tokenize2')
+        entities.tokenize2({
+            dataSource: 'select',
+        })
+    </script>
 @endsection
