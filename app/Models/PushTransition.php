@@ -9,6 +9,8 @@ class PushTransition extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'push_user_id',
