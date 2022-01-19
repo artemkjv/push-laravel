@@ -6,6 +6,7 @@ use App\Http\Requests\StoreModeratorRequest;
 use App\Http\Requests\UpdateModeratorRequest;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Libraries\Decoration\UserInterface;
+use App\Libraries\Decoration\UserWrapper;
 use App\Models\User;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\AutoPushRepositoryInterface;
@@ -52,6 +53,11 @@ class ModeratorController extends Controller
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $moderators = $this->userRepository->getModeratorsByUserPaginated($userDecorator, User::PAGINATE);
         return view('moderator.index', compact('moderators'));
+    }
+
+    public function apps(){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $adminDecorator = new UserWrapper(\request()->user()->admin);
     }
 
     public function create(){
