@@ -78,9 +78,7 @@
                             @endif
                         </div>
                     </div>
-                    @if(request()->user()->role !== config('roles.moderator'))
-                        <a href="{{ route('moderator.index') }}" class="list-group-item list-group-item-action mt-4">Moderators</a>
-                    @endif
+                    <a href="{{ route('moderator.index') }}" class="list-group-item list-group-item-action mt-4">Moderators</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

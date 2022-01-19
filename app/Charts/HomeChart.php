@@ -41,8 +41,8 @@ class HomeChart extends BaseChart
     {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $apps = $this->appRepository->getByUser($userDecorator);
-        $segments = $this->segmentRepository->getByUser($userDecorator);
-        $transitions = $this->pushTransitionRepository->getCount($apps, $segments);
+        //$segments = $this->segmentRepository->getByUser($userDecorator);
+        $transitions = $this->pushTransitionRepository->getCount($apps, collect());
         $labels = [];
         $data = [];
         foreach ($transitions as $transition){

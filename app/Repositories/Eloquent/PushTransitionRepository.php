@@ -23,10 +23,12 @@ class PushTransitionRepository implements PushTransitionRepositoryInterface
                  $join->on('push_transitions.push_user_id', '=', 'push_users.id')
                     ->whereIn('push_users.app_id', $appIds);
              })
-             ->join('push_user_segment', function ($join) use ($segments){
-                $segmentIds = $segments->pluck('id');
-                $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                    ->whereIn('push_user_segment.segment_id', $segmentIds);
+             ->when($segments->isNotEmpty(), function ($query) use ($segments){
+                 $query->join('push_user_segment', function ($join) use ($segments){
+                     $segmentIds = $segments->pluck('id');
+                     $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
+                         ->whereIn('push_user_segment.segment_id', $segmentIds);
+                 });
              })
              ->when($from, function ($qb, $from){
                  return $qb->where('push_transitions.clicked_at', '>=', $from);

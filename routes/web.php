@@ -104,13 +104,19 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::post('/auto-pushes/{id}/copy', 'AutoPushController@copy')->name('copy');
         });
 
-        Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
-            Route::get('/moderators', 'ModeratorController@index')->name('index');
+        Route::get('/moderators', 'ModeratorController@index')->name('moderator.index');
+
+        Route::group(['as' => 'moderator.', 'middleware' => ['not.moderator']], function (){
             Route::get('/moderators/create', 'ModeratorController@create')->name('create');
             Route::post('/moderators/create', 'ModeratorController@store')->name('store');
             Route::get('/moderators/{id}', 'ModeratorController@edit')->name('edit');
             Route::delete('/moderators/{id}', 'ModeratorController@destroy')->name('destroy');
             Route::put('/moderators/{id}', 'ModeratorController@update')->name('update');
+        });
+
+        Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
+            Route::get('/moderators/{id}/apps', 'ModeratorController@renderApps')->name('apps.render');
+            Route::patch('/moderators/{id}/apps', 'ModeratorController@handleApps')->name('apps.handle');
         });
 
         Route::group(['as' => 'sentPush.'], function (){

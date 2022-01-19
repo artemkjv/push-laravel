@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppsModeratorRequest;
 use App\Http\Requests\StoreModeratorRequest;
 use App\Http\Requests\UpdateModeratorRequest;
 use App\Libraries\Decoration\ModeratorWrapper;
@@ -50,14 +51,36 @@ class ModeratorController extends Controller
     }
 
     public function index(){
-        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        if(\request()->user()->role !== config('roles.moderator')){
+            $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        } else {
+            $userDecorator = new UserWrapper(\request()->user()->admin);
+        }
         $moderators = $this->userRepository->getModeratorsByUserPaginated($userDecorator, User::PAGINATE);
         return view('moderator.index', compact('moderators'));
     }
 
-    public function apps(){
+    public function renderApps($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $adminDecorator = new UserWrapper(\request()->user()->admin);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $adminDecorator);
+        $moderatorWrapper = new ModeratorWrapper($moderator);
+        $chosenApps = $this->appRepository->getByUser($moderatorWrapper);
+        $apps = $this->appRepository->getByUser($userDecorator);
+        return view('moderator.apps', compact('chosenApps', 'apps', 'moderator'));
+    }
+
+    public function handleApps(AppsModeratorRequest $request, $id){
+        $payload = $request->validated();
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $adminDecorator = new UserWrapper(\request()->user()->admin);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $adminDecorator);
+        $moderatorWrapper = new ModeratorWrapper($moderator);
+        $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps']);
+        foreach ($apps as $app){
+            $moderatorWrapper->apps()->attach($app);
+        }
+        return redirect()->route('moderator.index');
     }
 
     public function create(){

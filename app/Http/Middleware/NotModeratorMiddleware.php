@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ModeratorMiddleware
+class NotModeratorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class ModeratorMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        if($user->role !== config('roles.moderator')){
+        if($user->role === config('roles.moderator')){
             abort(401);
         }
         return $next($request);

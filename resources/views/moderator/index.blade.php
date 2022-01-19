@@ -40,6 +40,7 @@
                                         <td>{{ $moderator->id }}</td>
                                         <td>{{ $moderator->email }}</td>
                                         <td class="d-flex justify-content-around">
+                                            @if(request()->user()->role !== config('roles.moderator'))
                                             <a href="{{ route('moderator.edit', ['id' => $moderator->id]) }}"
                                                class="btn btn-info btn-sm float-left mr-1">
                                                 <ion-icon name="create" class="action-icon"></ion-icon>
@@ -55,6 +56,12 @@
                                                     <ion-icon name="trash" class="action-icon"></ion-icon>
                                                 </button>
                                             </form>
+                                            @else
+                                                <a href="{{ route('moderator.apps.render', ['id' => $moderator->id]) }}"
+                                                   class="btn btn-info btn-sm float-left mr-1">
+                                                    <ion-icon name="create" class="action-icon"></ion-icon>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
