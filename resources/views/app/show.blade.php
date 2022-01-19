@@ -26,7 +26,6 @@
                 @csrf
                 <div class="col-xl-6 col-sm-12">
                     <p class="mb-5">Your App ID: {{ $app->uuid }}</p>
-                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
                 <div class="col-xl-6 col-sm-12">
                     <div class="form-group">
@@ -53,6 +52,9 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>
         </div><!-- /.container-fluid -->
