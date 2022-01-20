@@ -129,7 +129,8 @@ class LegacyPushUserController extends Controller
     public function addTime(TimePushUserRequest $request){
         $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($payload['registration_id']);
-        $pushUser->time_in_app += $payload['time'];
+        $timeInApp = $pushUser->time_in_app;
+        $pushUser->time_in_app = $timeInApp + $payload['time'];
         $this->pushUserRepository->save($pushUser->toArray());
         return response()->json([
             'status' => 'success'

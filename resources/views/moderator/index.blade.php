@@ -23,7 +23,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if(request()->user()->role !== config('roles.moderator'))
                     <a href="{{ route('moderator.create') }}" class="btn btn-primary mb-3">Add Moderator</a>
+                    @endif
                     @if (count($moderators))
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover text-nowrap">
