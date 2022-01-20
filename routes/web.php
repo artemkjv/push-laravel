@@ -110,6 +110,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/moderators/create', 'ModeratorController@create')->name('create');
             Route::post('/moderators/create', 'ModeratorController@store')->name('store');
             Route::get('/moderators/{id}', 'ModeratorController@edit')->name('edit');
+            Route::get('/moderators/{id}/segments', 'ModeratorController@editSegments')->name('edit.segments');
+            Route::get('/moderators/{id}/templates', 'ModeratorController@editTemplates')->name('edit.templates');
+            Route::get('/moderators/{id}/custom-pushes', 'ModeratorController@editCustomPushes')->name('edit.customPushes');
+            Route::get('/moderators/{id}/auto-pushes', 'ModeratorController@editAutoPushes')->name('edit.autoPushes');
+            Route::get('/moderators/{id}/weekly-pushes', 'ModeratorController@editWeeklyPushes')->name('edit.weeklyPushes');
             Route::delete('/moderators/{id}', 'ModeratorController@destroy')->name('destroy');
             Route::put('/moderators/{id}', 'ModeratorController@update')->name('update');
         });
