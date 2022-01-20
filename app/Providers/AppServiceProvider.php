@@ -3,6 +3,7 @@
 namespace App\Providers;
 use App\Http\Requests\BaseRequest\JsonRequest;
 use App\Libraries\Firebase\MessagingService;
+use App\Libraries\Helpers\TimezoneHelper;
 use ConsoleTVs\Charts\Registrar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -31,11 +32,17 @@ class AppServiceProvider extends ServiceProvider
             return config('app.env') === 'local';
         });
 
+        if(is_null(session('timezone'))){
+            $ip = request()->getClientIp();
+            $timezoneHelper = TimezoneHelper::instance();
+            session('timezone', $timezoneHelper->getTimezoneFromIp($ip));
+        }
+
+
         $charts->register([
             \App\Charts\HomeChart::class
         ]);
 
         $this->app->bind(MessagingService::class, MessagingService::class);
-//        $this->app->bind(JsonRequest::class, JsonRequest::class);
     }
 }

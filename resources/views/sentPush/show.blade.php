@@ -40,7 +40,7 @@
                             <p>Total number of clicks: {{ $sentPush->clicked }}</p>
                         </div>
                         <div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-                            <p>Sent At: {{ $sentPush->created_at }}</p>
+                            <p>Sent At: {{ \App\Libraries\Helpers\TimezoneHelper::convertTimeToClientTimezone($sentPush->created_at) }}</p>
                         </div>
                         <div class="tab-pane fade" id="content" role="tabpanel" aria-labelledby="content-tab">
                             <p>Title: {{ $sentPush->getTitle()['1'] }}</p>

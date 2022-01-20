@@ -53,7 +53,7 @@
                                     <tr>
                                         <td>{{ $sentPush->id }}</td>
                                         <td>{{ $sentPush->getTitle()['1'] }}</td>
-                                        <td>{{ $sentPush->created_at }}</td>
+                                        <td>{{ \App\Libraries\Helpers\TimezoneHelper::convertTimeToClientTimezone($sentPush->created_at) }}</td>
                                         <td>{{ $sentPush->sent }}</td>
                                         <td>{{ $sentPush->clicked }}</td>
                                         <td class="d-flex justify-content-around">

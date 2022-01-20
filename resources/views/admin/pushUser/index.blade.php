@@ -103,8 +103,8 @@
                                         <td>{{ $pushUser->timezone->name }}</td>
                                         <td>{{ $pushUser->time_in_app }}</td>
                                         <td>{{ $pushUser->sessions_count }}</td>
-                                        <td>{{ $pushUser->created_at }}</td>
-                                        <td>{{ $pushUser->active_at }}</td>
+                                        <td>{{ \App\Libraries\Helpers\TimezoneHelper::convertTimeToClientTimezone($pushUser->created_at) }}</td>
+                                        <td>{{ \App\Libraries\Helpers\TimezoneHelper::convertTimeToClientTimezone($pushUser->active_at) }}</td>
                                         <td>{{ $pushUser->status }}</td>
                                         <td>{{ $pushUser->device_model }}</td>
                                         <td>{{ $pushUser->platform->name }}</td>
