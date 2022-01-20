@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 @section('content')
+    @include('moderator.components.topbar')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Moderator</h1>
+                    <h1>Edit {{ $moderator->email }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -43,7 +44,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="segments">Segments</label>
                             <select name="segments[]" id="segments" class="tokenize2" multiple aria-label="Segments">
                                 @foreach($segments as $segment)
@@ -82,7 +83,7 @@
                                     <option @if($chosenWeeklyPushes->contains('id', $weeklyPush->id)) selected @endif value="{{ $weeklyPush->id }}">{{ $weeklyPush->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>--}}
                     </div>
                     <!-- /.col -->
                     <div class="col-1">

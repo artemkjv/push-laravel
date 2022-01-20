@@ -2,7 +2,7 @@ importScripts('https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js');
 importScripts('https://push.devonics.pro/assets/devonics-webpush/firebase/messaging.js');
 
 const SENDER_ID = '92348455022';
-const BASE_URL = 'http://push.devonics.pro'
+const BASE_URL = 'https://push.devonics.pro'
 
 const transition = ({registrationId, pushType, pushId}) => {
     return fetch(`${BASE_URL}/api/push-users/${registrationId}/transition`, {
