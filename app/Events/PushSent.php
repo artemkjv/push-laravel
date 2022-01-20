@@ -17,16 +17,18 @@ class PushSent
 
     public Pushable $pushable;
     public int $sent;
+    public bool $stats;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Pushable $pushable, int $sent)
+    public function __construct(Pushable $pushable, int $sent, bool $stats)
     {
         $this->pushable = $pushable;
         $this->sent = $sent;
+        $this->stats = $stats;
     }
 
 }

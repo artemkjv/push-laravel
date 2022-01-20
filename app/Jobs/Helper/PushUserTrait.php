@@ -13,7 +13,7 @@ use Ramsey\Collection\Collection;
 trait PushUserTrait
 {
 
-    public function send($pushUsers, Pushable $pushable){
+    public function send($pushUsers, Pushable $pushable, $stats = true){
         $messagingService = App::make(MessagingService::class);
         $sortedArray = [];
         foreach($pushUsers as $pushUser){
@@ -28,7 +28,7 @@ trait PushUserTrait
             }
         }
         if(count($sortedArray) > 0){
-            PushSent::dispatch($pushable, count($pushUsers));
+            PushSent::dispatch($pushable, count($pushUsers), $stats);
         }
     }
 

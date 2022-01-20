@@ -31,6 +31,15 @@ class PushSentListener
      */
     public function handle(PushSent $event)
     {
+        if(!$event->stats){
+            $user = $event->pushable->getUser();
+            try {
+                $sentPush = $this->sentPushRepository->getLastByPushableTypeAndUser(get_class($event->pushable), $user);
+                $sentPush->sent += $event->sent;
+                $sentPush->save();
+                return;
+            } catch (\Throwable $exception){}
+        }
         $data = [
             'pushable_id' => $event->pushable->getId(),
             'pushable_type' => get_class($event->pushable),

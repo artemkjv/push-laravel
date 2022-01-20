@@ -1,6 +1,6 @@
 ## Api
 
-### 1. /apps/{uuid}/show - GET
+### 1. /api/apps/{uuid}/show - GET
 Response:
 ```json
 {
