@@ -102,7 +102,7 @@ class PushUserController extends Controller
         $tags = $pushUser->tags;
         $tags[$payload['key']] = $payload['value'];
         $pushUser->tags = $tags;
-        $this->pushUserRepository->save($pushUser->toArray());
+        $pushUser->save();
         return response()->noContent();
     }
 
@@ -110,7 +110,7 @@ class PushUserController extends Controller
         $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($registrationId);
         $pushUser->time_in_app += $payload['time_in_app'];
-        $this->pushUserRepository->save($pushUser->toArray());
+        $pushUser->save();
         return response()->noContent();
     }
 
