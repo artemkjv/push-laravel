@@ -68,8 +68,8 @@ Description:
 
 ### 7. /api/push-users/{registrationId}/transition - PATCH
 Parameters:
-- push_type
-- push_id
+- pushable_type
+- pushable_id
 
 Response: Empty Response
 

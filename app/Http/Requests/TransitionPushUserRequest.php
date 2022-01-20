@@ -25,8 +25,8 @@ class TransitionPushUserRequest extends JsonRequest
     public function rules()
     {
         return [
-            'push_type' => 'required|string',
-            'push_id' => 'required|integer'
+            'pushable_type' => 'required|string',
+            'pushable_id' => 'required|integer'
         ];
     }
 }
