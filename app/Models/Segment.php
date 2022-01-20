@@ -31,6 +31,7 @@ class Segment extends Model
     public function copy(){
         \DB::transaction(function (){
             $new = $this->replicate();
+            $new->name = 'Copy ' . $this->name;
             $new->push();
             foreach ($this->filters as $filter){
                 $newFilter = $filter->replicate();

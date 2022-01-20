@@ -44,6 +44,7 @@ class Template extends Model
 
     public function copy(){
         $new = $this->replicate();
+        $new->name = 'Copy ' . $this->name;
         $new->push();
     }
 

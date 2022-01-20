@@ -102,6 +102,7 @@ class AutoPush extends Model implements Pushable
 
     public function copy(){
         $new = $this->replicate();
+        $new->name = 'Copy ' . $this->name;
         $new->push();
         $this->relations = [];
         $this->load('apps', 'segments');
