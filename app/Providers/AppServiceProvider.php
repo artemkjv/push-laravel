@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         if(is_null(session('timezone'))){
             $ip = request()->getClientIp();
             $timezoneHelper = TimezoneHelper::instance();
-            session('timezone', $timezoneHelper->getTimezoneFromIp($ip));
+            session()->put('timezone', $timezoneHelper->getTimezoneFromIp($ip));
         }
 
 
