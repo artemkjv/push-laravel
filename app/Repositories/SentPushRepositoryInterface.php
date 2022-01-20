@@ -17,6 +17,4 @@ interface SentPushRepositoryInterface
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator);
 
-    public function getLastByPushableTypeAndUser($pushableType, UserInterface $userDecorator);
-
 }

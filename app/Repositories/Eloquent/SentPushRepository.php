@@ -44,11 +44,4 @@ class SentPushRepository implements SentPushRepositoryInterface
             ->firstOrFail();
     }
 
-    public function getLastByPushableTypeAndUser($pushableType, UserInterface $userDecorator)
-    {
-        return $userDecorator->sentPushes()
-            ->where('pushable_type', $pushableType)
-            ->latest()
-            ->firstOrFail();
-    }
 }
