@@ -103,12 +103,9 @@
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-primary mt-1">Submit</button>
-                    </div>
-
                 </div>
                 <!-- /.row -->
+                <button type="submit" class="btn btn-primary mt-1 float-end">Submit</button>
             </form>
         </div><!-- /.container-fluid -->
     </section>

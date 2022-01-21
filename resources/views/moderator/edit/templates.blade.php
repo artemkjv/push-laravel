@@ -46,11 +46,8 @@
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-primary mt-1">Submit</button>
-                    </div>
-
                 </div>
+                <button type="submit" class="btn btn-primary mt-1 float-end">Submit</button>
                 <!-- /.row -->
             </form>
         </div><!-- /.container-fluid -->
