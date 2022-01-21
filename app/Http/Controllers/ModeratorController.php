@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppsModeratorRequest;
+use App\Http\Requests\AutoPushesModeratorRequest;
+use App\Http\Requests\CustomPushesModeratorRequest;
+use App\Http\Requests\SegmentsModeratorRequest;
 use App\Http\Requests\StoreModeratorRequest;
+use App\Http\Requests\TemplatesModeratorRequest;
 use App\Http\Requests\UpdateModeratorRequest;
+use App\Http\Requests\WeeklyPushesModeratorRequest;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Libraries\Decoration\UserInterface;
 use App\Libraries\Decoration\UserWrapper;
@@ -211,6 +216,71 @@ class ModeratorController extends Controller
         $moderatorDecorator = new ModeratorWrapper($moderator);
         $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps'] ?? []);
         $moderatorDecorator->apps()->sync($apps);
+        return redirect()->back();
+    }
+
+    public function updateSegments(SegmentsModeratorRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $payload = $request->validated();
+        $moderator = $this->userRepository
+            ->getModeratorByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $moderator = $this->userRepository->save(array_merge($moderator, $payload));
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $payload['segments'] ?? []);
+        $moderatorDecorator->segments()->sync($segments);
+        return redirect()->back();
+    }
+
+    public function updateTemplates(TemplatesModeratorRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $payload = $request->validated();
+        $moderator = $this->userRepository
+            ->getModeratorByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $moderator = $this->userRepository->save(array_merge($moderator, $payload));
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $templates = $this->templateRepository->getByUserAndIds($userDecorator, $payload['templates'] ?? []);
+        $moderatorDecorator->templates()->sync($templates);
+        return redirect()->back();
+    }
+
+    public function updateCustomPushes(CustomPushesModeratorRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $payload = $request->validated();
+        $moderator = $this->userRepository
+            ->getModeratorByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $moderator = $this->userRepository->save(array_merge($moderator, $payload));
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $customPushes = $this->customPushRepository->getByUserAndIds($userDecorator, $payload['customPushes'] ?? []);
+        $moderatorDecorator->customPushes()->sync($customPushes);
+        return redirect()->back();
+    }
+
+    public function updateAutoPushes(AutoPushesModeratorRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $payload = $request->validated();
+        $moderator = $this->userRepository
+            ->getModeratorByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $moderator = $this->userRepository->save(array_merge($moderator, $payload));
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $autoPushes = $this->autoPushRepository->getByUserAndIds($userDecorator, $payload['autoPushes'] ?? []);
+        $moderatorDecorator->autoPushes()->sync($autoPushes);
+        return redirect()->back();
+    }
+
+    public function updateWeeklyPushes(WeeklyPushesModeratorRequest $request, $id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $payload = $request->validated();
+        $moderator = $this->userRepository
+            ->getModeratorByIdAndUser($id, $userDecorator)
+            ->toArray();
+        $moderator = $this->userRepository->save(array_merge($moderator, $payload));
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $weeklyPushes = $this->weeklyPushRepository->getByUserAndIds($userDecorator, $payload['weeklyPushes'] ?? []);
+        $moderatorDecorator->weeklyPushes()->sync($weeklyPushes);
         return redirect()->back();
     }
 

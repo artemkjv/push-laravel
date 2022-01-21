@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateModeratorRequest extends FormRequest
+class CustomPushesModeratorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class UpdateModeratorRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'apps' => 'nullable|array',
+            'customPushes' => 'nullable|array',
         ];
     }
 }
