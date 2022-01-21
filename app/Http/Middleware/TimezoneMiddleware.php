@@ -17,7 +17,7 @@ class TimezoneMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(is_null(session('timezone'))){
+        if(!session()->has('timezone')){
             $ip = request()->getClientIp();
             $timezoneHelper = TimezoneHelper::instance();
             session()->put('timezone', $timezoneHelper->getTimezoneFromIp($ip));

@@ -118,6 +118,10 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::delete('/moderators/{id}', 'ModeratorController@destroy')->name('destroy');
             Route::put('/moderators/{id}', 'ModeratorController@update')->name('update');
             Route::put('/moderators/{id}/segments', 'ModeratorController@updateSegments')->name('update.segments');
+            Route::put('/moderators/{id}/templates', 'ModeratorController@updateTemplates')->name('update.templates');
+            Route::put('/moderators/{id}/custom-pushes', 'ModeratorController@updateCustomPushes')->name('update.customPushes');
+            Route::put('/moderators/{id}/auto-pushes', 'ModeratorController@updateAutoPushes')->name('update.autoPushes');
+            Route::put('/moderators/{id}/weekly-pushes', 'ModeratorController@updateWeeklyPushes')->name('update.weeklyPushes');
         });
 
         Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
