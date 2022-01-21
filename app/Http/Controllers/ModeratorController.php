@@ -127,32 +127,77 @@ class ModeratorController extends Controller
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
         $moderatorDecorator = new ModeratorWrapper($moderator);
-        $chosenSegments = $this->segmentRepository->getByUser($moderatorDecorator);
         $chosenApps = $this->appRepository->getByUser($moderatorDecorator);
-        $chosenTemplates = $this->templateRepository->getByUser($moderatorDecorator);
-        $chosenCustomPushes = $this->customPushRepository->getByUser($moderatorDecorator);
-        $chosenAutoPushes = $this->autoPushRepository->getByUser($moderatorDecorator);
-        $chosenWeeklyPushes = $this->weeklyPushRepository->getByUser($moderatorDecorator);
         $apps = $this->appRepository->getByUser($userDecorator);
-        $segments = $this->segmentRepository->getByUser($userDecorator);
-        $templates = $this->templateRepository->getByUser($userDecorator);
-        $customPushes = $this->customPushRepository->getByUser($userDecorator);
-        $weeklyPushes = $this->weeklyPushRepository->getByUser($userDecorator);
-        $autoPushes = $this->autoPushRepository->getByUser($userDecorator);
-        return view('moderator.edit', compact(
+        return view('moderator.edit.apps', compact(
             'moderator',
             'apps',
-            'segments',
-            'templates',
-            'customPushes',
-            'weeklyPushes',
-            'autoPushes',
             'chosenApps',
+        ));
+    }
+
+    public function editSegments($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $chosenSegments = $this->segmentRepository->getByUser($moderatorDecorator);
+        $segments = $this->segmentRepository->getByUser($userDecorator);
+        return view('moderator.edit.segments', compact(
             'chosenSegments',
+            'segments',
+            'moderator'
+        ));
+    }
+
+    public function editTemplates($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $chosenTemplates = $this->templateRepository->getByUser($moderatorDecorator);
+        $templates = $this->templateRepository->getByUser($userDecorator);
+        return view('moderator.edit.templates', compact(
             'chosenTemplates',
+            'templates',
+            'moderator'
+        ));
+    }
+
+    public function editCustomPushes($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $chosenCustomPushes = $this->customPushRepository->getByUser($moderatorDecorator);
+        $customPushes = $this->customPushRepository->getByUser($userDecorator);
+        return view('moderator.edit.customPushes', compact(
+            'moderator',
             'chosenCustomPushes',
+            'customPushes'
+        ));
+    }
+
+    public function editAutoPushes($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $chosenAutoPushes = $this->autoPushRepository->getByUser($moderatorDecorator);
+        $autoPushes = $this->autoPushRepository->getByUser($userDecorator);
+        return view('moderator.edit.autoPushes', compact(
+            'moderator',
             'chosenAutoPushes',
-            'chosenWeeklyPushes'
+            'autoPushes'
+        ));
+    }
+
+    public function editWeeklyPushes($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $moderator = $this->userRepository->getModeratorByIdAndUser($id, $userDecorator);
+        $moderatorDecorator = new ModeratorWrapper($moderator);
+        $chosenWeeklyPushes = $this->weeklyPushRepository->getByUser($moderatorDecorator);
+        $weeklyPushes = $this->weeklyPushRepository->getByUser($userDecorator);
+        return view('moderator.edit.weeklyPushes', compact(
+            'moderator',
+            'chosenWeeklyPushes',
+            'weeklyPushes'
         ));
     }
 
@@ -165,18 +210,8 @@ class ModeratorController extends Controller
         $moderator = $this->userRepository->save(array_merge($moderator, $payload));
         $moderatorDecorator = new ModeratorWrapper($moderator);
         $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps'] ?? []);
-        $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $payload['segments'] ?? []);
-        $templates = $this->templateRepository->getByUserAndIds($userDecorator, $payload['templates'] ?? []);
-        $customPushes = $this->customPushRepository->getByUserAndIds($userDecorator, $payload['customPushes'] ?? []);
-        $autoPushes = $this->autoPushRepository->getByUserAndIds($userDecorator, $payload['autoPushes'] ?? []);
-        $weeklyPushes = $this->weeklyPushRepository->getByUserAndIds($userDecorator, $payload['weeklyPushes'] ?? []);
         $moderatorDecorator->apps()->sync($apps);
-        $moderatorDecorator->segments()->sync($segments);
-        $moderatorDecorator->templates()->sync($templates);
-        $moderatorDecorator->customPushes()->sync($customPushes);
-        $moderatorDecorator->autoPushes()->sync($autoPushes);
-        $moderatorDecorator->weeklyPushes()->sync($weeklyPushes);
-        return redirect()->route('moderator.index');
+        return redirect()->back();
     }
 
     public function destroy($id){

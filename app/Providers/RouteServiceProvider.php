@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Libraries\Decoration\UserInterface;
 use App\Libraries\Decoration\UserWrapper;
+use App\Libraries\Helpers\TimezoneHelper;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

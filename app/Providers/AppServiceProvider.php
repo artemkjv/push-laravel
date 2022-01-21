@@ -32,13 +32,6 @@ class AppServiceProvider extends ServiceProvider
             return config('app.env') === 'local';
         });
 
-        if(is_null(session('timezone'))){
-            $ip = request()->getClientIp();
-            $timezoneHelper = TimezoneHelper::instance();
-            session()->put('timezone', $timezoneHelper->getTimezoneFromIp($ip));
-        }
-
-
         $charts->register([
             \App\Charts\HomeChart::class
         ]);

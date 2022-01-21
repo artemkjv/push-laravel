@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/moderators/{id}/weekly-pushes', 'ModeratorController@editWeeklyPushes')->name('edit.weeklyPushes');
             Route::delete('/moderators/{id}', 'ModeratorController@destroy')->name('destroy');
             Route::put('/moderators/{id}', 'ModeratorController@update')->name('update');
+            Route::put('/moderators/{id}/segments', 'ModeratorController@updateSegments')->name('update.segments');
         });
 
         Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
