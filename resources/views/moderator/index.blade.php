@@ -38,6 +38,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($moderators as $moderator)
+                                    @if($moderator->id !== request()->user()->id)
                                     <tr>
                                         <td>{{ $moderator->id }}</td>
                                         <td>{{ $moderator->email }}</td>
@@ -66,6 +67,7 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>

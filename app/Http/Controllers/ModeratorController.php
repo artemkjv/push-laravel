@@ -83,7 +83,9 @@ class ModeratorController extends Controller
         $moderatorWrapper = new ModeratorWrapper($moderator);
         $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps']);
         foreach ($apps as $app){
-            $moderatorWrapper->apps()->attach($app);
+            if(!$moderator->apps->contains($app)){
+                $moderatorWrapper->apps()->attach($app);
+            }
         }
         return redirect()->route('moderator.index');
     }
