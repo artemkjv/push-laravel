@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Libraries\Decoration\UserInterface;
 use App\Libraries\Decoration\UserWrapper;
+use App\Libraries\Helpers\IPHelper;
 use App\Libraries\Helpers\TimezoneHelper;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -68,8 +69,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        /*RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(1000)->by(optional($request->user())->id ?: $request->ip());
-        });*/
+        RateLimiter::for('api', function (Request $request) {
+            $ipHelper = IPHelper::instance();
+            return Limit::perMinute(100000000)->by(optional($request->user())->id ?: $ipHelper->ip());
+        });
     }
 }
