@@ -144,4 +144,11 @@ class PushUserRepository implements PushUserRepositoryInterface
         return PushUser::where('registration_id', $registrationId)
             ->firstOrFail();
     }
+
+    public function getByAppNotTest(\App\Models\App $app)
+    {
+        return PushUser::query()
+            ->where('app_id', $app->id)
+            ->where('is_test', false);
+    }
 }

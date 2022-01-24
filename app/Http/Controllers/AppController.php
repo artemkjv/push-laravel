@@ -12,6 +12,7 @@ use App\Repositories\Eloquent\AutoPushRepository;
 use App\Repositories\Eloquent\CustomPushRepository;
 use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\PlatformRepositoryInterface;
+use App\Repositories\PushUserRepositoryInterface;
 
 class AppController extends Controller
 {
@@ -21,13 +22,15 @@ class AppController extends Controller
     private AutoPushRepository $autoPushRepository;
     private WeeklyPushRepository $weeklyPushRepository;
     private CustomPushRepository $customPushRepository;
+    private PushUserRepositoryInterface $pushUserRepository;
 
     public function __construct(
         PlatformRepositoryInterface $platformRepository,
         AppRepositoryInterface $appRepository,
         CustomPushRepository $customPushRepository,
         AutoPushRepository $autoPushRepository,
-        WeeklyPushRepository $weeklyPushRepository
+        WeeklyPushRepository $weeklyPushRepository,
+        PushUserRepositoryInterface $pushUserRepository
     )
     {
         $this->platformRepository = $platformRepository;
@@ -35,6 +38,7 @@ class AppController extends Controller
         $this->autoPushRepository = $autoPushRepository;
         $this->weeklyPushRepository = $weeklyPushRepository;
         $this->customPushRepository = $customPushRepository;
+        $this->pushUserRepository = $pushUserRepository;
     }
 
     public function index(){
@@ -88,8 +92,11 @@ class AppController extends Controller
         ));
     }
 
-    public function addTestUsersRender($id){
-
+    public function testPushUsersRender($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
+        $pushUsers = $this->pushUserRepository->getByAppNotTest($app);
+        return view('app.test-users', compact('app', 'pushUsers'));
     }
 
     public function update(UpdateAppRequest $request, $id){
