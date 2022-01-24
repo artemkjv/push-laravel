@@ -48,7 +48,7 @@ class PushUserRepository implements PushUserRepositoryInterface
         return PushUser::whereIn('app_id', $apps)
             ->orderByDesc('id')
             ->when($segmentIds, function ($query, $segmentIds){
-                $query->hasMany('segments', function ($query) use ($segmentIds){
+                $query->whereHas('segments', function ($query) use ($segmentIds){
                    $query->whereIn('segments.id', $segmentIds);
                 });
             })
