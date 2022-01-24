@@ -96,7 +96,7 @@
                                     <tr>
                                         <td>{{ $pushUser->id }}</td>
                                         <td>{{ $pushUser->uuid }}</td>
-                                        <td>{{ $pushUser->app->name }}</td>
+                                        <td>{{ $pushUser->app->title }}</td>
                                         <td>{{ $pushUser->country->name }}</td>
                                         <td>{{ $pushUser->language->name }}</td>
                                         <td>{{ $pushUser->timezone->name }}</td>
