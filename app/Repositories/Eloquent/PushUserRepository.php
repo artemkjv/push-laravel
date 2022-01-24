@@ -48,9 +48,8 @@ class PushUserRepository implements PushUserRepositoryInterface
         return PushUser::whereIn('app_id', $apps)
             ->orderByDesc('id')
             ->when($segmentIds, function ($query, $segmentIds){
-                $query->join('push_user_segment', function ($join) use ($segmentIds){
-                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                $query->hasMany('segments', function ($query) use ($segmentIds){
+                   $query->whereIn('segments.id', $segmentIds);
                 });
             })
             ->when($appIds, function ($query, $appIds){
@@ -89,10 +88,9 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->whereIn('app_id', $appIds)
             ->where('timezone_id', $timezone->id)
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
-                $query->join('push_user_segment', function ($join) use ($segments){
-                    $segmentIds = $segments->pluck('id');
-                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                $segmentIds = $segments->pluck('id');
+                $query->hasMany('segments', function ($query) use ($segmentIds){
+                    $query->whereIn('segments.id', $segmentIds);
                 });
             })->get();
 
@@ -107,10 +105,9 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('language')
             ->whereIn('app_id', $appIds)
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
-                $query->join('push_user_segment', function ($join) use ($segments){
-                    $segmentIds = $segments->pluck('id');
-                    $join->on('push_users.id', '=', 'push_user_segment.push_user_id')
-                        ->whereIn('push_user_segment.segment_id', $segmentIds);
+                $segmentIds = $segments->pluck('id');
+                $query->whereHas('segments', function ($query) use ($segmentIds){
+                    $query->whereIn('segments.id', $segmentIds);
                 });
             })
             ->get();
