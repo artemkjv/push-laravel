@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Legacy\StorePushUserRequest;
 use App\Http\Requests\Legacy\TagPushUserRequest;
 use App\Http\Requests\Legacy\TimePushUserRequest;
+use App\Http\Requests\Legacy\TransitionPushUserRequest;
 use App\Http\Requests\Legacy\UpdatePushUserRequest;
-use App\Http\Requests\TransitionPushUserRequest;
-use App\Models\PushUser;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\CountryRepositoryInterface;
 use App\Repositories\LanguageRepositoryInterface;
@@ -17,7 +16,6 @@ use App\Repositories\PushTransitionRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
 use App\Repositories\SentPushRepositoryInterface;
 use App\Repositories\TimezoneRepositoryInterface;
-use Illuminate\Http\Request;
 
 class LegacyPushUserController extends Controller
 {
