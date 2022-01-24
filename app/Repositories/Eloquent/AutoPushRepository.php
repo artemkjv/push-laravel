@@ -57,16 +57,19 @@ class AutoPushRepository implements AutoPushRepositoryInterface
     {
         return AutoPush::query()
             ->where('status', 'ACTIVE')
+            ->with('segments')
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
-                $query->join('segment_auto_push', function ($join) use ($segments){
+                $query->whereHas('segments', function ($query) use ($segments){
                     $segmentIds = $segments->pluck('id');
-                    $join->on('auto_pushes.id', '=', 'segment_auto_push.auto_push_id')
-                        ->whereIn('segment_auto_push.segment_id', $segmentIds);
+                    $query->whereIn('segments.id', $segmentIds);
                 });
             })
-            ->join('app_auto_push', function ($join) use ($app){
-               $join->on('auto_pushes.id', '=', 'app_auto_push.auto_push_id')
-                   ->where('app_auto_push.app_id', $app->id);
-            })->get();
+            ->when($segments->isEmpty(), function ($query){
+                $query->whereDoesntHave('segments');
+            })
+            ->whereHas('apps', function ($query) use ($app){
+                $query->where('apps.id', $app->id);
+            })
+            ->get();
     }
 }
