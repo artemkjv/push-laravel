@@ -81,12 +81,8 @@ class ModeratorController extends Controller
         $adminDecorator = new UserWrapper(\request()->user()->admin);
         $moderator = $this->userRepository->getModeratorByIdAndUser($id, $adminDecorator);
         $moderatorWrapper = new ModeratorWrapper($moderator);
-        $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps']);
-        foreach ($apps as $app){
-            if(!$moderator->apps->contains($app)){
-                $moderatorWrapper->apps()->attach($app);
-            }
-        }
+        $apps = $this->appRepository->getByUserAndIds($userDecorator, $payload['apps'] ?? []);
+        $moderatorWrapper->apps()->syncWithoutDetaching($apps);
         return redirect()->route('moderator.index');
     }
 
