@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Events\PushSent;
-use App\Listeners\PushSentListener;
 use App\Models\App;
 use App\Models\AutoPush;
 use App\Models\CustomPush;
@@ -36,9 +35,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        PushSent::class => [
-            PushSentListener::class
-        ]
     ];
 
     /**

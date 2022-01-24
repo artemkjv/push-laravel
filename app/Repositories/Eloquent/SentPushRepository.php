@@ -45,4 +45,9 @@ class SentPushRepository implements SentPushRepositoryInterface
             ->firstOrFail();
     }
 
+    public function getById(int $id)
+    {
+        return SentPush::query()
+            ->findOrFail($id);
+    }
 }

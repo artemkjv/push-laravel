@@ -4,12 +4,11 @@ importScripts('https://push.devonics.pro/assets/devonics-webpush/firebase/messag
 const SENDER_ID = '92348455022';
 const BASE_URL = 'https://push.devonics.pro'
 
-const transition = ({registrationId, pushType, pushId}) => {
+const transition = ({registrationId, sentPushId}) => {
     return fetch(`${BASE_URL}/api/push-users/${registrationId}/transition`, {
         method: 'POST',
         body: JSON.stringify({
-            push_type: pushType,
-            push_id: pushId
+            sent_push_id: sentPushId
         })
     })
 }
@@ -34,8 +33,7 @@ self.addEventListener('notificationclick', function(event){
                 let notificationData = event.notification.data
                 transition({
                     registrationId: currentToken,
-                    pushType: notificationData.push_type,
-                    pushId: notificationData.push_id
+                    sentPushId: notificationData.sent_push_id
                 })
             } else {
                 console.warn('Failed to get token.');

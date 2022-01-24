@@ -80,7 +80,7 @@ class PushUserController extends Controller
                 'clicked_at' => new \DateTime()
             ]);
             $sentPush = $this->sentPushRepository
-                ->getByPushableIdAndType($payload['pushable_id'], $payload['pushable_type']);
+                ->getById($payload['sent_push_id']);
             $sentPush->clicked++;
             $this->sentPushRepository->save($sentPush->toArray());
         });

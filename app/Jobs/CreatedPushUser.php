@@ -41,7 +41,7 @@ class CreatedPushUser implements ShouldQueue
         $autoPushes = $this->autoPushRepository
             ->getBySegmentsAndApp($this->pushUser->segments, $this->pushUser->app);
         foreach ($autoPushes as $autoPush){
-            $this->send([$this->pushUser], $autoPush, false);
+            $this->send([$this->pushUser], $autoPush);
         }
     }
 }

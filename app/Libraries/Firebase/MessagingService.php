@@ -6,6 +6,7 @@ namespace App\Libraries\Firebase;
 
 use App\Models\App;
 use App\Models\Pushable;
+use App\Models\SentPush;
 use App\Repositories\PushUserRepositoryInterface;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
@@ -27,8 +28,8 @@ class MessagingService
     }
 
 
-    public function send(Pushable $pushable, $languageId, $serverKey, Collection $pushUsers){
-        $data = $this->parseData($pushable, $languageId, $pushUsers);
+    public function send(Pushable $pushable, $languageId, $serverKey, Collection $pushUsers, SentPush $sentPush){
+        $data = $this->parseData($pushable, $languageId, $pushUsers, $sentPush);
         try {
             $response = $this->client->request("POST", 'send', [
                 'headers' => [
@@ -58,7 +59,7 @@ class MessagingService
 
     }
 
-    private function parseData(Pushable $pushable, $languageId, Collection $pushUsers){
+    private function parseData(Pushable $pushable, $languageId, Collection $pushUsers, SentPush $sentPush){
         $title = $pushable->getTitle()[$languageId] ?? $pushable->getTitle()[1];
         $body = $pushable->getBody()[$languageId] ?? $pushable->getBody()[1];
         $registrationIds = $pushUsers->pluck('registration_id');
@@ -75,6 +76,7 @@ class MessagingService
                 'deeplink' => $pushable->getDeeplink(),
                 'title' => $title,
                 'body' => $body,
+                'sent_push_id' => $sentPush->id,
                 'image' => $pushable->getImage() ? asset("/storage/{$pushable->getImage()}") : null,
                 'icon' => $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null,
                 'push_id' => $pushable->getId(),
