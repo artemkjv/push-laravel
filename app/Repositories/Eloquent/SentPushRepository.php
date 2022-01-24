@@ -15,6 +15,7 @@ class SentPushRepository implements SentPushRepositoryInterface
     {
         return SentPush::where('pushable_id', $pushableId)
             ->where('pushable_type', $pushableType)
+            ->orderByDesc('id')
             ->firstOrFail();
     }
 
