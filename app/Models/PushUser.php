@@ -21,7 +21,8 @@ class PushUser extends Model
         'app_version',
         'device_model',
         'sessions_count',
-        'active_at'
+        'active_at',
+        'is_test'
     ];
 
     public const PAGINATE = 10;
@@ -57,4 +58,5 @@ class PushUser extends Model
     public function segments(){
         return $this->belongsToMany(Segment::class);
     }
+
 }

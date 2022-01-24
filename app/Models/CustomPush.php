@@ -29,6 +29,7 @@ class CustomPush extends Model implements Pushable
         'icon',
         'time_to_live',
         'time_to_send',
+        'is_test'
     ];
 
     public function apps(){

@@ -48,7 +48,12 @@ class SendCustomPush implements ShouldQueue
         if($this->customPush->status === 'ACTIVE'){
             $apps = $this->customPush->apps;
             $segments = $this->customPush->segments;
-            $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone($apps, $segments, $this->timezone);
+            $pushUsers = $this->pushUserRepository->getByAppsAndSegmentsAndTimezone(
+                $apps,
+                $segments,
+                $this->timezone,
+                $this->customPush->is_test
+            );
             $this->send($pushUsers, $this->customPush);
         }
     }

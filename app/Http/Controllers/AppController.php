@@ -88,6 +88,10 @@ class AppController extends Controller
         ));
     }
 
+    public function addTestUsersRender($id){
+
+    }
+
     public function update(UpdateAppRequest $request, $id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);

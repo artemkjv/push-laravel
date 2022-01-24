@@ -78,7 +78,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->firstOrFail();
     }
 
-    public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone)
+    public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone, $is_test = false)
     {
         $appIds = $apps->pluck('id');
         return PushUser::query()
@@ -87,6 +87,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->with('language')
             ->whereIn('app_id', $appIds)
             ->where('timezone_id', $timezone->id)
+            ->where('is_test', $is_test)
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
                 $segmentIds = $segments->pluck('id');
                 $query->whereHas('segments', function ($query) use ($segmentIds){

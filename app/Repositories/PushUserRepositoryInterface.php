@@ -20,7 +20,7 @@ interface PushUserRepositoryInterface
 
     public function getByUUID($uuid);
 
-    public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone);
+    public function getByAppsAndSegmentsAndTimezone(Collection $apps, Collection $segments, Timezone $timezone, $is_test = false);
 
     public function getByAppsAndSegments(Collection $apps, Collection $segments);
 
