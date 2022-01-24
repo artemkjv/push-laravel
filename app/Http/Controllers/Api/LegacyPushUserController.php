@@ -76,6 +76,7 @@ class LegacyPushUserController extends Controller
     public function addSession($registrationId){
         $pushUser = $this->pushUserRepository->getByRegistrationId($registrationId);
         $pushUser->sessions_count++;
+        $pushUser->active_at = (new \DateTime())->format('Y-m-d H:i:s');
         $this->pushUserRepository->save($pushUser->toArray());
         return response()->json([
             'status' => 'success',
