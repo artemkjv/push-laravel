@@ -89,7 +89,7 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->where('timezone_id', $timezone->id)
             ->when($segments->isNotEmpty(), function ($query) use ($segments){
                 $segmentIds = $segments->pluck('id');
-                $query->hasMany('segments', function ($query) use ($segmentIds){
+                $query->whereHas('segments', function ($query) use ($segmentIds){
                     $query->whereIn('segments.id', $segmentIds);
                 });
             })->get();
