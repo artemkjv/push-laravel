@@ -65,6 +65,22 @@ class PushUserController extends Controller
         ));
     }
 
+    public function makeTest($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $pushUser = $this->pushUserRepository->getByIdAndUser($id, $userDecorator);
+        $pushUser->is_test = true;
+        $this->pushUserRepository->save($pushUser->toArray());
+        return redirect()->back();
+    }
+
+    public function makeDefault($id){
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $pushUser = $this->pushUserRepository->getByIdAndUser($id, $userDecorator);
+        $pushUser->is_test = false;
+        $this->pushUserRepository->save($pushUser->toArray());
+        return redirect()->back();
+    }
+
     public function destroy($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $pushUser = $this->pushUserRepository->getByIdAndUser($id, $userDecorator);

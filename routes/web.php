@@ -47,8 +47,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/apps/{id}', 'AppController@update')->name('update');
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
             Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
-            Route::get('/apps/{id}/push-users', 'AppController@testPushUsersRender')->name('pushUsers.render');
-            Route::patch('/apps/{id}/push-users', 'AppController@testPushUsersHandle')->name('pushUsers.handle');
         });
 
         Route::group(['as' => 'segment.'], function (){
@@ -74,6 +72,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
         Route::group(['as' => 'pushUser.'], function (){
             Route::get('/push-users', 'PushUserController@index')->name('index');
             Route::delete('/push-users/{id}', 'PushUserController@destroy')->name('destroy');
+            Route::patch('/push-users/{id}/make-test', 'PushUserController@makeTest')->name('make.test');
+            Route::patch('/push-users/{id}/make-default', 'PushUserController@makeDefault')->name('make.default');
         });
 
         Route::group(['as' => 'customPush.'], function (){

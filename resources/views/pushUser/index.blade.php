@@ -108,17 +108,38 @@
                                         <td>{{ $pushUser->device_model }}</td>
                                         <td>{{ $pushUser->platform->name }}</td>
                                         <td>{{ $pushUser->tags ? json_encode($pushUser->tags) : '' }}</td>
-                                        <td class="d-flex justify-content-around">
+                                        <td class="d-flex justify-content-around" style="gap: 5px;">
                                             <form
                                                 action="{{ route('pushUser.destroy', ['id' => $pushUser->id]) }}"
-                                                method="post" class="float-left">
+                                                method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                <button type="submit" style="height: 100%;" class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Submit deleting...')">
                                                     <ion-icon name="trash" class="action-icon"></ion-icon>
                                                 </button>
                                             </form>
+                                            @if($pushUser->is_test)
+                                                <form
+                                                    action="{{ route('pushUser.make.default', ['id' => $pushUser->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" style="height: 100%;" class="btn btn-success btn-sm">
+                                                        D
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form
+                                                    action="{{ route('pushUser.make.test', ['id' => $pushUser->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" style="height: 100%;" class="btn btn-success btn-sm">
+                                                        T
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

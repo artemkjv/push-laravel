@@ -152,17 +152,4 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->get();
     }
 
-    public function updateByIdsAndApp($ids, \App\Models\App $app, $data)
-    {
-        PushUser::where('app_id', $app->id)
-            ->whereIn('id', $ids)
-            ->update($data);
-    }
-
-    public function updateByAppWhereTest(\App\Models\App $app, $data)
-    {
-        PushUser::where('app_id', $app->id)
-            ->where('is_test', true)
-            ->update($data);
-    }
 }

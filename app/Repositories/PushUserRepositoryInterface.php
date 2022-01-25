@@ -29,8 +29,4 @@ interface PushUserRepositoryInterface
 
     public function getByApp(App $app);
 
-    public function updateByIdsAndApp($ids, App $app, $data);
-
-    public function updateByAppWhereTest(App $app, $data);
-
 }
