@@ -17,9 +17,13 @@ class TimezoneHelper
         $client = new Client([
             'base_uri' => "https://pro.ip-api.com/json/"
         ]);
-        $response = $client->get("$ip?key=I9ShYw6mCZh58E4")->getBody()
-            ->getContents();
-        return json_decode($response, true)['timezone'] ?? 'UTC';
+        try {
+            $response = $client->get("$ip?key=I9ShYw6mCZh58E4")->getBody()
+                ->getContents();
+            return json_decode($response, true)['timezone'] ?? 'UTC';
+        } catch (\Throwable $e){
+            return 'UTC';
+        }
     }
 
     public static function getClientTimezone(){
