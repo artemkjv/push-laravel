@@ -33,7 +33,7 @@
                                 <select class="form-control"
                                         name="group[{{ $filterGroupIndex }}][{{ $filterIndex }}][predicate_id]">
                                     @foreach($filter['filter_type']['predicates'] as $predicate)
-                                        <option value="{{ $predicate['id'] }}">
+                                        <option @if($filter['predicate']['predicate_id'] === $predicate['id']) selected @endif value="{{ $predicate['id'] }}">
                                             {{ $predicate['name'] }}
                                         </option>
                                     @endforeach
