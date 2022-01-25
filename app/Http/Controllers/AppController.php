@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PushAppRequest;
 use App\Http\Requests\StoreAppRequest;
+use App\Http\Requests\TestPushUserRequest;
 use App\Http\Requests\UpdateAppRequest;
 use App\Libraries\Decoration\UserInterface;
 use App\Models\App;
@@ -95,8 +96,24 @@ class AppController extends Controller
     public function testPushUsersRender($id){
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
-        $pushUsers = $this->pushUserRepository->getByAppNotTest($app);
-        return view('app.test-users', compact('app', 'pushUsers'));
+        $pushUsers = $this->pushUserRepository->getByApp($app);
+        return view('app.test-users', compact(
+            'app',
+            'pushUsers'
+        ));
+    }
+
+    public function testPushUsersHandle(TestPushUserRequest $request, $id){
+        $payload = $request->validated();
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
+        $this->pushUserRepository->updateByAppWhereTest($app, [
+            'is_test' => false
+        ]);
+        $this->pushUserRepository->updateByIdsAndApp($payload['pushUsers'] ?? [], $app, [
+            'is_test' => true
+        ]);
+        return redirect()->route('app.index');
     }
 
     public function update(UpdateAppRequest $request, $id){

@@ -145,10 +145,24 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->firstOrFail();
     }
 
-    public function getByAppNotTest(\App\Models\App $app)
+    public function getByApp(\App\Models\App $app)
     {
         return PushUser::query()
             ->where('app_id', $app->id)
-            ->where('is_test', false);
+            ->get();
+    }
+
+    public function updateByIdsAndApp($ids, \App\Models\App $app, $data)
+    {
+        PushUser::where('app_id', $app->id)
+            ->whereIn('id', $ids)
+            ->update($data);
+    }
+
+    public function updateByAppWhereTest(\App\Models\App $app, $data)
+    {
+        PushUser::where('app_id', $app->id)
+            ->where('is_test', true)
+            ->update($data);
     }
 }

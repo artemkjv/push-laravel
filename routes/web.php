@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/apps/{id}', 'AppController@update')->name('update');
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
             Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
+            Route::get('/apps/{id}/push-users', 'AppController@testPushUsersRender')->name('pushUsers.render');
+            Route::patch('/apps/{id}/push-users', 'AppController@testPushUsersHandle')->name('pushUsers.handle');
         });
 
         Route::group(['as' => 'segment.'], function (){

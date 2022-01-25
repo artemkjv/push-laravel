@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 @section('content')
+    @include('app.components.topbar')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -21,22 +22,22 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form class="row" method="post" action="{{route('app.testPushUsersHandle', ['id' => $app->id])}}">
+            <form method="post" action="{{route('app.pushUsers.handle', ['id' => $app->id])}}">
                 @method('PATCH')
                 @csrf
-                <div class="col-xl-6 col-sm-12">
-                    <div class="form-group">
-                        <label for="pushUsers">Push Users</label>
-{{--                        <select name="custom_pushes[]" class="tokenize2" id="customPushes" multiple aria-label="Custom Pushes">--}}
-                            @foreach($pushUsers as $pushUser)
-{{--                                <option @if($chosenCustomPushes->contains('id', $customPush->id)) selected @endif value="{{ $customPush->id }}">{{ $customPush->name }}</option>--}}
-                            @endforeach
-{{--                        </select>--}}
+                <div class="row">
+                    <div class="col-xl-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="pushUsers">Test Push Users</label>
+                            <select name="pushUsers[]" class="tokenize2" id="pushUsers" multiple aria-label="Push Users">
+                                @foreach($pushUsers as $pushUser)
+                                    <option @if($pushUser->is_test) selected @endif value="{{ $pushUser->id }}">{{ $pushUser->uuid }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="col-1">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
             </form>
         </div><!-- /.container-fluid -->
     </section>
