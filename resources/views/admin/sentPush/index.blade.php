@@ -58,12 +58,12 @@
                                         <td>{{ $sentPush->sent }}</td>
                                         <td>{{ $sentPush->clicked }}</td>
                                         <td class="d-flex justify-content-around">
-                                            <a href="{{  route('sentPush.show', ['id' => $sentPush->id]) }}"
+                                            <a href="{{  route('admin.sentPush.show', ['id' => $sentPush->id]) }}"
                                                 class="btn btn-success btn-sm float-left mr-1">
                                                 <ion-icon name="eye" class="action-icon"></ion-icon>
                                             </a>
                                             <form
-                                                action="{{ route('sentPush.destroy', ['id' => $sentPush->id]) }}"
+                                                action="{{ route('admin.sentPush.destroy', ['id' => $sentPush->id]) }}"
                                                 method="post" class="float-left">
                                                 @csrf
                                                 @method('DELETE')

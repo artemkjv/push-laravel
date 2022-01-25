@@ -37,7 +37,8 @@ class StoreCustomPushRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
             'icon' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:max_width=100,max_height=100,ratio=1/1',
             'time_to_live' => 'nullable|integer',
-            'time_to_send' => 'date_format:Y-m-d\TH:i'
+            'time_to_send' => 'date_format:Y-m-d\TH:i',
+            'is_test' => 'nullable'
         ];
     }
 }

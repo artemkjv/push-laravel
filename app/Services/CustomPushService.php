@@ -19,4 +19,8 @@ class CustomPushService
         }
     }
 
+    public function handleIsTest(&$payload){
+        isset($payload['is_test']) ? $payload['is_test'] = true : $payload['is_test'] = false;
+    }
+
 }

@@ -39,7 +39,8 @@ class UpdateCustomPushRequest extends FormRequest
             'time_to_live' => 'nullable|integer',
             'time_to_send' => 'date_format:Y-m-d\TH:i',
             'template-image' => 'required|boolean',
-            'template-icon' => 'required|boolean'
+            'template-icon' => 'required|boolean',
+            'is_test' => 'nullable'
         ];
     }
 }

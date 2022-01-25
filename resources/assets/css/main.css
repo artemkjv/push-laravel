@@ -238,3 +238,8 @@ ion-icon{
     align-items: center;
     padding: 0 0.5rem;
 }
+
+.custom-switch{
+    font-size: 120%;
+    margin: 10px 10px;
+}

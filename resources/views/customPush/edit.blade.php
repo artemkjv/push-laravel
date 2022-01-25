@@ -38,6 +38,11 @@
                                    placeholder="Name">
                         </div>
 
+                        <div class="form-check form-switch custom-switch">
+                            <input class="form-check-input" @if($customPush->is_test) checked @endif type="checkbox" name="is_test" id="is-test">
+                            <label class="form-check-label" for="is-test">Is Test</label>
+                        </div>
+
                         <div class="form-group">
                             <label for="apps">Apps</label>
                             <select multiple class="tokenize2" id="apps" name="apps[]" aria-label="Apps">

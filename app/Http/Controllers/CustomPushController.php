@@ -54,6 +54,7 @@ class CustomPushController extends Controller
         $this->authorize('create', CustomPush::class);
         DB::transaction(function () use($request) {
             $payload = $request->validated();
+            $this->customPushService->handleIsTest($payload);
             $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
             $appIds = $payload['apps'];
             $segmentIds = $payload['segments'];
@@ -88,6 +89,7 @@ class CustomPushController extends Controller
                 ->getByIdAndUser($id, $userDecorator)
                 ->toArray();
             $payload = $request->validated();
+            $this->customPushService->handleIsTest($payload);
             $appIds = $payload['apps'];
             $segmentIds = $payload['segments'];
             if ($payload['template-image'] || $request->hasFile('image')) {
