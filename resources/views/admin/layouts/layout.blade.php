@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id="app">
-    @include('components.header')
+    @include('components.admin.header')
 
     <div class="d-flex" id="wrapper">
         @include('components.admin.sidebar')

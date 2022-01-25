@@ -243,3 +243,15 @@ ion-icon{
     font-size: 120%;
     margin: 10px 10px;
 }
+
+@media (max-width: 767px) {
+    .desktop{
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile{
+        display: none;
+    }
+}
