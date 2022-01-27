@@ -32,7 +32,7 @@ class PushUserRepository implements PushUserRepositoryInterface
     {
         $appIds = $userDecorator->apps()
             ->select('id')
-            ->get();
+            ->pluck('id');
         return PushUser::query()
             ->whereIn('app_id', $appIds)
             ->where('id', $id)
