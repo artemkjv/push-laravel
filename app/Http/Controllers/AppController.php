@@ -116,9 +116,9 @@ class AppController extends Controller
         \DB::transaction(function () use ($id, $payload) {
             $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
             $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
-            $customPushes = $app->customPushes()->get();
-            $weeklyPushes = $app->weeklyPushes()->get();
-            $autoPushes = $app->autoPushes()->get();
+            $customPushes = $app->customPushes()->withCount('apps')->get();
+            $weeklyPushes = $app->weeklyPushes()->withCount('apps')->get();
+            $autoPushes = $app->autoPushes()->withCount('apps')->get();
             $chosenCustomPushes = $this->customPushRepository->getByUserAndIds($userDecorator, $payload['custom_pushes'] ?? []);
             $chosenAutoPushes = $this->autoPushRepository->getByUserAndIds($userDecorator, $payload['auto_pushes'] ?? []);
             $chosenWeeklyPushes = $this->weeklyPushRepository->getByUserAndIds($userDecorator, $payload['weekly_pushes'] ?? []);
@@ -132,13 +132,15 @@ class AppController extends Controller
     private function handleChosenPushes($pushes, $chosenPushes, $app, $relationName){
         foreach ($pushes as $push){
             if(!$chosenPushes->contains('id', $push->id)){
-                $push->status = 'PAUSE';
-                $push->save();
+                if($push->apps_count <= 1){
+                    $push->status = 'PAUSE';
+                    $push->save();
+                } else{
+                    $push->apps()->detach($app);
+                }
             }
         }
-        foreach ($chosenPushes as $chosenPush){
-            $app->{$relationName}()->attach($chosenPush);
-        }
+        $app->{$relationName}()->syncWithoutDetaching($chosenPushes);
     }
 
 }
