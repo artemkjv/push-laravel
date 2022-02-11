@@ -66,7 +66,7 @@ class LegacyPushUserController extends Controller
             'timezone_id' => $timezone->id,
             'platform_id' => $platform->id,
             'uuid' => $payload['internal_id'] ?? null,
-            'device_model' => $payload['device_model']
+            'device_model' => $payload['device_model'] ?? null
         ]);
         return response()->json([
             'status' => 'success'
