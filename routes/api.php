@@ -18,6 +18,25 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
 
     Route::group(['as' => 'api.app.'], function (){
         Route::get('/apps/{uuid}/show', 'AppController@show')->name('show');
+        Route::group(['middleware' => 'api.auth'], function (){
+            Route::post('/apps/store', 'AppController@store')->name('store');
+            Route::put('/apps/{uuid}', 'AppController@update')->name('update');
+        });
+    });
+
+    Route::group(['as' => 'api.customPush.', 'middleware' => 'api.auth'], function (){
+       Route::post('/custom-pushes/store', 'CustomPushController@store')->name('store');
+       Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
+    });
+
+    Route::group(['as' => 'api.autoPush.', 'middleware' => 'api.auth'], function (){
+        Route::post('/auto-pushes/store', 'AutoPushController@store')->name('store');
+        Route::put('/auto-pushes/{id}', 'AutoPushController@update')->name('update');
+    });
+
+    Route::group(['as' => 'api.weeklyPush.', 'middleware' => 'api.auth'], function (){
+        Route::post('/weekly-pushes/store', 'WeeklyPushController@store')->name('store');
+        Route::put('/weekly-pushes/{id}', 'WeeklyPushController@update')->name('update');
     });
 
     Route::group(['as' => 'api.pushUser.'], function (){

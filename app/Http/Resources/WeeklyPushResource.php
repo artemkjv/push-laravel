@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AppResource extends JsonResource
+class WeeklyPushResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class AppResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'sender_id' => $this->sender_id,
-            'uuid' => $this->uuid,
-        ];
+        return parent::toArray($request);
     }
 }

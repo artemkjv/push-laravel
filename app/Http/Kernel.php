@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ApiAuthenticateMiddleware;
 use App\Http\Middleware\NotModeratorMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'admin-manager' => \App\Http\Middleware\AdminManagerMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user.managed' => \App\Http\Middleware\ManagedUserMiddleware::class,
+        'api.auth' => \App\Http\Middleware\ApiAuthenticateMiddleware::class,
     ];
 }

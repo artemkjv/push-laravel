@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+
 class HomeController extends Controller
 {
 

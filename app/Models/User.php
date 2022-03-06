@@ -110,4 +110,10 @@ class User extends Authenticatable implements UserInterface
         return $this->hasManyThrough(PushUser::class, App::class);
     }
 
+    public static function getByApiKey(string $apiToken){
+        return self::query()
+            ->where('api_token', $apiToken)
+            ->first();
+    }
+
 }
