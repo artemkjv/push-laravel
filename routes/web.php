@@ -18,27 +18,38 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function (){
+Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
+
+    Route::group(['middleware' => ['default_user']], function () {
+
+        Route::group(['as' => 'tariffs.'], function (){
+            Route::get('/tariffs', 'TariffController@index')->name('index');
+            Route::get('/tariffs/{id}/checkout', 'TariffController@checkout')->name('checkout');
+            Route::post('/tariffs/{id}/proceed-checkout', 'TariffController@proceedCheckout')->name('proceed-checkout');
+        });
+
+    });
+
     Route::get('/two-factory/login', 'Auth\\TFAController@index')->name('auth.tfa.index');
     Route::post('/two-factory/login', 'Auth\\TFAController@login')->name('auth.tfa.login');
 
-    Route::group(['middleware' => ['tfa']], function (){
+    Route::group(['middleware' => ['tfa']], function () {
 
         Route::get('/home', 'HomeController@index')->name('home');
 
-        Route::group(['as' => 'user.'], function (){
+        Route::group(['as' => 'user.'], function () {
             Route::get('/user', 'UserController@index')->name('index');
             Route::put('/user/change-password', 'UserController@changePassword')->name('changePassword');
             Route::put('/user/regenerate-token', 'UserController@regenerateToken')->name('regenerateToken');
         });
 
-        Route::group(['as' => 'tfa.'], function (){
+        Route::group(['as' => 'tfa.'], function () {
             Route::get('/two-factory', 'TFAController@index')->name('index');
             Route::put('/two-factory/enable', 'TFAController@enable')->name('enable');
             Route::put('/two-factory/disable', 'TFAController@disable')->name('disable');
         });
 
-        Route::group(['as' => 'app.'], function (){
+        Route::group(['as' => 'app.'], function () {
             Route::get('/apps', 'AppController@index')->name('index');
             Route::get('/apps/create', 'AppController@create')->name('create');
             Route::post('/apps/create', 'AppController@store')->name('store');
@@ -49,17 +60,17 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
         });
 
-        Route::group(['as' => 'segment.'], function (){
-           Route::get('/segments', 'SegmentController@index')->name('index');
-           Route::get('/segments/create', 'SegmentController@create')->name('create');
-           Route::post('/segments/create', 'SegmentController@store')->name('store');
-           Route::get('/segments/{id}', 'SegmentController@edit')->name('edit');
-           Route::delete('/segments/{id}', 'SegmentController@destroy')->name('destroy');
-           Route::put('/segments/{id}', 'SegmentController@update')->name('update');
-           Route::post('/segments/{id}/copy', 'SegmentController@copy')->name('copy');
+        Route::group(['as' => 'segment.'], function () {
+            Route::get('/segments', 'SegmentController@index')->name('index');
+            Route::get('/segments/create', 'SegmentController@create')->name('create');
+            Route::post('/segments/create', 'SegmentController@store')->name('store');
+            Route::get('/segments/{id}', 'SegmentController@edit')->name('edit');
+            Route::delete('/segments/{id}', 'SegmentController@destroy')->name('destroy');
+            Route::put('/segments/{id}', 'SegmentController@update')->name('update');
+            Route::post('/segments/{id}/copy', 'SegmentController@copy')->name('copy');
         });
 
-        Route::group(['as' => 'template.'], function (){
+        Route::group(['as' => 'template.'], function () {
             Route::get('/templates', 'TemplateController@index')->name('index');
             Route::get('/templates/create', 'TemplateController@create')->name('create');
             Route::post('/templates/create', 'TemplateController@store')->name('store');
@@ -69,14 +80,14 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::post('/templates/{id}/copy', 'TemplateController@copy')->name('copy');
         });
 
-        Route::group(['as' => 'pushUser.'], function (){
+        Route::group(['as' => 'pushUser.'], function () {
             Route::get('/push-users', 'PushUserController@index')->name('index');
             Route::delete('/push-users/{id}', 'PushUserController@destroy')->name('destroy');
             Route::patch('/push-users/{id}/make-test', 'PushUserController@makeTest')->name('make.test');
             Route::patch('/push-users/{id}/make-default', 'PushUserController@makeDefault')->name('make.default');
         });
 
-        Route::group(['as' => 'customPush.'], function (){
+        Route::group(['as' => 'customPush.'], function () {
             Route::get('/custom-pushes', 'CustomPushController@index')->name('index');
             Route::get('/custom-pushes/create', 'CustomPushController@create')->name('create');
             Route::post('/custom-pushes/create', 'CustomPushController@store')->name('store');
@@ -86,7 +97,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::post('/custom-pushes/{id}/copy', 'CustomPushController@copy')->name('copy');
         });
 
-        Route::group(['as' => 'weeklyPush.'], function (){
+        Route::group(['as' => 'weeklyPush.'], function () {
             Route::get('/weekly-pushes', 'WeeklyPushController@index')->name('index');
             Route::get('/weekly-pushes/create', 'WeeklyPushController@create')->name('create');
             Route::post('/weekly-pushes/create', 'WeeklyPushController@store')->name('store');
@@ -96,7 +107,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::post('/weekly-pushes/{id}/copy', 'WeeklyPushController@copy')->name('copy');
         });
 
-        Route::group(['as' => 'autoPush.'], function (){
+        Route::group(['as' => 'autoPush.'], function () {
             Route::get('/auto-pushes', 'AutoPushController@index')->name('index');
             Route::get('/auto-pushes/create', 'AutoPushController@create')->name('create');
             Route::post('/auto-pushes/create', 'AutoPushController@store')->name('store');
@@ -108,7 +119,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
 
         Route::get('/moderators', 'ModeratorController@index')->name('moderator.index');
 
-        Route::group(['as' => 'moderator.', 'middleware' => ['not.moderator']], function (){
+        Route::group(['as' => 'moderator.', 'middleware' => ['not.moderator']], function () {
             Route::get('/moderators/create', 'ModeratorController@create')->name('create');
             Route::post('/moderators/create', 'ModeratorController@store')->name('store');
             Route::get('/moderators/{id}', 'ModeratorController@edit')->name('edit');
@@ -126,12 +137,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/moderators/{id}/weekly-pushes', 'ModeratorController@updateWeeklyPushes')->name('update.weeklyPushes');
         });
 
-        Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function (){
+        Route::group(['as' => 'moderator.', 'middleware' => ['moderator']], function () {
             Route::get('/moderators/{id}/apps', 'ModeratorController@renderApps')->name('apps.render');
             Route::patch('/moderators/{id}/apps', 'ModeratorController@handleApps')->name('apps.handle');
         });
 
-        Route::group(['as' => 'sentPush.'], function (){
+        Route::group(['as' => 'sentPush.'], function () {
             Route::get('/sent-pushes', 'SentPushController@index')->name('index');
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
@@ -141,15 +152,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
 
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function (){
-    Route::group(['as' => 'user.'], function (){
+Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function () {
+    Route::group(['as' => 'user.'], function () {
         Route::get('/users', 'UserController@index')->name('index');
         Route::get('/users/{id}', 'UserController@show')->name('show');
         Route::delete('/users/{id}', 'UserController@destroy')->name('destroy');
     });
 
-    Route::group(['middleware' => ['user.managed'], 'prefix' => '/user/{userId}'], function (){
-        Route::group(['as' => 'app.'], function (){
+    Route::group(['middleware' => ['user.managed'], 'prefix' => '/user/{userId}'], function () {
+        Route::group(['as' => 'app.'], function () {
             Route::get('/apps', 'AppController@index')->name('index');
             Route::get('/apps/create', 'AppController@create')->name('create');
             Route::post('/apps/create', 'AppController@store')->name('store');
@@ -159,7 +170,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
         });
 
-        Route::group(['as' => 'segment.'], function (){
+        Route::group(['as' => 'segment.'], function () {
             Route::get('/segments', 'SegmentController@index')->name('index');
             Route::get('/segments/create', 'SegmentController@create')->name('create');
             Route::post('/segments/create', 'SegmentController@store')->name('store');
@@ -168,7 +179,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/segments/{id}', 'SegmentController@update')->name('update');
         });
 
-        Route::group(['as' => 'template.'], function (){
+        Route::group(['as' => 'template.'], function () {
             Route::get('/templates', 'TemplateController@index')->name('index');
             Route::get('/templates/create', 'TemplateController@create')->name('create');
             Route::post('/templates/create', 'TemplateController@store')->name('store');
@@ -177,7 +188,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/templates/{id}', 'TemplateController@update')->name('update');
         });
 
-        Route::group(['as' => 'customPush.'], function (){
+        Route::group(['as' => 'customPush.'], function () {
             Route::get('/custom-pushes', 'CustomPushController@index')->name('index');
             Route::get('/custom-pushes/create', 'CustomPushController@create')->name('create');
             Route::post('/custom-pushes/create', 'CustomPushController@store')->name('store');
@@ -186,7 +197,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
         });
 
-        Route::group(['as' => 'autoPush.'], function (){
+        Route::group(['as' => 'autoPush.'], function () {
             Route::get('/auto-pushes', 'AutoPushController@index')->name('index');
             Route::get('/auto-pushes/create', 'AutoPushController@create')->name('create');
             Route::post('/auto-pushes/create', 'AutoPushController@store')->name('store');
@@ -195,7 +206,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/auto-pushes/{id}', 'AutoPushController@update')->name('update');
         });
 
-        Route::group(['as' => 'weeklyPush.'], function (){
+        Route::group(['as' => 'weeklyPush.'], function () {
             Route::get('/weekly-pushes', 'WeeklyPushController@index')->name('index');
             Route::get('/weekly-pushes/create', 'WeeklyPushController@create')->name('create');
             Route::post('/weekly-pushes/create', 'WeeklyPushController@store')->name('store');
@@ -204,12 +215,12 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/weekly-pushes/{id}', 'WeeklyPushController@update')->name('update');
         });
 
-        Route::group(['as' => 'pushUser.'], function (){
+        Route::group(['as' => 'pushUser.'], function () {
             Route::get('/push-users', 'PushUserController@index')->name('index');
             Route::delete('/push-users/{id}', 'PushUserController@destroy')->name('destroy');
         });
 
-        Route::group(['as' => 'sentPush.'], function (){
+        Route::group(['as' => 'sentPush.'], function () {
             Route::get('/sent-pushes', 'SentPushController@index')->name('index');
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
@@ -217,9 +228,9 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
 
     });
 
-    Route::group(['middleware' => 'admin'], function (){
+    Route::group(['middleware' => 'admin'], function () {
 
-        Route::group(['as' => 'manager.'], function (){
+        Route::group(['as' => 'manager.'], function () {
             Route::get('/managers', 'ManagerController@index')->name('index');
             Route::get('/managers/create', 'ManagerController@create')->name('create');
             Route::get('/managers/{id}', 'ManagerController@edit')->name('edit');
@@ -228,7 +239,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::delete('/managers/{id}', 'ManagerController@destroy')->name('destroy');
         });
 
-        Route::group(['as' => 'tariff.'], function (){
+        Route::group(['as' => 'tariff.'], function () {
             Route::get('/tariffs', 'TariffController@index')->name('index');
             Route::get('/tariffs/create', 'TariffController@create')->name('create');
             Route::post('/tariffs/create', 'TariffController@store')->name('store');

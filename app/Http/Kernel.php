@@ -74,5 +74,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user.managed' => \App\Http\Middleware\ManagedUserMiddleware::class,
         'api.auth' => \App\Http\Middleware\ApiAuthenticateMiddleware::class,
+        'default_user' => \App\Http\Middleware\UserMiddleware::class,
     ];
 }

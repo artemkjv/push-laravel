@@ -8,6 +8,7 @@ use App\Models\CustomPush;
 use App\Models\PushUser;
 use App\Models\Segment;
 use App\Models\SentPush;
+use App\Models\Tariff;
 use App\Models\Template;
 use App\Models\WeeklyPush;
 use App\Policies\AppPolicy;
@@ -16,6 +17,7 @@ use App\Policies\CustomPushPolicy;
 use App\Policies\PushUserPolicy;
 use App\Policies\SegmentPolicy;
 use App\Policies\SentPushPolicy;
+use App\Policies\TariffPolicy;
 use App\Policies\TemplatePolicy;
 use App\Policies\WeeklyPushPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -35,7 +37,8 @@ class AuthServiceProvider extends ServiceProvider
         Template::class => TemplatePolicy::class,
         CustomPush::class => CustomPushPolicy::class,
         PushUser::class => PushUserPolicy::class,
-        SentPush::class => SentPushPolicy::class
+        SentPush::class => SentPushPolicy::class,
+        Tariff::class => TariffPolicy::class
     ];
 
     /**
