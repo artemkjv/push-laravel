@@ -67,6 +67,14 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-select" id="status" aria-label="Status">
+                                <option value="">Select status</option>
+                                <option @if(\request()->get('status') === \App\Models\PushUser::SUBSCRIBED_STATUS) selected @endif value="{{ \App\Models\PushUser::SUBSCRIBED_STATUS }}">Subscribed</option>
+                                <option @if(\request()->get('status') === \App\Models\PushUser::UNSUBSCRIBED_STATUS) selected @endif value="{{ \App\Models\PushUser::UNSUBSCRIBED_STATUS }}">Unsubscribed</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     @if (count($pushUsers))

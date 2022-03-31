@@ -9,6 +9,9 @@ class PushUser extends Model
 {
     use HasFactory;
 
+    public const UNSUBSCRIBED_STATUS = 'UNSUBSCRIBED';
+    public const SUBSCRIBED_STATUS = 'SUBSCRIBED';
+
     protected $fillable = [
         'id',
         'registration_id',

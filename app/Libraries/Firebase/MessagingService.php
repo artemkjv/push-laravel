@@ -6,6 +6,7 @@ namespace App\Libraries\Firebase;
 
 use App\Models\App;
 use App\Models\Pushable;
+use App\Models\PushUser;
 use App\Models\SentPush;
 use App\Repositories\PushUserRepositoryInterface;
 use GuzzleHttp\Client;
@@ -48,7 +49,7 @@ class MessagingService
                 }
                 \DB::beginTransaction();
                 foreach ($sentFailures as $pushUser){
-                    $pushUser->status = 'UNSUBSCRIBED';
+                    $pushUser->status = PushUser::UNSUBSCRIBED_STATUS;
                     $pushUser->update();
                 }
                 \DB::commit();

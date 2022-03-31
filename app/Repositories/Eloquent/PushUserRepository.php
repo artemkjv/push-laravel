@@ -39,7 +39,16 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->firstOrFail();
     }
 
-    public function getByUserPaginated(UserInterface $userDecorator, int $paginate, $segmentIds, $appIds, $countryIds, $languageIds, $platformIds)
+    public function getByUserPaginated(
+        UserInterface $userDecorator,
+        int $paginate,
+        $segmentIds,
+        $appIds,
+        $countryIds,
+        $languageIds,
+        $platformIds,
+        $status,
+    )
     {
         $apps = $userDecorator->apps()
             ->select('id')
@@ -51,6 +60,9 @@ class PushUserRepository implements PushUserRepositoryInterface
                 $query->whereHas('segments', function ($query) use ($segmentIds){
                    $query->whereIn('segments.id', $segmentIds);
                 });
+            })
+            ->when($status, function ($query, $status){
+                $query->where('status', $status);
             })
             ->when($appIds, function ($query, $appIds){
                 $query->whereIn('app_id', $appIds);

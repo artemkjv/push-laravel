@@ -48,7 +48,8 @@ class PushUserController extends Controller
             \request()->get('apps'),
             \request()->get('countries'),
             \request()->get('languages'),
-            \request()->get('platforms')
+            \request()->get('platforms'),
+            \request()->get('status')
         )->appends(request()->except('page'));
         $segments = $this->segmentRepository->getByUser($userDecorator);
         $apps = $this->appRepository->getByUser($userDecorator);

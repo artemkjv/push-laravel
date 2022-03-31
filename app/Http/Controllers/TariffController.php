@@ -40,7 +40,6 @@ class TariffController extends Controller
             abort(403);
         }
         $payload = $request->validated();
-        dd($payload);
     }
 
 }
