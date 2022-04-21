@@ -16,9 +16,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.styles([
-    "resources/assets/css/main.css",
+    "resources/assets/css/app.css",
     "resources/assets/css/tokenize2.min.css"
 ], "public/assets/css/styles.css");
+
+mix.styles([
+    "resources/assets/css/main.css",
+    "resources/assets/css/bootstrap-grid.min.css"
+], "public/assets/css/main.css");
 
 mix.scripts([
     "resources/assets/js/jquery.js",

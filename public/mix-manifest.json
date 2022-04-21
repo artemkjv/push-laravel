@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/assets/css/styles.css": "/assets/css/styles.css",
+    "/assets/css/main.css": "/assets/css/main.css",
     "/assets/js/scripts.js": "/assets/js/scripts.js",
     "/assets/js/webpush.js": "/assets/js/webpush.js"
 }
