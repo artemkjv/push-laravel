@@ -9,29 +9,19 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('assets/js/scripts.js')}}"></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
     @yield('head')
 
 </head>
 <body>
-    <div id="app">
-        @include('components.header')
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-    @yield('scripts')
+<div id="app">
+    @include('components.app.header')
+    <main>
+        @yield('content')
+    </main>
+</div>
+@yield('scripts')
 </body>
 </html>

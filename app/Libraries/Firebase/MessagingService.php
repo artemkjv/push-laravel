@@ -69,7 +69,8 @@ class MessagingService
             'notification' => [
                 'title' => $title,
                 'body' => $body,
-                'image' => $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null,
+                'image' => $pushable->getImage() ? asset("/storage/{$pushable->getImage()}") : null,
+                'icon' => $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null,
                 'time_to_live' => $pushable->getTimeToLive()
             ],
             'data' => [

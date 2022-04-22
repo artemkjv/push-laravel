@@ -51,7 +51,7 @@
                     </div>
 
 
-                    <button class="btn btn-lg btn-auth">Sign up</button>
+                    <button class="btn btn-lg btn-auth btn-block">Sign up</button>
                 </form>
             </div>
         </div>

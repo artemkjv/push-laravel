@@ -316,16 +316,20 @@ h3 {
 }
 
 .btn-lg {
-    width: 12.5vw;
     min-width: 100px;
     font-size: 20px;
-    line-height: 64px;
     border: 0;
     border-radius: 20px;
-    padding: 0;
+    padding: 1rem;
+}
+
+.btn-block{
+    display: block;
+    width: 100%;
 }
 
 .btn-auth{
+    max-width: 200px;
     margin: 64px auto auto;
 }
 
@@ -4652,6 +4656,7 @@ video::-webkit-media-controls-play-button {
 html {
     box-sizing: border-box;
 }
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
