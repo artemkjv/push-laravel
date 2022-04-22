@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<div id="app">
+<div id="app" @yield('app-config')>
     @include('components.app.header')
     <main>
         @yield('content')

@@ -4,7 +4,7 @@
             <img src="{{ asset('assets/images/logo.svg') }}" alt="Logo" />
         </a>
     </div>
-    <div class="left_corner"></div>
-    <div class="right_corner"></div>
+    <div class="left-corner"></div>
+    <div class="right-corner"></div>
     @yield('header')
 </div>

@@ -1,6 +1,6 @@
 <header>
     <div class="navbar">
-        <div class="align-self-center">
+        <div class="navbar-logo">
             <img src="{{ asset('assets/images/logo.svg') }}" alt="Logo">
         </div>
         <ul class="navbar-nav">
@@ -167,8 +167,8 @@
             </li>
         </ul>
         <div>
-            <a class="btn btn-outline btn-purple">Log in</a>
-            <a class="btn btn-yellow">Sign up</a>
+            <a class="btn btn-outline input-rounded" href="{{ route('login') }}">Log in</a>
+            <a class="btn btn-yellow input-rounded" href="{{ route('register') }}">Sign up</a>
         </div>
     </div>
 </header>
