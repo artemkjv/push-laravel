@@ -122,19 +122,6 @@ header {
     margin-top: 24px;
 }
 
-.login_button {
-    font-family: var(--regular-font);
-    width: 12.5vw;
-    background: #ea27c3;
-    color: #eee;
-    font-size: 20px;
-    line-height: 64px;
-    margin: 64px auto auto;
-    border: var(--pink-border);
-    border-radius: 20px;
-    padding: 0;
-}
-
 .input-lg {
     width: 100%;
     border: 2px solid #eeff01;
@@ -150,6 +137,7 @@ header {
 }
 
 .btn {
+    border: var(--pink-border);
     font-family: var(--regular-font);
     background: #ea27c3;
     min-width: 100px;
@@ -265,10 +253,14 @@ input::placeholder {
     color: white;
 }
 
-.block{
-    padding: 0 12.71% 0;
+.block {
+    padding: 0 12.71% 139px;
     background-color: #0a1b34;
+    z-index: 3;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 
 .navbar {
     align-items: center;
@@ -311,12 +303,12 @@ input::placeholder {
     padding-left: 10px;
 }
 
-.block-title{
+.block-title {
     font-family: var(--bold-font);
     line-height: 120px !important;
 }
 
-.block-subtitle{
+.block-subtitle {
     font-family: var(--regular-font);
     font-size: 1.5em;
     line-height: 36px;
@@ -409,6 +401,60 @@ img {
     color: #dc3545;
 }
 
+.semibold-font {
+    font-family: var(--semibold-font);
+}
+
+.light-font {
+    font-family: var(--light-font);
+    font-weight: 300;
+}
+
+.description-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 21.88vw;
+    box-sizing: border-box;
+    background: linear-gradient(98.48deg, rgba(12, 28, 46, 0.8) 30.47%, rgba(234, 39, 195, 0.8) 154.55%);
+    border-radius: var(--button-border-radius);
+    padding: 97px 10px 35px 20px;
+    font-size: 20px;
+}
+
+.description-card-head {
+    font-family: "Poppins-Medium";
+    line-height: 30px;
+}
+
+.description-card-body {
+    font-size: 20px;
+    font-family: var(--light-font);
+}
+
+.advantage-card {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.advantage-card-head {
+    font-family: "Poppins-Medium";
+    line-height: 30px;
+}
+
+.advantage-card-body {
+    font-size: 20px;
+    font-family: var(--light-font);
+}
+
+@media (min-width: 1200px) {
+    .mb-xl-6 {
+        margin-bottom: 5rem !important;
+    }
+}
+
 .display-1 {
     font-size: calc(1.625rem + 4.5vw);
     font-weight: 300;
@@ -492,6 +538,7 @@ img {
 }
 
 .btn-yellow {
+    border: 2px solid #eeff01;
     background: #eeff01;
     color: black;
     transition: all 0.3s ease-in-out;
@@ -507,8 +554,70 @@ img {
     text-align: center;
 }
 
+.text-align-start {
+    text-align: start;
+}
+
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+.integrations-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 36px;
+}
+
+.links-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding-top: 50px;
+}
+
+.links-list > .link {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: var(--small-font-size);
+    color: var(--link-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.links-list > .link:hover {
+    transform: translateX(10px);
+    filter: brightness(0.9);
+    transition: all 0.3s ease-in-out;
+}
+
+.developer-image {
+    text-align: end;
+}
+
+.btn-yellow-outline {
+    background: transparent;
+    font-size: 20px;
+    border: 2px solid yellow;
+    transition: all 140ms ease-in-out;
+}
+
+.btn-yellow-outline:hover {
+    background-color: #eeff01;
+    color: black;
+}
+
+.block-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 80px;
+    padding-top: 65px;
+}
+
+.block-footer > .footer-description {
+    font-size: 20px;
+    margin: 0;
+    color: var(--link-color);
 }
 
 /*!
