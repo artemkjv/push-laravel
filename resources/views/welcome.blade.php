@@ -179,11 +179,13 @@
             </div>
         </div>
     </div>
-    <div class="block" style="padding: 55px 12.71% 55px; background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
+    <div class="block"
+         style="padding: 55px 12.71% 55px; background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
         <div class="row">
             <div class="col-xl-4">
                 <h1 class="semibold-font mt-0">
-                    Loved by Developers</h1>
+                    Loved by Developers
+                </h1>
                 <h3 class="light-font mb-xl-6">
                     Our founders were developers who built OneSignal out of a personal
                     need. We've made it easy for any business to get running and to
@@ -218,6 +220,107 @@
                 development environment.
             </p>
             <p class="footer-description">30+ Platform Integrations</p>
+        </div>
+    </div>
+    <div class="block" style="padding-top: 150px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <img src="{{ asset('assets/images/gradient-block.svg') }}" alt="Gradient">
+                </div>
+                <div class="col-xl-6">
+                    <h1 class="semibold-font mt-0">
+                        Limitless Integrations
+                    </h1>
+                    <h3 class="light-font">
+                        OneSignal integrates with leading analytics, CMS, and eCommerce
+                        solutions including Amplitude, Mixpanel, Segment, HubSpot, Shopify,
+                        WordPress, and many more.
+                    </h3>
+                    <h3 class="light-font">
+                        Sync audiences and user data to trigger real-time messages.
+                    </h3>
+                    <div class="links-list">
+                        <a href="#" class="link">
+                            More Integrations
+                            <img src="{{ asset('assets/images/for_developers_link_arrow.svg') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="semibold-font text-align-center" style="margin-top: 175px;">
+            Devonics for...
+        </h1>
+        <h3 class="light-font text-align-center">
+            Choose your adventure
+        </h3>
+        <div class="row" style="padding-top: 90px;">
+            <div class="col-xl-3">
+                <div class="image-card">
+                    <div class="image-card-header">
+                        <img src="{{ asset('assets/images/article-preview/gaming.jpg') }}" alt="">
+                    </div>
+                    <div class="image-card-content">
+                        <p class="title">Gaming</p>
+                        <p class="description">Bring players back to your game</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3">
+                <div class="image-card">
+                    <div class="image-card-header">
+                        <img src="{{ asset('assets/images/article-preview/news.jpg') }}" alt="">
+                    </div>
+                    <div class="image-card-content">
+                        <p class="title">News/Media</p>
+                        <p class="description">Increase loyalty and impressions</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3">
+                <div class="image-card">
+                    <div class="image-card-header">
+                        <img src="{{ asset('assets/images/article-preview/ecommerce.jpg') }}" alt="">
+                    </div>
+                    <div class="image-card-content">
+                        <p class="title">eCommerce</p>
+                        <p class="description">Increase your revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3">
+                <div class="image-card">
+                    <div class="image-card-header">
+                        <img src="{{ asset('assets/images/article-preview/mobile.jpg') }}" alt="">
+                    </div>
+                    <div class="image-card-content">
+                        <p class="title">Mobile</p>
+                        <p class="description">Retain and grow audience</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="block" style="padding: 90px 12.71% 90px; background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
+        <h1 class="semibold-font text-align-center">
+            Get Started Today For Free With Our Tool
+        </h1>
+        <h3 class="light-font text-align-center">
+            We’ll get you going in a matter of minutes.
+        </h3>
+        <div class="d-flex justify-content-center" style="gap: 48px; margin-top: 80px;">
+            <a class="btn btn-lg">Get Started Now</a>
+            <a class="btn btn-lg btn-yellow">Contact Sales</a>
+        </div>
+
+        <div class="contact-us text-turquoise text-align-center" style="padding-top: 80px;">
+            Have questions?
+            <a href="" class="text-decoration-underline text-turquoise">Chat with an expert.</a>
         </div>
     </div>
 @endsection

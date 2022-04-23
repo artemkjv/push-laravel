@@ -21,6 +21,7 @@
     <main>
         @yield('content')
     </main>
+    @include('components.app.footer')
 </div>
 @yield('scripts')
 </body>
