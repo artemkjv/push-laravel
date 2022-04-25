@@ -1,9 +1,9 @@
 <header>
-    <div class="navbar">
+    <div class="navbar gap-5 gap-md-0">
         <div class="navbar-logo">
             <img src="{{ asset('assets/images/logo.svg') }}" alt="Logo">
         </div>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-none d-xxl-flex">
             <li class="navbar-item">
                 <a class="navbar-link" href="#">
                     Capabilities
@@ -166,9 +166,10 @@
                 </ul>
             </li>
         </ul>
-        <div>
-            <a class="btn btn-outline input-rounded" href="{{ route('login') }}">Log in</a>
-            <a class="btn btn-yellow input-rounded" href="{{ route('register') }}">Sign up</a>
+        <div class="d-flex" style="gap: 10px;">
+            <a class="btn btn-outline input-rounded d-none d-xxl-block" href="{{ route('login') }}">Log in</a>
+            <a class="btn btn-yellow input-rounded d-none d-xxl-block" href="{{ route('register') }}">Sign up</a>
+            <div class="burger d-block d-xxl-none"><span></span><span></span><span></span></div>
         </div>
     </div>
 </header>

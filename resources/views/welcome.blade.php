@@ -20,81 +20,83 @@
                     <a class="btn btn-lg btn-yellow">Contact Sales</a>
                 </div>
             </div>
-            <div class="col-xl-5">
+            <div class="col-xl-5 mt-5 mt-xl-0">
                 <img class="block-image" src="{{ asset('assets/images/header_picture.svg') }}" alt="">
             </div>
         </div>
     </div>
     <div class="block" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
-        <h1 class="semibold-font text-align-center pt-xl-5">Everything You’re Looking For in One Tool</h1>
-        <h3 class="text-align-center light-font mb-xl-6">It’s never been easier to connect with customers.</h3>
-        <div class="row">
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        Mobile Push Notifications
+        <h1 class="semibold-font text-align-center pt-5">Everything You’re Looking For in One Tool</h1>
+        <h3 class="text-align-center light-font mb-5 mb-xl-6">It’s never been easier to connect with customers.</h3>
+        <div class="row justify-content-center justify-content-md-evenly gap-2 gap-md-0">
+            <div class="row col-12 col-sm-12 col-md-6 col-lg-12 gap-2 gap-lg-0">
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            Mobile Push Notifications
+                        </div>
+                        <div class="description-card-body">
+                            Be the first message customers see when they pick up their phones.
+                            Notifications are the primary traffic source for most mobile apps.
+                        </div>
                     </div>
-                    <div class="description-card-body">
-                        Be the first message customers see when they pick up their phones.
-                        Notifications are the primary traffic source for most mobile apps.
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            Web Push Notifications
+                        </div>
+                        <div class="description-card-body">
+                            Stay in front of your customers even after they leave your site.
+                            Works on Chrome, Safari, Firefox, Edge, Opera, and Yandex.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            Email
+                        </div>
+                        <div class="description-card-body">
+                            Design emails that look great on every device with the drag-and
+                            drop composer. Customize our free templates to match your brand.
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        Web Push Notifications
-                    </div>
-                    <div class="description-card-body">
-                        Stay in front of your customers even after they leave your site.
-                        Works on Chrome, Safari, Firefox, Edge, Opera, and Yandex.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        Email
-                    </div>
-                    <div class="description-card-body">
-                        Design emails that look great on every device with the drag-and
-                        drop composer. Customize our free templates to match your brand.
+                <div class="row mt-lg-5 ms-lg-5 col-12 col-sm-12 col-md-6 col-lg-12 gap-2 gap-lg-0">
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            SMS
+                        </div>
+                        <div class="description-card-body">
+                            Reach customers directly on their phone for higher engagement.
+                            Communicate with customers who don’t have your app or a
+                            smartphone.
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-xl-5 ms-xl-5">
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        SMS
-                    </div>
-                    <div class="description-card-body">
-                        Reach customers directly on their phone for higher engagement.
-                        Communicate with customers who don’t have your app or a
-                        smartphone.
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            Journeys
+                        </div>
+                        <div class="description-card-body">
+                            Seamlessly manage your messaging across channels with our
+                            easy-to-use messaging workflow builder, all with no code required.
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        Journeys
-                    </div>
-                    <div class="description-card-body">
-                        Seamlessly manage your messaging across channels with our
-                        easy-to-use messaging workflow builder, all with no code required.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="description-card">
-                    <div class="description-card-head">
-                        In-App Messages
-                    </div>
-                    <div class="description-card-body">
-                        Deliver messages that create delight. Design banners, pop-ups, and
-                        interstitials; implement without a single line of code.
+                <div class="col-12 col-lg-4">
+                    <div class="description-card">
+                        <div class="description-card-head">
+                            In-App Messages
+                        </div>
+                        <div class="description-card-body">
+                            Deliver messages that create delight. Design banners, pop-ups, and
+                            interstitials; implement without a single line of code.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -210,7 +212,7 @@
             </div>
             <div class="col-xl-8">
                 <div class="developer-image">
-                    <img src="{{ asset('assets/images/developer-image.svg') }}" alt="Developer Image">
+                    <img class="block-image" style="max-width: 755px;" src="{{ asset('assets/images/developer-image.svg') }}" alt="Developer Image">
                 </div>
             </div>
         </div>
@@ -255,8 +257,8 @@
         <h3 class="light-font text-align-center">
             Choose your adventure
         </h3>
-        <div class="row" style="padding-top: 90px;">
-            <div class="col-xl-3">
+        <div class="row image-cards-wrapper" style="padding-top: 90px;">
+            <div class="col-12 col-md-6 col-xl-3">
                 <div class="image-card">
                     <div class="image-card-header">
                         <img src="{{ asset('assets/images/article-preview/gaming.jpg') }}" alt="">
@@ -268,7 +270,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-3">
+            <div class="col-12 col-md-6 col-xl-3">
                 <div class="image-card">
                     <div class="image-card-header">
                         <img src="{{ asset('assets/images/article-preview/news.jpg') }}" alt="">
@@ -280,7 +282,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-3">
+            <div class="col-12 col-md-6 col-xl-3">
                 <div class="image-card">
                     <div class="image-card-header">
                         <img src="{{ asset('assets/images/article-preview/ecommerce.jpg') }}" alt="">
@@ -292,7 +294,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-3">
+            <div class="col-12 col-md-6 col-xl-3">
                 <div class="image-card">
                     <div class="image-card-header">
                         <img src="{{ asset('assets/images/article-preview/mobile.jpg') }}" alt="">
@@ -306,7 +308,8 @@
 
         </div>
     </div>
-    <div class="block" style="padding: 90px 12.71% 90px; background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
+    <div class="block"
+         style="padding: 90px 12.71% 90px; background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
         <h1 class="semibold-font text-align-center">
             Get Started Today For Free With Our Tool
         </h1>

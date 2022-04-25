@@ -21,8 +21,8 @@ mix.styles([
 ], "public/assets/css/styles.css");
 
 mix.styles([
+    "resources/assets/css/bootstrap-grid.min.css",
     "resources/assets/css/main.css",
-    "resources/assets/css/bootstrap-grid.min.css"
 ], "public/assets/css/main.css");
 
 mix.scripts([
