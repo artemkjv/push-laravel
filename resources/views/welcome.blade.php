@@ -228,7 +228,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6">
-                    <img src="{{ asset('assets/images/gradient-block.svg') }}" alt="Gradient">
+                    <img class="block-image max-xl-380" src="{{ asset('assets/images/gradient-block.svg') }}" alt="Gradient">
                 </div>
                 <div class="col-xl-6">
                     <h1 class="semibold-font mt-0">

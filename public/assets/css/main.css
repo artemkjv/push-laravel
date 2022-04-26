@@ -914,4 +914,8 @@ img {
         width: 80%;
     }
 
+    .max-xl-380 {
+        max-width: 380px;
+    }
+
 }
