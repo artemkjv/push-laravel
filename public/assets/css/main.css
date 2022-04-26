@@ -180,14 +180,40 @@ header {
 }
 
 .btn-auth {
-    max-width: 200px;
+    max-width: 100%;
+    padding: 0.8rem;
     margin: 64px auto auto;
+}
+
+@media (min-width: 575px) {
+
+    .btn-auth {
+        padding: 1rem;
+        max-width: 200px;
+    }
+
 }
 
 .logo {
     max-width: 25rem;
+    margin: 25px auto;
     width: 100%;
-    margin: 100px auto;
+}
+
+@media (min-width: 576px) {
+
+    .logo {
+        margin: 50px auto;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .logo {
+        margin: 100px auto;
+    }
+
 }
 
 html {

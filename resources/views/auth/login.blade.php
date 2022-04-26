@@ -43,7 +43,7 @@
                                id="remember" {{ old('remember') ? 'checked' : '' }}/>
                         <label class="form-check-label-lg" for="remember">Stay logged in?</label>
                     </div>
-                    <button type="submit" class="btn btn-lg btn-auth btn-block">Log in</button>
+                    <button type="submit" class="btn btn-lg btn-auth btn-block max-width-100">Log in</button>
                 </form>
             </div>
 
