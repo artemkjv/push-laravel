@@ -140,12 +140,12 @@ header {
     border: var(--pink-border);
     font-family: var(--regular-font);
     background: #ea27c3;
+    border: 2px solid #ea27c3;
     min-width: 100px;
     text-align: center;
     color: #eee;
     border-radius: 10px;
     padding: 0.5rem 1rem;
-    border: 0;
     font-size: 14px;
     display: inline-block;
 }
@@ -153,7 +153,6 @@ header {
 .btn-lg {
     font-size: 12px;
     min-width: 100px;
-    border: 0;
     padding: 10px;
     border-radius: 20px;
 }
