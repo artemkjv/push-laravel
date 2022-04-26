@@ -151,11 +151,20 @@ header {
 }
 
 .btn-lg {
+    font-size: 12px;
     min-width: 100px;
-    font-size: 20px;
     border: 0;
+    padding: 10px;
     border-radius: 20px;
-    padding: 1rem;
+}
+
+@media (min-width: 575px) {
+
+    .btn-lg {
+        font-size: 20px;
+        padding: 1rem;
+    }
+
 }
 
 .btn-block {
@@ -254,7 +263,7 @@ input::placeholder {
 }
 
 .block {
-    padding: 0 12.71% 139px;
+    padding: 0 12.71%;
     background-color: #0a1b34;
     z-index: 3;
     background-repeat: no-repeat;
@@ -280,8 +289,8 @@ input::placeholder {
 
 .burger {
     align-self: center;
-    width: 16px;
-    height: 10px;
+    width: 22px;
+    height: 14px;
     cursor: pointer;
     position: relative;
 }
@@ -289,8 +298,8 @@ input::placeholder {
 .burger span {
     background: #eeff01;
     height: 2px;
-    width: 16px;
-    margin-bottom: 2px;
+    width: 22px;
+    margin-bottom: 4px;
     display: block;
     transition: all .5s ease-in-out;
 }
@@ -318,18 +327,6 @@ input::placeholder {
 
 .navbar-item > a > img {
     padding-left: 10px;
-}
-
-.block-title {
-    font-family: var(--bold-font);
-    line-height: 120px !important;
-}
-
-.block-subtitle {
-    font-family: var(--regular-font);
-    font-size: 1.5em;
-    line-height: 36px;
-    width: 80%;
 }
 
 .navbar-item:hover > .dropdown-menu {
@@ -855,4 +852,59 @@ img {
     .image-cards-wrapper {
         row-gap: 30px;
     }
+}
+
+.block-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    font-family: var(--bold-font);
+}
+
+.block-subtitle {
+    font-family: var(--regular-font);
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+
+    .block-title {
+        text-align: initial;
+        font-size: 40px;
+    }
+
+    .block-subtitle {
+        text-align: initial;
+        font-size: 26px;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .block-title {
+        font-size: 50px;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .block-title {
+        font-size: 60px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .block-title {
+        font-size: 4.5rem;
+        line-height: 120px;
+    }
+
+    .block-subtitle {
+        font-size: 1.5em;
+        line-height: 36px;
+        width: 80%;
+    }
+
 }

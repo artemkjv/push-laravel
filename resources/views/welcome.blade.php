@@ -3,10 +3,10 @@
     style="background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('assets/images/header_background.svg') }}'); background-attachment: fixed; padding-bottom: 0;"
 @endsection
 @section('content')
-    <div class="block" style="background-color: transparent;">
+    <div class="block pt-5 pb-5" style="background-color: transparent;">
         <div class="row">
             <div class="col-xl-7">
-                <h1 class="display-2 mb-0 block-title">Customer Messaging Delivered</h1>
+                <h1 class="mb-0 block-title">Customer Messaging Delivered</h1>
             </div>
         </div>
         <div class="row">
@@ -15,18 +15,18 @@
                     The market leading self-serve customer engagement solution for Push
                     Notifications, Email, SMS &amp; In-App.
                 </p>
-                <div class="d-flex" style="gap: 48px;">
+                <div class="d-flex justify-content-center justify-content-sm-start mt-4 mt-sm-0" style="gap: 48px;">
                     <a class="btn btn-lg">Get Started Now</a>
                     <a class="btn btn-lg btn-yellow">Contact Sales</a>
                 </div>
             </div>
-            <div class="col-xl-5 mt-5 mt-xl-0">
-                <img class="block-image" src="{{ asset('assets/images/header_picture.svg') }}" alt="">
+            <div class="col-xl-5 mt-xl-5 mt-xl-0">
+                <img class="d-none d-xl-block block-image" src="{{ asset('assets/images/header_picture.svg') }}" alt="">
             </div>
         </div>
     </div>
-    <div class="block" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
-        <h1 class="semibold-font text-align-center pt-5">Everything You’re Looking For in One Tool</h1>
+    <div class="block pt-5 pb-5" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
+        <h1 class="semibold-font text-align-center">Everything You’re Looking For in One Tool</h1>
         <h3 class="text-align-center light-font mb-5 mb-xl-6">It’s never been easier to connect with customers.</h3>
         <div class="row justify-content-center justify-content-md-evenly gap-2 gap-md-0">
             <div class="row col-12 col-sm-12 col-md-6 col-lg-12 gap-2 gap-lg-0">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="block" style="padding-top: 139px;">
+    <div class="block pt-5 pb-5">
         <h1 class="semibold-font text-align-center mt-0">
             Key to Success for Marketers
         </h1>
@@ -181,8 +181,8 @@
             </div>
         </div>
     </div>
-    <div class="block"
-         style="padding: 55px 12.71% 55px; background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
+    <div class="block pt-5 pb-5"
+         style="background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
         <div class="row">
             <div class="col-xl-4">
                 <h1 class="semibold-font mt-0">
@@ -224,7 +224,7 @@
             <p class="footer-description">30+ Platform Integrations</p>
         </div>
     </div>
-    <div class="block" style="padding-top: 150px;">
+    <div class="block pt-5 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6">
@@ -308,8 +308,8 @@
 
         </div>
     </div>
-    <div class="block"
-         style="padding: 90px 12.71% 90px; background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
+    <div class="block pt-5 pb-5"
+         style="background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
         <h1 class="semibold-font text-align-center">
             Get Started Today For Free With Our Tool
         </h1>
