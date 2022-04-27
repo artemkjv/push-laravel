@@ -18,11 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
 Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
 
     Route::group(['middleware' => ['default_user']], function () {
 
-        Route::group(['as' => 'tariffs.'], function (){
+        Route::group(['as' => 'tariffs.'], function () {
             Route::get('/tariffs', 'TariffController@index')->name('index');
             Route::get('/tariffs/{id}/checkout', 'TariffController@checkout')->name('checkout');
             Route::post('/tariffs/{id}/proceed-checkout', 'TariffController@proceedCheckout')->name('proceed-checkout');

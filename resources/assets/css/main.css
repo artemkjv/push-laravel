@@ -444,6 +444,10 @@ img {
     font-family: var(--semibold-font);
 }
 
+.medium-font {
+    font-family: var(--medium-font);
+}
+
 .light-font {
     font-family: var(--light-font);
     font-weight: 300;
@@ -619,11 +623,11 @@ img {
 }
 
 .text-align-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .text-align-start {
-    text-align: start;
+    text-align: start !important;
 }
 
 *, *:before, *:after {
@@ -918,6 +922,10 @@ img {
         font-size: 60px;
     }
 
+    .text-align-lg-center {
+        text-align: center !important;
+    }
+
 }
 
 @media (min-width: 1200px) {
@@ -936,4 +944,24 @@ img {
         max-width: 380px;
     }
 
+}
+
+.map {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(170.91deg, #0C1C2E 0%, #05101C 100%);
+    border-radius: 10px;
+}
+
+.map, .map > img {
+    max-width: 810px;
+    max-height: 510px;
+}
+
+.map > p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

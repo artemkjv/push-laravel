@@ -3,7 +3,7 @@
     style="background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('assets/images/header_background.svg') }}'); background-attachment: fixed; padding-bottom: 0;"
 @endsection
 @section('content')
-    <div class="block pt-5 pb-5" style="background-color: transparent;">
+    <div class="block py-5" style="background-color: transparent;">
         <div class="row">
             <div class="col-xl-7">
                 <h1 class="mb-0 block-title">Customer Messaging Delivered</h1>
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="block pt-5 pb-5" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
+    <div class="block py-5" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
         <h1 class="semibold-font text-align-center">Everything You’re Looking For in One Tool</h1>
         <h3 class="text-align-center light-font mb-5 mb-xl-6">It’s never been easier to connect with customers.</h3>
         <div class="row justify-content-center justify-content-md-evenly gap-2 gap-md-0">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="block pt-5 pb-5">
+    <div class="block py-5">
         <h1 class="semibold-font text-align-center mt-0">
             Key to Success for Marketers
         </h1>
@@ -181,7 +181,7 @@
             </div>
         </div>
     </div>
-    <div class="block pt-5 pb-5"
+    <div class="block py-5"
          style="background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
         <div class="row">
             <div class="col-xl-4">
@@ -224,7 +224,7 @@
             <p class="footer-description">30+ Platform Integrations</p>
         </div>
     </div>
-    <div class="block pt-5 pb-5">
+    <div class="block py-5">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6">
@@ -308,7 +308,7 @@
 
         </div>
     </div>
-    <div class="block pt-5 pb-5"
+    <div class="block py-5"
          style="background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
         <h1 class="semibold-font text-align-center">
             Get Started Today For Free With Our Tool
