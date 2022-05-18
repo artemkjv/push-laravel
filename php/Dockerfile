@@ -1,6 +1,8 @@
 FROM php:8.0-fpm
 RUN docker-php-ext-install pdo pdo_mysql
-RUN apt-get update
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
 RUN apt-get install -y libpng-dev
 
 RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
