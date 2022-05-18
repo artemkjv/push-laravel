@@ -23,6 +23,7 @@ services:
     links:
       - mysql
       - redis
+    working_dir: /var/www/html
     environment:
       UPLOAD_LIMIT: 64M
 
