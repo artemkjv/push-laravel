@@ -19,7 +19,7 @@
 
 <body>
     <!-- <div id="app" @yield('app-config')> -->
-    @include('components.app.header')
+    @include('components.push.menu')
     <main>
         @yield('content')
     </main>

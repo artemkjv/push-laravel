@@ -1,8 +1,9 @@
-<footer>
-    <div class="footer-container">
-        <div class="row justify-content-center">
-            <div class="col-xl-2">
-                <div class="footer-col">
+<footer class="dp_footer_background">
+    <div class="dp_footer_container">
+        <div class="dp_footer_content">
+            <div class="dp_footer_content_block">
+                <p class="dp_footer_content_block_header">Product</p>
+                <ul class="dp_footer_content_block_list">
                     <li>Mobile Push</li>
                     <li>Web Push</li>
                     <li>Email</li>
@@ -11,10 +12,11 @@
                     <li>Journeys</li>
                     <li>Shopify App</li>
                     <li>Pricing</li>
-                </div>
+                </ul>
             </div>
-            <div class="col-xl-2">
-                <div class="footer-col">
+            <div class="dp_footer_content_block">
+                <p class="dp_footer_content_block_header">Resources</p>
+                <ul class="dp_footer_content_block_list">
                     <li>Resources Library</li>
                     <li>Customers</li>
                     <li>Webinars</li>
@@ -27,37 +29,56 @@
                     <li>Preview Tool</li>
                     <li>Integrations</li>
                     <li>FAQ</li>
-                </div>
+                </ul>
             </div>
-            <div class="col-xl-2">
-                <div class="footer-col">
+            <div class="dp_footer_content_block">
+                <p class="dp_footer_content_block_header">Company</p>
+
+                <ul class="dp_footer_content_block_list">
                     <li>About Us</li>
                     <li>Careers</li>
                     <li>Become a Partner</li>
                     <li>Contact Us</li>
                     <li>Twitter</li>
                     <li>Instagram</li>
-                </div>
+                </ul>
             </div>
-            <div class="col-xl-2">
-                <div class="footer-col">
+            <div class="dp_footer_content_block">
+                <p class="dp_footer_content_block_header">Developers</p>
+
+                <ul class="dp_footer_content_block_list">
                     <li>Documentation</li>
                     <li>API Reference</li>
                     <li>GitHub</li>
                     <li>Community</li>
                     <li>Beta Program</li>
                     <li>Sample Apps</li>
-                </div>
+                </ul>
             </div>
-            <div class="col-xl-2">
-                <div class="footer-col">
+            <div class="dp_footer_content_block">
+                <p class="dp_footer_content_block_header">Other</p>
+                <ul class="dp_footer_content_block_list">
                     <li>Terms of Use</li>
                     <li>Privacy</li>
                     <li>Acknowledgements</li>
                     <li>Software Lifecycle Policy</li>
                     <li>Certificate Wizard</li>
                     <li>Status Page</li>
-                </div>
+                </ul>
+                <ul class="social_media_icons">
+                    <li>
+                        <img src="../assets/images/social-media/linkedin.svg" alt="" />
+                    </li>
+                    <li><img src="../assets/images/social-media/fb.svg" alt="" /></li>
+
+                    <li>
+                        <img src="../assets/images/social-media/instagram.svg" alt="" />
+                    </li>
+
+                    <li>
+                        <img src="../assets/images/social-media/twitter.svg" alt="" />
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
