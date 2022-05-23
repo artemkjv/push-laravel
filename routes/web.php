@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
+Route::get('/mobile-push', function () {
+    return view('mobile-push');
+});
 
 Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
 
@@ -31,7 +34,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/tariffs/{id}/checkout', 'TariffController@checkout')->name('checkout');
             Route::post('/tariffs/{id}/proceed-checkout', 'TariffController@proceedCheckout')->name('proceed-checkout');
         });
-
     });
 
     Route::get('/two-factory/login', 'Auth\\TFAController@index')->name('auth.tfa.index');
@@ -151,9 +153,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
         });
-
     });
-
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function () {
@@ -229,7 +229,6 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
         });
-
     });
 
     Route::group(['middleware' => 'admin'], function () {
@@ -251,10 +250,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/tariffs/{id}', 'TariffController@update')->name('update');
             Route::delete('/tariffs/{id}', 'TariffController@destroy')->name('destroy');
         });
-
     });
-
 });
 
 Auth::routes();
-
