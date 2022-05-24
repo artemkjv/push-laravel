@@ -29,6 +29,9 @@ Route::get('/mobile-push', function () {
 Route::get('/web-push', function () {
     return view('web-push');
 });
+Route::get('/email', function () {
+    return view('email');
+});
 
 Route::get('/contact-us', function () {
     return view('contact-us');
