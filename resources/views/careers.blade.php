@@ -324,7 +324,7 @@
         </div>
 
         <div class="dp_start_now_block_buttons">
-            <a class="dp_start_btn" href="/login">Get Started Now</a>
+            <a class="dp_start_btn" href="{{ route('login') }}">Get Started Now</a>
             <a class="dp_contact_btn" href="/contact-us">Contact Sales</a>
         </div>
         <p class="dp_contact_us">
