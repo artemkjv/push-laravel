@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/about-us', function () {
     return view('about-us');
-})->name('about - us');
+})->name('about-us');
 
 Route::get('/mobile-push', function () {
     return view('mobile-push');
