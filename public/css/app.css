@@ -5643,8 +5643,10 @@ video::-webkit-media-controls-play-button {
 }
 .np_news_block {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     column-gap: 99px;
     row-gap: 64px;
 }
