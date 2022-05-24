@@ -20,25 +20,70 @@ Route::get('/', function () {
 
 Route::get('/about-us', function () {
     return view('about-us');
-});
+})->name('about - us');
 
 Route::get('/mobile-push', function () {
     return view('mobile-push');
-});
+})->name('mobile-push');
 
 Route::get('/web-push', function () {
     return view('web-push');
-});
+})->name('web-push');
 Route::get('/email', function () {
     return view('email');
-});
+})->name('email');
+
+Route::get('/in-app-messages', function () {
+    return view('in-app-messages');
+})->name('in-app-messages');
+
+Route::get('/sms', function () {
+    return view('sms');
+})->name('sms');
+
+Route::get('/journeys', function () {
+    return view('journeys');
+})->name('journeys');
+
+Route::get('/gaming', function () {
+    return view('gaming');
+})->name('gaming');
+Route::get('/ecomerce', function () {
+    return view('ecomerce');
+})->name('ecomerce');
 
 Route::get('/contact-us', function () {
     return view('contact-us');
-});
+})->name('contact-us');
 Route::get('/quick-connection', function () {
     return view('quick-connection');
-});
+})->name('quick-connection');
+Route::get('/documentation', function () {
+    return view('documentation');
+})->name('documentation');
+Route::get('/price', function () {
+    return view('price');
+})->name('price');
+Route::get('/careers', function () {
+    return view('careers');
+})->name('careers');
+Route::get('/news', function () {
+    return view('news');
+})->name('news');
+
+Route::get('/subscribe', function () {
+    return view('subscribe');
+})->name('subscribe');
+
+Route::get('/partner-program', function () {
+    return view('partner-program');
+})->name('partner-program');
+Route::get('/partner-login', function () {
+    return view('partner-login');
+})->name('partner-login');
+Route::get('/apply', function () {
+    return view('apply');
+})->name('apply');
 
 Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
 

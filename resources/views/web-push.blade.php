@@ -141,15 +141,13 @@
     <div class="mpp_article_preview_block">
         <div class="mpp_article_preview_header">
             <h2 class="dp_article_preview_title">Stay up to Date</h2>
-            <p class="dp_article_preview_subtitle">
-                Read up on best practices before sending your first push
-                notification.
+            <p class="dp_article_preview_subtitle">Read up on best practices before sending your first push notification.
             </p>
         </div>
 
         <div class="dp_article_preview">
             <div class="dp_article_preview_image">
-                <img src="../assets/images/article_preview/1.jpg" alt="" />
+                <img src="../assets/images/article-preview/news.jpg" alt="" />
             </div>
             <div class="dp_article_preview_descrition">
                 <p class="dp_block_title">Gaming</p>
@@ -159,7 +157,7 @@
 
         <div class="dp_article_preview">
             <div class="dp_article_preview_image">
-                <img src="../assets/images/article_preview/2.jpg" alt="" />
+                <img src="../assets/images/article-preview/gaming.jpg" alt="" />
             </div>
 
             <div class="dp_article_preview_descrition">
@@ -170,7 +168,7 @@
 
         <div class="dp_article_preview">
             <div class="dp_article_preview_image">
-                <img src="../assets/images/article_preview/3.jpg" alt="" />
+                <img src="../assets/images/article-preview/ecommerce.jpg" alt="" />
             </div>
             <div class="dp_article_preview_descrition">
                 <p class="dp_block_title">eCommerce</p>
@@ -192,7 +190,7 @@
 
         <div class="dp_start_now_block_buttons">
             <a class="dp_start_btn" href='/login'>Get Started Now</a>
-            <a class="dp_start_btn" href='/contact-us'>Get Started Now</a>
+            <a class="dp_contact_btn" href='/contact-us'>Get Started Now</a>
         </div>
         <p class="dp_contact_us">
             Have questions?

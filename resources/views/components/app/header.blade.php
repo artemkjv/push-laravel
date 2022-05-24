@@ -15,7 +15,7 @@
                          <li><a href="#">Web push </a></li>
                          <li><a href="#">In-App </a></li>
                          <li><a href="#">Email </a></li>
-                         <li><a href="#">SMS </a></li>
+                         <li><a href="{{ route('sms'); }}">SMS </a></li>
                      </ul>
                      <ul class="dp_menu_extended features">
                          <li><a href="#">Features </a></li>

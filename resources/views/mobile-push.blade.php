@@ -127,8 +127,6 @@
                 <p class="dp_block_content">Increase your revenue</p>
             </div>
         </div>
-
-
     </div>
     <div class="dp_start_now_block_background">
         <div class="dp_start_now_block">
