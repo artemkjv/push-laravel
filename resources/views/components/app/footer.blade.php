@@ -4,12 +4,12 @@
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Product</p>
                 <ul class="dp_footer_content_block_list">
-                    <li><a href='/mobile-push'>Mobile Push </a></li>
-                    <li><a href='/web-push'>Web Push </a></li>
-                    <li><a href='#'>Email </a></li>
-                    <li><a href='#'>In-App </a></li>
-                    <li><a href='#'>SMS </a></li>
-                    <li><a href='#'>Journeys </a></li>
+                    <li><a href="{{route('mobile-push')}}">Mobile push </a></li>
+                    <li><a href="{{route('web-push')}}">Web push </a></li>
+                    <li><a href="#" href="{{route('in-app-messages')}}">In-App </a></li>
+                    <li><a href="{{route('email')}}">Email </a></li>
+                    <li><a href="{{ route('sms'); }}">SMS </a></li>
+                    <li><a href="{{ route('journeys'); }}">Journeys </a></li>
                     <li><a href='#'>Shopify App </a></li>
                     <li><a href='#'>Pricing </a></li>
                 </ul>
@@ -35,10 +35,10 @@
                 <p class="dp_footer_content_block_header">Company</p>
 
                 <ul class="dp_footer_content_block_list">
-                    <li><a href='/about-us'>About Us </a></li>
-                    <li><a href='#'>Careers </a></li>
+                    <li><a href="{{ route('about-us'); }}">About Us </a></li>
+                    <li><a href="{{ route('careers'); }}">Careers </a></li>
                     <li><a href='#'>Become a Partner </a></li>
-                    <li><a href='/contact-us'>Contact Us </a></li>
+                    <li><a href='#'>Contact Us </a></li>
                     <li><a href='#'>Twitter </a></li>
                     <li><a href='#'>Instagram </a></li>
                 </ul>
