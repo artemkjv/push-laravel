@@ -21,8 +21,20 @@ Route::get('/', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
+
 Route::get('/mobile-push', function () {
     return view('mobile-push');
+});
+
+Route::get('/web-push', function () {
+    return view('web-push');
+});
+
+Route::get('/contact-us', function () {
+    return view('contact-us');
+});
+Route::get('/quick-connection', function () {
+    return view('quick-connection');
 });
 
 Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {

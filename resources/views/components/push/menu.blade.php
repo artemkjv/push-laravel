@@ -10,7 +10,7 @@
                   <img class="dp_triangle" src="./assets/images/menu_triangle.svg" alt="" />
                   <ul class="dp_menu_extended">
                       <li><a href="#">Messaging channels </a></li>
-                      <li><a href="#">Mobile push </a></li>
+                      <li><a href="/mobile-push">Mobile push </a></li>
                       <li><a href="#">Web push </a></li>
                       <li><a href="#">In-App </a></li>
                       <li><a href="#">Email </a></li>
@@ -83,8 +83,8 @@
           </li>
       </ul>
       <div class="dp_registration_buttons">
-          <a class="dp_signin dp_btn">Log in</a>
-          <a class="dp_signup dp_btn">Sign up</a>
+          <a class="dp_signin dp_btn" href="/login">Log in</a>
+          <a class="dp_signup dp_btn" href="/register">Sign up</a>
       </div>
   </div>
   <div class="mobile_top_block">
@@ -111,7 +111,7 @@
                   </a>
 
                   <ul class="dp_menu_extended_mobile">
-                      <li><a href="#">Mobile push </a></li>
+                      <li><a href="/mobile-push">Mobile push </a></li>
                       <li><a href="#">Web push </a></li>
                       <li><a href="#">In-App </a></li>
                       <li><a href="#">Email </a></li>
@@ -176,24 +176,8 @@
               </li>
           </ul>
           <div class="dp_registration_buttons_mobile">
-              <a class="dp_signin dp_btn">Log in</a>
-              <a class="dp_signup dp_btn">Sign up</a>
+              <a class="dp_signin dp_btn" href="/login">Log in</a>
+              <a class="dp_signup dp_btn" href="/register">Sign up</a>
           </div>
       </div>
-  </div>
-  <div class="mpp_header_block">
-      <div class="mpp_header">
-          <h1 class="mpp_title">
-              Drive App Engagement with Mobile Notifications
-          </h1>
-          <p class="mpp_header_block_subtitle">
-              Spark action and nurture loyalty with highly visible, relevant, and
-              timely messages.
-          </p>
-          <div class="dp_buttons">
-              <a class="dp_start_btn">Get Started Now</a>
-              <a class="dp_contact_btn">Contact Sales</a>
-          </div>
-      </div>
-      <div class="mpp_header_image"><img src="" alt="" /></div>
   </div>

@@ -12,21 +12,17 @@
 
     <!-- Styles -->
     <link href="../../css/app.css" rel="stylesheet">
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+
 
     @yield('head')
 
 </head>
 
 <body>
-    <!-- <div id="app" @yield('app-config')> -->
-    @include('components.push.menu')
-    <main>
-        @yield('content')
-    </main>
-    @include('components.app.footer')
-    <!-- </div> -->
-    <script src="../../assets/js/style.js"></script>
+
+    @yield('content')
+
     @yield('scripts')
 </body>
 

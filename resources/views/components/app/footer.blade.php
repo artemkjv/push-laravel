@@ -4,80 +4,80 @@
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Product</p>
                 <ul class="dp_footer_content_block_list">
-                    <li>Mobile Push</li>
-                    <li>Web Push</li>
-                    <li>Email</li>
-                    <li>In-App</li>
-                    <li>SMS</li>
-                    <li>Journeys</li>
-                    <li>Shopify App</li>
-                    <li>Pricing</li>
+                    <li><a href='/mobile-push'>Mobile Push </a></li>
+                    <li><a href='/web-push'>Web Push </a></li>
+                    <li><a href='#'>Email </a></li>
+                    <li><a href='#'>In-App </a></li>
+                    <li><a href='#'>SMS </a></li>
+                    <li><a href='#'>Journeys </a></li>
+                    <li><a href='#'>Shopify App </a></li>
+                    <li><a href='#'>Pricing </a></li>
                 </ul>
             </div>
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Resources</p>
                 <ul class="dp_footer_content_block_list">
-                    <li>Resources Library</li>
-                    <li>Customers</li>
-                    <li>Webinars</li>
-                    <li>Podcasts</li>
-                    <li>eBooks</li>
-                    <li>How-to Guides</li>
-                    <li>Demo Videos</li>
-                    <li>Blog</li>
-                    <li>What is Push</li>
-                    <li>Preview Tool</li>
-                    <li>Integrations</li>
-                    <li>FAQ</li>
+                    <li><a href='#'>Resources Library </a></li>
+                    <li><a href='#'>Customers </a></li>
+                    <li><a href='#'>Webinars </a></li>
+                    <li><a href='#'>Podcasts </a></li>
+                    <li><a href='#'>eBooks </a></li>
+                    <li><a href='#'>How-to Guides </a></li>
+                    <li><a href='#'>Demo Videos </a></li>
+                    <li><a href='#'>Blog </a></li>
+                    <li><a href='#'>What is Push </a></li>
+                    <li><a href='#'>Preview Tool </a></li>
+                    <li><a href='#'>Integrations </a></li>
+                    <li><a href='#'>FAQ </a></li>
                 </ul>
             </div>
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Company</p>
 
                 <ul class="dp_footer_content_block_list">
-                    <li>About Us</li>
-                    <li>Careers</li>
-                    <li>Become a Partner</li>
-                    <li>Contact Us</li>
-                    <li>Twitter</li>
-                    <li>Instagram</li>
+                    <li><a href='/about-us'>About Us </a></li>
+                    <li><a href='#'>Careers </a></li>
+                    <li><a href='#'>Become a Partner </a></li>
+                    <li><a href='/contact-us'>Contact Us </a></li>
+                    <li><a href='#'>Twitter </a></li>
+                    <li><a href='#'>Instagram </a></li>
                 </ul>
             </div>
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Developers</p>
 
                 <ul class="dp_footer_content_block_list">
-                    <li>Documentation</li>
-                    <li>API Reference</li>
-                    <li>GitHub</li>
-                    <li>Community</li>
-                    <li>Beta Program</li>
-                    <li>Sample Apps</li>
+                    <li><a href='#'>Documentation </a></li>
+                    <li><a href='#'>API Reference </a></li>
+                    <li><a href='#'>GitHub </a></li>
+                    <li><a href='#'>Community </a></li>
+                    <li><a href='#'>Beta Program </a></li>
+                    <li><a href='#'>Sample Apps </a></li>
                 </ul>
             </div>
             <div class="dp_footer_content_block">
                 <p class="dp_footer_content_block_header">Other</p>
                 <ul class="dp_footer_content_block_list">
-                    <li>Terms of Use</li>
-                    <li>Privacy</li>
-                    <li>Acknowledgements</li>
-                    <li>Software Lifecycle Policy</li>
-                    <li>Certificate Wizard</li>
-                    <li>Status Page</li>
+                    <li><a href='#'>Terms of Use </a></li>
+                    <li><a href='#'>Privacy </a></li>
+                    <li><a href='#'>Acknowledgements </a></li>
+                    <li><a href='#'>Software Lifecycle Policy </a></li>
+                    <li><a href='#'>Certificate Wizard </a></li>
+                    <li><a href='#'>Status Page </a></li>
                 </ul>
                 <ul class="social_media_icons">
-                    <li>
-                        <img src="../assets/images/social-media/linkedin.svg" alt="" />
-                    </li>
-                    <li><img src="../assets/images/social-media/fb.svg" alt="" /></li>
+                    <li><a href='#'>
+                            <img src="../assets/images/social-media/linkedin.svg" alt="" />
+                        </a></li>
+                    <li><a href='#'><img src="../assets/images/social-media/fb.svg" alt="" /> </a></li>
 
-                    <li>
-                        <img src="../assets/images/social-media/instagram.svg" alt="" />
-                    </li>
+                    <li><a href='#'>
+                            <img src="../assets/images/social-media/instagram.svg" alt="" />
+                        </a></li>
 
-                    <li>
-                        <img src="../assets/images/social-media/twitter.svg" alt="" />
-                    </li>
+                    <li><a href='#'>
+                            <img src="../assets/images/social-media/twitter.svg" alt="" />
+                        </a></li>
                 </ul>
             </div>
         </div>

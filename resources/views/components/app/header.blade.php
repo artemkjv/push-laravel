@@ -11,7 +11,7 @@
                      <img class="dp_triangle" src="./assets/images/menu_triangle.svg" alt="" />
                      <ul class="dp_menu_extended">
                          <li><a href="#">Messaging channels </a></li>
-                         <li><a href="#">Mobile push </a></li>
+                         <li><a href="/mobile-push">Mobile push </a></li>
                          <li><a href="#">Web push </a></li>
                          <li><a href="#">In-App </a></li>
                          <li><a href="#">Email </a></li>
@@ -94,8 +94,8 @@
                  <img class="dp_logo_picture" src="./assets/images/logo.svg" alt="" />
              </div>
              <div class="dp_registration_buttons_mobile">
-                 <a class="dp_signin_mobile">Log in</a>
-                 <a class="dp_signup_mobile">Sign up</a>
+                 <a class="dp_signin_mobile" href="/login">Log in</a>
+                 <a class="dp_signup_mobile" href="/register">Sign up</a>
              </div>
              <div class="gamburger">
                  <span></span>
@@ -112,7 +112,7 @@
                      </a>
 
                      <ul class="dp_menu_extended_mobile">
-                         <li><a href="#">Mobile push </a></li>
+                         <li><a href="/mobile-push">Mobile push </a></li>
                          <li><a href="#">Web push </a></li>
                          <li><a href="#">In-App </a></li>
                          <li><a href="#">Email </a></li>
@@ -164,7 +164,7 @@
                      <a class="dp_menu_item" href="#">Company</a>
 
                      <ul class="dp_menu_extended_mobile">
-                         <li><a href="#">About Us </a></li>
+                         <li><a href="/about-us">About Us </a></li>
                          <li><a href="#">Careers </a></li>
                          <li><a href="#">Newsroom</a></li>
                          <li><a href="#">Contact Sales</a></li>
@@ -177,8 +177,8 @@
                  </li>
              </ul>
              <div class="dp_registration_buttons_mobile">
-                 <a class="dp_signin dp_btn">Log in</a>
-                 <a class="dp_signup dp_btn">Sign up</a>
+                 <a class="dp_signin dp_btn" href="/login">Log in</a>
+                 <a class="dp_signup dp_btn" href="/register">Sign up</a>
              </div>
          </div>
      </div>
@@ -190,8 +190,8 @@
                  Notifications, Email, SMS & In-App.
              </p>
              <div class="dp_buttons">
-                 <a class="dp_start_btn">Get Started Now</a>
-                 <a class="dp_contact_btn">Contact Sales</a>
+                 <a class="dp_start_btn" href="/login">Get Started Now</a>
+                 <a class="dp_contact_btn" href="/contact-us">Contact Sales</a>
              </div>
          </div>
          <div class="dp_header_image">

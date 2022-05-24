@@ -147,7 +147,8 @@ p {
 }
 .left_corner img,
 .right_corner img,
-.logo img {
+.logo img,
+.con_logo img {
     width: 100%;
 }
 
@@ -161,10 +162,7 @@ p {
 }
 
 .connection_form {
-    position: fixed;
-
     width: 18.23vw;
-    left: 40.88vw;
     display: flex;
 
     flex-direction: column;
@@ -180,6 +178,7 @@ p {
     display: flex;
     flex-direction: column;
     align-content: center;
+    min-width: 300px;
 }
 
 .additional_information {
@@ -202,7 +201,7 @@ p {
     border: 2px solid #eeff01;
     border-radius: 20px;
     min-height: 30px;
-    height: 50%;
+    height: 51px;
     border-radius: 20px;
     background-color: transparent;
 }
@@ -273,7 +272,8 @@ p {
 }
 
 #password,
-#email {
+#email,
+#company_name {
     height: 51px;
     border-radius: 20px;
 }
@@ -365,6 +365,7 @@ p {
     color: white;
     margin: auto;
     font-size: 48px;
+    text-align: center;
 }
 
 .signup_form {
@@ -1116,6 +1117,7 @@ p {
         font-family: var(--light_font);
         font-size: 10px;
         color: var(--link_color);
+        text-align: center;
     }
 }
 
@@ -1587,9 +1589,7 @@ p {
 .mpp_description_block {
     display: flex;
     flex-direction: column;
-
     overflow-x: hidden;
-    padding-bottom: 20px;
 }
 .dp_for_developers {
     overflow-x: hidden;
@@ -5449,7 +5449,6 @@ video::-webkit-media-controls-play-button {
     flex-direction: column;
     gap: 36px;
     box-sizing: border-box;
-    width: 32.71vw;
     border: 2px solid #ea27c3;
     box-sizing: border-box;
     border-radius: var(--button_border_radius);
@@ -5509,6 +5508,7 @@ video::-webkit-media-controls-play-button {
 .csp_contact_form {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding-top: 32px;
     gap: 50px;
     box-sizing: border-box;
@@ -5516,7 +5516,6 @@ video::-webkit-media-controls-play-button {
 
 .csp_contact_sales_block {
     position: relative;
-    width: 52.92vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -5543,8 +5542,46 @@ video::-webkit-media-controls-play-button {
     width: 35vw;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 36px;
     margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1444px) {
+    .csp_contact_sales_block {
+        width: 52.92vw;
+    }
+    .csp_contact_sales_container {
+        width: 32.71vw;
+    }
+}
+
+@media screen and (max-width: 1443px) and (min-width: 796px) {
+    .csp_contact_sales_block {
+        width: 80vw;
+    }
+    .csp_contact_sales_container {
+        width: 50vw;
+    }
+}
+@media screen and (max-width: 1080px) {
+    .csp_contact_form {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 795px) {
+    .csp_contact_sales_description_block {
+        width: 100%;
+    }
+    .csp_contact_sales_block {
+        width: 90vw;
+    }
+    .csp_contact_sales_container {
+        width: 80vw;
+    }
 }
 
 .csp_contact_sales_description {
