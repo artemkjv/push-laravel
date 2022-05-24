@@ -5664,7 +5664,8 @@ video::-webkit-media-controls-play-button {
 .ppp_description_block {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 150px auto 0;
+
     gap: 150px;
     background-image: url("../assets/images/partner_prog_blur.svg");
     background-position: 50% 90%;
@@ -5678,11 +5679,7 @@ video::-webkit-media-controls-play-button {
     gap: var(--gap);
     margin-top: 150px;
 }
-.ppp_header_block_title {
-    font-family: var(--semibold_font);
-    font-size: var(--title_font_size);
-    width: 40vw;
-}
+
 .ppp_header_block_subtitle {
     font-family: var(--light_font);
     font-size: var(--subtitle_font_size);
@@ -5720,17 +5717,46 @@ video::-webkit-media-controls-play-button {
     gap: 96px;
     margin: auto;
 }
+.ppp_header_block_title {
+    font-family: var(--semibold_font);
+}
+@media screen and (max-width: 1060px) {
+    .ppp_header_block_title {
+        font-size: 36px;
+        width: 80vw;
+    }
+
+    .ppp_benefits_items {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: var(--gap);
+    }
+    .ppp_benefits_title {
+        font-size: 24px;
+    }
+}
+@media screen and (min-width: 1061px) {
+    .ppp_benefits_items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: var(--gap);
+    }
+    .ppp_benefits_title {
+        font-size: var(--block_title_font_size);
+    }
+    .ppp_header_block_title {
+        font-size: var(--title_font_size);
+        width: 40vw;
+    }
+}
+
 .ppp_benefits_title {
     font-family: var(--semibold_font);
-    font-size: var(--block_title_font_size);
     text-align: center;
 }
-.ppp_benefits_items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    gap: var(--gap);
-}
+
 .ppp_benefits_item {
     display: flex;
     flex-direction: column;
