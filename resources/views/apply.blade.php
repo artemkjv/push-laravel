@@ -33,18 +33,18 @@
             </div>
 
             <ul class="plp_social_media_icons">
-                <li>
-                    <img src="../assets/images/social media/linkedin.svg" alt="" />
-                </li>
-                <li><img src="../assets/images/social media/fb.svg" alt="" /></li>
+                <li><a href='#'>
+                        <img src="../assets/images/social-media/linkedin.svg" alt="" />
+                    </a></li>
+                <li><a href='#'><img src="../assets/images/social-media/fb.svg" alt="" /> </a></li>
 
-                <li>
-                    <img src="../assets/images/social media/instagram.svg" alt="" />
-                </li>
+                <li><a href='#'>
+                        <img src="../assets/images/social-media/instagram.svg" alt="" />
+                    </a></li>
 
-                <li>
-                    <img src="../assets/images/social media/twitter.svg" alt="" />
-                </li>
+                <li><a href='#'>
+                        <img src="../assets/images/social-media/twitter.svg" alt="" />
+                    </a></li>
             </ul>
         </div>
     </div>

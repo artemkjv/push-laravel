@@ -5978,12 +5978,6 @@ video::-webkit-media-controls-play-button {
     justify-items: space-between;
 }
 
-.plp_contact_us {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    font-size: var(--small_font_size);
-}
 .plp_contact_us p:nth-of-type(3),
 .plp_contact_us p:first-of-type {
     font-family: var(--regular_font);
@@ -5994,11 +5988,7 @@ video::-webkit-media-controls-play-button {
     width: 50%;
     grid-column: 1;
 }
-.plp_contact_us_email {
-    font-family: var(--light_font);
-    grid-row: 1;
-    grid-column: 2;
-}
+
 .plp_social_media_icons {
     display: flex;
     flex-direction: row;
@@ -6192,6 +6182,63 @@ video::-webkit-media-controls-play-button {
     font-family: var(--regular_font);
     font-size: var(--subtitle_font_size);
 }
+
+@media screen and (min-width: 1180px) {
+    .ap_partner_account_application {
+        padding: 186px 0 0 241px;
+        margin-bottom: 277px;
+    }
+    .ap_partner_account_application_subtitle {
+        width: 30.89vw;
+        margin: 36px 0 64px;
+    }
+    .ap_footer_content_block {
+        display: flex;
+        margin: 298px auto 140px;
+
+        flex-direction: row;
+        width: 60.94vw;
+        justify-content: space-between;
+    }
+    .plp_contact_us {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        font-size: var(--small_font_size);
+    }
+}
+@media screen and (max-width: 1179px) {
+    .ap_partner_account_application {
+        width: 90%;
+        padding-top: 180px;
+        margin: auto;
+    }
+    .ap_partner_account_application_subtitle {
+        width: 80%;
+        margin: 36px 0 64px;
+    }
+    .ap_footer_content_block {
+        display: flex;
+
+        flex-direction: row;
+        width: 90%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .plp_contact_us {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        font-size: var(--small_font_size);
+        margin-bottom: 60px;
+    }
+    .plp_contact_us_email {
+        font-family: var(--light_font);
+        grid-row: 3;
+        grid-column: 1;
+    }
+}
+
 .ap_footer_content_block {
     display: flex;
     margin: 0 auto 140px;
@@ -6210,10 +6257,7 @@ video::-webkit-media-controls-play-button {
     flex-direction: column;
     justify-content: space-between;
 }
-.ap_partner_account_application {
-    padding: 186px 0 0 241px;
-    margin-bottom: 277px;
-}
+
 .ap_partner_account_application_title {
     font-family: var(--medium_font);
     font-size: var(--block_title_font_size);
@@ -6222,11 +6266,11 @@ video::-webkit-media-controls-play-button {
 .ap_partner_account_application_subtitle {
     font-family: var(--light_font);
     font-size: 20px;
-    width: 30.89vw;
-    margin: 36px 0 64px;
 }
 .ap_logo {
     height: 48px;
+    width: 13.69vw;
+    min-width: 200px;
 }
 
 .ap_enter_email {
@@ -6234,8 +6278,15 @@ video::-webkit-media-controls-play-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: linear-gradient(
+        270deg,
+        rgba(255, 248, 13, 1) 0%,
+        rgba(255, 249, 47, 1) 60px,
+        transparent 60px
+    );
     align-items: stretch;
     width: 24vw;
+    min-width: 300px;
     height: 64px;
     border-radius: var(--button_border_radius);
     border: 2px solid yellow;
@@ -6253,9 +6304,9 @@ video::-webkit-media-controls-play-button {
 .ap_apply_button {
     height: 62px;
     width: 90px;
-    background: url("../assets/images/black__arrow.svg"), yellow;
+    background: url("../assets/images/black__arrow.svg");
     background-repeat: no-repeat;
-    background-size: 22px 26px, 0;
+    background-size: 22px 26px;
     background-position: center;
     display: block;
     margin-right: -2px;
