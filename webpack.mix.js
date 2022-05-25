@@ -12,8 +12,18 @@ const mix = require("laravel-mix");
  */
 
 mix.js("resources/js/app.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css")
+    .sass("resources/sass/bootstrap.scss", "public/css")
     .sourceMaps();
+
+mix.styles([
+    "resources/assets/css/app.css",
+    "resources/assets/css/tokenize2.min.css"
+], "public/assets/css/layout.css");
+
+mix.styles([
+    "resources/assets/css/app.css",
+    "resources/assets/css/tokenize2.min.css"
+], "public/assets/css/styles.css");
 
 mix.styles(
     ["resources/assets/css/tokenize2.min.css"],
@@ -24,8 +34,7 @@ mix.styles(["resources/css/app.css"], "public/css/app.css").sourceMaps();
 mix.styles(
     [
         "resources/assets/css/bootstrap-grid.min.css",
-        "resources/assets/css/main.css",
-    ],
+        "resources/assets/css/main.css",    ],
     "public/assets/css/main.css"
 ).sourceMaps();
 
