@@ -5973,6 +5973,7 @@ video::-webkit-media-controls-play-button {
 .plp_footer_content_block {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 60.94vw;
     margin: auto;
     justify-items: space-between;
@@ -6012,13 +6013,13 @@ video::-webkit-media-controls-play-button {
 }
 .plp_apply_now_title {
     font-family: var(--medium_font);
-    font-size: var(--title_font_size);
 }
 .plp_apply_now_subtitle {
     font-family: var(--light_font);
     font-size: 20px;
     width: 35%;
     text-align: center;
+    min-width: 300px;
 }
 .plp_enter_email {
     box-sizing: content-box;
@@ -6058,6 +6059,8 @@ video::-webkit-media-controls-play-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
     width: 57.08vw;
     margin: auto;
     margin-top: 150px;
@@ -6114,6 +6117,7 @@ video::-webkit-media-controls-play-button {
     display: flex;
     flex-direction: column;
     gap: 36px;
+    min-width: 350px;
 }
 .plp_partner_subtitle {
     font-family: var(--light_font);
@@ -6128,7 +6132,8 @@ video::-webkit-media-controls-play-button {
 }
 .plp_partner_integration_img {
     width: 43.83%;
-    height: 335px;
+    min-width: 300px;
+    height: 300px;
     background: #142d47;
 }
 .plp_partner_integration_header {
@@ -6175,7 +6180,6 @@ video::-webkit-media-controls-play-button {
 .plp_learn_more_title {
     font-family: var(--medium_font);
     font-weight: 500;
-    font-size: var(--title_font_size);
     margin-bottom: 64px;
 }
 .plp_learn_more_subtitle {
@@ -6205,6 +6209,12 @@ video::-webkit-media-controls-play-button {
         grid-template-columns: 1fr 1fr;
         gap: 24px;
         font-size: var(--small_font_size);
+    }
+    .plp_learn_more_title {
+        font-size: var(--title_font_size);
+    }
+    .plp_apply_now_title {
+        font-size: var(--title_font_size);
     }
 }
 @media screen and (max-width: 1179px) {
@@ -6236,6 +6246,16 @@ video::-webkit-media-controls-play-button {
         font-family: var(--light_font);
         grid-row: 3;
         grid-column: 1;
+    }
+
+    .plp_learn_more_title {
+        font-size: 36px;
+    }
+    .plp_apply_now_title {
+        font-size: 36px;
+    }
+    .plp_partner_integration {
+        flex-wrap: wrap;
     }
 }
 
