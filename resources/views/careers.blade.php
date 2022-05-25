@@ -240,11 +240,11 @@
             We strive to build a happy, healthy work environment.
         </p>
         <div class="cp_about_block__list">
-            <a class="cp_about_block__list_btn" href="#">Intelligent Risk Taking</a>
-            <a class="cp_about_block__list_btn" href="#">Client Success</a>
-            <a class="cp_about_block__list_btn" href="#">Empowerment</a>
-            <a class="cp_about_block__list_btn" href="#">Rigor</a>
-            <a class="cp_about_block__list_btn" href="#">Have Fun</a>
+            <a class="cp_about_block__list_btn">Intelligent Risk Taking</a>
+            <a class="cp_about_block__list_btn">Client Success</a>
+            <a class="cp_about_block__list_btn">Empowerment</a>
+            <a class="cp_about_block__list_btn">Rigor</a>
+            <a class="cp_about_block__list_btn">Have Fun</a>
         </div>
         <div class="cp_about_block_description">
             <p>

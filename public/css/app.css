@@ -946,7 +946,8 @@ p {
         width: 95%;
     }
     .mpp_push_types_list_btn,
-    .dp_technologies_list_item {
+    .dp_technologies_list_item,
+    .cp_about_block__list_btn {
         width: 33.33vw;
         font-size: 12px;
         text-align: center;
@@ -969,12 +970,14 @@ p {
         width: calc(100vw - 40px);
     }
     .mpp_push_types_list::-webkit-scrollbar,
-    .dp_technologies_list::-webkit-scrollbar {
+    .dp_technologies_list::-webkit-scrollbar,
+    .cp_about_block__list::-webkit-scrollbar {
         display: none;
     }
 
     .mpp_push_types_list,
-    .dp_technologies_list {
+    .dp_technologies_list,
+    .cp_about_block__list {
         -ms-overflow-style: none;
         scrollbar-width: none;
         overflow-x: scroll;
@@ -984,13 +987,15 @@ p {
         padding-bottom: 40px;
     }
     .mpp_push_types_list_btn:hover,
-    .dp_technologies_list_item:hover {
+    .dp_technologies_list_item:hover,
+    .cp_about_block__list_btn:hover {
         background-color: yellow;
         color: black;
     }
 
     .mpp_push_types_list_btn:hover::after,
-    .dp_technologies_list_item:hover::after {
+    .dp_technologies_list_item:hover::after,
+    .cp_about_block__list_btn:hover::after {
         position: absolute;
         content: "";
         width: 100%;
@@ -1190,7 +1195,8 @@ p {
         gap: 48px;
     }
     .mpp_push_types_list_btn,
-    .dp_technologies_list_item {
+    .dp_technologies_list_item,
+    .cp_about_block__list_btn {
         font-size: 15px;
     }
     .mpp_push_types_description,
@@ -1304,12 +1310,14 @@ p {
         width: 90vw;
     }
     .mpp_push_types_list,
-    .dp_technologies_list {
+    .dp_technologies_list,
+    .cp_about_block__list {
         flex-direction: row;
         width: 100%;
     }
     .mpp_push_types_list_btn,
-    .dp_technologies_list_item {
+    .dp_technologies_list_item,
+    .cp_about_block__list_btn {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1383,12 +1391,14 @@ p {
         margin-bottom: 200px;
     }
     .mpp_push_types_list,
-    .dp_technologies_list {
+    .dp_technologies_list,
+    .cp_about_block__list {
         flex-direction: column;
         width: 15.62vw;
     }
     .mpp_push_types_list_btn,
-    .dp_technologies_list_item {
+    .dp_technologies_list_item,
+    .cp_about_block__list_btn {
         font-size: 18px;
         padding: 24px;
         text-align: left;
@@ -1557,7 +1567,8 @@ p {
     font-family: var(--light_font);
 }
 .mpp_push_types_list_btn,
-.dp_technologies_list_item {
+.dp_technologies_list_item,
+.cp_about_block__list_btn {
     border: 2px solid rgba(238, 255, 1, 1);
 }
 /* description_block */
@@ -5067,7 +5078,6 @@ thead tr th {
 }
 .video_title {
     font-family: var(--medium_font);
-    font-size: var(--block_title_font_size);
     text-align: center;
 }
 .video_block {
@@ -5081,7 +5091,6 @@ img {
 }
 .video_container {
     position: relative;
-    width: 40vw;
     margin: auto;
     border-radius: 10px;
 }
@@ -5166,7 +5175,6 @@ video::-webkit-media-controls-play-button {
 .aup_header_block_statistics {
     display: flex;
     flex-direction: row;
-    width: 58.37%;
     margin: auto;
     justify-content: space-between;
 }
@@ -5177,12 +5185,6 @@ video::-webkit-media-controls-play-button {
     text-align: center;
 }
 
-.aup_header_block_statistics_item_numder {
-    font-size: var(--block_title_font_size);
-}
-.aup_header_block_statistics_description {
-    font-size: var(--small_font_size);
-}
 .aup_team_block,
 .aup_investors_block {
     margin-top: 150px;
@@ -5251,11 +5253,226 @@ video::-webkit-media-controls-play-button {
     filter: blur(30px);
     z-index: -1;
 }
+.aup_header_block {
+    margin: auto;
+    margin-top: 162px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 64px;
+}
+.aup_header_block_sutitle {
+    font-family: var(--regular_font);
+    align-self: center;
+    text-align: center;
+}
+
+@media screen and (min-width: 1444px) {
+    .aup_header_block_sutitle {
+        font-size: var(--subtitle_font_size);
+        width: 40.52vw;
+    }
+    .video_title {
+        font-size: var(--block_title_font_size);
+    }
+
+    .aup_header_block {
+        width: 76.19vw;
+    }
+    .cp_header_block_title {
+        width: 52vw;
+
+        min-width: 765px;
+        font-size: var(--title_font_size);
+    }
+    .aup_header_block_statistics {
+        width: 58.37%;
+    }
+    .aup_header_block_statistics_item_numder {
+        font-size: var(--block_title_font_size);
+    }
+    .aup_header_block_statistics_description {
+        font-size: var(--small_font_size);
+    }
+    .video_container {
+        width: 40vw;
+    }
+    .cp_vacancies_block {
+        width: 58.33vw;
+    }
+    .cp_vacancies_block_department_vacancy {
+        height: 61px;
+        padding-left: 36px;
+        padding-right: 30px;
+    }
+    .vacancy_title {
+        font-family: var(--light_font);
+        font-size: 18px;
+        width: 28vw;
+    }
+    .location {
+        font-family: var(--light_font);
+        font-size: 13px;
+    }
+    .apply_button {
+        font-size: 13px;
+        gap: 16px;
+    }
+    .cp_investors_block {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 139px 0;
+        width: 85.1vw;
+        margin: auto;
+        gap: 86px;
+        z-index: 2;
+    }
+    .cp_investors_header {
+        grid-column: 1 / span 4;
+
+        z-index: 2;
+    }
+    .cp_investors_item {
+        gap: 36px;
+    }
+}
+@media screen and (min-width: 796px) and (max-width: 1443px) {
+    .aup_header_block_statistics_item_numder {
+        font-size: 24px;
+    }
+    .aup_header_block_statistics_description {
+        font-size: 14px;
+    }
+    .aup_header_block_statistics {
+        gap: 20px;
+    }
+    .aup_header_block_sutitle {
+        font-size: 18px;
+        width: 60vw;
+    }
+    .aup_header_block {
+        width: 90vw;
+    }
+    .video_title {
+        font-size: 24px;
+    }
+    .video_container {
+        width: 60vw;
+    }
+
+    .cp_header_block_title {
+        width: 70vw;
+
+        min-width: 600px;
+        font-size: 36px;
+    }
+    .cp_vacancies_block_department_vacancy {
+        padding: 15px;
+    }
+    .cp_vacancies_block {
+        width: 80vw;
+    }
+    .vacancy_title {
+        font-family: var(--light_font);
+        font-size: 16px;
+        width: 40vw;
+    }
+    .location {
+        font-family: var(--light_font);
+        font-size: 16px;
+    }
+    .apply_button {
+        font-size: var(--small_font_size);
+        gap: 10px;
+    }
+    .cp_investors_block {
+        padding: 0.5% 0;
+
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+    }
+    .cp_investors_header {
+        grid-column: 1 / span 2;
+
+        z-index: 2;
+    }
+    .cp_investors_item {
+        gap: 20px;
+    }
+    .cp_about_block_description {
+        min-width: 300px;
+    }
+}
+@media screen and (max-width: 795px) {
+    .aup_header_block_sutitle {
+        font-size: 14px;
+        width: 80vw;
+    }
+    .aup_header_block {
+        width: 90vw;
+    }
+    .cp_vacancies_block {
+        width: 90vw;
+    }
+
+    .cp_header_block_title {
+        width: 90vw;
+
+        font-size: 24px;
+    }
+    .video_title {
+        font-size: 16px;
+    }
+    .aup_header_block_statistics {
+        gap: 20px;
+    }
+    .aup_header_block_statistics_item_numder {
+        font-size: 14px;
+    }
+    .aup_header_block_statistics_description {
+        font-size: 10px;
+    }
+    .video_container {
+        width: 80vw;
+    }
+    .cp_vacancies_block_department_vacancy {
+        padding: 8px 10px;
+    }
+    .vacancy_title {
+        font-family: var(--light_font);
+        font-size: 10px;
+        width: 60vw;
+    }
+    .location {
+        font-family: var(--light_font);
+        font-size: 10px;
+    }
+    .apply_button {
+        font-size: 10px;
+        gap: 8px;
+    }
+    .apply_button img {
+        width: 13px;
+    }
+    .cp_investors_block {
+        text-align: center;
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+    .cp_investors_item {
+        gap: 10px;
+        justify-content: center;
+    }
+    .cp_block_title {
+        margin: auto;
+    }
+    .cp_about_block_description {
+        min-width: 300px;
+    }
+}
 
 .cp_header_block_title {
-    width: 52vw;
     font-family: var(--medium_font);
-    font-size: var(--title_font_size);
     font-weight: 500;
     margin: 0;
     padding: 0;
@@ -5267,8 +5484,7 @@ video::-webkit-media-controls-play-button {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
-    width: 58.33vw;
-    margin: auto;
+    margin: 60px auto 0px;
 }
 
 .cp_vacancies_block_department {
@@ -5288,28 +5504,20 @@ video::-webkit-media-controls-play-button {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 36px;
-    padding-right: 30px;
 
     border: 2px solid rgba(238, 255, 1, 0.925);
     border-radius: 20px;
-    height: 61px;
 }
 .vacancy_title {
     font-family: var(--light_font);
-    font-size: 18px;
-    width: 28vw;
 }
 .location {
     font-family: var(--light_font);
-    font-size: var(--small_font_size);
 }
 .apply_button {
     display: flex;
     flex-direction: row;
     font-family: var(--light_font);
-    font-size: var(--small_font_size);
-    gap: 16px;
 }
 
 .cp_about_block {
@@ -5319,7 +5527,8 @@ video::-webkit-media-controls-play-button {
     width: 73.2vw;
     margin: auto;
     margin-top: 150px;
-    column-gap: 3.33vw;
+    justify-content: center;
+    gap: 3.33vw;
 }
 .cp_about_block_title {
     font-family: var(--medium_font);
@@ -5340,21 +5549,11 @@ video::-webkit-media-controls-play-button {
 .cp_about_block__list {
     font-family: var(--regular_font);
     display: flex;
-    flex-direction: column;
-    width: 15.62vw;
+
     gap: 24px;
 }
 
 .cp_about_block__list_btn {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    font-size: 18px;
-    border: 2px solid rgba(238, 255, 1, 1);
-    text-align: left;
-    padding-left: 24px;
-    height: 60px;
     transition: all 0.3s ease-in-out;
 }
 .cp_about_block__list_btn:hover {
@@ -5366,6 +5565,7 @@ video::-webkit-media-controls-play-button {
     font-family: var(--light_font);
     width: 23.85vw;
     font-size: 20px;
+    flex-grow: 1;
 }
 .cp_header__background {
     position: relative;
@@ -5388,14 +5588,11 @@ video::-webkit-media-controls-play-button {
     padding: 139px 0;
     width: 85.1vw;
     margin: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 86px;
     z-index: 2;
 }
 
 .cp_investors_header {
     position: relative;
-    grid-column: 1 / span 4;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -5411,6 +5608,7 @@ video::-webkit-media-controls-play-button {
     font-size: var(--block_title_font_size);
     margin: auto;
     width: 38.9vw;
+    min-width: 300px;
 }
 .cp_investors_block_subtitle {
     font-family: var(--light_font);
@@ -5421,7 +5619,6 @@ video::-webkit-media-controls-play-button {
 
 .cp_investors_item {
     display: flex;
-    gap: 36px;
     flex-direction: column;
     z-index: 2;
     /* background: linear-gradient(
