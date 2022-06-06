@@ -14,78 +14,72 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['namespace' => '\\App\\Http\\Controllers\\'], function () {
+
+    Route::get('/about-us', 'HomeController@aboutUs')
+        ->name('about-us');
+
+    Route::get('/mobile-push', 'HomeController@mobilePush')
+        ->name('mobile-push');
+
+    Route::get('/web-push', 'HomeController@webPush')
+        ->name('web-push');
+
+    Route::get('/email', 'HomeController@email')
+        ->name('email');
+
+    Route::get('/in-app-messages', 'HomeController@inApp')
+        ->name('in-app-messages');
+
+    Route::get('/sms', 'HomeController@sms')
+        ->name('sms');
+
+    Route::get('/journeys', 'HomeController@journeys')
+        ->name('journeys');
+
+    Route::get('/gaming', 'HomeController@gaming')
+        ->name('gaming');
+
+    Route::get('/ecommerce', 'HomeController@ecommerce')
+        ->name('ecommerce');
+
+    Route::get('/contact-us', 'HomeController@contactUs')
+        ->name('contact-us');
+    Route::get('/quick-connection', 'HomeController@quickConnection')
+        ->name('quick-connection');
+
+    Route::get('/documentation', 'HomeController@documentation')
+        ->name('documentation');
+
+    Route::get('/price', 'HomeController@price')
+        ->name('price');
+
+    Route::get('/careers', 'HomeController@careers')
+        ->name('careers');
+
+    Route::get('/news', 'HomeController@news')
+        ->name('news');
+
+    Route::get('/subscribe', 'HomeController@subscribe')
+        ->name('subscribe');
+
+    Route::get('/partner-program', 'HomeController@partnerProgram')
+        ->name('partner-program');
+
+    Route::get('/partner-login', 'HomeController@partnerLogin')
+        ->name('partner-login');
+
+    Route::get('/apply', 'HomeController@apply')
+        ->name('apply');
+
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/about-us', function () {
-    return view('about-us');
-})->name('about-us');
 
-Route::get('/mobile-push', function () {
-    return view('mobile-push');
-})->name('mobile-push');
-
-Route::get('/web-push', function () {
-    return view('web-push');
-})->name('web-push');
-Route::get('/email', function () {
-    return view('email');
-})->name('email');
-
-Route::get('/in-app-messages', function () {
-    return view('in-app-messages');
-})->name('in-app-messages');
-
-Route::get('/sms', function () {
-    return view('sms');
-})->name('sms');
-
-Route::get('/journeys', function () {
-    return view('journeys');
-})->name('journeys');
-
-Route::get('/gaming', function () {
-    return view('gaming');
-})->name('gaming');
-Route::get('/ecomerce', function () {
-    return view('ecomerce');
-})->name('ecomerce');
-
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact-us');
-Route::get('/quick-connection', function () {
-    return view('quick-connection');
-})->name('quick-connection');
-Route::get('/documentation', function () {
-    return view('documentation');
-})->name('documentation');
-Route::get('/price', function () {
-    return view('price');
-})->name('price');
-Route::get('/careers', function () {
-    return view('careers');
-})->name('careers');
-Route::get('/news', function () {
-    return view('news');
-})->name('news');
-
-Route::get('/subscribe', function () {
-    return view('subscribe');
-})->name('subscribe');
-
-Route::get('/partner-program', function () {
-    return view('partner-program');
-})->name('partner-program');
-Route::get('/partner-login', function () {
-    return view('partner-login');
-})->name('partner-login');
-Route::get('/apply', function () {
-    return view('apply');
-})->name('apply');
-
-Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
+Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\'], function () {
 
     Route::group(['middleware' => ['default_user']], function () {
 
@@ -124,6 +118,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/apps/{id}', 'AppController@update')->name('update');
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
             Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
+        });
+
+        Route::group(['as' => 'apiToken.'], function () {
+            Route::get('/api-tokens', 'ApiTokenController@index')->name('index');
+            Route::delete('/api-tokens/{id}', 'ApiTokenController@destroy')->name('destroy');
         });
 
         Route::group(['as' => 'segment.'], function () {

@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="../../css/app.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('head')
 
@@ -25,7 +25,7 @@
     </main>
     @include('components.app.footer')
     <!-- </div> -->
-    <script src="../../assets/js/style.js"></script>
+    <script src="{{ asset('assets/js/style.js') }}"></script>
     @yield('scripts')
 </body>
 

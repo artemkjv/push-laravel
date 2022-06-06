@@ -104,4 +104,10 @@ class ModeratorWrapper implements UserInterface
     {
         return $this->user->admin->tariff();
     }
+
+    public function apiTokens()
+    {
+        return null;
+    }
+
 }

@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\ApiTokenRepositoryInterface;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\AutoPushRepositoryInterface;
 use App\Repositories\CountryRepositoryInterface;
 use App\Repositories\CustomPushRepositoryInterface;
+use App\Repositories\Eloquent\ApiTokenRepository;
 use App\Repositories\Eloquent\AppRepository;
 use App\Repositories\Eloquent\AutoPushRepository;
 use App\Repositories\Eloquent\CountryRepository;
@@ -118,6 +120,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             TariffRepositoryInterface::class,
             TariffRepository::class
+        );
+        $this->app->bind(
+            ApiTokenRepositoryInterface::class,
+            ApiTokenRepository::class,
         );
     }
 

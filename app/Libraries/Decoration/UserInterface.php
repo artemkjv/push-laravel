@@ -27,4 +27,6 @@ interface UserInterface
 
     public function tariff();
 
+    public function apiTokens();
+
 }

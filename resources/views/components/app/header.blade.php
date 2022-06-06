@@ -15,15 +15,15 @@
                          <li><a href="#">Messaging channels </a></li>
                          <li><a href="{{route('mobile-push')}}">Mobile push </a></li>
                          <li><a href="{{route('web-push')}}">Web push </a></li>
-                         <li><a href="#" href="{{route('in-app-messages')}}">In-App </a></li>
+                         <li><a href="{{route('in-app-messages')}}">In-App </a></li>
                          <li><a href="{{route('email')}}">Email </a></li>
-                         <li><a href="{{ route('sms'); }}">SMS </a></li>
+                         <li><a href="{{ route('sms') }}">SMS </a></li>
                      </ul>
                      <ul class="dp_menu_extended features">
                          <li><a href="#">Features </a></li>
-                         <li><a href="{{ route('journeys'); }}">Journeys </a></li>
+                         <li><a href="{{ route('journeys') }}">Journeys </a></li>
                          <li><a href="#">Personalization </a></li>
-                         <li><a href="#">Segmentaion </a></li>
+                         <li><a href="#">Segmentation </a></li>
                          <li><a href="#">Analytics </a></li>
                          <li><a href="#">A/B Testing </a></li>
                          <li><a href="#">API </a></li>
@@ -31,15 +31,15 @@
                      <div class="dp_devider"></div>
                      <ul class="dp_menu_extended">
                          <li><a href="#">Industries </a></li>
-                         <li><a href="{{ route('gaming'); }}">Gaming </a></li>
-                         <li><a href="{{ route('news'); }}">News/Media </a></li>
-                         <li><a href="{{ route('ecomerce'); }}">eCommerce </a></li>
+                         <li><a href="{{ route('gaming') }}">Gaming </a></li>
+                         <li><a href="{{ route('news') }}">News/Media </a></li>
+                         <li><a href="{{ route('ecommerce') }}">eCommerce </a></li>
                          <li><a href="#">Mobile </a></li>
                      </ul>
                  </ul>
              </li>
-             <li><a class="dp_menu_item" href="{{ route('price'); }}">Pricing </a></li>
-             <li><a class="dp_menu_item" href="{{ route('documentation'); }}">Documentation</a></li>
+             <li><a class="dp_menu_item" href="{{ route('price') }}">Pricing </a></li>
+             <li><a class="dp_menu_item" href="{{ route('documentation') }}">Documentation</a></li>
              <li class="dp_resources">
                  <a class="dp_menu_item" href="#">Resources </a>
 
@@ -70,19 +70,19 @@
                      <img class="dp_triangle" src="./assets/images/menu_triangle.svg" alt="" />
                      <ul class="dp_menu_extended">
                          <li><a href="#">Company </a></li>
-                         <li><a href="{{ route('about-us'); }}">About Us </a></li>
-                         <li><a href="{{ route('careers'); }}">Careers </a></li>
+                         <li><a href="{{ route('about-us') }}">About Us </a></li>
+                         <li><a href="{{ route('careers') }}">Careers </a></li>
                          <li><a href="#">Newsroom</a></li>
-                         <li><a href="{{ route('contact-us'); }}">Contact Sales</a></li>
+                         <li><a href="{{ route('contact-us') }}">Contact Sales</a></li>
                      </ul>
 
                      <div class="dp_devider"></div>
                      <ul class="dp_menu_extended">
                          <li>
-                             <a href="{{ route('apply'); }}">Partner With Onesignal</a>
+                             <a href="{{ route('apply') }}">Partner With Onesignal</a>
                          </li>
-                         <li><a href="{{ route('partner-program'); }}">Partner Program </a></li>
-                         <li><a href="{{ route('login'); }}">Partner Login </a></li>
+                         <li><a href="{{ route('partner-program') }}">Partner Program </a></li>
+                         <li><a href="{{ route('login') }}">Partner Login </a></li>
                      </ul>
                  </ul>
              </li>
@@ -136,7 +136,7 @@
                      <ul class="dp_menu_extended_mobile">
                          <li><a href="{{ route('gaming') }}">Gaming </a></li>
                          <li><a href="{{ route('news') }}">News/Media </a></li>
-                         <li><a href="{{ route('ecomerce') }}">eCommerce </a></li>
+                         <li><a href="{{ route('ecommerce') }}">eCommerce </a></li>
                          <li><a href="#">Mobile </a></li>
                      </ul>
                  </li>

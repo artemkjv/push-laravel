@@ -72,4 +72,10 @@ class ManagerWrapper implements UserInterface
     {
         return null;
     }
+
+    public function apiTokens()
+    {
+        return $this->user->apiTokens();
+    }
+
 }
