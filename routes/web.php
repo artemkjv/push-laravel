@@ -122,6 +122,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
 
         Route::group(['as' => 'apiToken.'], function () {
             Route::get('/api-tokens', 'ApiTokenController@index')->name('index');
+            Route::get('/api-tokens/create', 'ApiTokenController@create')->name('create');
+            Route::post('/api-tokens/create', 'ApiTokenController@store')->name('store');
             Route::delete('/api-tokens/{id}', 'ApiTokenController@destroy')->name('destroy');
         });
 

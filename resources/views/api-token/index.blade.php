@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Profile</a></li>
                         <li class="breadcrumb-item active">Api Tokens</li>
                     </ol>
                 </div>
@@ -28,6 +29,7 @@
                             <input type="number" class="form-control" value="{{ request()->get('limit') }}" id="limit" name="limit">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('apiToken.create') }}" class="btn btn-success">Create Token</a>
                     </form>
                     @if (count($apiTokens))
                         <div class="table-responsive">
@@ -35,6 +37,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 30px">#</th>
+                                    <th>Name</th>
                                     <th>Token</th>
                                     <th>Expires At</th>
                                     <th>Actions</th>
@@ -44,6 +47,7 @@
                                 @foreach($apiTokens as $apiToken)
                                     <tr>
                                         <td>{{ $apiToken->id }}</td>
+                                        <td>{{ $apiToken->name }}</td>
                                         <td>{{ $apiToken->token }}</td>
                                         <td>{{ $apiToken->expires_at }}</td>
                                         <td class="d-flex justify-content-around">

@@ -15,10 +15,11 @@ class ApiToken extends Model
         'user_id',
         'token',
         'expires_at',
+        'name',
     ];
 
     public function apiPages() {
-        return $this->belongsToMany(ApiPage::class/*, 'api_token_api_page'*/);
+        return $this->belongsToMany(ApiPage::class, 'api_token_api_page');
     }
 
 }
