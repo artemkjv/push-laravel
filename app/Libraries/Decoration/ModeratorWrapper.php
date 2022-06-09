@@ -107,7 +107,7 @@ class ModeratorWrapper implements UserInterface
 
     public function apiTokens()
     {
-        return null;
+        return $this->user->apiTokens();
     }
 
 }
