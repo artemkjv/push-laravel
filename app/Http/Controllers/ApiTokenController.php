@@ -45,4 +45,11 @@ class ApiTokenController extends Controller
         return redirect()->route('apiToken.index');
     }
 
+    public function destroy($id) {
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $apiToken = $this->apiTokenRepository->getByUserAndId($userDecorator, $id);
+        $apiToken->delete();
+        return redirect()->back();
+    }
+
 }

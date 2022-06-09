@@ -22,4 +22,8 @@ class ApiToken extends Model
         return $this->belongsToMany(ApiPage::class, 'api_token_api_page');
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }

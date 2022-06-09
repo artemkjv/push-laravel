@@ -11,4 +11,8 @@ interface ApiTokenRepositoryInterface
 
     public function save($payload);
 
+    public function getByUserAndId(UserInterface $userDecorator, int $id);
+
+    public function getByTokenNotExpired($token);
+
 }
