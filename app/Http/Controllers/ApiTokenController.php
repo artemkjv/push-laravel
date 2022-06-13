@@ -52,4 +52,20 @@ class ApiTokenController extends Controller
         return redirect()->back();
     }
 
+    public function edit($id) {
+        $apiPages = ApiPage::all();
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $apiToken = $this->apiTokenRepository->getByUserAndId($userDecorator, $id);
+        return view('api-token.edit', compact('apiToken', 'apiPages'));
+    }
+
+    public function update(StoreRequest $request, $id) {
+        $payload = $request->validated();
+        $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
+        $apiToken = $this->apiTokenRepository->getByUserAndId($userDecorator, $id);
+        $payload['id'] = $apiToken->id;
+        $this->apiTokenRepository->save($payload);
+        return redirect()->route('apiToken.index');
+    }
+
 }

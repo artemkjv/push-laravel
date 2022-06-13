@@ -51,6 +51,10 @@
                                         <td>{{ $apiToken->token }}</td>
                                         <td>{{ $apiToken->expires_at }}</td>
                                         <td class="d-flex justify-content-around">
+                                            <a href="{{ route('apiToken.edit', ['id' => $apiToken->id]) }}"
+                                               class="btn btn-info btn-sm float-left mr-1">
+                                                <ion-icon name="create" class="action-icon"></ion-icon>
+                                            </a>
                                             <form
                                                 action="{{ route('apiToken.destroy', ['id' => $apiToken->id]) }}"
                                                 method="post" class="float-left">
