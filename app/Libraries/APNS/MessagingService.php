@@ -49,7 +49,6 @@ class MessagingService
                 if($response->getStatusCode() !== 200){
                     $inactiveTokens[] = $response->getDeviceToken();
                 }
-                print_r($response);
             }
         } catch (\Exception $e) { echo $e->getMessage(); }
         $this->pushUserRepository->updateByRegistrationIds($inactiveTokens, ['status' => PushUser::UNSUBSCRIBED_STATUS]);
