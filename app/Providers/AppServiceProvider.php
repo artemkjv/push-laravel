@@ -37,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         $this->app->bind(MessagingService::class, MessagingService::class);
+        $this->app->bind(\App\Libraries\APNS\MessagingService::class, \App\Libraries\APNS\MessagingService::class);
     }
 }

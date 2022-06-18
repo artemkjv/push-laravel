@@ -14,6 +14,7 @@ use App\Repositories\Eloquent\CustomPushRepository;
 use App\Repositories\Eloquent\WeeklyPushRepository;
 use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
+use App\Services\AppService;
 
 class AppController extends Controller
 {
@@ -24,6 +25,7 @@ class AppController extends Controller
     private WeeklyPushRepository $weeklyPushRepository;
     private CustomPushRepository $customPushRepository;
     private PushUserRepositoryInterface $pushUserRepository;
+    private AppService $appService;
 
     public function __construct(
         PlatformRepositoryInterface $platformRepository,
@@ -31,7 +33,8 @@ class AppController extends Controller
         CustomPushRepository $customPushRepository,
         AutoPushRepository $autoPushRepository,
         WeeklyPushRepository $weeklyPushRepository,
-        PushUserRepositoryInterface $pushUserRepository
+        PushUserRepositoryInterface $pushUserRepository,
+        AppService $appService,
     )
     {
         $this->platformRepository = $platformRepository;
@@ -40,6 +43,7 @@ class AppController extends Controller
         $this->weeklyPushRepository = $weeklyPushRepository;
         $this->customPushRepository = $customPushRepository;
         $this->pushUserRepository = $pushUserRepository;
+        $this->appService = $appService;
     }
 
     public function index(){
@@ -53,13 +57,14 @@ class AppController extends Controller
     }
 
     public function create(){
-        $platforms = $this->platformRepository->getAll();
-        return view('app.create', compact('platforms'));
+        return view('app.create');
     }
 
     public function store(StoreAppRequest $request){
         $this->authorize('create', App::class);
         $validated = $request->validated();
+        $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
+        $validated['certificate'] = $path;
         $platform_id = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
         $app->platforms()->attach([$platform_id]);
@@ -97,6 +102,10 @@ class AppController extends Controller
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $validated = $request->validated();
+        $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
+        if(!is_null($path)) {
+            $validated['certificate'] = $path;
+        }
         $platforms = $validated['platforms'];
         $app->update($validated);
         $app->platforms()->sync($platforms);
