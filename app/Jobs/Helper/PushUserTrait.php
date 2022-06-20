@@ -15,25 +15,27 @@ use Illuminate\Support\Facades\Storage;
 trait PushUserTrait
 {
 
-    public function send($pushUsers, Pushable $pushable){
+    public function send($pushUsers, Pushable $pushable)
+    {
         $apnsPushUsers = $pushUsers->where('platform_id', 2);
         $fcmPushUsers = $pushUsers->where('platform_id', '!=', 2);
         $this->sendFcmUsers($fcmPushUsers, $pushable);
         $this->sendApnsUsers($apnsPushUsers, $pushable);
     }
 
-    private function sendFcmUsers(Collection $pushUsers, Pushable $pushable){
-        $messagingService = App::make(MessagingService::class);
-        $sortedArray = [];
-        foreach($pushUsers as $pushUser){
-            $sortedArray[$pushUser->app->server_key][$pushUser->language->id][] = $pushUser;
-        }
-        if(count($sortedArray) > 0){
-            $sentPush = $this->createSentPush($pushable, count($pushUsers));
-            foreach ($sortedArray as $serverKey => $languages){
-                foreach ($languages as $langId => $pushUsers){
+    private function sendFcmUsers(Collection $pushUsers, Pushable $pushable)
+    {
+        if ($pushUsers->count()) {
+            $sentPush = $this->createSentPush($pushable, $pushUsers->count());
+            $messagingService = App::make(MessagingService::class);
+            $sortedArray = [];
+            foreach ($pushUsers as $pushUser) {
+                $sortedArray[$pushUser->app->server_key][$pushUser->language->id][] = $pushUser;
+            }
+            foreach ($sortedArray as $serverKey => $languages) {
+                foreach ($languages as $langId => $pushUsers) {
                     $chunkedArray = array_chunk($pushUsers, 1000);
-                    foreach ($chunkedArray as $chunkedPushUsers){
+                    foreach ($chunkedArray as $chunkedPushUsers) {
                         $messagingService->send($pushable, $langId, $serverKey, collect($chunkedPushUsers), $sentPush);
                     }
                 }
@@ -41,8 +43,9 @@ trait PushUserTrait
         }
     }
 
-    private function sendApnsUsers(Collection $pushUsers, Pushable $pushable) {
-        if($pushUsers->count() > 0) {
+    private function sendApnsUsers(Collection $pushUsers, Pushable $pushable)
+    {
+        if ($pushUsers->count() > 0) {
             $sentPush = $this->createSentPush($pushable, $pushUsers->count());
             $messagingService = App::make(\App\Libraries\APNS\MessagingService::class);
             $appsPushUsers = $pushUsers->groupBy('app_id');
@@ -63,7 +66,8 @@ trait PushUserTrait
     }
 
 
-    private function createSentPush(Pushable $pushable, $pushUsersQuantity){
+    private function createSentPush(Pushable $pushable, $pushUsersQuantity)
+    {
         return SentPush::create([
             'pushable_id' => $pushable->getId(),
             'pushable_type' => get_class($pushable),
