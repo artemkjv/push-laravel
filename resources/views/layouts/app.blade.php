@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,19 +11,22 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('head')
 
 </head>
+
 <body>
-<div id="app" @yield('app-config')>
+    <!-- <div id="app" @yield('app-config')> -->
     @include('components.app.header')
     <main>
         @yield('content')
     </main>
     @include('components.app.footer')
-</div>
-@yield('scripts')
+    <!-- </div> -->
+    <script src="{{ asset('assets/js/style.js') }}"></script>
+    @yield('scripts')
 </body>
+
 </html>

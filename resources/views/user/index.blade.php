@@ -32,11 +32,13 @@
                                 @csrf
                                 <div>
                                     <label for="password">New Password</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror " name="password" id="password" placeholder="Password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror "
+                                           name="password" id="password" placeholder="Password">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Password">
+                                    <input type="password" class="form-control" name="password_confirmation"
+                                           id="password_confirmation" placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -50,11 +52,20 @@
                                     @method('PUT')
                                     @csrf
                                     <button type="submit" class="btn btn-secondary">Generate Api Token</button>
+                                    <a href="{{ route('apiToken.index') }}" class="btn btn-success">Temporary Tokens</a>
                                 @else
-                                    Api Token: {{ request()->user()->api_token }}
-                                    @method('PUT')
-                                    @csrf
-                                    <button type="submit" class="btn btn-secondary float-end">Regenerate</button>
+                                    <div class="row justify-content-between">
+                                        <div class="col-lg-6">
+                                            Api Token: {{ request()->user()->api_token }}
+                                        </div>
+                                        @method('PUT')
+                                        @csrf
+                                        <div class="col-lg-auto">
+                                            <button type="submit" class="btn btn-secondary">Regenerate</button>
+                                            <a href="{{ route('apiToken.index') }}" class="btn btn-success">Temporary
+                                                Tokens</a>
+                                        </div>
+                                    </div>
                                 @endif
                             </form>
                         </div>

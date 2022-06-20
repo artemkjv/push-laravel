@@ -164,4 +164,10 @@ class PushUserRepository implements PushUserRepositoryInterface
             ->get();
     }
 
+    public function updateByRegistrationIds($registrationIds, $data)
+    {
+        PushUser::query()
+            ->whereIn('registration_id', $registrationIds)
+            ->update($data);
+    }
 }

@@ -7,9 +7,15 @@ RUN apt-get install -y libpng-dev
 
 RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
     libfreetype6-dev \
+    zlib1g-dev \
+    libzip-dev \
+    unzip \
     && apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
+
+
+RUN docker-php-ext-install zip
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 

@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Libraries\Decoration\UserInterface;
+use App\Repositories\ApiTokenRepositoryInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -108,6 +110,10 @@ class User extends Authenticatable implements UserInterface
 
     public function pushUsers(){
         return $this->hasManyThrough(PushUser::class, App::class);
+    }
+
+    public function apiTokens() {
+        return $this->hasMany(ApiToken::class);
     }
 
     public static function getByApiKey(string $apiToken){

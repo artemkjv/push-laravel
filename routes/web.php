@@ -14,15 +14,72 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['namespace' => '\\App\\Http\\Controllers\\'], function () {
+
+    Route::get('/about-us', 'HomeController@aboutUs')
+        ->name('about-us');
+
+    Route::get('/mobile-push', 'HomeController@mobilePush')
+        ->name('mobile-push');
+
+    Route::get('/web-push', 'HomeController@webPush')
+        ->name('web-push');
+
+    Route::get('/email', 'HomeController@email')
+        ->name('email');
+
+    Route::get('/in-app-messages', 'HomeController@inApp')
+        ->name('in-app-messages');
+
+    Route::get('/sms', 'HomeController@sms')
+        ->name('sms');
+
+    Route::get('/journeys', 'HomeController@journeys')
+        ->name('journeys');
+
+    Route::get('/gaming', 'HomeController@gaming')
+        ->name('gaming');
+
+    Route::get('/ecommerce', 'HomeController@ecommerce')
+        ->name('ecommerce');
+
+    Route::get('/contact-us', 'HomeController@contactUs')
+        ->name('contact-us');
+    Route::get('/quick-connection', 'HomeController@quickConnection')
+        ->name('quick-connection');
+
+    Route::get('/documentation', 'HomeController@documentation')
+        ->name('documentation');
+
+    Route::get('/price', 'HomeController@price')
+        ->name('price');
+
+    Route::get('/careers', 'HomeController@careers')
+        ->name('careers');
+
+    Route::get('/news', 'HomeController@news')
+        ->name('news');
+
+    Route::get('/subscribe', 'HomeController@subscribe')
+        ->name('subscribe');
+
+    Route::get('/partner-program', 'HomeController@partnerProgram')
+        ->name('partner-program');
+
+    Route::get('/partner-login', 'HomeController@partnerLogin')
+        ->name('partner-login');
+
+    Route::get('/apply', 'HomeController@apply')
+        ->name('apply');
+
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/about-us', function () {
-    return view('about-us');
-});
 
-Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\', 'mid'], function () {
+Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\\Controllers\\'], function () {
 
     Route::group(['middleware' => ['default_user']], function () {
 
@@ -31,7 +88,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::get('/tariffs/{id}/checkout', 'TariffController@checkout')->name('checkout');
             Route::post('/tariffs/{id}/proceed-checkout', 'TariffController@proceedCheckout')->name('proceed-checkout');
         });
-
     });
 
     Route::get('/two-factory/login', 'Auth\\TFAController@index')->name('auth.tfa.index');
@@ -62,6 +118,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::put('/apps/{id}', 'AppController@update')->name('update');
             Route::get('/apps/{id}/show', 'AppController@show')->name('show');
             Route::patch('/apps/{id}/push', 'AppController@push')->name('push');
+        });
+
+        Route::group(['as' => 'apiToken.'], function () {
+            Route::get('/api-tokens', 'ApiTokenController@index')->name('index');
+            Route::get('/api-tokens/create', 'ApiTokenController@create')->name('create');
+            Route::post('/api-tokens/create', 'ApiTokenController@store')->name('store');
+            Route::get('/api-tokens/{id}', 'ApiTokenController@edit')->name('edit');
+            Route::put('/api-tokens/{id}', 'ApiTokenController@update')->name('update');
+            Route::delete('/api-tokens/{id}', 'ApiTokenController@destroy')->name('destroy');
         });
 
         Route::group(['as' => 'segment.'], function () {
@@ -151,9 +216,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => '\\App\\Http\
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
         });
-
     });
-
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace' => '\\App\\Http\\Controllers\\Admin', 'as' => 'admin.', 'prefix' => '/admin'], function () {
@@ -229,7 +292,6 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::delete('/sent-pushes/{id}', 'SentPushController@destroy')->name('destroy');
             Route::get('/sent-pushes/{id}', 'SentPushController@show')->name('show');
         });
-
     });
 
     Route::group(['middleware' => 'admin'], function () {
@@ -251,10 +313,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin-manager'], 'namespace'
             Route::put('/tariffs/{id}', 'TariffController@update')->name('update');
             Route::delete('/tariffs/{id}', 'TariffController@destroy')->name('destroy');
         });
-
     });
-
 });
 
 Auth::routes();
-

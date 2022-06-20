@@ -75,4 +75,9 @@ class UserWrapper implements UserInterface
     {
         return $this->user->tariff();
     }
+
+    public function apiTokens()
+    {
+        return $this->user->apiTokens();
+    }
 }

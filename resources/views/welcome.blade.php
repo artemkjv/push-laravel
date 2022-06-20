@@ -1,329 +1,246 @@
 @extends('layouts.app')
 @section('app-config')
-    style="background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('assets/images/header_background.svg') }}'); background-attachment: fixed; padding-bottom: 0;"
+style="background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('assets/images/header_background.svg') }}'); background-attachment: fixed; padding-bottom: 0;"
 @endsection
 @section('content')
-    <div class="block py-5" style="background-color: transparent;">
-        <div class="row">
-            <div class="col-xl-7">
-                <h1 class="mb-0 block-title">Customer Messaging Delivered</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-7">
-                <p class="block-subtitle mt-xl-5 pb-xl-5">
-                    The market leading self-serve customer engagement solution for Push
-                    Notifications, Email, SMS &amp; In-App.
+<div class="dp_adventages_back">
+    <div class="dp_description_block">
+        <h2 class="dp_description_block_title">
+            Everything You’re Looking For in One Tool
+        </h2>
+        <p class="dp_description_block_subtitle">
+            It’s never been easier to connect with customers.
+        </p>
+        <div class="dp_learn_about_container">
+            <div class="dp_learn_about_block">
+                <p class="dp_block_title">Mobile Push Notifications</p>
+                <p class="dp_block_content">
+                    Be the first message customers see when they pick up their phones.
+                    Notifications are the primary traffic source for most mobile apps.
                 </p>
-                <div class="d-flex justify-content-center justify-content-sm-start mt-4 mt-sm-0" style="gap: 48px;">
-                    <a class="btn btn-lg">Get Started Now</a>
-                    <a class="btn btn-lg btn-yellow">Contact Sales</a>
-                </div>
             </div>
-            <div class="col-xl-5 mt-xl-5 mt-xl-0">
-                <img class="d-none d-xl-block block-image" src="{{ asset('assets/images/header_picture.svg') }}" alt="">
+            <div class="dp_learn_about_block">
+                <p class="dp_block_title">Web Push Notifications</p>
+                <p class="dp_block_content">
+                    Stay in front of your customers even after they leave your site.
+                    Works on Chrome, Safari, Firefox, Edge, Opera, and Yandex.
+                </p>
             </div>
-        </div>
-    </div>
-    <div class="block py-5" style="background-image: url('{{ asset("assets/images/description_background.svg") }}');">
-        <h1 class="semibold-font text-align-center">Everything You’re Looking For in One Tool</h1>
-        <h3 class="text-align-center light-font mb-5 mb-xl-6">It’s never been easier to connect with customers.</h3>
-        <div class="row justify-content-center justify-content-md-evenly gap-2 gap-md-0">
-            <div class="row col-12 col-sm-12 col-md-6 col-lg-12 gap-2 gap-lg-0">
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            Mobile Push Notifications
-                        </div>
-                        <div class="description-card-body">
-                            Be the first message customers see when they pick up their phones.
-                            Notifications are the primary traffic source for most mobile apps.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            Web Push Notifications
-                        </div>
-                        <div class="description-card-body">
-                            Stay in front of your customers even after they leave your site.
-                            Works on Chrome, Safari, Firefox, Edge, Opera, and Yandex.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            Email
-                        </div>
-                        <div class="description-card-body">
-                            Design emails that look great on every device with the drag-and
-                            drop composer. Customize our free templates to match your brand.
-                        </div>
-                    </div>
-                </div>
+            <div class="dp_learn_about_block">
+                <p class="dp_block_title">Email</p>
+                <p class="dp_block_content">
+                    Design emails that look great on every device with the drag-and
+                    drop composer. Customize our free templates to match your brand.
+                </p>
             </div>
-                <div class="row mt-lg-5 ms-lg-5 col-12 col-sm-12 col-md-6 col-lg-12 gap-2 gap-lg-0">
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            SMS
-                        </div>
-                        <div class="description-card-body">
-                            Reach customers directly on their phone for higher engagement.
-                            Communicate with customers who don’t have your app or a
-                            smartphone.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            Journeys
-                        </div>
-                        <div class="description-card-body">
-                            Seamlessly manage your messaging across channels with our
-                            easy-to-use messaging workflow builder, all with no code required.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="description-card">
-                        <div class="description-card-head">
-                            In-App Messages
-                        </div>
-                        <div class="description-card-body">
-                            Deliver messages that create delight. Design banners, pop-ups, and
-                            interstitials; implement without a single line of code.
-                        </div>
-                    </div>
-                </div>
+            <div class="dp_learn_about_block learn_about_row_2">
+                <p class="dp_block_title">In-App Messages</p>
+                <p class="dp_block_content">
+                    Deliver messages that create delight. Design banners, pop-ups, and
+                    interstitials; implement without a single line of code.
+                </p>
+            </div>
+            <div class="dp_learn_about_block">
+                <p class="dp_block_title">SMS</p>
+                <p class="dp_block_content">
+                    Reach customers directly on their phone for higher engagement.
+                    Communicate with customers who don’t have your app or a
+                    smartphone.
+                </p>
+            </div>
+            <div class="dp_learn_about_block">
+                <p class="dp_block_title">Journeys</p>
+                <p class="dp_block_content">
+                    Seamlessly manage your messaging across channels with our
+                    easy-to-use messaging workflow builder, all with no code required.
+                </p>
             </div>
         </div>
     </div>
-    <div class="block py-5">
-        <h1 class="semibold-font text-align-center mt-0">
-            Key to Success for Marketers
-        </h1>
-        <h3 class="text-align-center light-font mb-xl-6">
-            Connect with your audience the right way
-        </h3>
-        <div class="row">
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">15 Minute Setup</div>
-                    <div class="advantage-card-body">
-                        Our users are always shocked at how easy it is to get started.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Real-Time Reporting</div>
-                    <div class="advantage-card-body">
-                        View delivery and conversion performance for every message.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Incredible Scalability</div>
-                    <div class="advantage-card-body">
-                        Millions of users? No problem. We send out billions of notifications
-                        daily.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">A/B Testing</div>
-                    <div class="advantage-card-body">
-                        Compare message performance and automatically send the best.
-                    </div>
-                </div>
-            </div>
+    <div class="dp_advantages_block">
+        <div class="dp_advantages_header">
+            <h2 class="dp_advantages_block_title">
+                Key to Success for Marketers
+            </h2>
+            <p class="dp_advantages_block_subtitle">
+                Connect with your audience the right way
+            </p>
         </div>
-
-        <div class="row pt-xl-5">
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Superior Segmentation</div>
-                    <div class="advantage-card-body">
-                        Create personalized messages and send them to the right audiences.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Automated Messaging</div>
-                    <div class="advantage-card-body">
-                        Set it and forget it. You can trigger notifications based on user
-                        behavior.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Intelligent Delivery</div>
-                    <div class="advantage-card-body">
-                        Leverage machine learning to send your messages at the optimal time.
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="advantage-card">
-                    <div class="advantage-card-head">Analyze Results Anywhere</div>
-                    <div class="advantage-card-body">
-                        Our SDKs are open source and every component is accessible via API.
-                    </div>
-                </div>
-            </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">15 Minute Setup</p>
+            <p class="dp_block_content">
+                Our users are always shocked at how easy it is to get started.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Real-Time Reporting</p>
+            <p class="dp_block_content">
+                View delivery and conversion performance for every message.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Incredible Scalability</p>
+            <p class="dp_block_content">
+                Millions of users? No problem. We send out billions of notifications
+                daily.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">A/B Testing</p>
+            <p class="dp_block_content">
+                Compare message performance and automatically send the best.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Superior Segmentation</p>
+            <p class="dp_block_content">
+                Create personalized messages and send them to the right audiences.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Automated Messaging</p>
+            <p class="dp_block_content">
+                Set it and forget it. You can trigger notifications based on user
+                behavior.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Intelligent Delivery</p>
+            <p class="dp_block_content">
+                Leverage machine learning to send your messages at the optimal time.
+            </p>
+        </div>
+        <div class="dp_advantages_item">
+            <p class="dp_block_title">Analyze Results Anywhere</p>
+            <p class="dp_block_content">
+                Our SDKs are open source and every component is accessible via API.
+            </p>
         </div>
     </div>
-    <div class="block py-5"
-         style="background-image: url('{{ asset('assets/images/developer-bg.svg') }}');">
-        <div class="row">
-            <div class="col-xl-4">
-                <h1 class="semibold-font mt-0">
-                    Loved by Developers
-                </h1>
-                <h3 class="light-font mb-xl-6">
+</div>
+<div class="dp_background">
+    <div class="dp_for_developers">
+        <div class="dp_technologies">
+            <div class="dp_technologies_header">
+                <p class="dp_technologies_title">Loved by Developers</p>
+                <p class="dp_technologies_subtitle">
                     Our founders were developers who built OneSignal out of a personal
                     need. We've made it easy for any business to get running and to
                     get amazing results. All in less than 10 lines of code.
-                </h3>
-                <div class="integrations-list">
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">Apple iOS</a>
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">Android</a>
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">Web Push</a>
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">React Native</a>
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">Unity</a>
-                    <a href="#" class="btn btn-yellow-outline input-rounded text-align-start">Flutter</a>
-                </div>
-                <div class="links-list">
-                    <a href="#" class="link">Read The Getting Started Docs
-                        <img src="{{ asset('assets/images/for_developers_link_arrow.svg') }}" alt="">
-                    </a>
-                    <a href="#" class="link">Get Your Free API Key
-                        <img src="{{ asset('assets/images/for_developers_link_arrow.svg') }}" alt="">
-                    </a>
-                </div>
+                </p>
             </div>
-            <div class="col-xl-8">
-                <div class="developer-image">
-                    <img class="block-image" style="max-width: 755px;" src="{{ asset('assets/images/developer-image.svg') }}" alt="Developer Image">
-                </div>
+
+            <div class="dp_technologies_list">
+                <a href="#" class="dp_technologies_list_item">Apple iOS</a>
+                <a href="#" class="dp_technologies_list_item">Android</a>
+                <a href="#" class="dp_technologies_list_item">Web Push</a>
+                <a href="#" class="dp_technologies_list_item">React Native</a>
+                <a href="#" class="dp_technologies_list_item">Unity</a>
+                <a href="#" class="dp_technologies_list_item">Flutter</a>
+            </div>
+            <div class="dp_technologies_links_list">
+                <a href="#" class="dp_technologies_link">Read The Getting Started Docs
+                    <img src="./assets/images/for_developers_link_arrow.svg" alt="" /></a>
+                <a href="#" class="dp_technologies_link">Get Your Free API Key
+                    <img src="./assets/images/for_developers_link_arrow.svg" alt="" /></a>
             </div>
         </div>
-        <div class="block-footer">
-            <p class="footer-description">
+        <div class="dp_for_developers_image_block"><img src="" alt="" /></div>
+        <div class="dp_bottom_block">
+            <p class="dp_bottom_block_info">
                 Code in any language. We provide native support for every
                 development environment.
             </p>
-            <p class="footer-description">30+ Platform Integrations</p>
+            <p class="dp_bottom_block_info">30+ Platform Integrations</p>
         </div>
     </div>
-    <div class="block py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6">
-                    <img class="block-image max-xl-380" src="{{ asset('assets/images/gradient-block.svg') }}" alt="Gradient">
-                </div>
-                <div class="col-xl-6">
-                    <h1 class="semibold-font mt-0">
-                        Limitless Integrations
-                    </h1>
-                    <h3 class="light-font">
-                        OneSignal integrates with leading analytics, CMS, and eCommerce
-                        solutions including Amplitude, Mixpanel, Segment, HubSpot, Shopify,
-                        WordPress, and many more.
-                    </h3>
-                    <h3 class="light-font">
-                        Sync audiences and user data to trigger real-time messages.
-                    </h3>
-                    <div class="links-list">
-                        <a href="#" class="link">
-                            More Integrations
-                            <img src="{{ asset('assets/images/for_developers_link_arrow.svg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
+</div>
+
+<div class="dp_integration_block">
+    <div class="dp_integration_block_image"><img src="" alt="" /></div>
+    <div class="dp_integration_block_content">
+        <p class="dp_integration_block_content_title">Limitless Integrations</p>
+        <p class="dp_integration_block_content_text">
+            OneSignal integrates with leading analytics, CMS, and eCommerce
+            solutions including Amplitude, Mixpanel, Segment, HubSpot, Shopify,
+            WordPress, and many more.
+        </p>
+        <p class="dp_integration_block_content_text">
+            Sync audiences and user data to trigger real-time messages.
+        </p>
+        <a href="#" class="dp_integration_block_content_link">
+            More Integrations
+            <img src="./assets/images/for_developers_link_arrow.svg" alt="" /></a>
+    </div>
+</div>
+
+<div class="dp_article_preview_container">
+    <div class="dp_article_preview_header">
+        <h2 class="dp_article_preview_title">OneSignal for…</h2>
+        <p class="dp_article_preview_subtitle">Choose your adventure</p>
+    </div>
+
+    <div class="dp_article_preview">
+        <div class="dp_article_preview_image">
+            <img src="../assets/images/article-preview/mobile.jpg" alt="" />
         </div>
-        <h1 class="semibold-font text-align-center" style="margin-top: 175px;">
-            Devonics for...
-        </h1>
-        <h3 class="light-font text-align-center">
-            Choose your adventure
-        </h3>
-        <div class="row image-cards-wrapper" style="padding-top: 90px;">
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="image-card">
-                    <div class="image-card-header">
-                        <img src="{{ asset('assets/images/article-preview/gaming.jpg') }}" alt="">
-                    </div>
-                    <div class="image-card-content">
-                        <p class="title">Gaming</p>
-                        <p class="description">Bring players back to your game</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="image-card">
-                    <div class="image-card-header">
-                        <img src="{{ asset('assets/images/article-preview/news.jpg') }}" alt="">
-                    </div>
-                    <div class="image-card-content">
-                        <p class="title">News/Media</p>
-                        <p class="description">Increase loyalty and impressions</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="image-card">
-                    <div class="image-card-header">
-                        <img src="{{ asset('assets/images/article-preview/ecommerce.jpg') }}" alt="">
-                    </div>
-                    <div class="image-card-content">
-                        <p class="title">eCommerce</p>
-                        <p class="description">Increase your revenue</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="image-card">
-                    <div class="image-card-header">
-                        <img src="{{ asset('assets/images/article-preview/mobile.jpg') }}" alt="">
-                    </div>
-                    <div class="image-card-content">
-                        <p class="title">Mobile</p>
-                        <p class="description">Retain and grow audience</p>
-                    </div>
-                </div>
-            </div>
-
+        <div class="dp_article_preview_descrition">
+            <p class="dp_block_title">Gaming</p>
+            <p class="dp_block_content">Bring players back to your game</p>
         </div>
     </div>
-    <div class="block py-5"
-         style="background-image: url('{{ asset('assets/images/start-now-back.svg') }}')">
-        <h1 class="semibold-font text-align-center">
-            Get Started Today For Free With Our Tool
-        </h1>
-        <h3 class="light-font text-align-center">
-            We’ll get you going in a matter of minutes.
-        </h3>
-        <div class="d-flex justify-content-center" style="gap: 48px; margin-top: 80px;">
-            <a class="btn btn-lg">Get Started Now</a>
-            <a class="btn btn-lg btn-yellow">Contact Sales</a>
+
+    <div class="dp_article_preview">
+        <div class="dp_article_preview_image">
+            <img src="../assets/images/article-preview/ecommerce.jpg" alt="" />
         </div>
 
-        <div class="contact-us text-turquoise text-align-center" style="padding-top: 80px;">
+        <div class="dp_article_preview_descrition">
+            <p class="dp_block_title">News/Media</p>
+            <p class="dp_block_content">Increase loyalty and impressions</p>
+        </div>
+    </div>
+
+    <div class="dp_article_preview">
+        <div class="dp_article_preview_image">
+            <img src="../assets/images/article-preview/news.jpg" alt="" />
+        </div>
+        <div class="dp_article_preview_descrition">
+            <p class="dp_block_title">eCommerce</p>
+            <p class="dp_block_content">Increase your revenue</p>
+        </div>
+    </div>
+
+    <div class="dp_article_preview">
+        <div class="dp_article_preview_image">
+            <img src="../assets/images/article-preview/gaming.jpg" alt="" />
+        </div>
+
+        <div class="dp_article_preview_descrition">
+            <p class="dp_block_title">Mobile</p>
+            <p class="dp_block_content">Retain and grow audience</p>
+        </div>
+    </div>
+</div>
+<div class="dp_start_now_block_background">
+    <div class="dp_start_now_block">
+        <div class="dp_start_now_block_header">
+            <h1 class="dp_start_now_block_title">
+                Get Started Today For Free With Our Tool
+            </h1>
+            <p class="dp_start_now_block_subtitle">
+                We’ll get you going in a matter of minutes.
+            </p>
+        </div>
+
+        <div class="dp_start_now_block_buttons">
+            <a class="dp_start_btn" href="{{ route('login') }}">Get Started Now</a> <a class="dp_contact_btn " href="/contact-us">Contact Sales</a>
+        </div>
+        <p class="dp_contact_us">
             Have questions?
-            <a href="" class="text-decoration-underline text-turquoise">Chat with an expert.</a>
-        </div>
+            <a class="dp_contact_us_link" href="#">Chat with an expert.</a>
+        </p>
     </div>
+</div>
+
 @endsection

@@ -27,9 +27,10 @@ class StoreAppRequest extends JsonRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'sender_id' => 'required|integer',
-            'server_key' => 'required|string|size:152|regex:/AAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{140}/',
-            'platform_id' => 'required|integer|max:3|min:1'
+            'platform_id' => 'required|integer|max:3|min:1',
+            'sender_id' => 'required_unless:platform_id,2|nullable|integer',
+            'server_key' => 'required_unless:platform_id,2|string|size:152|regex:/AAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{140}/',
+            'private_key' => 'nullable|string',
         ];
     }
 }

@@ -71,4 +71,9 @@ class AdminWrapper implements UserInterface
     {
         return null;
     }
+
+    public function apiTokens() {
+        return $this->user->apiTokens();
+    }
+
 }

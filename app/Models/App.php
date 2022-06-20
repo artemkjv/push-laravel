@@ -17,6 +17,8 @@ class App extends Model
         'title',
         'server_key',
         'sender_id',
+        'certificate',
+        'private_key',
     ];
 
     public function user(){
