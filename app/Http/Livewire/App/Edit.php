@@ -6,6 +6,7 @@ use App\Models\App;
 use App\Repositories\PlatformRepositoryInterface;
 use Illuminate\Support\Collection;
 use Livewire\Component;
+use function Livewire\str;
 
 class Edit extends Component
 {
@@ -22,7 +23,10 @@ class Edit extends Component
     ) {
         $this->platforms = $platformRepository->getAll();
         $this->app = $app;
-        $this->state['platforms'] = $app->platforms->pluck('id')->toArray();
+        $chosenPlatforms = $app->platforms->pluck('id')->toArray();
+        foreach ($chosenPlatforms as $chosenPlatform) {
+            $this->state['platforms'][] = (string) $chosenPlatform;
+        }
     }
 
     public function render()

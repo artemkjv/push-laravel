@@ -17,7 +17,7 @@
                                    value="{{ old('title') }}"
                                    placeholder="Title">
                         </div>
-                        @if($state['platform'] !== "2")
+                        @if($state['platform'] !== '2')
                             <div class="form-group">
                                 <label for="server_key">Server Key</label>
                                 <input type="text" name="server_key"
@@ -33,7 +33,24 @@
                                        value="{{ old('sender_id') }}"
                                        placeholder="Sender Id">
                             </div>
-                        @else
+                        @endif
+                        @if($state['platform'] === '3')
+                            <div class="form-group">
+                                <label for="web_private_key">Safari Private Key</label>
+                                <input type="text" name="web_private_key"
+                                       class="form-control @error('web_private_key') is-invalid @enderror" id="web_private_key"
+                                       value="{{ old('web_private_key') }}"
+                                       placeholder="Safari Private Key">
+                            </div>
+                            <div class="form-group">
+                                <label for="web_certificate">Safari Certificate P12</label>
+                                <input type="file" name="web_certificate"
+                                       accept="application/pkcs12"
+                                       class="form-control @error('web_certificate') is-invalid @enderror" id="web_certificate"
+                                       placeholder="Safari Certificate">
+                            </div>
+                        @endif
+                        @if($state['platform'] === '2')
                             <div class="form-group">
                                 <label for="private_key">Private Key</label>
                                 <input type="text" name="private_key"

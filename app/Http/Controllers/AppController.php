@@ -64,7 +64,9 @@ class AppController extends Controller
         $this->authorize('create', App::class);
         $validated = $request->validated();
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
+        $webPath = $this->appService->handleUploadedCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
         $validated['certificate'] = $path;
+        $validated['web_certificate'] = $webPath;
         $platform_id = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
         $app->platforms()->attach([$platform_id]);
@@ -105,6 +107,10 @@ class AppController extends Controller
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
         if(!is_null($path)) {
             $validated['certificate'] = $path;
+        }
+        $webPath = $this->appService->handleUploadedCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
+        if(!is_null($webPath)) {
+            $validated['web_certificate'] = $webPath;
         }
         $platforms = $validated['platforms'];
         $app->update($validated);

@@ -30,6 +30,8 @@ class StoreAppRequest extends FormRequest
             'server_key' => 'required_unless:platform_id,2|string|size:152|regex:/AAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{140}/',
             'certificate' => 'required_if:platform_id,2|nullable|file',
             'private_key' => 'nullable|string',
+            'web_certificate' => 'nullable|file',
+            'web_private_key' => 'nullable|string',
             'platform_id' => 'required|integer|max:3|min:1'
         ];
     }

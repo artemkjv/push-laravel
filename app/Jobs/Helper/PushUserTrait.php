@@ -17,15 +17,42 @@ trait PushUserTrait
 
     public function send($pushUsers, Pushable $pushable)
     {
-        $apnsPushUsers = $pushUsers->where('platform_id', 2);
-        $fcmPushUsers = $pushUsers->where('platform_id', '!=', 2);
-        $this->sendFcmUsers($fcmPushUsers, $pushable);
-        $this->sendApnsUsers($apnsPushUsers, $pushable);
+        $androidPushUsers = $pushUsers->where('platform_id', 1);
+        $iosPushUsers = $pushUsers->where('platform_id', 2);
+        $webPushUsers = $pushUsers->where('platform_id', 3);
+        $this->sendAndroidUsers($androidPushUsers, $pushable);
+        $this->sendIosUsers($iosPushUsers, $pushable);
+        $this->sendWebUsers($webPushUsers, $pushable);
     }
 
-    private function sendFcmUsers(Collection $pushUsers, Pushable $pushable)
+    private function sendWebUsers(Collection $pushUsers, Pushable $pushable) {
+        if($pushUsers->count()) {
+            $sentPush = $this->createSentPush($pushable, $pushUsers->count());
+            $safariUsers = $pushUsers->where('is_safari', true);
+            $fcmUsers = $pushUsers->where('is_safari', false);
+            $this->sendAndroidUsers($fcmUsers, $pushable);
+            if($safariUsers->count() > 0) {
+                $appsPushUsers = $safariUsers->groupBy('app_id');
+                foreach ($appsPushUsers as $appPushUsers) {
+                    // Create Messaging Service
+                    $pushUser = $appPushUsers->first();
+                    $certificate = Storage::path($pushUser->app->web_certificate);
+                    $password = $pushUser->app->web_private_key;
+                    $languagesPushUsers = $appPushUsers->groupBy('language_id');
+                    foreach ($languagesPushUsers as $languageId => $languagePushUsers) {
+                        $chunksPushUsers = $languagePushUsers->chunk(1000);
+                        foreach ($chunksPushUsers as $chunksPushUser) {
+                            // Send Pushes
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private function sendAndroidUsers(Collection $pushUsers, Pushable $pushable)
     {
-        if ($pushUsers->count()) {
+        if ($pushUsers->count() > 0) {
             $sentPush = $this->createSentPush($pushable, $pushUsers->count());
             $messagingService = App::make(MessagingService::class);
             $sortedArray = [];
@@ -43,7 +70,7 @@ trait PushUserTrait
         }
     }
 
-    private function sendApnsUsers(Collection $pushUsers, Pushable $pushable)
+    private function sendIosUsers(Collection $pushUsers, Pushable $pushable)
     {
         if ($pushUsers->count() > 0) {
             $sentPush = $this->createSentPush($pushable, $pushUsers->count());

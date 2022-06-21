@@ -37,6 +37,8 @@ class UpdateAppRequest extends FormRequest
             ],
             'certificate' => ['nullable', 'file'],
             'private_key' => 'nullable|string',
+            'web_certificate' => ['nullable', 'file'],
+            'web_private_key' => 'nullable|string',
             'platforms' => 'required|array'
         ];
     }
