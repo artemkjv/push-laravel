@@ -64,7 +64,8 @@ class AppController extends Controller
         $this->authorize('create', App::class);
         $validated = $request->validated();
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
-        $webPath = $this->appService->handleUploadedCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
+        $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
+        $validated['web_icon'] = $this->appService->handleWebIcon($request->file('web_icon'));
         $validated['certificate'] = $path;
         $validated['web_certificate'] = $webPath;
         $platform_id = $validated['platform_id'];
@@ -108,9 +109,16 @@ class AppController extends Controller
         if(!is_null($path)) {
             $validated['certificate'] = $path;
         }
-        $webPath = $this->appService->handleUploadedCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
+        $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
         if(!is_null($webPath)) {
             $validated['web_certificate'] = $webPath;
+        }
+        $webIcon = $this->appService->handleWebIcon($request->file('web_icon'));
+        if(!is_null($webIcon)) {
+            $validated['web_icon'] = $webIcon;
+        } elseif (is_null($app->web_icon)) {
+            return redirect()->back()
+                ->withErrors(['web_icon' => 'The web icon field is required.']);
         }
         $platforms = $validated['platforms'];
         $app->update($validated);

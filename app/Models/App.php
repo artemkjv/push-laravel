@@ -19,8 +19,10 @@ class App extends Model
         'sender_id',
         'certificate',
         'private_key',
+        'bundle',
         'web_certificate',
-        'web_private_key'
+        'web_private_key',
+        'web_icon',
     ];
 
     public function user(){

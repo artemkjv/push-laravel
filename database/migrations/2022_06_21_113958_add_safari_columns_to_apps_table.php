@@ -15,10 +15,13 @@ class AddSafariColumnsToAppsTable extends Migration
     {
         Schema::table('apps', function (Blueprint $table) {
             $table->string('web_certificate')
-                ->after('private_key')
+                ->after('bundle')
                 ->nullable();
             $table->string('web_private_key')
-                ->after('private_key')
+                ->after('bundle')
+                ->nullable();
+            $table->string('web_icon')
+                ->after('bundle')
                 ->nullable();
         });
     }

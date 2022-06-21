@@ -34,23 +34,14 @@
                                        placeholder="Sender Id">
                             </div>
                         @endif
-                        @if($state['platform'] === '3')
-                            <div class="form-group">
-                                <label for="web_private_key">Safari Private Key</label>
-                                <input type="text" name="web_private_key"
-                                       class="form-control @error('web_private_key') is-invalid @enderror" id="web_private_key"
-                                       value="{{ old('web_private_key') }}"
-                                       placeholder="Safari Private Key">
-                            </div>
-                            <div class="form-group">
-                                <label for="web_certificate">Safari Certificate P12</label>
-                                <input type="file" name="web_certificate"
-                                       accept="application/pkcs12"
-                                       class="form-control @error('web_certificate') is-invalid @enderror" id="web_certificate"
-                                       placeholder="Safari Certificate">
-                            </div>
-                        @endif
                         @if($state['platform'] === '2')
+                            <div class="form-group">
+                                <label for="private_key">Bundle</label>
+                                <input type="text" name="bundle"
+                                       class="form-control @error('bundle') is-invalid @enderror" id="bundle"
+                                       value="{{ old('bundle') }}"
+                                       placeholder="Bundle">
+                            </div>
                             <div class="form-group">
                                 <label for="private_key">Private Key</label>
                                 <input type="text" name="private_key"
@@ -66,6 +57,30 @@
                                        placeholder="Certificate">
                             </div>
                         @endif
+                        @if($state['platform'] === '3')
+                            <div class="form-group">
+                                <label for="web_private_key">Safari Private Key</label>
+                                <input type="text" name="web_private_key"
+                                       class="form-control @error('web_private_key') is-invalid @enderror"
+                                       id="web_private_key"
+                                       value="{{ old('web_private_key') }}"
+                                       placeholder="Safari Private Key">
+                            </div>
+                            <div class="form-group">
+                                <label for="web_certificate">Safari Certificate P12</label>
+                                <input type="file" name="web_certificate"
+                                       accept="application/pkcs12"
+                                       class="form-control @error('web_certificate') is-invalid @enderror"
+                                       id="web_certificate"
+                                       placeholder="Safari Certificate">
+                            </div>
+                            <div class="form-group">
+                                <label for="web_icon">Default Icon</label>
+                                <input type="file" accept="image/png" name="web_icon" id="web_icon"
+                                       class="form-control @error('web_icon') is-invalid @enderror"
+                                       placeholder="Default Icon">
+                            </div>
+                        @endif
                     </div>
                     <!-- /.col -->
                     @if(count($platforms))
@@ -73,7 +88,9 @@
                             <div class="form-group mt-3 platform-group text-center">
                                 @foreach($platforms as $platform)
                                     <label class="radio-image me-4">
-                                        <input wire:model="state.platform" @if((int) $state['platform'] === $platform['id']) checked @endif type="radio" name="platform_id"
+                                        <input wire:model="state.platform"
+                                               @if((int) $state['platform'] === $platform['id']) checked
+                                               @endif type="radio" name="platform_id"
                                                value="{{ $platform->id }}">
                                         <img src="{{ $platform->image }}" width="150" alt="{{ $platform->name }}">
                                     </label>
