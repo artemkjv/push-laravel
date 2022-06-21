@@ -9,6 +9,7 @@ use App\Repositories\AppRepositoryInterface;
 use App\Repositories\PushTransitionRepositoryInterface;
 use App\Repositories\PushUserRepositoryInterface;
 use App\Repositories\SegmentRepositoryInterface;
+use Carbon\Carbon;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -41,8 +42,9 @@ class HomeChart extends BaseChart
     {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $apps = $this->appRepository->getByUser($userDecorator);
-        $transitions = $this->pushTransitionRepository->getCount($apps, collect(), $request->get('from'), $request->get('to'));
-        $labels = [];
+        $fromDate = Carbon::now()->firstOfMonth()->format('Y-m-d');
+        $toDate = Carbon::now()->lastOfMonth()->format('Y-m-d');
+        $transitions = $this->pushTransitionRepository->getCount($apps, collect(), $request->get('from', $fromDate), $request->get('to', $toDate));        $labels = [];
         $data = [];
         foreach ($transitions as $transition){
             $labels[] = $transition->clicked_at_date;

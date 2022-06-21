@@ -5,11 +5,11 @@
         <form action="{{ route('home') }}" class="d-flex filters-wrapper mb-2">
             <div class="form-group">
                 <label for="from">Date From</label>
-                <input class="form-control" name="from" value="{{ \request()->get('from') }}" id="from" type="date" placeholder="Date From">
+                <input class="form-control" name="from" value="{{ \request()->get('from', \Carbon\Carbon::now()->firstOfMonth()->format('Y-m-d')) }}" id="from" type="date" placeholder="Date From">
             </div>
             <div class="form-group">
                 <label for="to">Date To</label>
-                <input class="form-control" value="{{ \request()->get('to') }}" name="to" id="to" type="date" placeholder="Date To">
+                <input class="form-control" value="{{ \request()->get('to', \Carbon\Carbon::now()->lastOfMonth()->format('Y-m-d')) }}" name="to" id="to" type="date" placeholder="Date To">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
