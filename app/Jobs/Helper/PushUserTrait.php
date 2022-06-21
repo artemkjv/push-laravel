@@ -80,7 +80,7 @@ trait PushUserTrait
                 $pushUser = $appPushUsers->first();
                 $certificate = Storage::path($pushUser->app->certificate);
                 $password = $pushUser->app->private_key;
-                $bundle = $pushUser->app->title;
+                $bundle = $pushUser->app->bundle;
                 $languagesPushUsers = $appPushUsers->groupBy('language_id');
                 foreach ($languagesPushUsers as $languageId => $languagePushUsers) {
                     $chunksPushUsers = $languagePushUsers->chunk(1000);

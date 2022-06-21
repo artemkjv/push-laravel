@@ -48,4 +48,10 @@ class AppService
         }
     }
 
+    public function handleWebIcon($icon) {
+        if(!is_null($icon)){
+            return $icon->store('web-icons', 'public');
+        }
+    }
+
 }

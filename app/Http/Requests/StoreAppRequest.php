@@ -28,10 +28,12 @@ class StoreAppRequest extends FormRequest
             'title' => 'required|string|max:255',
             'sender_id' => 'required_unless:platform_id,2|nullable|integer',
             'server_key' => 'required_unless:platform_id,2|string|size:152|regex:/AAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{140}/',
+            'bundle' => 'required_if:platform_id,2|nullable|string',
             'certificate' => 'required_if:platform_id,2|nullable|file',
             'private_key' => 'nullable|string',
             'web_certificate' => 'nullable|file',
             'web_private_key' => 'nullable|string',
+            'web_icon' => 'required_if:platform_id,3|nullable|image|mimetypes:image/png',
             'platform_id' => 'required|integer|max:3|min:1'
         ];
     }

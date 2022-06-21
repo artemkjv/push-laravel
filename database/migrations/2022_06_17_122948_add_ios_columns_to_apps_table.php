@@ -20,6 +20,8 @@ class AddIosColumnsToAppsTable extends Migration
             $table->string('private_key')
                 ->after('sender_id')
                 ->nullable();
+            $table->string('bundle')
+                ->nullable();
         });
     }
 
