@@ -22,7 +22,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.8",
-        "pragmarx/google2fa-laravel": "^2.0"
+        "pragmarx/google2fa-laravel": "^2.0",
+        "ext-zip": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
