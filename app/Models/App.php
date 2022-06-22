@@ -20,9 +20,12 @@ class App extends Model
         'certificate',
         'private_key',
         'bundle',
+        'site_name',
+        'site_url',
         'web_certificate',
         'web_private_key',
         'web_icon',
+        'safari_web_id',
     ];
 
     public function user(){

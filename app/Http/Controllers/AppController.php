@@ -64,12 +64,25 @@ class AppController extends Controller
         $this->authorize('create', App::class);
         $validated = $request->validated();
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
-        $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
         $validated['web_icon'] = $this->appService->handleWebIcon($request->file('web_icon'));
         $validated['certificate'] = $path;
-        $validated['web_certificate'] = $webPath;
         $platform_id = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
+        try {
+            $webPath = $this->appService->handleUploadedWebCertificate(
+                $request->file('web_certificate'),
+                $validated['web_private_key'] ?? '',
+                $app
+            );
+            $app->update([
+                'web_certificate' => $webPath
+            ]);
+        } catch (\Exception $exception) {
+            return redirect()->route('app.edit', ['id' => $app->id])
+                ->withErrors([
+                    'certificate' => $exception->getMessage()
+                ]);
+        }
         $app->platforms()->attach([$platform_id]);
         return redirect()->route('app.show', ['id' => $app->id]);
     }
@@ -109,7 +122,14 @@ class AppController extends Controller
         if(!is_null($path)) {
             $validated['certificate'] = $path;
         }
-        $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '');
+        try {
+            $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '', $app);
+        } catch (\Exception $exception) {
+            return redirect()->back()
+                ->withErrors([
+                    'certificate' => $exception->getMessage()
+                ]);
+        }
         if(!is_null($webPath)) {
             $validated['web_certificate'] = $webPath;
         }

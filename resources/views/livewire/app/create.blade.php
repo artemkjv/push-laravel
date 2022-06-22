@@ -59,6 +59,30 @@
                         @endif
                         @if($state['platform'] === '3')
                             <div class="form-group">
+                                <label for="site_name">Site Name</label>
+                                <input type="text" name="site_name"
+                                       class="form-control @error('site_name') is-invalid @enderror"
+                                       id="site_name"
+                                       value="{{ old('site_name') }}"
+                                       placeholder="Site Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="site_url">Site Url</label>
+                                <input type="url" name="site_url"
+                                       class="form-control @error('site_url') is-invalid @enderror"
+                                       id="site_url"
+                                       value="{{ old('site_url') }}"
+                                       placeholder="Site Url">
+                            </div>
+                            <div class="form-group">
+                                <label for="safari_web_id">Safari Web Id</label>
+                                <input type="text" name="safari_web_id"
+                                       class="form-control @error('safari_web_id') is-invalid @enderror"
+                                       id="safari_web_id"
+                                       value="{{ old('safari_web_id') }}"
+                                       placeholder="Safari Web Id">
+                            </div>
+                            <div class="form-group">
                                 <label for="web_private_key">Safari Private Key</label>
                                 <input type="text" name="web_private_key"
                                        class="form-control @error('web_private_key') is-invalid @enderror"

@@ -52,6 +52,17 @@ class UpdateAppRequest extends FormRequest
             ],
             'certificate' => ['nullable', 'file'],
             'private_key' => 'nullable|string',
+            'site_name' => [
+                Rule::requiredIf(fn() => in_array(3, $this->post('platforms', []))),
+                'nullable',
+                'string'
+            ],
+            'site_url' => [
+                Rule::requiredIf(fn() => in_array(3, $this->post('platforms', []))),
+                'nullable',
+                'active_url'
+            ],
+            'safari_web_id' => 'nullable|string',
             'web_certificate' => ['nullable', 'file'],
             'web_private_key' => 'nullable|string',
             'web_icon' => ['nullable', 'image', 'mimetypes:image/png'],
