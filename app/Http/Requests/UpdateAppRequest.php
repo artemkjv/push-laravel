@@ -62,7 +62,7 @@ class UpdateAppRequest extends FormRequest
                 'nullable',
                 'active_url'
             ],
-            'safari_web_id' => 'nullable|string',
+            'safari_web_id' => 'nullable|string|unique:apps,safari_web_id',
             'web_certificate' => ['nullable', 'file'],
             'web_private_key' => 'nullable|string',
             'web_icon' => ['nullable', 'image', 'mimetypes:image/png'],

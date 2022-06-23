@@ -9,6 +9,8 @@ interface AppRepositoryInterface
 
     public function save($data);
 
+    public function getBySafariWebId($safariWebId);
+
     public function getById(int $id);
 
     public function getByIdAndUser(int $id, UserInterface $userDecorator);

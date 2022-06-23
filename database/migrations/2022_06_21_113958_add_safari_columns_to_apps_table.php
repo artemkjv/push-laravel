@@ -22,6 +22,7 @@ class AddSafariColumnsToAppsTable extends Migration
                 ->nullable();
             $table->string('safari_web_id')
                 ->after('bundle')
+                ->unique()
                 ->nullable();
             $table->string('web_certificate')
                 ->after('bundle')

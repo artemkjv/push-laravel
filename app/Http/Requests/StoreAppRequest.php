@@ -33,7 +33,7 @@ class StoreAppRequest extends FormRequest
             'private_key' => 'nullable|string',
             'site_name' => 'required_if:platform_id,3|nullable|string',
             'site_url' => 'required_if:platform_id,3|nullable|active_url',
-            'safari_web_id' => 'nullable|string',
+            'safari_web_id' => 'nullable|string|unique:apps,safari_web_id',
             'web_certificate' => 'nullable|file',
             'web_private_key' => 'nullable|string',
             'web_icon' => 'required_if:platform_id,3|nullable|image|mimetypes:image/png',

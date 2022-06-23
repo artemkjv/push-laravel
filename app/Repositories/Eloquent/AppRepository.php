@@ -61,4 +61,9 @@ class AppRepository implements AppRepositoryInterface
             ->firstOrFail();
     }
 
+    public function getBySafariWebId($safariWebId)
+    {
+        return App::where('safari_web_id', $safariWebId)
+            ->firstOrFail();
+    }
 }
