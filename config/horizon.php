@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit' => 512,
 
     /*
     |--------------------------------------------------------------------------
@@ -180,8 +180,10 @@ return [
         'production' => [
             'supervisor-1' => [
                 'maxProcesses' => 10,
-                'balanceMaxShift' => 1,
-                'balanceCooldown' => 3,
+                'queue' => ['send-custom-push', 'send-auto-push', 'send-weekly-push', 'created-push-user', 'safari-certificate', 'segment-push-users'],
+                'balance' => 'auto',
+                'processes' => 10,
+                'tries' => 3,
             ],
         ],
 
