@@ -4,7 +4,9 @@ namespace App\Repositories\Eloquent;
 
 use App\Libraries\Decoration\UserInterface;
 use App\Models\Segment;
+use App\Models\User;
 use App\Repositories\SegmentRepositoryInterface;
+use Illuminate\Database\Query\Builder;
 
 class SegmentRepository implements SegmentRepositoryInterface
 {
@@ -38,7 +40,12 @@ class SegmentRepository implements SegmentRepositoryInterface
                 $query->where('name', 'LIKE', "%$search%");
             })
             ->orderByDesc('id')
-            ->withCount('pushUsers')
+            ->withCount(['pushUsers' => function ($query) use ($userDecorator) {
+                if(\request()->user()->role === config('roles.moderator')) {
+                    $appIds = $userDecorator->apps()->pluck('id');
+                    $query->whereIn('push_users.app_id', $appIds);
+                }
+            }])
             ->paginate($paginate);
     }
 

@@ -169,8 +169,8 @@ return [
             'connection' => 'redis',
             'queue' => ['default'],
             'balance' => 'auto',
-            'maxProcesses' => 1,
-            'memory' => 128,
+            'maxProcesses' => 10,
+            'memory' => 512,
             'tries' => 1,
             'nice' => 0,
         ],
@@ -187,10 +187,10 @@ return [
 
         'local' => [
             'supervisor-1' => [
-                'maxProcesses' => 3,
+                'maxProcesses' => 10,
                 'queue' => ['send-custom-push', 'send-auto-push', 'send-weekly-push', 'created-push-user', 'safari-certificate', 'segment-push-users'],
                 'balance' => 'auto',
-                'processes' => 6,
+                'processes' => 10,
                 'tries' => 3,
             ],
         ],
