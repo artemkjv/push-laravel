@@ -13,11 +13,11 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class SegmentPushUserJob implements ShouldQueue
+class SegmentPushUserJob implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private Segment $segment;
+    public Segment $segment;
     private PushUserRepositoryInterface $pushUserRepository;
     private SegmentRepositoryInterface $segmentRepository;
 
@@ -42,11 +42,14 @@ class SegmentPushUserJob implements ShouldQueue
     public function handle()
     {
         $apps = $this->segment->user->apps;
-        try {
-            $pushUsers = $this->pushUserRepository->getNotRelatedWithSegmentByApps($this->segment, $apps);
-            $this->segment->pushUsers()->sync($pushUsers);
-        } catch (\Throwable $e){
-            echo $e->getMessage();
-        }
+        $pushUsers = $this->pushUserRepository->getNotRelatedWithSegmentByApps($this->segment, $apps);
+        $this->segment->pushUsers()->sync($pushUsers);
+    }
+
+    public $uniqueFor = 3600;
+
+    public function uniqueId()
+    {
+        return $this->segment->id;
     }
 }
