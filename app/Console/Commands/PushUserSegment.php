@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SegmentPushUserJob;
 use App\Repositories\PushUserRepositoryInterface;
 use App\Repositories\SegmentRepositoryInterface;
 use Illuminate\Console\Command;
@@ -49,13 +50,7 @@ class PushUserSegment extends Command
     {
         $segments = $this->segmentRepository->getAll();
         foreach ($segments as $segment){
-            $apps = $segment->user->apps;
-            try {
-                $pushUsers = $this->pushUserRepository->getNotRelatedWithSegmentByApps($segment, $apps);
-                $segment->pushUsers()->sync($pushUsers);
-            } catch (\Throwable $e){
-                $this->info($e->getMessage());
-            }
+            SegmentPushUserJob::dispatch($segment);
         }
         return 1;
     }

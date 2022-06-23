@@ -132,6 +132,7 @@ class PushUserRepository implements PushUserRepositoryInterface
         $appIds = $apps->pluck('id');
         return PushUser::query()
             ->whereIn('app_id', $appIds)
+            ->where('status', PushUser::SUBSCRIBED_STATUS)
             ->where(function ($query) use ($parentFilters){
                 foreach ($parentFilters as $key => $parentFilter){
                     $children = $parentFilter->children;
