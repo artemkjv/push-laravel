@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Repositories\AppRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,6 +28,7 @@ class SafariController extends Controller
     }
 
     public function log() {
+        Log::debug(implode('\n', \request()->all()));
         return \response();
     }
 
