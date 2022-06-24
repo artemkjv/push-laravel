@@ -26,7 +26,7 @@
 <div id="notification-dialog"></div>
 <div id="app">
     @include('components.header')
-
+    <button class="btn-push">Request pushes</button>
     <div class="d-flex" id="wrapper">
         @include('components.sidebar')
         <div id="page-content-wrapper">
@@ -42,7 +42,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
 <script src="{{asset('assets/js/webpush.js?id=2')}}"></script>
 <script>
-    const cookieService = new Cookie()
+    /*const cookieService = new Cookie()
     const notificationAccess = cookieService.getCookie('notification_access')
     if(notificationAccess === null && ("Notification" in window)){
         $('#notification-dialog').dialogBox({
@@ -57,11 +57,13 @@
 
             }
         })
-        $('#notification-dialog .dialog-btn-confirm').on("click", function () {
-            DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
-            cookieService.setCookie('notification_access', true)
-        })
-    }
+
+    }*/
+    document.querySelector('.btn-push').addEventListener('click', function() {
+        DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
+
+    });
+
 </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
