@@ -19,7 +19,6 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
     Route::group(['as' => 'api.app.'], function (){
         Route::get('/apps/{uuid}/show', 'AppController@show')->name('show');
         Route::group(['middleware' => 'api.auth'], function (){
-            Route::post('/apps/store', 'AppController@store')->name('store');
             Route::put('/apps/{uuid}', 'AppController@update')->name('update');
         });
     });

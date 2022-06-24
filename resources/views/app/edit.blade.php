@@ -20,5 +20,12 @@
     </section>
 
     <!-- Main content -->
-    @livewire('app.edit', compact('app'))
+    <section class="content">
+        <div class="container-fluid">
+            <form role="form" method="post" enctype="multipart/form-data"
+                  action="{{ route('app.update', ['id' => $app->id]) }}">
+                @livewire('app.edit', compact('app'))
+            </form>
+        </div><!-- /.container-fluid -->
+    </section>
 @endsection

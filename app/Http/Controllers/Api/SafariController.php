@@ -30,8 +30,6 @@ class SafariController extends Controller
         return \response();
     }
 
-    public function saveDevice($token, $safariWebId) {
-        
-    }
+
 
 }

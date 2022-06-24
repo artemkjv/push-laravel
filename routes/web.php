@@ -321,7 +321,6 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
     Route::group(['prefix' => 'v1', 'as' => 'safari.v1.'], function () {
         Route::post('/pushPackages/{safari_web_id}', 'SafariController@showPackage')->name('showPackage');
         Route::post('/log', 'SafariController@log')->name('log');
-        Route::post('/devices/{token}/registration/{safari_web_id}', 'SafariController@saveDevice')->name('saveDevice');
     });
 
 });

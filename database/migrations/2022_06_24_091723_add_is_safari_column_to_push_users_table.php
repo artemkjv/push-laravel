@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsTestColumnToPushUsersTable extends Migration
+class AddIsSafariColumnToPushUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddIsTestColumnToPushUsersTable extends Migration
     public function up()
     {
         Schema::table('push_users', function (Blueprint $table) {
-            $table->boolean('is_test')
+            $table->boolean('is_safari')
                 ->default(false);
         });
     }
@@ -27,7 +27,7 @@ class AddIsTestColumnToPushUsersTable extends Migration
     public function down()
     {
         Schema::table('push_users', function (Blueprint $table) {
-            $table->dropColumn('is_test');
+            $table->dropColumn('is_safari');
         });
     }
 }

@@ -27,11 +27,4 @@ class AppController extends Controller
         );
     }
 
-    public function store(StoreAppRequest $request){
-        $payload = $request->validated();
-        return new AppResource(
-            $this->appRepository->save($payload)
-        );
-    }
-
 }

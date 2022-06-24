@@ -17,6 +17,11 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
-    @livewire('app.create')
+    <section class="content">
+        <div class="container-fluid">
+            <form role="form" method="post" action="{{ route('app.store') }}" enctype="multipart/form-data">
+                @livewire('app.create')
+            </form>
+        </div><!-- /.container-fluid -->
+    </section>
 @endsection

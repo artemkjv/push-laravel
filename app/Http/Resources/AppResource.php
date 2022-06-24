@@ -17,6 +17,7 @@ class AppResource extends JsonResource
         return [
             'sender_id' => $this->sender_id,
             'uuid' => $this->uuid,
+            'safari_web_id' => $this->safari_web_id,
         ];
     }
 }
