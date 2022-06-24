@@ -65,7 +65,7 @@ const SafariPush = {
         SafariPush.api.getApp(appId)
             .then(data => {
                 var appId = appId
-                var safari_web_id = safari_web_id
+                var safari_web_id = data.safari_web_id
                 SafariPush.requestPermission()
             })
     },
