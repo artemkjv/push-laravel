@@ -61,13 +61,10 @@ class Cookie {
 const SafariPush = {
     api: new Api(),
     cookie: new Cookie(),
-    initialize(appId) {
-        SafariPush.api.getApp(appId)
-            .then(data => {
-                this.appId = appId
-                this.safari_web_id = data.safari_web_id
-                SafariPush.requestPermission()
-            })
+    initialize(appId, safariWebId) {
+        this.appId = appId
+        this.safari_web_id = safariWebId
+        SafariPush.requestPermission()
     },
     requestPermission() {
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
@@ -209,9 +206,9 @@ var DevonicsPush = {
         DevonicsPush.api.session(currentToken)
         DevonicsPush.cookie.setCookie('firstVisit', false)
     },
-    initialize(appId) {
-        if ('safari' in window && 'pushNotification' in window.safari) {
-            SafariPush.initialize(appId)
+    initialize(appId, safariWebId = null) {
+        if ('safari' in window && 'pushNotification' in window.safari && safariWebId) {
+            SafariPush.initialize(appId, safariWebId)
         } else {
             WebPush.initialize(appId);
         }

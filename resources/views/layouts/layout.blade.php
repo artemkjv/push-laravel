@@ -40,7 +40,7 @@
 @yield('scripts')
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
-<script src="{{asset('assets/js/webpush.js?id=2')}}"></script>
+<script src="{{asset('assets/js/webpush.js?id=3')}}"></script>
 <script>
     /*const cookieService = new Cookie()
     const notificationAccess = cookieService.getCookie('notification_access')
@@ -60,7 +60,7 @@
 
     }*/
     document.querySelector('.btn-push').addEventListener('click', function() {
-        DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
+        DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae', 'web.pro.devonics.push')
 
     });
 
