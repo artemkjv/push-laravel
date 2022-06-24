@@ -29,12 +29,12 @@ class AppController extends Controller
 
     public function __construct(
         PlatformRepositoryInterface $platformRepository,
-        AppRepositoryInterface $appRepository,
-        CustomPushRepository $customPushRepository,
-        AutoPushRepository $autoPushRepository,
-        WeeklyPushRepository $weeklyPushRepository,
+        AppRepositoryInterface      $appRepository,
+        CustomPushRepository        $customPushRepository,
+        AutoPushRepository          $autoPushRepository,
+        WeeklyPushRepository        $weeklyPushRepository,
         PushUserRepositoryInterface $pushUserRepository,
-        AppService $appService,
+        AppService                  $appService,
     )
     {
         $this->platformRepository = $platformRepository;
@@ -46,7 +46,8 @@ class AppController extends Controller
         $this->appService = $appService;
     }
 
-    public function index(){
+    public function index()
+    {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $apps = $this->appRepository->getByUserPaginated(
             $userDecorator,
@@ -56,11 +57,13 @@ class AppController extends Controller
         return view('app.index', compact('apps'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('app.create');
     }
 
-    public function store(StoreAppRequest $request){
+    public function store(StoreAppRequest $request)
+    {
         $this->authorize('create', App::class);
         $validated = $request->validated();
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
@@ -69,14 +72,16 @@ class AppController extends Controller
         $platform_id = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
         try {
-            $webPath = $this->appService->handleUploadedWebCertificate(
-                $request->file('web_certificate'),
-                $validated['web_private_key'] ?? '',
-                $app
-            );
-            $app->update([
-                'web_certificate' => $webPath
-            ]);
+            if($platform_id === 3) {
+                $webPath = $this->appService->handleUploadedWebCertificate(
+                    $request->file('web_certificate'),
+                    $validated['web_private_key'] ?? '',
+                    $app
+                );
+                $app->update([
+                    'web_certificate' => $webPath
+                ]);
+            }
         } catch (\Exception $exception) {
             return redirect()->route('app.edit', ['id' => $app->id])
                 ->withErrors([
@@ -87,18 +92,20 @@ class AppController extends Controller
         return redirect()->route('app.show', ['id' => $app->id]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $platforms = $this->platformRepository->getAll();
         return view('app.edit', compact('app', 'platforms'));
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $customPushes = $this->customPushRepository->getByUser($userDecorator);
-        $weeklyPushes =  $this->weeklyPushRepository->getByUser($userDecorator);
+        $weeklyPushes = $this->weeklyPushRepository->getByUser($userDecorator);
         $autoPushes = $this->autoPushRepository->getByUser($userDecorator);
         $chosenCustomPushes = $app->customPushes()->get();
         $chosenAutoPushes = $app->autoPushes()->get();
@@ -114,12 +121,13 @@ class AppController extends Controller
         ));
     }
 
-    public function update(UpdateAppRequest $request, $id){
+    public function update(UpdateAppRequest $request, $id)
+    {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $validated = $request->validated();
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
-        if(!is_null($path)) {
+        if (!is_null($path)) {
             $validated['certificate'] = $path;
         }
         try {
@@ -130,15 +138,17 @@ class AppController extends Controller
                     'certificate' => $exception->getMessage()
                 ]);
         }
-        if(!is_null($webPath)) {
+        if (!is_null($webPath)) {
             $validated['web_certificate'] = $webPath;
         }
-        $webIcon = $this->appService->handleWebIcon($request->file('web_icon'));
-        if(!is_null($webIcon)) {
-            $validated['web_icon'] = $webIcon;
-        } elseif (is_null($app->web_icon)) {
-            return redirect()->back()
-                ->withErrors(['web_icon' => 'The web icon field is required.']);
+        if (in_array(3, $validated['platforms'])) {
+            $webIcon = $this->appService->handleWebIcon($request->file('web_icon'));
+            if (!is_null($webIcon)) {
+                $validated['web_icon'] = $webIcon;
+            } elseif (is_null($app->web_icon)) {
+                return redirect()->back()
+                    ->withErrors(['web_icon' => 'The web icon field is required.']);
+            }
         }
         $platforms = $validated['platforms'];
         $app->update($validated);
@@ -146,7 +156,8 @@ class AppController extends Controller
         return redirect()->route('app.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $this->authorize('delete', $app);
@@ -154,7 +165,8 @@ class AppController extends Controller
         return redirect()->back();
     }
 
-    public function push(PushAppRequest $request, $id){
+    public function push(PushAppRequest $request, $id)
+    {
         $payload = $request->validated();
         \DB::transaction(function () use ($id, $payload) {
             $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
@@ -172,13 +184,14 @@ class AppController extends Controller
         return redirect()->route('app.index');
     }
 
-    private function handleChosenPushes($pushes, $chosenPushes, $app, $relationName){
-        foreach ($pushes as $push){
-            if(!$chosenPushes->contains('id', $push->id)){
-                if($push->apps_count <= 1){
+    private function handleChosenPushes($pushes, $chosenPushes, $app, $relationName)
+    {
+        foreach ($pushes as $push) {
+            if (!$chosenPushes->contains('id', $push->id)) {
+                if ($push->apps_count <= 1) {
                     $push->status = 'PAUSE';
                     $push->save();
-                } else{
+                } else {
                     $push->apps()->detach($app);
                 }
             }
