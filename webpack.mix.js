@@ -17,7 +17,8 @@ mix.js("resources/js/app.js", "public/js")
 
 mix.styles([
     "resources/assets/css/app.css",
-    "resources/assets/css/tokenize2.min.css"
+    "resources/assets/css/tokenize2.min.css",
+    "resources/assets/css/jquery.dialogbox.css"
 ], "public/assets/css/layout.css");
 
 mix.styles([
@@ -34,7 +35,8 @@ mix.styles(["resources/css/app.css"], "public/css/app.css").sourceMaps();
 mix.styles(
     [
         "resources/assets/css/bootstrap-grid.min.css",
-        "resources/assets/css/main.css",    ],
+        "resources/assets/css/main.css",
+    ],
     "public/assets/css/main.css"
 ).sourceMaps();
 
@@ -43,6 +45,7 @@ mix.scripts(
         "resources/assets/js/jquery.js",
         "resources/assets/js/tokenize2.min.js",
         "resources/assets/js/main.js",
+        "resources/assets/js/jquery.dialogbox.js"
     ],
     "public/assets/js/scripts.js"
 );

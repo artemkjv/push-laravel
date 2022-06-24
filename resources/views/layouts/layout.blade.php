@@ -23,6 +23,7 @@
     @livewireStyles
 </head>
 <body>
+<div id="notification-dialog"></div>
 <div id="app">
     @include('components.header')
 
@@ -41,7 +42,23 @@
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
 <script src="{{asset('assets/js/webpush.js?id=2')}}"></script>
 <script>
-    DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
+    const cookieService = new Cookie()
+    const notificationAccess = cookieService.getCookie('notification_access')
+    if(notificationAccess === null && ("Notification" in window)){
+        $('#notification-dialog').dialogBox({
+            content: 'Stay in the loop with updates & <br>messaging tips to get more out of your CpaBro account.',
+            title: "Notification request",
+            hasClose: true,
+            hasBtn: true,
+            cancel: function (){
+                cookieService.setCookie('notification_access', false, 10)
+            },
+            confirm: function (){
+                DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
+                cookieService.setCookie('notification_access', true)
+            }
+        })
+    }
 </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
