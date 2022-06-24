@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <script src="{{asset('assets/js/scripts.js?id=1')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/layout.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layout.css?id=1') }}" rel="stylesheet">
     @livewireStyles
 </head>
 <body>
