@@ -59,8 +59,6 @@ class Cookie {
 }
 
 const SafariPush = {
-    api: new Api(),
-    cookie: new Cookie(),
     initialize(appId, safariWebId) {
         this.appId = appId
         this.safari_web_id = safariWebId
@@ -82,12 +80,14 @@ const SafariPush = {
         if (permissionData.permission === 'granted') {
             console.log(permissionData.deviceToken, 'YEAH!');
             SafariPush.saveToken(permissionData.deviceToken);
+        } else if(permissionData.permission === 'denied') {
+            console.log('denied')
         }
     },
     saveToken(deviceToken) {
-        SafariPush.api.ipLookUp()
+        DevonicsPush.api.ipLookUp()
             .then(response => {
-                SafariPush.api.subscribe({
+                DevonicsPush.api.subscribe({
                     registration_id: deviceToken,
                     app_id: this.app_id,
                     country: response.countryCode,
@@ -103,17 +103,15 @@ const SafariPush = {
 }
 
 const WebPush = {
-    api: new Api(),
-    cookie: new Cookie(),
     isTokenSaved(currentToken) {
         return window.localStorage.getItem('sentFirebaseMessagingToken') === currentToken;
     },
     saveToken(currentToken, appId) {
         if (!WebPush.isTokenSaved(currentToken)) {
             console.log('Sending a token to the server...');
-            WebPush.api.ipLookUp()
+            DevonicsPush.api.ipLookUp()
                 .then(response => {
-                    WebPush.api.subscribe({
+                    DevonicsPush.api.subscribe({
                         registration_id: currentToken,
                         app_id: appId,
                         country: response.countryCode,
@@ -181,7 +179,7 @@ const WebPush = {
         });
     },
     initialize(appId) {
-        WebPush.api.getApp(appId)
+        DevonicsPush.api.getApp(appId)
             .then(data => {
                 firebase.initializeApp({
                     messagingSenderId: data.sender_id,
