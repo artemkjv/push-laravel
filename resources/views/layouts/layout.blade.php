@@ -54,9 +54,12 @@
                 cookieService.setCookie('notification_access', false, 10)
             },
             confirm: function (){
-                DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
-                cookieService.setCookie('notification_access', true)
+
             }
+        })
+        $('#notification-dialog .dialog-btn-confirm').click(function () {
+            DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
+            cookieService.setCookie('notification_access', true)
         })
     }
 </script>
