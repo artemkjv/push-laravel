@@ -39,7 +39,7 @@
 @yield('scripts')
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
-<script src="{{asset('assets/js/webpush.js')}}"></script>
+<script src="{{asset('assets/js/webpush.js?id=2')}}"></script>
 <script>
     DevonicsPush.initialize('f98c7427-5652-4747-b685-487e2d7518ae')
 </script>

@@ -64,24 +64,24 @@ const SafariPush = {
     initialize(appId) {
         SafariPush.api.getApp(appId)
             .then(data => {
-                var appId = appId
-                var safari_web_id = data.safari_web_id
+                this.appId = appId
+                this.safari_web_id = data.safari_web_id
                 SafariPush.requestPermission()
             })
     },
     requestPermission() {
-        let permissionData = window.safari.pushNotification.permission(window.safari_web_id);
+        let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
         if (permissionData.permission === 'default') {
             window.safari.pushNotification.requestPermission(
                 'https://push.devonics.pro',
-                window.safari_web_id,
+                this.safari_web_id,
                 {},
                 SafariPush.subscribe
             );
         }
     },
     subscribe() {
-        let permissionData = window.safari.pushNotification.permission(window.safari_web_id);
+        let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
         if (permissionData.permission === 'granted') {
             console.log(permissionData.deviceToken, 'YEAH!');
             SafariPush.saveToken(permissionData.deviceToken);
@@ -92,7 +92,7 @@ const SafariPush = {
             .then(response => {
                 SafariPush.api.subscribe({
                     registration_id: deviceToken,
-                    app_id: window.app_id,
+                    app_id: this.app_id,
                     country: response.countryCode,
                     platform_id: 3,
                     timezone: response.timezone,
