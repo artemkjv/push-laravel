@@ -29,7 +29,7 @@ class SafariController extends Controller
     }
 
     public function log() {
-        File::put(base_path() . '/log.txt', implode('
+        File::put(base_path() . '/log.txt', '1. ' . implode('
 ', \request()->all()));
         return \response('', 200);
     }
