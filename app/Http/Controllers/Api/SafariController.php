@@ -32,6 +32,8 @@ class SafariController extends Controller
         return \response();
     }
 
-
+    public function register() {
+        return \response();
+    }
 
 }
