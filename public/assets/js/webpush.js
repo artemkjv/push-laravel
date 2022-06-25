@@ -73,7 +73,8 @@ const SafariPush = {
             SafariPush.subscribe
         );
     },
-    subscribe() {
+    subscribe(result) {
+        console.log(result)
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
         if (permissionData.permission === 'granted') {
             console.log(permissionData.deviceToken, 'YEAH!');
