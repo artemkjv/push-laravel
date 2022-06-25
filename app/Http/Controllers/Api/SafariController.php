@@ -28,7 +28,6 @@ class SafariController extends Controller
     }
 
     public function log() {
-        Log::debug(implode('\n', \request()->all()));
         return \response();
     }
 
