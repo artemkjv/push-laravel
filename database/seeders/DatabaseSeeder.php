@@ -15,15 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            /*CountrySeeder::class,
+            CountrySeeder::class,
             LanguageSeeder::class,
             TimezoneSeeder::class,
             PlatformSeeder::class,
             PredicateSeeder::class,
             FilterTypeSeeder::class,
-            FilterTypePredicateSeeder::class*/
-            AutoPushQuerySeeder::class,
-            WeeklyPushQuerySeeder::class
+            FilterTypePredicateSeeder::class
+            /*AutoPushQuerySeeder::class,
+            WeeklyPushQuerySeeder::class*/
         ]);
     }
 }
