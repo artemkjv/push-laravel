@@ -58,7 +58,7 @@ class Cookie {
     }
 }
 
-const SafariPush = {
+var SafariPush = {
     initialize(appId, safariWebId) {
         this.appId = appId
         this.safari_web_id = safariWebId
@@ -101,7 +101,7 @@ const SafariPush = {
     }
 }
 
-const WebPush = {
+var WebPush = {
     isTokenSaved(currentToken) {
         return window.localStorage.getItem('sentFirebaseMessagingToken') === currentToken;
     },
