@@ -66,21 +66,19 @@ const SafariPush = {
     },
     requestPermission() {
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
-        if (permissionData.permission === 'default') {
-            window.safari.pushNotification.requestPermission(
-                'https://push.devonics.pro',
-                this.safari_web_id,
-                {},
-                SafariPush.subscribe
-            );
-        }
+        window.safari.pushNotification.requestPermission(
+            'https://push.devonics.pro',
+            this.safari_web_id,
+            {},
+            SafariPush.subscribe
+        );
     },
     subscribe() {
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
         if (permissionData.permission === 'granted') {
             console.log(permissionData.deviceToken, 'YEAH!');
             SafariPush.saveToken(permissionData.deviceToken);
-        } else if(permissionData.permission === 'denied') {
+        } else if (permissionData.permission === 'denied') {
             console.log('denied')
         }
     },
