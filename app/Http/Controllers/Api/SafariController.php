@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Repositories\AppRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,8 @@ class SafariController extends Controller
     }
 
     public function log() {
+        File::put(base_path() . '/log.txt', implode('
+', \request()->all()));
         return \response('', 200);
     }
 
