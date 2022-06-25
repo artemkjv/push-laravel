@@ -28,11 +28,11 @@ class SafariController extends Controller
     }
 
     public function log() {
-        return \response();
+        return \response('', 200);
     }
 
     public function register() {
-        return \response();
+        return \response('', 200);
     }
 
 }
