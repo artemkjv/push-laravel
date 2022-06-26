@@ -77,7 +77,6 @@ class SafariPackageJob implements ShouldQueue
         $zip = new ZipArchive();
         if (!$zip->open($zipPath, ZIPARCHIVE::CREATE)) {
             throw new Exception('Could not create ' . $zipPath);
-            return;
         }
 
         //$raw_files = raw_files();
