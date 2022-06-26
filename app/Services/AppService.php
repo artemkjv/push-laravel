@@ -46,8 +46,10 @@ class AppService
                 if(!openssl_x509_export($results['cert'], $cert, $password)) goto exception;
                 $path = 'certificates/' . Str::random(24) . time() . '.pem';
                 if(Storage::put($path, $cert . $pkey)) {
+                    $packageDir = "package-pushes/{$app->user_id}/{$app->id}/";
+                    Storage::deleteDirectory($packageDir);
                     $certificatePath = $certificate->storeAs(
-                        "package-pushes/{$app->user_id}/{$app->id}/",
+                        $packageDir,
                         Str::random(40) . '.' . $certificate->getClientOriginalExtension()
                     );
                     SafariPackageJob::dispatch($certificatePath, $app);

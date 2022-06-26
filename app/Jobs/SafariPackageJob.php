@@ -72,7 +72,6 @@ class SafariPackageJob implements ShouldQueue
 
     function packageRawData($packageDir, $rawFiles) {
         $zipPath = Storage::path("{$packageDir}Package_Push.zip");
-        echo $zipPath;
         // Package files as a zip file
         $zip = new ZipArchive();
         if (!$zip->open($zipPath, ZIPARCHIVE::CREATE)) {

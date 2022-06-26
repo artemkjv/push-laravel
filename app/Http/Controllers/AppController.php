@@ -69,10 +69,10 @@ class AppController extends Controller
         $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
         $validated['web_icon'] = $this->appService->handleWebIcon($request->file('web_icon'));
         $validated['certificate'] = $path;
-        $platform_id = $validated['platform_id'];
+        $platformId = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
         try {
-            if($platform_id === 3) {
+            if((int) $platformId === 3) {
                 $webPath = $this->appService->handleUploadedWebCertificate(
                     $request->file('web_certificate'),
                     $validated['web_private_key'] ?? '',
@@ -88,7 +88,7 @@ class AppController extends Controller
                     'certificate' => $exception->getMessage()
                 ]);
         }
-        $app->platforms()->attach([$platform_id]);
+        $app->platforms()->attach([$platformId]);
         return redirect()->route('app.show', ['id' => $app->id]);
     }
 
