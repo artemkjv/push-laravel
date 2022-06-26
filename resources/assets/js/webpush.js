@@ -66,12 +66,14 @@ var SafariPush = {
     },
     requestPermission() {
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
-        window.safari.pushNotification.requestPermission(
-            'https://push.devonics.pro',
-            this.safari_web_id,
-            {},
-            SafariPush.subscribe
-        );
+        if(permissionData.permission === 'default') {
+            window.safari.pushNotification.requestPermission(
+                'https://push.devonics.pro',
+                this.safari_web_id,
+                {},
+                SafariPush.subscribe
+            );
+        }
     },
     subscribe(result) {
         console.log(result)
