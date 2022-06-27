@@ -156,7 +156,7 @@ class SafariPackageJob implements ShouldQueue
                 throw new CertificateException('Invalid push package version.');
             }
         }
-        Storage::put("{$packageDir}manifest.json", json_encode((object)$manifestData, JSON_UNESCAPED_SLASHES));
+        Storage::put("{$packageDir}manifest.json", json_encode($manifestData, JSON_UNESCAPED_SLASHES));
     }
 
 
