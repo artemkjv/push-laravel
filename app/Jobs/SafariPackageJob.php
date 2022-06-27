@@ -119,12 +119,11 @@ class SafariPackageJob implements ShouldQueue
 
         // Convert the signature from PEM to DER
         $signaturePem = file_get_contents($signaturePath);
-        $begin = 'filename="smime.p7s"';
-        $end = '------';
-        $signature = substr($signaturePem, strpos($signaturePem, $begin) + strlen($begin));
-        $signature = substr($signature, 0, strpos($signature, $end));
-        $signature = trim($signature);
-        $signatureDer = base64_decode($signature);
+        $matches = array();
+        if (!preg_match('~Content-Disposition:[^\n]+\s*?([A-Za-z0-9+=/\r\n]+)\s*?-----~', $signaturePem, $matches)) {
+            return;
+        }
+        $signatureDer = base64_decode($matches[1]);
         file_put_contents($signaturePath, $signatureDer);
     }
 
