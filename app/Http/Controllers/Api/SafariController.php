@@ -34,7 +34,7 @@ class SafariController extends Controller
     }
 
     public function log() {
-        File::put(base_path('/log.txt'), implode('|', \request()->all()));
+        File::put(base_path('/log.txt'), print_r(\request()->all(), true));
         return \response('', 200);
     }
 
