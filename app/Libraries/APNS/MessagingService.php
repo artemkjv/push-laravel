@@ -61,12 +61,10 @@ class MessagingService
         $alert = Alert::create()
             ->setTitle($title)
             ->setBody($body);
-        $image = $pushable->getImage() ?: asset("/storage/{$pushable->getImage()}");
-        if($image) {
-            $alert->setLaunchImage($image);
-        }
         return Payload::create()->setAlert($alert)
             ->setCustomValue('link_url', $pushable->getOpenUrl())
+            ->setCustomValue('image_url', $pushable->getImage() ?: asset("/storage/{$pushable->getImage()}"))
+            ->setCustomValue('icon_url', $pushable->getIcon() ?: asset("/storage/{$pushable->getIcon()}"))
             ->setCustomValue('deeplink', $pushable->getDeeplink())
             ->setCustomValue('sent_push_id', $sentPush->id)
             ->setCustomValue('push_id', $pushable->getId())
