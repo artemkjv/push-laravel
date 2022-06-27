@@ -91,7 +91,7 @@ class SafariPackageJob implements ShouldQueue
     private function createWebsiteConfig($packageDir) {
         $websiteConfig = [
             'websiteName' => $this->app->site_name,
-            'websitePushId' => $this->app->safari_web_id,
+            'websitePushID' => $this->app->safari_web_id,
             'allowedDomains' => [$this->app->site_url],
             'urlFormatString' => "{$this->app->site_url}/%@",
             'authenticationToken' => '19f8d7a6e9fb8a7f6d9330dabe',
