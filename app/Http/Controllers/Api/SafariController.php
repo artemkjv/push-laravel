@@ -26,7 +26,7 @@ class SafariController extends Controller
         $content = Storage::get($path);
         $response = Response::make($content);
         $response->header('Content-Type', 'application/zip');
-        $response->header('Content-Disposition', 'attachment; filename="Package_Push.zip');
+        $response->header('Content-Disposition', 'attachment; filename="Package_Push.zip"');
         $response->header('Content-length', Storage::size($path));
         $response->header('Pragma', 'no-cache');
         $response->header('Expires', 0);
