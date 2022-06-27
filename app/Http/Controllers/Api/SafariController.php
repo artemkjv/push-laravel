@@ -22,9 +22,14 @@ class SafariController extends Controller
 
     public function showPackage($safariWebId) {
         $app = $this->appRepository->getBySafariWebId($safariWebId);
-        $content = Storage::get("package-pushes/{$app->user_id}/{$app->id}/Package_Push.zip");
+        $path = "package-pushes/{$app->user_id}/{$app->id}/Package_Push.zip";
+        $content = Storage::get($path);
         $response = Response::make($content);
         $response->header('Content-Type', 'application/zip');
+        $response->header('Content-Disposition', 'attachment; filename="Package_Push.zip');
+        $response->header('Content-length', Storage::size($path));
+        $response->header('Pragma', 'no-cache');
+        $response->header('Expires', 0);
         return $response;
     }
 
