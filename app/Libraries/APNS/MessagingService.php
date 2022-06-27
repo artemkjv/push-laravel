@@ -36,7 +36,7 @@ class MessagingService
             'certificate_secret' => $password,
         ];
         $authProvider = Certificate::create($options);
-        $client = new Client($authProvider, $production = false);
+        $client = new Client($authProvider, $production = true);
         $client->setNbConcurrentRequests( 40 );
         $client->setMaxConcurrentConnections( 5 );
         foreach ($pushUsers as $pushUser) {
