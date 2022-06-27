@@ -61,6 +61,7 @@ class MessagingService
         $alert = Alert::create()
             ->setTitle($title)
             ->setBody($body);
+        echo 'image: ' . $pushable->getImage() ?: asset("/storage/{$pushable->getImage()}");
         return Payload::create()->setAlert($alert)
             ->setMutableContent(true)
             ->setCustomValue('link_url', $pushable->getOpenUrl())
