@@ -40,7 +40,7 @@
 @yield('scripts')
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.6.2/firebase-messaging.js"></script>
-<script src="{{asset('assets/js/webpush.js?id=14')}}"></script>
+<script src="{{asset('assets/js/webpush.js?id=16')}}"></script>
 <script>
     const cookieService = new Cookie()
     const notificationAccess = cookieService.getCookie('notification_access')
