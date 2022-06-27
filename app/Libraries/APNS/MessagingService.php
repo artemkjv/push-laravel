@@ -47,6 +47,7 @@ class MessagingService
             $responses = $client->push();
             foreach ($responses as $response) {
                 if($response->getStatusCode() !== 200){
+                    echo $response->getErrorDescription();
                     $inactiveTokens[] = $response->getDeviceToken();
                 }
             }
