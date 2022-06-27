@@ -62,8 +62,8 @@ class MessagingService
             ->setTitle($title)
             ->setBody($body);
         return Payload::create()->setAlert($alert)
-            ->setCustomValue('link_url', $pushable->getOpenUrl())
             ->setMutableContent(true)
+            ->setCustomValue('link_url', $pushable->getOpenUrl())
             ->setCustomValue('image_url', $pushable->getImage() ?: asset("/storage/{$pushable->getImage()}"))
             ->setCustomValue('icon_url', $pushable->getIcon() ?: asset("/storage/{$pushable->getIcon()}"))
             ->setCustomValue('deeplink', $pushable->getDeeplink())
