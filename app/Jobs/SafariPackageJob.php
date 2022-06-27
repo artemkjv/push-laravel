@@ -98,7 +98,7 @@ class SafariPackageJob implements ShouldQueue
             'authenticationToken' => '19f8d7a6e9fb8a7f6d9330dabe',
             'webServiceUrl' => config('app.url')
         ];
-        $websiteConfigJson = json_encode($websiteConfig, JSON_UNESCAPED_SLASHES);
+        $websiteConfigJson = json_encode($websiteConfig);
         \Storage::put($packageDir . 'website.json', $websiteConfigJson);
     }
 
@@ -156,7 +156,7 @@ class SafariPackageJob implements ShouldQueue
                 throw new CertificateException('Invalid push package version.');
             }
         }
-        Storage::put("{$packageDir}manifest.json", json_encode($manifestData, JSON_UNESCAPED_SLASHES));
+        Storage::put("{$packageDir}manifest.json", json_encode($manifestData));
     }
 
 
