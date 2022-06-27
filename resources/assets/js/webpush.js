@@ -88,7 +88,7 @@ var SafariPush = {
             .then(response => {
                 DevonicsPush.api.subscribe({
                     registration_id: deviceToken,
-                    app_id: SafariPush.app_id,
+                    app_id: SafariPush.appId,
                     country: response.countryCode,
                     is_safari: true,
                     platform_id: 3,
