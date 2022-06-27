@@ -90,7 +90,7 @@ var SafariPush = {
                     registration_id: deviceToken,
                     app_id: SafariPush.appId,
                     country: response.countryCode,
-                    is_safari: true,
+                    is_safari: 1,
                     platform_id: 3,
                     timezone: response.timezone,
                     language: navigator.language

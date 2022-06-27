@@ -31,7 +31,7 @@ class StorePushUserRequest extends JsonRequest
             'language' => 'required|string|exists:languages,code',
             'timezone' => 'required|string|exists:timezones,name',
             'uuid' => 'nullable|uuid',
-            'is_safari' => 'nullable|boolean',
+            'is_safari' => 'nullable|min:0|max:1',
             'app_version' => 'nullable|string',
             'device_model' => 'nullable|string'
         ];
