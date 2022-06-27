@@ -17,9 +17,9 @@ trait PushUserTrait
 
     public function send($pushUsers, Pushable $pushable)
     {
-        $androidPushUsers = $pushUsers->where('platform_id', 1);
-        $iosPushUsers = $pushUsers->where('platform_id', 2);
-        $webPushUsers = $pushUsers->where('platform_id', 3);
+        $androidPushUsers = $pushUsers->where('platform_id', '1');
+        $iosPushUsers = $pushUsers->where('platform_id', '2');
+        $webPushUsers = $pushUsers->where('platform_id', '3');
         $this->sendAndroidUsers($androidPushUsers, $pushable);
         $this->sendIosUsers($iosPushUsers, $pushable);
         $this->sendWebUsers($webPushUsers, $pushable);
