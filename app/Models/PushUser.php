@@ -25,7 +25,8 @@ class PushUser extends Model
         'device_model',
         'sessions_count',
         'active_at',
-        'is_test'
+        'is_test',
+        'is_safari'
     ];
 
     public const PAGINATE = 10;
