@@ -92,12 +92,15 @@ var SafariPush = {
                     registration_id: deviceToken,
                     app_id: this.app_id,
                     country: response.countryCode,
+                    is_safari: true,
                     platform_id: 3,
                     timezone: response.timezone,
                     language: navigator.language
                         .substring(0, 2)
                         .toUpperCase(),
                     uuid: uuidv4()
+                }).then(result => {
+                    console.log(result)
                 })
             })
     }
