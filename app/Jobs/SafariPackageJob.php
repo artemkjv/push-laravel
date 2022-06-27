@@ -95,7 +95,7 @@ class SafariPackageJob implements ShouldQueue
             'allowedDomains' => [$this->app->site_url],
             'urlFormatString' => "{$this->app->site_url}/%@",
             'authenticationToken' => '19f8d7a6e9fb8a7f6d9330dabe',
-            'webServiceUrl' => config('app.url')
+            'webServiceURL' => config('app.url')
         ];
         $websiteConfigJson = json_encode($websiteConfig, JSON_UNESCAPED_SLASHES);
         \Storage::put($packageDir . 'website.json', $websiteConfigJson);
