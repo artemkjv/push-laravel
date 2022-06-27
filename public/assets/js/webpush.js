@@ -67,7 +67,6 @@ var SafariPush = {
     requestPermission() {
         let permissionData = window.safari.pushNotification.permission(this.safari_web_id);
         if(permissionData.permission === 'default') {
-            console.log(this.safari_web_id + 'sdgsdg')
             window.safari.pushNotification.requestPermission(
                 'https://push.devonics.pro',
                 this.safari_web_id,
