@@ -46,7 +46,7 @@
     const notificationAccess = cookieService.getCookie('notification_access')
     if(notificationAccess === null && ("Notification" in window)){
         $('#notification-dialog').dialogBox({
-            content: 'Stay in the loop with updates & <br>messaging tips to get more out of your CpaBro account.',
+            content: 'Stay in the loop with updates & <br>messaging tips to get more out of your Push.Devonics account.',
             title: "Notification request",
             hasClose: true,
             hasBtn: true,
