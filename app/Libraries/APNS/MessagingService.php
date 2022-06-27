@@ -40,6 +40,7 @@ class MessagingService
         $client->setNbConcurrentRequests( 40 );
         $client->setMaxConcurrentConnections( 5 );
         foreach ($pushUsers as $pushUser) {
+            echo 'push-user-id: ' . $pushUser->id;
             $notifications[] = new Notification($data, $pushUser->registration_id);
         }
         $client->addNotifications($notifications);
