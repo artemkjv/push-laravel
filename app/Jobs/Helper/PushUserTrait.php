@@ -36,7 +36,7 @@ trait PushUserTrait
                 $appsPushUsers = $safariUsers->groupBy('app_id');
 
                 foreach ($appsPushUsers as $appPushUsers) {
-                    $messagingService = App::make(\App\Libraries\APNS\MessagingService::class);
+                    $messagingService = App::make(\App\Libraries\Safari\MessagingService::class);
                     $pushUser = $appPushUsers->first();
                     $certificate = Storage::path($pushUser->app->web_certificate);
                     $password = $pushUser->app->web_private_key;
@@ -45,7 +45,7 @@ trait PushUserTrait
                         $chunksPushUsers = $languagePushUsers->chunk(1000);
 
                         foreach ($chunksPushUsers as $chunksPushUser) {
-                            $messagingService->send($pushable, $languageId, null, $certificate, $password, $chunksPushUser, $sentPush, [
+                            $messagingService->send($pushable, $languageId, $certificate, $password, $chunksPushUser, $sentPush, [
                                 'clicked'
                             ]);
                         }

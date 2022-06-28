@@ -30,20 +30,16 @@ class MessagingService
         Pushable $pushable, $languageId,
         $bundle, $certificate, $password,
         Collection $pushUsers,
-        SentPush $sentPush, $urlArgs = null
+        SentPush $sentPush,
     ){
-        $data = $this->parseData($pushable, $languageId, $sentPush, $urlArgs);
+        $data = $this->parseData($pushable, $languageId, $sentPush);
         $inactiveTokens = [];
         $notifications = [];
         $options = [
+            'app_bundle_id' => $bundle,
             'certificate_path' => $certificate,
             'certificate_secret' => $password,
         ];
-
-        if($bundle) {
-            $options['app_bundle_id'] = $bundle;
-        }
-
         $authProvider = Certificate::create($options);
         $client = new Client($authProvider, $production = true);
         $client->setNbConcurrentRequests( 40 );
@@ -64,7 +60,7 @@ class MessagingService
         $this->pushUserRepository->updateByRegistrationIds($inactiveTokens, ['status' => PushUser::UNSUBSCRIBED_STATUS]);
     }
 
-    private function parseData(Pushable $pushable, $languageId, SentPush $sentPush, ?array $urlArgs = null){
+    private function parseData(Pushable $pushable, $languageId, SentPush $sentPush){
         $title = $pushable->getTitle()[$languageId] ?? $pushable->getTitle()[1];
         $body = $pushable->getBody()[$languageId] ?? $pushable->getBody()[1];
         $alert = Alert::create()
@@ -81,10 +77,6 @@ class MessagingService
             ->setCustomValue('push_id', $pushable->getId())
             ->setCustomValue('time_to_live', $pushable->getTimeToLive())
             ->setCustomValue('push_type', get_class($pushable));
-
-        if($urlArgs) {
-            $payload->setUrlArgs($urlArgs);
-        }
 
         return $payload;
     }
