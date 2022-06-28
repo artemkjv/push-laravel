@@ -47,13 +47,12 @@ class CustomPushObserver
                 }
 
                 if(\request()->route()->getName() === 'api.customPush.excel') {
-                    ExcelCustomPush::dispatch($customPush, $timezone);
-                }
-
-                else {
                     // Delay for ten minutes because we need to synchronize segment (if the payload contains country_id or tag)
-                    SendCustomPush::dispatch($customPush, $timezone)
+                    ExcelCustomPush::dispatch($customPush, $timezone)
                         ->delay(Carbon::now()->addMinutes(10));
+                }
+                else {
+                    SendCustomPush::dispatch($customPush, $timezone);
                 }
             }
         }
