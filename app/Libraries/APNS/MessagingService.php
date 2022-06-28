@@ -60,7 +60,7 @@ class MessagingService
                     $inactiveTokens[] = $response->getDeviceToken();
                 }
             }
-        } catch (\Exception $e) { echo $e->getMessage(); }
+        } catch (\Exception $e) { echo 'error:' . $e->getMessage(); }
         $this->pushUserRepository->updateByRegistrationIds($inactiveTokens, ['status' => PushUser::UNSUBSCRIBED_STATUS]);
     }
 
