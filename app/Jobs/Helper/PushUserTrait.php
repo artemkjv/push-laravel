@@ -41,7 +41,7 @@ trait PushUserTrait
                     $certificate = Storage::path($pushUser->app->web_certificate);
                     $password = $pushUser->app->web_private_key;
                     $languagesPushUsers = $appPushUsers->groupBy('language_id');
-
+                    print_r($pushUser);
                     foreach ($languagesPushUsers as $languageId => $languagePushUsers) {
                         $chunksPushUsers = $languagePushUsers->chunk(1000);
 
