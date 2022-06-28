@@ -10,6 +10,7 @@ use App\Models\App;
 use App\Repositories\AppRepositoryInterface;
 use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
+use App\Services\AppService;
 
 class AppController extends Controller
 {
@@ -17,16 +18,19 @@ class AppController extends Controller
     private PlatformRepositoryInterface $platformRepository;
     private AppRepositoryInterface $appRepository;
     private UserRepositoryInterface $userRepository;
+    private AppService $appService;
 
     public function __construct(
         PlatformRepositoryInterface $platformRepository,
         AppRepositoryInterface $appRepository,
-        UserRepositoryInterface $userRepository
+        UserRepositoryInterface $userRepository,
+        AppService $appService
     )
     {
         $this->platformRepository = $platformRepository;
         $this->appRepository = $appRepository;
         $this->userRepository = $userRepository;
+        $this->appService = $appService;
     }
 
     public function index(){
@@ -41,17 +45,33 @@ class AppController extends Controller
     }
 
     public function create(){
-        $platforms = $this->platformRepository->getAll();
         $user = \request()->currentUser;
-        return view('admin.app.create', compact('platforms', 'user'));
+        return view('admin.app.create', compact('user'));
     }
 
     public function store(StoreAppRequest $request){
         $user = \request()->currentUser;
         $validated = $request->validated();
-        $platform_id = $validated['platform_id'];
+        $platformId = $validated['platform_id'];
         $app = $this->appRepository->save($validated);
-        $app->platforms()->attach([$platform_id]);
+        try {
+            if((int) $platformId === 3) {
+                $webPath = $this->appService->handleUploadedWebCertificate(
+                    $request->file('web_certificate'),
+                    $validated['web_private_key'] ?? '',
+                    $app
+                );
+                $app->update([
+                    'web_certificate' => $webPath
+                ]);
+            }
+        } catch (\Exception $exception) {
+            return redirect()->route('app.edit', ['id' => $app->id])
+                ->withErrors([
+                    'certificate' => $exception->getMessage()
+                ]);
+        }
+        $app->platforms()->attach([$platformId]);
         return redirect()->route('admin.app.show', ['userId' => $user->id, 'id' => $app->id]);
     }
 
@@ -59,8 +79,7 @@ class AppController extends Controller
         $user = \request()->currentUser;
         $userDecorator = new UserWrapper($user);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
-        $platforms = $this->platformRepository->getAll();
-        return view('admin.app.edit', compact('app', 'platforms', 'user'));
+        return view('admin.app.edit', compact('app', 'user'));
     }
 
     public function show($userId, $id){
@@ -75,6 +94,30 @@ class AppController extends Controller
         $userDecorator = new UserWrapper($user);
         $app = $this->appRepository->getByIdAndUser($id, $userDecorator);
         $validated = $request->validated();
+        $path = $this->appService->handleUploadedCertificate($request->file('certificate'), $validated['private_key'] ?? '');
+        if (!is_null($path)) {
+            $validated['certificate'] = $path;
+        }
+        try {
+            $webPath = $this->appService->handleUploadedWebCertificate($request->file('web_certificate'), $validated['web_private_key'] ?? '', $app);
+        } catch (\Exception $exception) {
+            return redirect()->back()
+                ->withErrors([
+                    'certificate' => $exception->getMessage()
+                ]);
+        }
+        if (!is_null($webPath)) {
+            $validated['web_certificate'] = $webPath;
+        }
+        if (in_array(3, $validated['platforms'])) {
+            $webIcon = $this->appService->handleWebIcon($request->file('web_icon'));
+            if (!is_null($webIcon)) {
+                $validated['web_icon'] = $webIcon;
+            } elseif (is_null($app->web_icon)) {
+                return redirect()->back()
+                    ->withErrors(['web_icon' => 'The web icon field is required.']);
+            }
+        }
         $platforms = $validated['platforms'];
         $app->update($validated);
         $app->platforms()->sync($platforms);

@@ -30,6 +30,7 @@ class CustomPushController extends Controller
         CustomPushService $customPushService
     )
     {
+        $this->middleware(['throttle:240,1']);
         $this->customPushRepository = $customPushRepository;
         $this->segmentRepository = $segmentRepository;
         $this->appRepository = $appRepository;
