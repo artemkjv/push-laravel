@@ -31,23 +31,32 @@ trait PushUserTrait
             $safariUsers = $pushUsers->where('is_safari', true);
             $fcmUsers = $pushUsers->where('is_safari', false);
             $this->sendAndroidUsers($fcmUsers, $pushable);
+
             if($safariUsers->count() > 0) {
                 $appsPushUsers = $safariUsers->groupBy('app_id');
+
                 foreach ($appsPushUsers as $appPushUsers) {
                     $messagingService = App::make(\App\Libraries\APNS\MessagingService::class);
                     $pushUser = $appPushUsers->first();
-                    $bundle = $pushUser->app->safari_web_id;
                     $certificate = Storage::path($pushUser->app->web_certificate);
                     $password = $pushUser->app->web_private_key;
                     $languagesPushUsers = $appPushUsers->groupBy('language_id');
+
                     foreach ($languagesPushUsers as $languageId => $languagePushUsers) {
                         $chunksPushUsers = $languagePushUsers->chunk(1000);
+
                         foreach ($chunksPushUsers as $chunksPushUser) {
-                            $messagingService->send($pushable, $languageId, $bundle, $certificate, $password, $chunksPushUser, $sentPush);
+                            $messagingService->send($pushable, $languageId, null, $certificate, $password, $chunksPushUser, $sentPush, [
+                                'clicked'
+                            ]);
                         }
+
                     }
+
                 }
+
             }
+
         }
     }
 
