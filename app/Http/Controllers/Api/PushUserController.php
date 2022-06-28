@@ -107,6 +107,18 @@ class PushUserController extends Controller
         return response()->noContent();
     }
 
+    public function addTagByInternalId(TagPushUserRequest $request, $internalId){
+        $payload = $request->validated();
+        $pushUser = $this->pushUserRepository
+            ->getByUUID($internalId);
+        $tags = $pushUser->tags;
+        $tags[$payload['key']] = $payload['value'];
+        $pushUser->tags = $tags;
+        $pushUser->save();
+        return response()->noContent();
+    }
+
+
     public function addTime(TimePushUserRequest $request, $registrationId){
         $payload = $request->validated();
         $pushUser = $this->pushUserRepository->getByRegistrationId($registrationId);

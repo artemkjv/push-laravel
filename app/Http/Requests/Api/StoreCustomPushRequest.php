@@ -34,8 +34,8 @@ class StoreCustomPushRequest extends JsonRequest
             'body' => 'required|array',
             'title.1' => 'required|string',
             'body.1' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:max_width=100,max_height=100,ratio=1/1',
+            'image' => 'nullable|string',
+            'icon' => 'nullable|string',
             'time_to_live' => 'nullable|integer',
             'time_to_send' => 'date_format:Y-m-d\TH:i',
             'is_test' => 'nullable'

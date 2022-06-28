@@ -190,7 +190,7 @@ return [
         'local' => [
             'supervisor-1' => [
                 'maxProcesses' => 10,
-                'queue' => ['send-custom-push', 'send-auto-push', 'send-weekly-push', 'created-push-user', 'safari-certificate', 'segment-push-users'],
+                'queue' => ['send-custom-push', 'send-auto-push', 'send-weekly-push', 'created-push-user', 'safari-certificate', 'segment-push-users', 'excel-custom-push'],
                 'balance' => 'auto',
                 'processes' => 10,
                 'tries' => 3,

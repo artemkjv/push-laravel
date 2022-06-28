@@ -25,6 +25,7 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
 
     Route::group(['as' => 'api.customPush.', 'middleware' => 'api.auth'], function (){
        Route::post('/custom-pushes/store', 'CustomPushController@store')->name('store');
+       Route::post('/custom-pushes/excel', 'CustomPushController@excel')->name('excel');
        Route::put('/custom-pushes/{id}', 'CustomPushController@update')->name('update');
     });
 
@@ -44,6 +45,7 @@ Route::group(['namespace' => '\\App\\Http\\Controllers\\Api\\'], function () {
         Route::patch('/push-users/{registrationId}/transition', 'PushUserController@addTransition')->name('transition');
         Route::patch('/push-users/{registrationId}', 'PushUserController@update')->name('update');
         Route::patch('/push-users/{registrationId}/tag', 'PushUserController@addTag')->name('tag');
+        Route::patch('/push-users/{internalId}/internal-tag', 'PushUserController@addTagByInternalId')->name('internal-tag');
         Route::patch('/push-users/{registrationId}/time', 'PushUserController@addTime')->name('time');
     });
 

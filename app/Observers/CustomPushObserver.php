@@ -2,10 +2,13 @@
 
 namespace App\Observers;
 
+use App\Http\Requests\Api\ExcelCustomPushRequest;
+use App\Jobs\ExcelCustomPush;
 use App\Jobs\SendCustomPush;
 use App\Libraries\Decoration\ModeratorWrapper;
 use App\Models\CustomPush;
 use App\Repositories\TimezoneRepositoryInterface;
+use Carbon\Carbon;
 
 class CustomPushObserver
 {
@@ -33,10 +36,25 @@ class CustomPushObserver
             foreach ($timezones as $timezone){
                 $timeToSend = $customPush->getTimeToSend($timezone->name);
                 if($timeToSend > new \DateTime()){
-                    SendCustomPush::dispatch($customPush, $timezone)->delay($timeToSend);
+
+                    if(\request()->route()->getName() === 'api.customPush.excel') {
+                        ExcelCustomPush::dispatch($customPush, $timezone)->delay($timeToSend);
+                    } else {
+                        SendCustomPush::dispatch($customPush, $timezone)->delay($timeToSend);
+                    }
+
                     continue;
                 }
-                SendCustomPush::dispatch($customPush, $timezone);
+
+                if(\request()->route()->getName() === 'api.customPush.excel') {
+                    ExcelCustomPush::dispatch($customPush, $timezone);
+                }
+
+                else {
+                    // Delay for ten minutes because we need to synchronize segment (if the payload contains country_id or tag)
+                    SendCustomPush::dispatch($customPush, $timezone)
+                        ->delay(Carbon::now()->addMinutes(10));
+                }
             }
         }
     }

@@ -38,15 +38,16 @@ class ApiAuthenticateMiddleware
     {
         $apiKey = $request->header('Authorization', '');
         $user = User::getByApiKey($apiKey);
+        $userWrapper = new UserWrapper();
         if($user){
             Auth::login($user);
-            return $next($request);
+            return $userWrapper->handle($request, $next);
         }
         try {
             $apiToken = $this->apiTokenRepository->getByTokenNotExpired($apiKey);
             $this->apiPageRepository->getByApiTokenAndRoute($apiToken, request()->route()->getName());
             Auth::login($apiToken->user);
-            return $next($request);
+            return $userWrapper->handle($request, $next);
         } catch (ModelNotFoundException $e) { }
         return abort(403);
     }
