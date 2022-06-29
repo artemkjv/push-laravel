@@ -64,7 +64,7 @@
 
                         <div class="form-group">
                             <label for="open_url">Open Url</label>
-                            <input type="url" class="form-control @error('open_url') is-invalid @enderror" value="{{ old('open_url', $template->open_url) }}" id="open_url" name="open_url">
+                            <input type="text" class="form-control @error('open_url') is-invalid @enderror" value="{{ old('open_url', $template->open_url) }}" id="open_url" name="open_url">
                         </div>
 
                         <div class="form-group">
