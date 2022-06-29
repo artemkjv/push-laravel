@@ -82,7 +82,7 @@ class MessagingService
             ->setCustomValue('push_type', get_class($pushable));
 
         if($urlArgs) {
-//            $payload->setUrlArgs($urlArgs);
+            $payload->setUrlArgs($urlArgs);
         }
 
         return $payload;
