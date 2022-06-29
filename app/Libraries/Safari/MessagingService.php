@@ -48,7 +48,6 @@ class MessagingService
                             'body' => $data['body'],
                             'action' => 'Details'
                         ],
-                        'url-args' => $urlArgs
                     ]
                 ]);
                 $msg = chr(0) . pack('n', 32) . pack('H*', $pushUser->registration_id) . pack('n', strlen($payload)) . $payload;
