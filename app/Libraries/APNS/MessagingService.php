@@ -31,9 +31,9 @@ class MessagingService
         $bundle, $certificate, $password,
         Collection $pushUsers,
         SentPush $sentPush,
-        $urlArgs = null
+        $isWebPush = false
     ){
-        $data = $this->parseData($pushable, $languageId, $sentPush, $urlArgs);
+        $data = $this->parseData($pushable, $languageId, $sentPush, $isWebPush);
         $inactiveTokens = [];
         $notifications = [];
         $options = [
@@ -63,7 +63,7 @@ class MessagingService
         $this->pushUserRepository->updateByRegistrationIds($inactiveTokens, ['status' => PushUser::UNSUBSCRIBED_STATUS]);
     }
 
-    private function parseData(Pushable $pushable, $languageId, SentPush $sentPush, $urlArgs){
+    private function parseData(Pushable $pushable, $languageId, SentPush $sentPush, $isWebPush){
         $title = $pushable->getTitle()[$languageId] ?? $pushable->getTitle()[1];
         $body = $pushable->getBody()[$languageId] ?? $pushable->getBody()[1];
         $alert = Alert::create()
@@ -80,9 +80,10 @@ class MessagingService
             ->setCustomValue('push_id', $pushable->getId())
             ->setCustomValue('time_to_live', $pushable->getTimeToLive())
             ->setCustomValue('push_type', get_class($pushable));
-
-        if($urlArgs) {
-            $payload->setUrlArgs($urlArgs);
+        if($isWebPush) {
+            $payload->setUrlArgs([$pushable->getOpenUrl() ?? '']);
+        } else {
+            $payload->setCustomValue('open_url', $pushable->getOpenUrl());
         }
 
         return $payload;
