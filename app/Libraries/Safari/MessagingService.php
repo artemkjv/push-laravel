@@ -55,6 +55,7 @@ class MessagingService
                 $result = fwrite($fp, $msg, strlen($msg));
                 echo('Push SAFARI send successfully; result ' . $result . ' Sent message: "' . $payload . '";');
             }
+            fclose($fp);
         }
         $this->pushUserRepository->updateByRegistrationIds($inactiveTokens, ['status' => PushUser::UNSUBSCRIBED_STATUS]);
     }
