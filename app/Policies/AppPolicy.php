@@ -2,8 +2,10 @@
 
 namespace App\Policies;
 
+use App\Models\App;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class AppPolicy
 {
@@ -29,5 +31,13 @@ class AppPolicy
         }
         return $user->apps()->count() < $tariff->max_apps;
     }
+
+    public function delete(User $user, App $app){
+        if($app->customPushes()->count() || $app->autoPushes()->count() || $app->weeklyPushes()->count()) {
+            return Response::deny('Can\'t delete app with existing relations.');
+        }
+        return true;
+    }
+
 
 }

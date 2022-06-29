@@ -20,6 +20,18 @@ class Segment extends Model
         return $this->belongsToMany(PushUser::class);
     }
 
+    public function customPushes() {
+        return $this->belongsToMany(CustomPush::class, 'segment_custom_push');
+    }
+
+    public function autoPushes() {
+        return $this->belongsToMany(AutoPush::class, 'segment_auto_push');
+    }
+
+    public function weeklyPushes() {
+        return $this->belongsToMany(WeeklyPush::class, 'segment_weekly_push');
+    }
+
     public function filters(){
         return $this->hasMany(Filter::class);
     }
