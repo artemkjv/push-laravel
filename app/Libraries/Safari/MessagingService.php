@@ -25,7 +25,7 @@ class MessagingService
         Pushable $pushable, $languageId,
         $certificate, $password,
         Collection $pushUsers,
-        SentPush $sentPush, $urlArgs = null
+        SentPush $sentPush, $urlArgs
     ){
         $data = $this->parseData($pushable, $languageId, $sentPush);
         $inactiveTokens = [];
