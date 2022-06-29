@@ -28,7 +28,7 @@ class UpdateCustomPushRequest extends FormRequest
             'name' => 'required|string|max:255',
             'apps' => 'required|array',
             'segments' => 'required|array',
-            'open_url' => 'nullable|url',
+            'open_url' => 'nullable|string',
             'deeplink' => 'nullable|string',
             'title' => 'required|array',
             'body' => 'required|array',
