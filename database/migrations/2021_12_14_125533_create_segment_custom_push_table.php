@@ -22,7 +22,8 @@ class CreateSegmentCustomPushTable extends Migration
             $table->unsignedBigInteger('segment_id');
             $table->foreign('segment_id')
                 ->references('id')
-                ->on('segments');
+                ->on('segments')
+                ->cascadeOnDelete();
         });
     }
 

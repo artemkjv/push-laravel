@@ -34,6 +34,7 @@ class DeleteExcelPush implements ShouldQueue
      */
     public function handle()
     {
+        $this->customPush->segments()->delete();
         $this->customPush->delete();
     }
 }

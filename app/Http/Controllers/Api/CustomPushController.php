@@ -71,19 +71,16 @@ class CustomPushController extends Controller
 
     public function excel(ExcelCustomPushRequest $request) {
         $this->authorize('create', CustomPush::class);
-
         $customPush = DB::transaction(function () use($request) {
             $payload = $request->validated();
             $this->customPushService->handleIsTest($payload);
             $userDecorator = \Illuminate\Support\Facades\App::make(UserInterface::class);
             $appIds = $payload['apps'];
-            $segmentIds = $payload['segments'];
 
             //Creating image and icon if payload data is not empty
             $this->handleImages($payload);
 
             $customPush = $this->customPushRepository->save($payload);
-            $segments = $this->segmentRepository->getByUserAndIds($userDecorator, $segmentIds);
 
             // Creating segment if user indicated country_id or tag
             if((isset($payload['tag_key']) && isset($payload['tag_value'])) || isset($payload['country_id'])) {
@@ -110,12 +107,13 @@ class CustomPushController extends Controller
                         'filter_type_id' => self::FILTER_TYPE_COUNTRY
                     ]);
                 }
-                $segments->push($segment);
                 SegmentPushUserJob::dispatch($segment);
             }
             $apps = $this->appRepository->getByUserAndIds($userDecorator, $appIds);
             $customPush->apps()->sync($apps);
-            $customPush->segments()->sync($segments);
+            if(isset($segment)) {
+                $customPush->segments()->attach($segment);
+            }
             return $customPush;
         });
         return new CustomPushResource($customPush);
