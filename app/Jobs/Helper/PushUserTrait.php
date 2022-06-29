@@ -46,7 +46,7 @@ trait PushUserTrait
 
                         foreach ($chunksPushUsers as $chunksPushUser) {
                             $messagingService->send($pushable, $languageId, $certificate, $password, $chunksPushUser, $sentPush, [
-                                'clicked'
+                                ''
                             ]);
                         }
 
