@@ -74,7 +74,7 @@ class MessagingService
             ->setMutableContent(true)
             ->setCustomValue('image_url', $pushable->getImage() ? asset("/storage/{$pushable->getImage()}") : null)
             ->setCustomValue('icon_url', $pushable->getIcon() ? asset("/storage/{$pushable->getIcon()}") : null)
-            ->setCustomValue('deeplink', $pushable->getDeeplink())
+            ->setCustomValue('deep', $pushable->getDeeplink())
             ->setCustomValue('sent_push_id', $sentPush->id)
             ->setCustomValue('push_id', $pushable->getId())
             ->setCustomValue('time_to_live', $pushable->getTimeToLive())
@@ -82,7 +82,7 @@ class MessagingService
         if($isWebPush) {
             $payload->setUrlArgs([$pushable->getOpenUrl() ?? '']);
         } else {
-            $payload->setCustomValue('open_url', $pushable->getOpenUrl());
+            $payload->setCustomValue('link_url', $pushable->getOpenUrl());
         }
 
         return $payload;
